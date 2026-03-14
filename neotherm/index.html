@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NeoTherm: Non-contact thermal monitoring that detects neonatal sepsis hours before any lab test by watching a temperature gap invisible to the human eye.">
+<title>NeoTherm — Neonatal Sepsis Detection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050810;--bg2:#080c16;--bg3:#0d1220;--bg4:#111827;
+  --t1:#e8e4df;--t2:#8b9ab5;--t3:#4a5568;
+  --cold:#1a6bff;--cool:#00d4ff;--mid:#00ff88;--warm:#ffcc00;--hot:#ff4400;--white:#fff5e6;
+  --accent:#f0a030;--danger:#ef4444;--success:#10b981;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Manrope',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --grad:linear-gradient(90deg,var(--cold),var(--cool),var(--mid),var(--warm),var(--hot),var(--white));
+}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+body{font-family:var(--sans);background:var(--bg);color:var(--t1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(240,160,48,.3);color:var(--white)}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+/* Scroll progress */
+#scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:10001;width:0;transition:width .15s linear;will-change:width}
+
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+h1{font-size:clamp(3rem,8vw,7rem);line-height:1;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.15}
+h3{font-size:clamp(1.3rem,2.5vw,1.8rem);line-height:1.3}
+.label{font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.stat-num{font-family:var(--mono);font-weight:700;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+section{min-height:100vh;display:flex;align-items:center;padding:8rem 0;position:relative}
+
+/* Section dividers for visual breathing room */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(240,160,48,.15) 30%,rgba(240,160,48,.15) 70%,transparent);margin:0 auto;max-width:800px}
+
+/* ===== STORY NAV (section progress tracker) ===== */
+#story-nav{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:1.5rem;align-items:flex-end}
+.story-dot{display:flex;align-items:center;gap:.75rem;cursor:pointer;text-decoration:none;transition:opacity .3s}
+.story-dot .dot-marker{width:10px;height:10px;border-radius:50%;border:2px solid var(--t3);background:transparent;transition:all .3s;flex-shrink:0}
+.story-dot .dot-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);opacity:0;transform:translateX(8px);transition:all .3s;white-space:nowrap;pointer-events:none}
+.story-dot:hover .dot-label{opacity:1;transform:translateX(0)}
+.story-dot.active .dot-marker{border-color:var(--accent);background:var(--accent);box-shadow:0 0 10px rgba(240,160,48,.4)}
+.story-dot.active .dot-label{opacity:1;transform:translateX(0);color:var(--accent)}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s;backdrop-filter:blur(0)}
+nav.scrolled{padding:1rem 2rem;background:rgba(5,8,16,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(240,160,48,.1)}
+.nav-logo{font-family:var(--serif);font-size:1.5rem;color:var(--t1);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);text-decoration:none;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:var(--t1)}.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--accent)}.nav-links a.active::after{width:100%}
+
+/* Section number badge */
+.section-num{display:inline-flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.section-num .num{font-family:var(--mono);font-size:.65rem;width:24px;height:24px;border-radius:50%;border:1px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+
+/* ===== HERO ===== */
+#hero{min-height:100vh;position:relative;overflow:hidden}
+#hero-canvas{position:absolute;inset:0;z-index:0;opacity:.55;cursor:grab}
+#hero-canvas:active{cursor:grabbing}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border:1px solid rgba(240,160,48,.25);border-radius:100px;margin-bottom:2rem;background:rgba(240,160,48,.05)}
+.hero-badge span{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.hero-title{margin-bottom:1.5rem}.hero-title em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.2rem;line-height:1.7;color:var(--t2);max-width:600px;margin-bottom:3rem;font-weight:300}
+.hero-stats-row{display:flex;gap:3rem;flex-wrap:wrap}
+.hero-stat .num{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--warm)}
+.hero-stat .desc{font-size:.8rem;color:var(--t2);max-width:140px;line-height:1.4}
+.scroll-cue{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scroll-cue span{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--t3)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrl 2s ease infinite}
+@keyframes scrl{0%{transform:scaleY(0);transform-origin:top;opacity:1}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom;opacity:.3}}
+
+/* ===== CRISIS (Flippable Cards) ===== */
+#crisis{background:var(--bg2)}
+#crisis .container{width:100%}
+.crisis-header{text-align:center;margin-bottom:5rem}
+.crisis-header h2{margin-top:1rem}
+.crisis-header .highlight{color:var(--danger)}
+.crisis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.flip-card{perspective:800px;height:240px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;will-change:transform}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(255,255,255,.04);background:var(--bg3)}
+.flip-back{transform:rotateY(180deg);background:var(--bg4);border-color:rgba(240,160,48,.15)}
+.flip-front::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0;transition:opacity .3s;border-radius:16px 16px 0 0}
+.flip-card:hover .flip-front::before{opacity:1}
+.flip-front .stat-num{margin-bottom:.75rem}
+.flip-front h3{font-family:var(--sans);font-size:.95rem;font-weight:600;margin-bottom:.5rem}
+.flip-front p{font-size:.78rem;color:var(--t2);line-height:1.5}
+.flip-hint{font-family:var(--mono);font-size:.65rem;color:var(--accent);margin-top:auto;padding-top:.75rem;display:flex;align-items:center;gap:.4rem;opacity:.7;transition:opacity .3s}
+.flip-card:hover .flip-hint{opacity:1}
+.flip-hint svg{width:14px;height:14px}
+.flip-back h4{font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--accent);margin-bottom:.75rem}
+.flip-back p{font-size:.75rem;color:var(--t2);line-height:1.6}
+.flip-back .src{font-family:var(--mono);font-size:.6rem;color:var(--t3);margin-top:auto;padding-top:.5rem}
+.flip-back .flip-hint-back{font-family:var(--mono);font-size:.6rem;color:var(--t3);margin-top:.5rem;opacity:.6}
+
+/* ===== GAP ===== */
+#gap{background:var(--bg)}
+.gap-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+.gap-text h2{margin-top:1rem;margin-bottom:1.5rem}
+.gap-text p{color:var(--t2);line-height:1.7;margin-bottom:1.5rem}
+.gap-callout{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:1.5rem}
+.gap-callout .big{font-family:var(--mono);font-size:2.5rem;font-weight:700;color:var(--danger);line-height:1;margin-bottom:.5rem}
+.gap-callout p{font-size:.85rem;color:var(--t2);margin:0}
+.gap-failures{display:flex;flex-direction:column;gap:1rem}
+.failure-card{background:var(--bg3);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:1.5rem 1.75rem;display:flex;gap:1.25rem;transition:border-color .3s,transform .3s}
+.failure-card:hover{border-color:rgba(239,68,68,.2);transform:translateX(4px)}
+.failure-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:rgba(239,68,68,.1)}
+.failure-card h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin-bottom:.25rem}
+.failure-card .time{font-family:var(--mono);font-size:.75rem;color:var(--danger);margin-bottom:.25rem}
+.failure-card p{font-size:.78rem;color:var(--t2);line-height:1.5}
+
+/* ===== SIGNAL (Interactive cpTD) ===== */
+#signal{background:var(--bg2)}
+.signal-layout{width:100%}
+.signal-header{text-align:center;margin-bottom:4rem}
+.signal-header h2{margin-top:1rem;margin-bottom:1rem}
+.signal-header p{color:var(--t2);max-width:650px;margin:0 auto;line-height:1.7}
+.signal-viz{position:relative;background:var(--bg3);border:1px solid rgba(255,255,255,.04);border-radius:20px;padding:2rem 2rem 1.5rem;margin-bottom:3rem;overflow:hidden}
+.signal-viz::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+#cptd-chart{width:100%;height:350px;display:block}
+.time-controls{display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem;padding:1rem 0 0;border-top:1px solid rgba(255,255,255,.04)}
+.time-controls label{font-family:var(--mono);font-size:.7rem;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+#time-slider{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:rgba(255,255,255,.08);outline:none;cursor:pointer}
+#time-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 12px rgba(240,160,48,.4)}
+#time-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
+.time-value{font-family:var(--mono);font-size:.85rem;color:var(--accent);min-width:40px;text-align:right}
+.signal-legend{display:flex;justify-content:center;gap:2rem;margin-top:1rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--t2)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.signal-evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.evidence-card{background:var(--bg3);border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:2rem;text-align:center;transition:transform .3s,border-color .3s;cursor:pointer;position:relative;overflow:hidden}
+.evidence-card:hover{transform:translateY(-2px);border-color:rgba(240,160,48,.15)}
+.evidence-card .big-stat{font-family:var(--mono);font-size:3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:.5rem}
+.evidence-card .stat-label{font-size:.85rem;color:var(--t2);line-height:1.5}
+.evidence-card .stat-source{font-family:var(--mono);font-size:.65rem;color:var(--t3);margin-top:.75rem}
+.evidence-expand-hint{font-family:var(--mono);font-size:.6rem;color:var(--accent);margin-top:.75rem;display:flex;align-items:center;justify-content:center;gap:.3rem;opacity:.6;transition:opacity .3s}
+.evidence-card:hover .evidence-expand-hint{opacity:1}
+.evidence-expand-hint svg{width:12px;height:12px;transition:transform .3s}
+.evidence-card.expanded .evidence-expand-hint svg{transform:rotate(180deg)}
+.evidence-detail{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .5s ease;padding:0 .5rem;font-size:.78rem;color:var(--t2);line-height:1.6;text-align:left}
+.evidence-card.expanded .evidence-detail{max-height:200px;padding-top:1rem}
+.evidence-card.expanded{border-color:rgba(240,160,48,.25)}
+
+/* ===== SOLUTION + 3D Device ===== */
+#solution{background:var(--bg)}
+.solution-layout{width:100%}
+.solution-header{text-align:center;margin-bottom:5rem}
+.solution-header h2{margin-top:1rem;margin-bottom:1rem}
+.solution-header p{color:var(--t2);max-width:600px;margin:0 auto;line-height:1.7}
+.solution-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:5rem;position:relative}
+.solution-steps::before{content:'';position:absolute;top:40px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--cold),var(--cool),var(--warm),var(--hot));opacity:.3}
+.step-card{text-align:center;position:relative;z-index:1;cursor:pointer}
+.step-number{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:var(--mono);font-size:1rem;font-weight:700;background:var(--bg3);border:2px solid;transition:transform .3s,box-shadow .3s}
+.step-card:nth-child(1) .step-number{border-color:var(--cold);color:var(--cold)}
+.step-card:nth-child(2) .step-number{border-color:var(--cool);color:var(--cool)}
+.step-card:nth-child(3) .step-number{border-color:var(--warm);color:var(--warm)}
+.step-card:nth-child(4) .step-number{border-color:var(--hot);color:var(--hot)}
+.step-card:hover .step-number{transform:scale(1.15);box-shadow:0 0 20px rgba(240,160,48,.2)}
+.step-card h4{font-family:var(--sans);font-weight:700;font-size:.95rem;margin-bottom:.5rem}
+.step-card p{font-size:.78rem;color:var(--t2);line-height:1.5}
+.device-section{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+#device-canvas{width:100%;height:400px;border-radius:16px;cursor:grab;background:radial-gradient(ellipse at center,rgba(240,160,48,.03) 0%,transparent 70%)}
+#device-canvas:active{cursor:grabbing}
+.hw-list{display:flex;flex-direction:column;gap:.75rem}
+.hw-item{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--bg3);border:1px solid rgba(255,255,255,.04);border-radius:10px;transition:border-color .3s}
+.hw-item:hover{border-color:rgba(240,160,48,.15)}
+.hw-name{font-weight:600;font-size:.9rem}.hw-spec{font-size:.7rem;color:var(--t2)}.hw-cost{font-family:var(--mono);font-size:.9rem;color:var(--warm);font-weight:700}
+.hw-total{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:rgba(240,160,48,.08);border:1px solid rgba(240,160,48,.2);border-radius:12px;margin-top:.5rem}
+.hw-total .hw-name{font-weight:700;font-size:1rem}.hw-total .hw-cost{font-size:1.3rem}
+
+/* ===== DASHBOARD (Full Interactive) ===== */
+#dashboard{background:var(--bg2);padding-bottom:4rem}
+.dashboard-layout{width:100%}
+.dashboard-header{text-align:center;margin-bottom:3rem}
+.dashboard-header h2{margin-top:1rem;margin-bottom:1rem}
+.dashboard-header p{color:var(--t2);max-width:600px;margin:0 auto}
+.dashboard-mock{background:#060a14;border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03)}
+.dash-titlebar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.5rem;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.04)}
+.dash-dots{display:flex;gap:6px}.dash-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1)}
+.dash-dots span:first-child{background:#ff5f57}.dash-dots span:nth-child(2){background:#ffbd2e}.dash-dots span:nth-child(3){background:#28c840}
+.dash-title-text{font-family:var(--mono);font-size:.7rem;color:var(--t3);letter-spacing:.05em}
+.dash-status{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--success);animation:pulse 1.5s ease infinite}
+
+/* Tabs */
+.dash-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.04);padding:0 1.5rem;overflow-x:auto}
+.dash-tab{padding:.75rem 1.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;user-select:none;white-space:nowrap}
+.dash-tab:hover{color:var(--t2)}
+.dash-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+.dash-content{min-height:500px;position:relative}
+.tab-panel{display:none;padding:1.5rem}
+.tab-panel.active{display:block}
+
+/* Overview Tab */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;min-height:450px}
+.ov-left{display:flex;flex-direction:column;gap:1.5rem}
+.ov-right{display:flex;flex-direction:column;gap:1.5rem}
+.ov-panel{background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:1.25rem}
+.ov-panel h4{font-family:var(--sans);font-size:.85rem;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.ov-panel h4 .panel-icon{width:18px;height:18px;opacity:.5}
+.patient-row{display:flex;justify-content:space-between;padding:.4rem 0;font-size:.75rem;border-bottom:1px solid rgba(255,255,255,.03)}
+.patient-row .key{color:var(--t3)}.patient-row .val{color:var(--t2);font-family:var(--mono);font-size:.7rem}
+.thermal-canvas-wrap{width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;position:relative;background:#000;margin-top:.5rem}
+#thermal-feed-canvas{width:100%;height:100%;display:block}
+.cptd-display{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem}
+.cptd-value{font-family:var(--mono);font-size:3.5rem;font-weight:700;line-height:1;transition:color .5s}
+.cptd-value.normal{color:var(--success)}.cptd-value.warning{color:var(--warm)}.cptd-value.danger{color:var(--danger)}
+.cptd-meta span{font-size:.75rem;color:var(--t2);display:block}
+.cptd-meta .threshold{font-family:var(--mono);color:var(--t3);font-size:.7rem}
+.dash-chart-wrap{flex:1;background:rgba(255,255,255,.02);border-radius:10px;padding:1rem;height:220px;position:relative}
+.dash-chart-wrap canvas{width:100%!important;height:100%!important}
+.alert-item{padding:.75rem;border-radius:8px;margin-bottom:.75rem;font-size:.75rem;line-height:1.5;cursor:pointer;transition:opacity .3s,transform .3s;position:relative}
+.alert-item:hover{transform:translateX(2px)}
+.alert-item.critical{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)}
+.alert-item.warning{background:rgba(240,160,48,.08);border:1px solid rgba(240,160,48,.15)}
+.alert-item.info{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15)}
+.alert-time{font-family:var(--mono);font-size:.65rem;color:var(--t3);display:block;margin-top:.25rem}
+.alert-dismiss{position:absolute;top:.5rem;right:.5rem;width:18px;height:18px;border:none;background:rgba(255,255,255,.05);border-radius:50%;color:var(--t3);cursor:pointer;font-size:.65rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.alert-item:hover .alert-dismiss{opacity:1}
+.vitals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.vital-item{padding:.6rem;background:rgba(255,255,255,.02);border-radius:6px;text-align:center}
+.vital-val{font-family:var(--mono);font-size:1.1rem;font-weight:700}.vital-label{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+
+/* Thermal Tab */
+.thermal-view{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;min-height:400px}
+.thermal-main-canvas{width:100%;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#000;position:relative}
+#thermal-large-canvas{width:100%;height:100%;display:block}
+.thermal-overlay{position:absolute;top:1rem;left:1rem;display:flex;flex-direction:column;gap:.5rem}
+.thermal-tag{padding:.3rem .6rem;border-radius:6px;font-family:var(--mono);font-size:.65rem;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.thermal-controls{display:flex;flex-direction:column;gap:1rem}
+.control-group label{font-family:var(--mono);font-size:.7rem;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:.5rem}
+.control-group input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:rgba(255,255,255,.08);outline:none}
+.control-group input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer}
+.scenario-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.scenario-btn{padding:.5rem 1rem;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:transparent;color:var(--t2);font-family:var(--mono);font-size:.7rem;cursor:pointer;transition:all .3s}
+.scenario-btn.active,.scenario-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(240,160,48,.05)}
+.temp-readouts{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+.readout{display:flex;justify-content:space-between;padding:.5rem .75rem;background:rgba(255,255,255,.02);border-radius:6px;font-size:.75rem}
+.readout .zone{color:var(--t2)}.readout .temp{font-family:var(--mono);font-weight:700}
+
+/* Trends Tab */
+.trends-view{min-height:400px}
+.trends-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.time-range-btns{display:flex;gap:.5rem}
+.range-btn{padding:.4rem .8rem;border:1px solid rgba(255,255,255,.08);border-radius:6px;background:transparent;color:var(--t3);font-family:var(--mono);font-size:.7rem;cursor:pointer;transition:all .3s}
+.range-btn.active,.range-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(240,160,48,.05)}
+.trends-chart-wrap{height:350px;position:relative}
+.trends-chart-wrap canvas{width:100%!important;height:100%!important}
+
+/* Alerts Tab */
+.alerts-view{display:grid;grid-template-columns:1fr 300px;gap:1.5rem}
+.alert-list{display:flex;flex-direction:column;gap:.5rem}
+.alert-log-item{display:flex;gap:1rem;padding:1rem;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;cursor:pointer}
+.alert-log-item:hover{border-color:rgba(240,160,48,.15)}
+.alert-severity{width:4px;border-radius:2px;flex-shrink:0}
+.alert-severity.crit{background:var(--danger)}.alert-severity.warn{background:var(--accent)}.alert-severity.ok{background:var(--success)}
+.alert-log-body h5{font-family:var(--sans);font-size:.85rem;font-weight:600;margin-bottom:.25rem}
+.alert-log-body p{font-size:.75rem;color:var(--t2);line-height:1.5}
+.alert-log-body .alert-time{margin-top:.25rem}
+.alert-settings h4{font-family:var(--sans);font-size:.85rem;font-weight:600;margin-bottom:1rem}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:.8rem}
+.toggle{width:36px;height:20px;border-radius:10px;background:rgba(255,255,255,.1);position:relative;cursor:pointer;transition:background .3s}
+.toggle.on{background:var(--accent)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .3s}
+.toggle.on::after{transform:translateX(16px)}
+
+/* ===== IMPACT (Calculator) ===== */
+#impact{background:var(--bg);position:relative}
+#impact::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(240,160,48,.06) 0%,transparent 70%);pointer-events:none}
+.impact-layout{width:100%;text-align:center}
+.impact-header{margin-bottom:4rem}
+.impact-header h2{margin-top:1rem;margin-bottom:1rem}
+.impact-header p{color:var(--t2);max-width:600px;margin:0 auto;line-height:1.7}
+.calc-section{background:var(--bg3);border:1px solid rgba(255,255,255,.04);border-radius:20px;padding:3rem;margin-bottom:4rem;text-align:left}
+.calc-section h3{text-align:center;margin-bottom:2rem;font-family:var(--sans);font-weight:700;font-size:1.1rem}
+.calc-slider-row{display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem}
+.calc-slider-row label{font-family:var(--mono);font-size:.8rem;color:var(--t2);min-width:180px}
+#deploy-slider{flex:1;-webkit-appearance:none;height:6px;border-radius:3px;background:rgba(255,255,255,.08);outline:none;cursor:pointer}
+#deploy-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 15px rgba(240,160,48,.4)}
+#deploy-slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
+#deploy-value{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--accent);min-width:80px;text-align:right}
+.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.calc-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:1.5rem;text-align:center;transition:border-color .3s}
+.calc-card:hover{border-color:rgba(240,160,48,.15)}
+.calc-card .calc-num{font-family:var(--mono);font-size:2.5rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.calc-card h4{font-family:var(--sans);font-size:.9rem;font-weight:600;margin-bottom:.25rem}
+.calc-card p{font-size:.75rem;color:var(--t2)}
+.cta-block{padding:4rem;background:var(--bg3);border:1px solid rgba(240,160,48,.15);border-radius:24px;text-align:center;position:relative;overflow:hidden}
+.cta-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+.cta-block h2{margin-bottom:1rem}
+.cta-block p{color:var(--t2);max-width:500px;margin:0 auto 2rem;line-height:1.7}
+.cta-button{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2.5rem;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border-radius:100px;border:none;cursor:pointer;transition:all .3s}
+.cta-button:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 8px 30px rgba(240,160,48,.3)}
+
+footer{padding:3rem 2rem;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+footer p{font-size:.75rem;color:var(--t3);font-family:var(--mono)}
+
+/* Responsive */
+@media(max-width:1024px){
+  .overview-grid{grid-template-columns:1fr}
+  .thermal-view,.alerts-view{grid-template-columns:1fr}
+  .device-section{grid-template-columns:1fr}
+  #story-nav{display:none}
+  .vitals-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:768px){
+  .crisis-grid{grid-template-columns:1fr 1fr}
+  .gap-layout{grid-template-columns:1fr}
+  .signal-evidence{grid-template-columns:1fr}
+  .solution-steps{grid-template-columns:1fr 1fr}
+  .solution-steps::before{display:none}
+  .calc-results{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .calc-slider-row{flex-direction:column;align-items:stretch}
+  section{padding:5rem 0}
+  #story-nav{display:none}
+  .vitals-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-tabs{gap:0}
+  .dash-tab{padding:.75rem 1rem;font-size:.65rem}
+}
+@media(max-width:480px){
+  .crisis-grid{grid-template-columns:1fr}
+  .solution-steps{grid-template-columns:1fr}
+  .cta-block{padding:2rem}
+  .hero-stats-row{gap:1.5rem}
+  .overview-grid{gap:1rem}
+}
+</style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+
+<!-- Story Progress Nav (right side dots) -->
+<nav id="story-nav" aria-label="Section navigation">
+  <a href="#hero" class="story-dot active" data-section="hero">
+    <span class="dot-label">Home</span>
+    <span class="dot-marker"></span>
+  </a>
+  <a href="#crisis" class="story-dot" data-section="crisis">
+    <span class="dot-label">01 Crisis</span>
+    <span class="dot-marker"></span>
+  </a>
+  <a href="#gap" class="story-dot" data-section="gap">
+    <span class="dot-label">02 The Gap</span>
+    <span class="dot-marker"></span>
+  </a>
+  <a href="#signal" class="story-dot" data-section="signal">
+    <span class="dot-label">03 The Signal</span>
+    <span class="dot-marker"></span>
+  </a>
+  <a href="#solution" class="story-dot" data-section="solution">
+    <span class="dot-label">04 Solution</span>
+    <span class="dot-marker"></span>
+  </a>
+  <a href="#dashboard" class="story-dot" data-section="dashboard">
+    <span class="dot-label">05 Interface</span>
+    <span class="dot-marker"></span>
+  </a>
+  <a href="#impact" class="story-dot" data-section="impact">
+    <span class="dot-label">06 Impact</span>
+    <span class="dot-marker"></span>
+  </a>
+</nav>
+
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo"><span class="dot"></span>NeoTherm</a>
+  <ul class="nav-links">
+    <li><a href="#crisis">Crisis</a></li>
+    <li><a href="#gap">The Gap</a></li>
+    <li><a href="#signal">The Signal</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#dashboard">Interface</a></li>
+    <li><a href="#impact">Impact</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot" style="width:6px;height:6px"></span><span>MIT Grand Hack 2025</span></div>
+      <h1 class="hero-title">Seeing sepsis<br><em>before</em> it speaks</h1>
+      <p class="hero-sub">Non-contact thermal monitoring that detects neonatal sepsis hours before any lab test, any biomarker, any clinical sign &mdash; by watching a temperature gap invisible to the human eye.</p>
+      <div class="hero-stats-row">
+        <div class="hero-stat"><span class="num">200K</span><span class="desc">neonatal deaths from sepsis every year</span></div>
+        <div class="hero-stat"><span class="num">71%</span><span class="desc">of cases, temperature is the first sign</span></div>
+        <div class="hero-stat"><span class="num">&lt;$500</span><span class="desc">device cost vs. $15K+ research cameras</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll to explore</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== CRISIS ===== -->
+<section id="crisis">
+  <div class="container">
+    <div class="crisis-header">
+      <div class="section-num"><span class="num">1</span><span class="label">The Crisis</span></div>
+      <h2>Neonatal sepsis kills a baby<br>every <span class="highlight">2.5 minutes</span></h2>
+    </div>
+    <div class="crisis-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="stat-num" data-target="3" data-suffix="M">0</div>
+            <h3>Cases Per Year</h3>
+            <p>An estimated 3 million neonates develop sepsis annually worldwide</p>
+            <span class="flip-hint">View source</span>
+          </div>
+          <div class="flip-back">
+            <h4>Source</h4>
+            <p>Global, regional, and national incidence and mortality data from the Global Burden of Disease Study. Sepsis accounts for 8-26% of all neonatal deaths, with incidence rates of 2,824 per 100,000 live births.</p>
+            <span class="src">Lancet 2020; Fleischmann-Struzek et al.</span>
+            <span class="flip-hint-back">Click to return</span>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="stat-num" data-target="99" data-suffix="%">0</div>
+            <h3>In Low-Income Settings</h3>
+            <p>99% of neonatal sepsis deaths occur in LMICs with minimal diagnostic infrastructure</p>
+            <span class="flip-hint">View source</span>
+          </div>
+          <div class="flip-back">
+            <h4>Source</h4>
+            <p>Sub-Saharan Africa and South Asia carry the highest burden. Blood cultures are rarely available. Most research focuses on the 1% of cases in high-income nations.</p>
+            <span class="src">WHO/UNICEF; BMC Public Health 2025</span>
+            <span class="flip-hint-back">Click to return</span>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="stat-num" data-target="35" data-suffix="%">0</div>
+            <h3>Survivors Impaired</h3>
+            <p>35% of survivors face neurodevelopmental impairment including cerebral palsy</p>
+            <span class="flip-hint">View source</span>
+          </div>
+          <div class="flip-back">
+            <h4>Source</h4>
+            <p>Culture-proven sepsis survivors had OR 3.18 for adverse neurodevelopmental outcomes vs. non-sepsis group. Pro-inflammatory cytokines impair neurogenesis and synaptic connectivity.</p>
+            <span class="src">Children 2019; Meta-analysis, n=18 studies</span>
+            <span class="flip-hint-back">Click to return</span>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="stat-num" data-target="48" data-suffix="h">0</div>
+            <h3>Diagnostic Delay</h3>
+            <p>Blood cultures take 24-72 hours. Treatment decisions are made blind.</p>
+            <span class="flip-hint">View source</span>
+          </div>
+          <div class="flip-back">
+            <h4>Source</h4>
+            <p>83-94% of neonates treated for suspected sepsis have negative blood cultures. 49% receive prolonged antibiotics without any evidence of infection, causing antimicrobial resistance and microbiome damage.</p>
+            <span class="src">PMC 2012; bioM&eacute;rieux</span>
+            <span class="flip-hint-back">Click to return</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== GAP ===== -->
+<section id="gap">
+  <div class="container">
+    <div class="gap-layout">
+      <div class="gap-text">
+        <div class="section-num"><span class="num">2</span><span class="label">The Diagnostic Failure</span></div>
+        <h2>Every tool today is too slow, too subjective, or too invasive</h2>
+        <p>Neonatal sepsis signs are notoriously vague &mdash; overlapping with normal newborn physiology. The result: treat everyone empirically and deal with the consequences.</p>
+        <div class="gap-callout"><div class="big">83&ndash;94%</div><p>of neonates treated for suspected sepsis have <strong>negative</strong> blood cultures. Nearly half receive prolonged antibiotics with zero evidence of infection.</p></div>
+      </div>
+      <div class="gap-failures">
+        <div class="failure-card"><div class="failure-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><h4>Blood Culture</h4><div class="time">24&ndash;72 hour delay</div><p>Gold standard but requires blood volume neonates can barely spare. Often unavailable in LMICs.</p></div></div>
+        <div class="failure-card"><div class="failure-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M9 2h6l-2 7h4l-7 9 2-7H8z"/></svg></div><div><h4>CRP / Procalcitonin</h4><div class="time">6&ndash;24 hour delay</div><p>CRP has poor early sensitivity. PCT confounded by physiological surge in first 48h of life.</p></div></div>
+        <div class="failure-card"><div class="failure-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M8 12h8M12 8v8"/></svg></div><div><h4>Capillary Refill Time</h4><div class="time">Highly subjective</div><p>Enormous inter-observer variability. Not standardized for pressure, duration, or measurement site.</p></div></div>
+        <div class="failure-card"><div class="failure-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div><div><h4>WHO Clinical Signs (IMCI)</h4><div class="time">Low specificity</div><p>Sensitivity-optimized: catches cases but causes massive over-treatment. No POC test exists.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SIGNAL ===== -->
+<section id="signal">
+  <div class="container">
+    <div class="signal-layout">
+      <div class="signal-header">
+        <div class="section-num" style="justify-content:center"><span class="num">3</span><span class="label">The Discovery</span></div>
+        <h2>A 2&deg;C gap that predicts sepsis<br>before anything else</h2>
+        <p>When sepsis begins, the body shunts blood centrally. The core stays warm while extremities cool. This core-peripheral temperature difference (cpTD) widens beyond 2&deg;C &mdash; the <em>earliest detectable clinical sign</em>.</p>
+      </div>
+      <div class="signal-viz">
+        <canvas id="cptd-chart"></canvas>
+        <div class="time-controls">
+          <label>Scrub Timeline:</label>
+          <input type="range" id="time-slider" min="0" max="100" value="0">
+          <span class="time-value" id="time-display">0h</span>
+        </div>
+        <div class="signal-legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Core Temperature (chest)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span>Peripheral Temperature (foot)</div>
+          <div class="legend-item"><span class="legend-dot" style="background:rgba(239,68,68,.2)"></span>cpTD &gt; 2&deg;C Alert Zone</div>
+        </div>
+      </div>
+      <div class="signal-evidence">
+        <div class="evidence-card" onclick="this.classList.toggle('expanded')">
+          <div class="big-stat">23.6x</div>
+          <div class="stat-label">Adjusted odds ratio for LOS when cpTD &gt; 2&deg;C persists 4 hours</div>
+          <div class="stat-source">Leante-Castellanos 2017, n=129</div>
+          <div class="evidence-expand-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg> Details</div>
+          <div class="evidence-detail">Prospective observational study of 129 VLBW infants. cpTD &gt;2&deg;C sustained for 4 hours. Sensitivity 83%, NPV 94%. Thermal gradient alteration detected sepsis earlier than CRP or altered blood count in the majority of cases.</div>
+        </div>
+        <div class="evidence-card" onclick="this.classList.toggle('expanded')">
+          <div class="big-stat">71%</div>
+          <div class="stat-label">of sepsis cases, cpTD was the first sign &mdash; before any lab or vital change</div>
+          <div class="stat-source">Leante-Castellanos 2017</div>
+          <div class="evidence-expand-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg> Details</div>
+          <div class="evidence-detail">In 71% of confirmed late-onset sepsis episodes, the thermal gradient alteration was detected before any other clinical sign, laboratory marker, or vital sign change. This makes cpTD the single earliest indicator of developing sepsis.</div>
+        </div>
+        <div class="evidence-card" onclick="this.classList.toggle('expanded')">
+          <div class="big-stat">&lt;0.3&deg;C</div>
+          <div class="stat-label">Mean absolute error of non-contact thermal cpTD vs. contact probes</div>
+          <div class="stat-source">NICU CPTD Study 2025, n=40</div>
+          <div class="evidence-expand-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg> Details</div>
+          <div class="evidence-detail">Prospective study using thermal infrared camera with deep learning body parsing to auto-segment chest vs. limbs. Achieved MAE &lt;0.3&deg;C compared to clinical-grade contact thermometers. Fully automatic, continuous, non-contact monitoring proven feasible.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SOLUTION ===== -->
+<section id="solution">
+  <div class="container">
+    <div class="solution-layout">
+      <div class="solution-header">
+        <div class="section-num" style="justify-content:center"><span class="num">4</span><span class="label">Our Solution</span></div>
+        <h2>A thermal eye for every incubator</h2>
+        <p>NeoTherm is a low-cost thermal camera module that clips onto any NICU incubator and continuously monitors the temperature gap that signals sepsis.</p>
+      </div>
+      <div class="solution-steps">
+        <div class="step-card"><div class="step-number">01</div><h4>Mount</h4><p>Clip module onto incubator. CaF2 IR window enables imaging through walls.</p></div>
+        <div class="step-card"><div class="step-number">02</div><h4>Segment</h4><p>Deep learning auto-detects chest (core) and foot (peripheral) in real-time.</p></div>
+        <div class="step-card"><div class="step-number">03</div><h4>Compute</h4><p>Continuously calculates cpTD and tracks trends over time.</p></div>
+        <div class="step-card"><div class="step-number">04</div><h4>Alert</h4><p>When cpTD &gt; 2&deg;C threshold persists, nurses receive an immediate alert.</p></div>
+      </div>
+      <div class="device-section">
+        <canvas id="device-canvas"></canvas>
+        <div>
+          <h3 style="margin-bottom:1.5rem">Hardware Stack</h3>
+          <div class="hw-list">
+            <div class="hw-item"><div><div class="hw-name">FLIR Lepton 3.5</div><div class="hw-spec">160&times;120 radiometric, &lt;50mK sensitivity</div></div><div class="hw-cost">$200</div></div>
+            <div class="hw-item"><div><div class="hw-name">RGB Camera</div><div class="hw-spec">Body landmark detection for segmentation</div></div><div class="hw-cost">$20</div></div>
+            <div class="hw-item"><div><div class="hw-name">Raspberry Pi 5</div><div class="hw-spec">On-device ML inference, local processing</div></div><div class="hw-cost">$80</div></div>
+            <div class="hw-item"><div><div class="hw-name">CaF2 IR Window</div><div class="hw-spec">Infrared-transparent incubator lens + mount</div></div><div class="hw-cost">$75</div></div>
+            <div class="hw-total"><div class="hw-name">Total Prototype</div><div class="hw-cost">~$375</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== DASHBOARD ===== -->
+<section id="dashboard">
+  <div class="container">
+    <div class="dashboard-layout">
+      <div class="dashboard-header">
+        <div class="section-num" style="justify-content:center"><span class="num">5</span><span class="label">The Interface</span></div>
+        <h2>Real-time perfusion intelligence</h2>
+        <p>An intuitive monitoring dashboard designed for busy NICU nurses &mdash; clear signals, not noise.</p>
+      </div>
+      <div class="dashboard-mock">
+        <div class="dash-titlebar">
+          <div class="dash-dots"><span></span><span></span><span></span></div>
+          <div class="dash-title-text">NEOTHERM MONITOR &mdash; BAY 4, INCUBATOR 7</div>
+          <div class="dash-status"><span class="status-dot"></span><span style="color:var(--success)">CONNECTED</span></div>
+        </div>
+        <div class="dash-tabs">
+          <div class="dash-tab active" data-tab="overview">Overview</div>
+          <div class="dash-tab" data-tab="thermal">Thermal View</div>
+          <div class="dash-tab" data-tab="trends">Trends</div>
+          <div class="dash-tab" data-tab="alerts">Alerts</div>
+        </div>
+        <div class="dash-content">
+
+          <!-- OVERVIEW TAB -->
+          <div class="tab-panel active" id="tab-overview">
+            <div class="overview-grid">
+              <div class="ov-left">
+                <div class="ov-panel">
+                  <h4>Core-Peripheral Temperature Difference</h4>
+                  <div class="cptd-display">
+                    <div class="cptd-value warning" id="live-cptd">1.8&deg;C</div>
+                    <div class="cptd-meta">
+                      <span id="live-temps">Core: 37.1&deg;C &middot; Peripheral: 35.3&deg;C</span>
+                      <span class="threshold">Alert Threshold: 2.0&deg;C &middot; Trending upward</span>
+                    </div>
+                  </div>
+                  <div class="dash-chart-wrap"><canvas id="overview-chart"></canvas></div>
+                </div>
+                <div class="ov-panel">
+                  <h4>Vitals</h4>
+                  <div class="vitals-grid">
+                    <div class="vital-item"><div class="vital-val" id="v-hr">156</div><div class="vital-label">HR bpm</div></div>
+                    <div class="vital-item"><div class="vital-val" id="v-spo2">96%</div><div class="vital-label">SpO2</div></div>
+                    <div class="vital-item"><div class="vital-val" id="v-core">37.1</div><div class="vital-label">Core &deg;C</div></div>
+                    <div class="vital-item"><div class="vital-val" id="v-periph">35.3</div><div class="vital-label">Periph &deg;C</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="ov-right">
+                <div class="ov-panel">
+                  <h4>Patient Information</h4>
+                  <div class="patient-row"><span class="key">ID</span><span class="val">NEO-2025-0847</span></div>
+                  <div class="patient-row"><span class="key">Gestational Age</span><span class="val">28+3 weeks</span></div>
+                  <div class="patient-row"><span class="key">Birth Weight</span><span class="val">1,180g (VLBW)</span></div>
+                  <div class="patient-row"><span class="key">Day of Life</span><span class="val">Day 9</span></div>
+                  <div class="patient-row"><span class="key">Incubator Temp</span><span class="val">34.2&deg;C</span></div>
+                  <div class="patient-row"><span class="key">Monitoring</span><span class="val">72h 14m</span></div>
+                </div>
+                <div class="ov-panel">
+                  <h4>Live Thermal Feed</h4>
+                  <div class="thermal-canvas-wrap"><canvas id="thermal-feed-canvas"></canvas></div>
+                </div>
+                <div class="ov-panel">
+                  <h4>Alerts</h4>
+                  <div id="alert-container">
+                    <div class="alert-item warning">cpTD rising: 1.8&deg;C. Approaching threshold.<span class="alert-time">2 min ago</span><button class="alert-dismiss" onclick="this.parentElement.style.opacity=0;setTimeout(()=>this.parentElement.remove(),300)">&times;</button></div>
+                    <div class="alert-item info">cpTD normalized after incubator adjustment.<span class="alert-time">3h 12m ago</span><button class="alert-dismiss" onclick="this.parentElement.style.opacity=0;setTimeout(()=>this.parentElement.remove(),300)">&times;</button></div>
+                    <div class="alert-item info">Calibration check passed. MAE &lt;0.3&deg;C.<span class="alert-time">6h ago</span><button class="alert-dismiss" onclick="this.parentElement.style.opacity=0;setTimeout(()=>this.parentElement.remove(),300)">&times;</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- THERMAL TAB -->
+          <div class="tab-panel" id="tab-thermal">
+            <div class="thermal-view">
+              <div>
+                <div class="thermal-main-canvas">
+                  <canvas id="thermal-large-canvas"></canvas>
+                  <div class="thermal-overlay">
+                    <span class="thermal-tag" style="color:var(--hot)">Core: 37.1&deg;C</span>
+                    <span class="thermal-tag" style="color:var(--cold)">Periph: 35.3&deg;C</span>
+                    <span class="thermal-tag" style="color:var(--warm)">cpTD: 1.8&deg;C</span>
+                  </div>
+                </div>
+              </div>
+              <div class="thermal-controls">
+                <div class="control-group">
+                  <label>Scenario</label>
+                  <div class="scenario-btns">
+                    <button class="scenario-btn active" data-scenario="warning" onclick="setScenario(this)">Pre-Sepsis</button>
+                    <button class="scenario-btn" data-scenario="healthy" onclick="setScenario(this)">Healthy</button>
+                    <button class="scenario-btn" data-scenario="sepsis" onclick="setScenario(this)">Sepsis</button>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label>Color Sensitivity</label>
+                  <input type="range" id="sensitivity-slider" min="1" max="10" value="5">
+                </div>
+                <div class="control-group">
+                  <label>Temperature Range (&deg;C)</label>
+                  <input type="range" id="temp-range-slider" min="30" max="40" value="35" step="0.5">
+                </div>
+                <div class="temp-readouts" id="temp-readouts">
+                  <div class="readout"><span class="zone">Head</span><span class="temp" style="color:var(--hot)">37.2&deg;C</span></div>
+                  <div class="readout"><span class="zone">Chest (Core)</span><span class="temp" style="color:var(--hot)">37.1&deg;C</span></div>
+                  <div class="readout"><span class="zone">Abdomen</span><span class="temp" style="color:var(--warm)">36.8&deg;C</span></div>
+                  <div class="readout"><span class="zone">Left Hand</span><span class="temp" style="color:var(--cool)">35.8&deg;C</span></div>
+                  <div class="readout"><span class="zone">Right Hand</span><span class="temp" style="color:var(--cool)">35.7&deg;C</span></div>
+                  <div class="readout"><span class="zone">Left Foot</span><span class="temp" style="color:var(--cold)">35.3&deg;C</span></div>
+                  <div class="readout"><span class="zone">Right Foot</span><span class="temp" style="color:var(--cold)">35.2&deg;C</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRENDS TAB -->
+          <div class="tab-panel" id="tab-trends">
+            <div class="trends-view">
+              <div class="trends-toolbar">
+                <h4 style="font-family:var(--sans);font-size:.85rem;font-weight:600">cpTD, Core & Peripheral Temperature</h4>
+                <div class="time-range-btns">
+                  <button class="range-btn" onclick="setRange(this,1)">1H</button>
+                  <button class="range-btn" onclick="setRange(this,6)">6H</button>
+                  <button class="range-btn active" onclick="setRange(this,12)">12H</button>
+                  <button class="range-btn" onclick="setRange(this,24)">24H</button>
+                </div>
+              </div>
+              <div class="trends-chart-wrap"><canvas id="trends-chart"></canvas></div>
+            </div>
+          </div>
+
+          <!-- ALERTS TAB -->
+          <div class="tab-panel" id="tab-alerts">
+            <div class="alerts-view">
+              <div>
+                <h4 style="font-family:var(--sans);font-size:.85rem;font-weight:600;margin-bottom:1rem">Alert Log</h4>
+                <div class="alert-list" id="alert-log">
+                  <div class="alert-log-item"><div class="alert-severity warn"></div><div class="alert-log-body"><h5>cpTD Rising</h5><p>Temperature difference at 1.8&deg;C and trending upward. Monitor closely.</p><span class="alert-time">2 min ago</span></div></div>
+                  <div class="alert-log-item"><div class="alert-severity ok"></div><div class="alert-log-body"><h5>cpTD Normalized</h5><p>Temperature difference returned to 1.2&deg;C after incubator temp increased to 34.5&deg;C.</p><span class="alert-time">3h 12m ago</span></div></div>
+                  <div class="alert-log-item"><div class="alert-severity ok"></div><div class="alert-log-body"><h5>System Calibration</h5><p>Automated calibration check passed. Camera accuracy confirmed at &lt;0.3&deg;C MAE.</p><span class="alert-time">6h ago</span></div></div>
+                  <div class="alert-log-item"><div class="alert-severity crit"></div><div class="alert-log-body"><h5>cpTD ALERT &mdash; Threshold Exceeded</h5><p>cpTD reached 2.3&deg;C for &gt;45 minutes. Clinical assessment recommended. Physician notified.</p><span class="alert-time">Yesterday, 14:22</span></div></div>
+                  <div class="alert-log-item"><div class="alert-severity warn"></div><div class="alert-log-body"><h5>Occlusion Detected</h5><p>Peripheral measurement site partially occluded. Please check foot visibility.</p><span class="alert-time">Yesterday, 11:05</span></div></div>
+                </div>
+              </div>
+              <div class="alert-settings">
+                <h4>Alert Settings</h4>
+                <div class="setting-row"><span>cpTD Threshold Alert</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="setting-row"><span>Trend Warnings</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="setting-row"><span>Calibration Reminders</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="setting-row"><span>Occlusion Alerts</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="setting-row"><span>Sound Alerts</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+                <div class="setting-row"><span>Push to Mobile</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== IMPACT ===== -->
+<section id="impact">
+  <div class="container">
+    <div class="impact-layout">
+      <div class="impact-header">
+        <div class="section-num" style="justify-content:center"><span class="num">6</span><span class="label">The Impact</span></div>
+        <h2>From research insight to global health tool</h2>
+        <p>Every component has been independently validated. Drag the slider to see the potential at scale.</p>
+      </div>
+      <div class="calc-section">
+        <h3>Deployment Impact Calculator</h3>
+        <div class="calc-slider-row">
+          <label>NeoTherm Units Deployed</label>
+          <input type="range" id="deploy-slider" min="10" max="10000" value="100" step="10">
+          <span id="deploy-value">100</span>
+        </div>
+        <div class="calc-results">
+          <div class="calc-card"><div class="calc-num" id="calc-detections">82</div><h4>Early Detections / Year</h4><p>Based on 88.5 LOS per 1,000 VLBW &times; 71% cpTD first-sign rate</p></div>
+          <div class="calc-card"><div class="calc-num" id="calc-lives">14</div><h4>Lives Potentially Saved</h4><p>Based on 17% mortality reduction with early intervention</p></div>
+          <div class="calc-card"><div class="calc-num" id="calc-savings">$2.7M</div><h4>Cost Savings (US)</h4><p>$33K incremental NICU cost avoided per prevented progression</p></div>
+        </div>
+      </div>
+      <div class="cta-block">
+        <h2>The science is proven.<br>The product doesn't exist yet.</h2>
+        <p>NeoTherm bridges a decade of validated research into a deployable, affordable tool that could fundamentally change how we detect neonatal sepsis worldwide.</p>
+        <button class="cta-button" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 7l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>NeoTherm &mdash; MIT Grand Hack 2025 &middot; Built with evidence, designed for impact</p></footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ============================
+// HERO: 3D Thermal Terrain (optimized)
+// ============================
+(function heroScene() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x050810, 0.025);
+
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.set(0, 15, 25);
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.4;
+  controls.enableZoom = false;
+  controls.enablePan = false;
+  controls.maxPolarAngle = Math.PI / 2.2;
+  controls.minPolarAngle = Math.PI / 5;
+
+  // Thermal terrain - reduced vertex count for performance
+  const geo = new THREE.PlaneGeometry(50, 50, 80, 80);
+  geo.rotateX(-Math.PI / 2);
+  const pos = geo.attributes.position;
+  const colors = new Float32Array(pos.count * 3);
+
+  function thermalColor(t) {
+    t = Math.max(0, Math.min(1, t));
+    let r, g, b;
+    if (t < 0.2) { r = t * 5 * 0.1; g = t * 5 * 0.3; b = 0.5 + t * 5 * 0.5; }
+    else if (t < 0.4) { r = 0.1; g = 0.3 + (t - 0.2) * 5 * 0.7; b = 1 - (t - 0.2) * 5 * 0.5; }
+    else if (t < 0.6) { r = (t - 0.4) * 5; g = 1; b = 0.5 - (t - 0.4) * 5 * 0.5; }
+    else if (t < 0.8) { r = 1; g = 1 - (t - 0.6) * 5 * 0.6; b = 0; }
+    else { r = 1; g = 0.4 - (t - 0.8) * 5 * 0.3; b = (t - 0.8) * 5 * 0.3; }
+    return { r, g, b };
+  }
+
+  // Cache x/z positions for animation
+  const xArr = new Float32Array(pos.count);
+  const zArr = new Float32Array(pos.count);
+  const distArr = new Float32Array(pos.count);
+  for (let i = 0; i < pos.count; i++) {
+    xArr[i] = pos.getX(i);
+    zArr[i] = pos.getZ(i);
+    distArr[i] = Math.sqrt(xArr[i] * xArr[i] + zArr[i] * zArr[i]);
+    const h = Math.exp(-distArr[i] * distArr[i] / 120) * 4
+      + Math.sin(xArr[i] * 0.3) * Math.cos(zArr[i] * 0.2) * 0.8
+      + Math.sin(xArr[i] * 0.7 + zArr[i] * 0.5) * 0.3;
+    pos.setY(i, h);
+    const t = (h + 1) / 5;
+    const c = thermalColor(t);
+    colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+  }
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geo.computeVertexNormals();
+
+  const mat = new THREE.MeshPhongMaterial({ vertexColors: true, shininess: 20, transparent: true, opacity: 0.85 });
+  const terrain = new THREE.Mesh(geo, mat);
+  scene.add(terrain);
+
+  // Particles - reduced count
+  const pCount = 1500;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(pCount * 3);
+  const pCol = new Float32Array(pCount * 3);
+  const pVel = new Float32Array(pCount);
+  for (let i = 0; i < pCount; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * 8;
+    pPos[i * 3] = Math.cos(angle) * radius;
+    pPos[i * 3 + 1] = Math.random() * 10;
+    pPos[i * 3 + 2] = Math.sin(angle) * radius;
+    const t = 0.5 + Math.random() * 0.5;
+    const c = thermalColor(t);
+    pCol[i * 3] = c.r; pCol[i * 3 + 1] = c.g; pCol[i * 3 + 2] = c.b;
+    pVel[i] = 0.01 + Math.random() * 0.03;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+  const pMat = new THREE.PointsMaterial({ size: 1.2, vertexColors: true, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, sizeAttenuation: true });
+  const particles = new THREE.Points(pGeo, pMat);
+  scene.add(particles);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0x334466, 0.8));
+  const dLight = new THREE.DirectionalLight(0xffaa44, 1.2);
+  dLight.position.set(10, 20, 10);
+  scene.add(dLight);
+  const pLight = new THREE.PointLight(0xff4400, 2, 30);
+  pLight.position.set(0, 8, 0);
+  scene.add(pLight);
+
+  let time = 0;
+  let heroVisible = true;
+  let frameSkip = 0;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!heroVisible) return;
+
+    time += 0.005;
+    controls.update();
+
+    // Animate terrain only every other frame for performance
+    frameSkip++;
+    if (frameSkip % 2 === 0) {
+      const tPos = geo.attributes.position;
+      for (let i = 0; i < tPos.count; i++) {
+        const x = xArr[i], z = zArr[i], d = distArr[i];
+        const h = Math.exp(-d * d / 120) * 4
+          + Math.sin(x * 0.3 + time) * Math.cos(z * 0.2 + time * 0.7) * 0.8
+          + Math.sin(x * 0.7 + z * 0.5 + time * 1.3) * 0.3;
+        tPos.setY(i, h);
+      }
+      tPos.needsUpdate = true;
+    }
+
+    // Animate particles
+    const pp = pGeo.attributes.position.array;
+    for (let i = 0; i < pCount; i++) {
+      pp[i * 3 + 1] += pVel[i];
+      if (pp[i * 3 + 1] > 12) pp[i * 3 + 1] = 0;
+      pp[i * 3] += Math.sin(time + i) * 0.003;
+      pp[i * 3 + 2] += Math.cos(time + i * 0.7) * 0.003;
+    }
+    pGeo.attributes.position.needsUpdate = true;
+
+    pLight.intensity = 2 + Math.sin(time * 2) * 0.5;
+    renderer.render(scene, camera);
+  }
+
+  // Only render when hero is visible
+  const heroObs = new IntersectionObserver((entries) => {
+    heroVisible = entries[0].isIntersecting;
+  }, { threshold: 0 });
+  heroObs.observe(canvas);
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+})();
+
+// ============================
+// 3D DEVICE MODEL
+// ============================
+(function deviceScene() {
+  const canvas = document.getElementById('device-canvas');
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(rect.width, rect.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, rect.width / rect.height, 0.1, 100);
+  camera.position.set(4, 3, 5);
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1.5;
+  controls.enableZoom = false;
+  controls.enablePan = false;
+
+  const device = new THREE.Group();
+
+  // Body
+  const bodyGeo = new THREE.BoxGeometry(2.2, 1.4, 0.7, 4, 4, 4);
+  const bodyMat = new THREE.MeshPhysicalMaterial({ color: 0x0d1220, metalness: 0.7, roughness: 0.3, clearcoat: 0.4 });
+  device.add(new THREE.Mesh(bodyGeo, bodyMat));
+
+  // Front plate
+  const plateMat = new THREE.MeshPhysicalMaterial({ color: 0x111827, metalness: 0.8, roughness: 0.2 });
+  const plate = new THREE.Mesh(new THREE.BoxGeometry(2.0, 1.2, 0.05), plateMat);
+  plate.position.z = 0.37;
+  device.add(plate);
+
+  // Lens housing
+  const housingGeo = new THREE.CylinderGeometry(0.42, 0.48, 0.25, 32);
+  const housingMat = new THREE.MeshPhysicalMaterial({ color: 0x1a1a2e, metalness: 0.9, roughness: 0.15 });
+  const housing = new THREE.Mesh(housingGeo, housingMat);
+  housing.rotation.x = Math.PI / 2;
+  housing.position.set(-0.4, 0, 0.5);
+  device.add(housing);
+
+  // Lens glass
+  const lensGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.08, 32);
+  const lensMat = new THREE.MeshPhysicalMaterial({ color: 0x1a6bff, metalness: 0.1, roughness: 0.05, transparent: true, opacity: 0.6, transmission: 0.3 });
+  const lens = new THREE.Mesh(lensGeo, lensMat);
+  lens.rotation.x = Math.PI / 2;
+  lens.position.set(-0.4, 0, 0.64);
+  device.add(lens);
+
+  // RGB camera (smaller lens)
+  const rgbHousing = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 0.15, 24),
+    new THREE.MeshPhysicalMaterial({ color: 0x222233, metalness: 0.8, roughness: 0.2 }));
+  rgbHousing.rotation.x = Math.PI / 2;
+  rgbHousing.position.set(0.5, 0, 0.47);
+  device.add(rgbHousing);
+
+  const rgbLens = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.04, 24),
+    new THREE.MeshPhysicalMaterial({ color: 0x111111, metalness: 0.3, roughness: 0.1 }));
+  rgbLens.rotation.x = Math.PI / 2;
+  rgbLens.position.set(0.5, 0, 0.56);
+  device.add(rgbLens);
+
+  // LED
+  const led = new THREE.Mesh(new THREE.SphereGeometry(0.06, 16, 16),
+    new THREE.MeshBasicMaterial({ color: 0x10b981 }));
+  led.position.set(0.85, 0.55, 0.36);
+  device.add(led);
+
+  // Mount bracket
+  const bracket = new THREE.Mesh(new THREE.BoxGeometry(0.25, 1.8, 0.2),
+    new THREE.MeshPhysicalMaterial({ color: 0x333344, metalness: 0.85, roughness: 0.25 }));
+  bracket.position.set(0, -1.5, 0);
+  device.add(bracket);
+
+  // Clamp
+  const clamp1 = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.15, 0.5),
+    new THREE.MeshPhysicalMaterial({ color: 0x333344, metalness: 0.85, roughness: 0.25 }));
+  clamp1.position.set(0, -2.35, 0.15);
+  device.add(clamp1);
+  const clamp2 = clamp1.clone();
+  clamp2.position.set(0, -2.35, -0.15);
+  device.add(clamp2);
+
+  // NeoTherm label
+  const labelGeo = new THREE.PlaneGeometry(1.2, 0.2);
+  const labelMat = new THREE.MeshBasicMaterial({ color: 0xf0a030, transparent: true, opacity: 0.8 });
+  const label = new THREE.Mesh(labelGeo, labelMat);
+  label.position.set(0, -0.3, 0.38);
+  device.add(label);
+
+  scene.add(device);
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0x8899bb, 0.6));
+  const key = new THREE.DirectionalLight(0xffffff, 1.5);
+  key.position.set(5, 8, 5);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0x4488ff, 0.8);
+  rim.position.set(-5, 3, -3);
+  scene.add(rim);
+  const warm = new THREE.PointLight(0xff8844, 0.5, 10);
+  warm.position.set(2, 2, 3);
+  scene.add(warm);
+
+  let t = 0;
+  let running = false;
+
+  function animate() {
+    if (!running) return;
+    requestAnimationFrame(animate);
+    t += 0.02;
+    controls.update();
+    led.material.color.setHSL(0.4, 1, 0.4 + Math.sin(t * 3) * 0.15);
+    renderer.render(scene, camera);
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    running = entries[0].isIntersecting;
+    if (running) animate();
+  }, { threshold: 0.1 });
+  obs.observe(canvas);
+
+  window.addEventListener('resize', () => {
+    const r = canvas.parentElement.getBoundingClientRect();
+    const h = Math.max(r.height, 400);
+    renderer.setSize(r.width, h);
+    camera.aspect = r.width / h;
+    camera.updateProjectionMatrix();
+  });
+})();
+</script>
+
+<script>
+// ============================
+// GSAP SCROLL ANIMATIONS
+// ============================
+gsap.registerPlugin(ScrollTrigger);
+
+// Scroll progress bar - throttled
+let scrollTick = false;
+window.addEventListener('scroll', () => {
+  if (scrollTick) return;
+  scrollTick = true;
+  requestAnimationFrame(() => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('scroll-progress').style.width = (window.scrollY / h * 100) + '%';
+    scrollTick = false;
+  });
+}, { passive: true });
+
+// Nav state + story nav - throttled
+const nav = document.getElementById('main-nav');
+const navLinks = document.querySelectorAll('.nav-links a');
+const storyDots = document.querySelectorAll('.story-dot');
+let navTick = false;
+window.addEventListener('scroll', () => {
+  if (navTick) return;
+  navTick = true;
+  requestAnimationFrame(() => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+    const sections = document.querySelectorAll('section');
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 300) current = s.id; });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+    storyDots.forEach(d => {
+      d.classList.toggle('active', d.dataset.section === current);
+    });
+    navTick = false;
+  });
+}, { passive: true });
+
+// Hero entrance
+gsap.from('.hero-badge', { opacity: 0, y: 30, duration: 1, delay: 0.2 });
+gsap.from('.hero-title', { opacity: 0, y: 50, duration: 1.2, delay: 0.4 });
+gsap.from('.hero-sub', { opacity: 0, y: 30, duration: 1, delay: 0.7 });
+gsap.from('.hero-stats-row', { opacity: 0, y: 30, duration: 1, delay: 1 });
+
+// Section reveals - each section independently
+document.querySelectorAll('#crisis,#gap,#signal,#solution,#dashboard,#impact').forEach(section => {
+  const els = section.querySelectorAll('.section-num, .label, h2, > .container > p, .flip-card, .failure-card, .evidence-card, .step-card, .hw-item, .hw-total, .calc-section, .cta-block, .gap-callout, .gap-text, .gap-failures, .signal-viz, .signal-evidence, .dashboard-mock, .device-section, .solution-steps');
+  if (els.length) {
+    gsap.from(els, {
+      scrollTrigger: { trigger: section, start: 'top 80%', once: true },
+      opacity: 0, y: 40, duration: 0.8, stagger: 0.08, ease: 'power2.out'
+    });
+  }
+});
+
+// Gap callout
+gsap.from('.gap-callout', { scrollTrigger: { trigger: '.gap-callout', start: 'top 85%', once: true }, opacity: 0, scale: 0.95, duration: 0.6 });
+
+// ============================
+// ANIMATED COUNTERS
+// ============================
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.counted) {
+      e.target.dataset.counted = '1';
+      const target = parseFloat(e.target.dataset.target);
+      const suffix = e.target.dataset.suffix || '';
+      const start = performance.now();
+      (function update(now) {
+        const p = Math.min((now - start) / 2000, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        e.target.textContent = (target >= 10 ? Math.round(target * eased) : (target * eased).toFixed(1)) + suffix;
+        if (p < 1) requestAnimationFrame(update);
+      })(start);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// ============================
+// INTERACTIVE cpTD CHART
+// ============================
+(function() {
+  const canvas = document.getElementById('cptd-chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const slider = document.getElementById('time-slider');
+  const display = document.getElementById('time-display');
+  let progress = 0;
+  let autoPlayActive = false;
+  let autoPlayId = null;
+  let userInteracted = false;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = 350 * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = '350px';
+    draw();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Stop auto-play when user interacts
+  slider.addEventListener('pointerdown', () => {
+    userInteracted = true;
+    if (autoPlayId) { cancelAnimationFrame(autoPlayId); autoPlayId = null; autoPlayActive = false; }
+  });
+  slider.addEventListener('input', () => {
+    progress = slider.value / 100;
+    display.textContent = (progress * 12).toFixed(1) + 'h';
+    draw();
+  });
+
+  // Auto-play on scroll into view (only once, stops if user scrubs)
+  let autoPlayed = false;
+  const chartObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !autoPlayed && !userInteracted) {
+      autoPlayed = true;
+      autoPlayActive = true;
+      const start = performance.now();
+      (function anim(now) {
+        if (!autoPlayActive) return;
+        const p = Math.min((now - start) / 5000, 1);
+        progress = p;
+        slider.value = p * 100;
+        display.textContent = (p * 12).toFixed(1) + 'h';
+        draw();
+        if (p < 1) autoPlayId = requestAnimationFrame(anim);
+        else autoPlayActive = false;
+      })(start);
+    }
+  }, { threshold: 0.3 });
+  chartObs.observe(canvas);
+
+  function draw() {
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const w = canvas.width / dpr, h = canvas.height / dpr;
+    ctx.clearRect(0, 0, w, h);
+
+    const pL = 55, pR = 25, pT = 25, pB = 45;
+    const cW = w - pL - pR, cH = h - pT - pB;
+    const tMin = 33, tMax = 38;
+    const toY = t => pT + cH - ((t - tMin) / (tMax - tMin)) * cH;
+    const toX = i => pL + (i / 100) * cW;
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,.04)';
+    ctx.lineWidth = 1;
+    for (let t = 33; t <= 38; t++) {
+      ctx.beginPath(); ctx.moveTo(pL, toY(t)); ctx.lineTo(w - pR, toY(t)); ctx.stroke();
+      ctx.fillStyle = 'rgba(139,154,181,.5)'; ctx.font = '11px "JetBrains Mono"'; ctx.textAlign = 'right';
+      ctx.fillText(t + '\u00B0C', pL - 8, toY(t) + 4);
+    }
+    ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(139,154,181,.5)';
+    ['0h','2h','4h','6h','8h','10h','12h'].forEach((l, i) => ctx.fillText(l, toX(i / 6 * 100), h - 12));
+
+    // Danger zone
+    const alertStart = 55;
+    if (progress > alertStart / 100) {
+      const a = Math.min((progress - alertStart / 100) / .45, 1);
+      ctx.fillStyle = `rgba(239,68,68,${.06 * a})`;
+      ctx.fillRect(toX(alertStart), pT, toX(100) - toX(alertStart), cH);
+    }
+
+    // Threshold line
+    ctx.setLineDash([5, 5]); ctx.strokeStyle = 'rgba(239,68,68,.4)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pL, toY(35)); ctx.lineTo(w - pR, toY(35)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(239,68,68,.6)'; ctx.font = '10px "JetBrains Mono"'; ctx.textAlign = 'left';
+    ctx.fillText('2\u00B0C threshold', w - pR - 90, toY(35) - 6);
+
+    const pts = Math.floor(progress * 100);
+    const core = [], periph = [];
+    for (let i = 0; i <= pts; i++) {
+      const t = i / 100;
+      const c = 37.1 + Math.sin(i * .3) * .08 + Math.sin(i * .7) * .05;
+      let p = 36.2 + Math.sin(i * .25) * .1;
+      if (t > .35) { const d = (t - .35) / .65; p -= d * d * 3.2; }
+      p += Math.sin(i * .5) * .06;
+      core.push({ x: toX(i), y: toY(c), t: c });
+      periph.push({ x: toX(i), y: toY(p), t: p });
+    }
+
+    // Fill area
+    if (core.length > 1) {
+      ctx.beginPath();
+      core.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+      for (let i = periph.length - 1; i >= 0; i--) ctx.lineTo(periph[i].x, periph[i].y);
+      ctx.closePath();
+      const gap = core.length ? core[core.length - 1].t - periph[periph.length - 1].t : 0;
+      ctx.fillStyle = gap > 2 ? 'rgba(239,68,68,.12)' : gap > 1.5 ? 'rgba(240,160,48,.08)' : 'rgba(16,185,129,.06)';
+      ctx.fill();
+    }
+
+    // Lines
+    [{ data: core, color: '#ef4444' }, { data: periph, color: '#3b82f6' }].forEach(({ data, color }) => {
+      if (data.length > 1) {
+        ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+        data.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+        ctx.stroke();
+        // Endpoint dot
+        const last = data[data.length - 1];
+        ctx.beginPath(); ctx.arc(last.x, last.y, 4, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill();
+      }
+    });
+
+    // cpTD value label
+    if (core.length) {
+      const gap = (core[core.length - 1].t - periph[periph.length - 1].t).toFixed(1);
+      const lastX = core[core.length - 1].x;
+      const midY = (core[core.length - 1].y + periph[periph.length - 1].y) / 2;
+      ctx.fillStyle = gap >= 2 ? '#ef4444' : gap >= 1.5 ? '#f0a030' : '#10b981';
+      ctx.font = 'bold 13px "JetBrains Mono"'; ctx.textAlign = 'left';
+      ctx.fillText('\u0394' + gap + '\u00B0C', lastX + 10, midY + 4);
+    }
+
+    // Alert marker
+    if (progress > .6) {
+      const ax = toX(58);
+      ctx.strokeStyle = 'rgba(239,68,68,.4)';
+      ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(ax, pT); ctx.lineTo(ax, pT + cH); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#ef4444'; ctx.font = 'bold 10px "JetBrains Mono"'; ctx.textAlign = 'center';
+      ctx.fillText('cpTD ALERT', ax, pT + 15);
+      ctx.font = '9px "JetBrains Mono"'; ctx.fillStyle = 'rgba(239,68,68,.7)';
+      ctx.fillText('First sign \u2014 71% of cases', ax, pT + 28);
+    }
+    if (progress > .85) {
+      const bx = toX(85);
+      ctx.strokeStyle = 'rgba(139,154,181,.3)'; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(bx, pT); ctx.lineTo(bx, pT + cH); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(139,154,181,.6)'; ctx.font = '9px "JetBrains Mono"'; ctx.textAlign = 'center';
+      ctx.fillText('Blood culture ordered', bx, pT + cH - 25);
+      ctx.fillText('(results in 24\u201372h)', bx, pT + cH - 12);
+    }
+    // NOTE: Removed the infinite requestAnimationFrame loop that was here before
+  }
+})();
+
+// ============================
+// DASHBOARD TABS
+// ============================
+// Track chart instances for proper cleanup/resize
+const chartInstances = {};
+
+document.querySelectorAll('.dash-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panelId = 'tab-' + tab.dataset.tab;
+    document.getElementById(panelId).classList.add('active');
+
+    // Initialize charts after the tab panel is visible (display:block)
+    // Use requestAnimationFrame to ensure DOM has painted
+    requestAnimationFrame(() => {
+      if (tab.dataset.tab === 'trends') initTrendsChart();
+      if (tab.dataset.tab === 'thermal') initLargeThermal();
+      // Resize existing charts when switching back to their tab
+      if (tab.dataset.tab === 'overview' && chartInstances.overview) {
+        chartInstances.overview.resize();
+      }
+    });
+  });
+});
+
+// ============================
+// THERMAL FEED (Small + Large)
+// ============================
+let currentScenario = 'warning';
+window.setScenario = function(btn) {
+  document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentScenario = btn.dataset.scenario;
+};
+
+function drawThermalInfant(canvas, time, large) {
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  if (w === 0 || h === 0) return;
+  const imageData = ctx.createImageData(w, h);
+  const data = imageData.data;
+
+  const limbCold = currentScenario === 'sepsis' ? 0.15 : currentScenario === 'warning' ? 0.35 : 0.55;
+  const coreTmp = currentScenario === 'sepsis' ? 0.9 : 0.85;
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const nx = x / w, ny = y / h;
+      const cx = 0.5, cy = 0.42;
+      const bodyDist = ((nx - cx) / 0.22) ** 2 + ((ny - cy) / 0.45) ** 2;
+      const headDist = ((nx - 0.5) / 0.1) ** 2 + ((ny - 0.12) / 0.12) ** 2;
+      const l1 = ((nx - 0.25) / 0.06) ** 2 + ((ny - 0.65) / 0.25) ** 2;
+      const l2 = ((nx - 0.75) / 0.06) ** 2 + ((ny - 0.65) / 0.25) ** 2;
+
+      let temp = 0.12;
+      if (bodyDist < 1) temp = coreTmp - bodyDist * 0.3 + Math.sin(time + nx * 5) * 0.02;
+      if (headDist < 1) temp = Math.max(temp, 0.8 - headDist * 0.2);
+      if (l1 < 1) temp = Math.max(temp, limbCold - (ny - 0.4) * 0.3 + Math.sin(time * 0.5 + ny * 3) * 0.03);
+      if (l2 < 1) temp = Math.max(temp, limbCold - (ny - 0.4) * 0.3 + Math.sin(time * 0.5 + ny * 3) * 0.03);
+      temp = Math.max(0, Math.min(1, temp));
+
+      const idx = (y * w + x) * 4;
+      const r = temp < 0.25 ? temp * 4 * 40 : temp < 0.5 ? 40 + (temp - 0.25) * 4 * 215 : 255;
+      const g = temp < 0.25 ? temp * 4 * 60 : temp < 0.5 ? 60 + (temp - 0.25) * 4 * 195 : temp < 0.75 ? 255 - (temp - 0.5) * 4 * 155 : 100 - (temp - 0.75) * 4 * 100;
+      const b = temp < 0.25 ? 80 + temp * 4 * 175 : temp < 0.5 ? 255 - (temp - 0.25) * 4 * 255 : 0;
+      data[idx] = Math.floor(r); data[idx + 1] = Math.floor(g); data[idx + 2] = Math.floor(b); data[idx + 3] = 255;
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+}
+
+// Small thermal feed
+(function() {
+  const c = document.getElementById('thermal-feed-canvas');
+  if (!c) return;
+  let t = 0, running = false;
+  function init() {
+    const r = c.parentElement.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) {
+      c.width = Math.floor(r.width);
+      c.height = Math.floor(r.height);
+    }
+  }
+  function loop() {
+    if (!running) return;
+    t += 0.02;
+    drawThermalInfant(c, t);
+    requestAnimationFrame(loop);
+  }
+  const obs = new IntersectionObserver(e => {
+    running = e[0].isIntersecting;
+    if (running) { init(); loop(); }
+  }, { threshold: 0.1 });
+  obs.observe(c);
+})();
+
+// Large thermal feed - with visibility tracking
+let largeThermalInit = false;
+let largeThermalRunning = false;
+function initLargeThermal() {
+  const c = document.getElementById('thermal-large-canvas');
+  if (!c) return;
+  const r = c.parentElement.getBoundingClientRect();
+  if (r.width <= 0 || r.height <= 0) return;
+  c.width = Math.floor(r.width);
+  c.height = Math.floor(r.height);
+
+  if (largeThermalInit) {
+    largeThermalRunning = true;
+    return;
+  }
+  largeThermalInit = true;
+  largeThermalRunning = true;
+  let t = 0;
+  (function loop() {
+    requestAnimationFrame(loop);
+    if (!largeThermalRunning) return;
+    t += 0.02;
+    drawThermalInfant(c, t, true);
+  })();
+}
+
+// Stop large thermal when not on thermal tab
+const dashContentObs = new MutationObserver(() => {
+  const thermalTab = document.getElementById('tab-thermal');
+  if (thermalTab && !thermalTab.classList.contains('active')) {
+    largeThermalRunning = false;
+  }
+});
+const dashContent = document.querySelector('.dash-content');
+if (dashContent) {
+  dashContentObs.observe(dashContent, { subtree: true, attributes: true, attributeFilter: ['class'] });
+}
+
+// ============================
+// OVERVIEW CHART (Chart.js)
+// ============================
+(function() {
+  const ctx = document.getElementById('overview-chart');
+  if (!ctx) return;
+  const labels = Array.from({ length: 72 }, (_, i) => {
+    const h = Math.floor(i / 6);
+    return h + ':' + String((i % 6) * 10).padStart(2, '0');
+  });
+  const cptdData = labels.map((_, i) => {
+    let v = 0.8 + Math.sin(i * 0.15) * 0.15 + Math.sin(i * 0.07) * 0.1;
+    if (i > 50) v += (i - 50) * 0.045;
+    return Math.round(v * 100) / 100;
+  });
+
+  chartInstances.overview = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'cpTD (\u00B0C)',
+        data: cptdData,
+        borderColor: '#f0a030',
+        backgroundColor: 'rgba(240,160,48,0.05)',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { display: false },
+        y: {
+          min: 0, max: 3,
+          grid: { color: 'rgba(255,255,255,0.03)' },
+          ticks: { color: 'rgba(139,154,181,0.5)', font: { family: '"JetBrains Mono"', size: 10 }, callback: v => v + '\u00B0C' }
+        }
+      },
+      interaction: { intersect: false, mode: 'index' }
+    }
+  });
+})();
+
+// ============================
+// TRENDS CHART (Chart.js) - fixed initialization
+// ============================
+window.trendsChartInit = false;
+function initTrendsChart() {
+  if (window.trendsChartInit) {
+    // Chart already exists, just resize it
+    if (chartInstances.trends) chartInstances.trends.resize();
+    return;
+  }
+  window.trendsChartInit = true;
+
+  const ctx = document.getElementById('trends-chart');
+  if (!ctx) return;
+  const hrs = 12;
+  const labels = Array.from({ length: hrs * 6 }, (_, i) => {
+    const h = Math.floor(i / 6);
+    return h + ':' + String((i % 6) * 10).padStart(2, '0');
+  });
+  const coreData = labels.map((_, i) => 37.1 + Math.sin(i * 0.2) * 0.08 + Math.sin(i * 0.07) * 0.05);
+  const periphData = labels.map((_, i) => {
+    let v = 36.2 + Math.sin(i * 0.15) * 0.1;
+    if (i > 40) v -= ((i - 40) / 32) ** 2 * 2;
+    return v + Math.sin(i * 0.3) * 0.06;
+  });
+  const cptdData = labels.map((_, i) => Math.max(0, coreData[i] - periphData[i]));
+
+  chartInstances.trends = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Core (\u00B0C)', data: coreData, borderColor: '#ef4444', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+        { label: 'Peripheral (\u00B0C)', data: periphData, borderColor: '#3b82f6', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+        { label: 'cpTD (\u00B0C)', data: cptdData, borderColor: '#f0a030', borderWidth: 2, pointRadius: 0, tension: 0.4, borderDash: [5, 5] }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: 'rgba(139,154,181,0.7)', font: { family: '"JetBrains Mono"', size: 10 } } }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: 'rgba(139,154,181,0.4)', font: { family: '"JetBrains Mono"', size: 9 }, maxTicksLimit: 12 } },
+        y: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: 'rgba(139,154,181,0.5)', font: { family: '"JetBrains Mono"', size: 10 }, callback: v => v.toFixed(1) + '\u00B0' } }
+      },
+      interaction: { intersect: false, mode: 'index' }
+    }
+  });
+}
+
+window.setRange = function(btn, hrs) {
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (!chartInstances.trends) return;
+
+  // Generate new data based on selected range
+  const points = hrs * 6;
+  const labels = Array.from({ length: points }, (_, i) => {
+    const h = Math.floor(i / 6);
+    const m = (i % 6) * 10;
+    return h + ':' + String(m).padStart(2, '0');
+  });
+  const coreData = labels.map((_, i) => 37.1 + Math.sin(i * 0.2) * 0.08 + Math.sin(i * 0.07) * 0.05);
+  const periphData = labels.map((_, i) => {
+    let v = 36.2 + Math.sin(i * 0.15) * 0.1;
+    const threshold = Math.floor(points * 0.55);
+    if (i > threshold) v -= ((i - threshold) / (points * 0.45)) ** 2 * 2;
+    return v + Math.sin(i * 0.3) * 0.06;
+  });
+  const cptdData = labels.map((_, i) => Math.max(0, coreData[i] - periphData[i]));
+
+  chartInstances.trends.data.labels = labels;
+  chartInstances.trends.data.datasets[0].data = coreData;
+  chartInstances.trends.data.datasets[1].data = periphData;
+  chartInstances.trends.data.datasets[2].data = cptdData;
+  chartInstances.trends.update('none');
+};
+
+// ============================
+// LIVE VITALS SIMULATION
+// ============================
+(function() {
+  let cptd = 1.8, dir = 1, core = 37.1;
+  setInterval(() => {
+    cptd += (Math.random() * 0.04 - 0.01) * dir;
+    if (cptd > 2.2) dir = -1; if (cptd < 1.5) dir = 1;
+    core = 37.1 + (Math.random() - 0.5) * 0.1;
+    const periph = core - cptd;
+    const el = document.getElementById('live-cptd');
+    if (!el) return;
+    el.textContent = cptd.toFixed(1) + '\u00B0C';
+    el.className = 'cptd-value ' + (cptd >= 2 ? 'danger' : cptd >= 1.5 ? 'warning' : 'normal');
+    document.getElementById('live-temps').textContent = `Core: ${core.toFixed(1)}\u00B0C \u00B7 Peripheral: ${periph.toFixed(1)}\u00B0C`;
+    document.getElementById('v-hr').textContent = Math.round(155 + Math.random() * 10);
+    document.getElementById('v-spo2').textContent = Math.round(94 + Math.random() * 4) + '%';
+    document.getElementById('v-core').textContent = core.toFixed(1);
+    document.getElementById('v-periph').textContent = periph.toFixed(1);
+
+    // Inject alert if crosses threshold (reduced frequency)
+    if (cptd >= 2.0 && Math.random() < 0.03) {
+      const container = document.getElementById('alert-container');
+      if (!container) return;
+      // Limit max alerts to prevent DOM bloat
+      while (container.children.length > 8) container.removeChild(container.lastChild);
+      const alert = document.createElement('div');
+      alert.className = 'alert-item critical';
+      alert.innerHTML = `cpTD EXCEEDED 2.0\u00B0C \u2014 Clinical assessment recommended.<span class="alert-time">Just now</span><button class="alert-dismiss" onclick="this.parentElement.style.opacity=0;setTimeout(()=>this.parentElement.remove(),300)">&times;</button>`;
+      container.insertBefore(alert, container.firstChild);
+      gsap.from(alert, { opacity: 0, y: -10, duration: 0.3 });
+    }
+  }, 1500);
+})();
+
+// ============================
+// IMPACT CALCULATOR
+// ============================
+(function() {
+  const slider = document.getElementById('deploy-slider');
+  const valEl = document.getElementById('deploy-value');
+  const detEl = document.getElementById('calc-detections');
+  const livesEl = document.getElementById('calc-lives');
+  const savEl = document.getElementById('calc-savings');
+  if (!slider) return;
+
+  function update() {
+    const units = parseInt(slider.value);
+    valEl.textContent = units.toLocaleString();
+    const detections = Math.round(units * 12 * 0.0885 * 0.71);
+    const lives = Math.round(detections * 0.17);
+    const savings = detections * 33000;
+    detEl.textContent = detections.toLocaleString();
+    livesEl.textContent = lives.toLocaleString();
+    savEl.textContent = savings >= 1e6 ? '$' + (savings / 1e6).toFixed(1) + 'M' : '$' + (savings / 1e3).toFixed(0) + 'K';
+  }
+  slider.addEventListener('input', update);
+  update();
+})();
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
