@@ -611,5 +611,193 @@ SECTION 14: UPDATED PROBLEM STATEMENT (POST-OP FOCUS TBD)
     https://ufhealth.org/stories/2024/neonatal-sepsis-understanding-and-preventing-risks-for-your-newborn
 
 ================================================================================
+SECTION 15: ADDITIONAL CONDITIONS IRT CAN DETECT IN NEONATES
+================================================================================
+
+Beyond sepsis, IRT has validated or promising applications for:
+
+1. NECROTISING ENTEROCOLITIS (NEC)
+   - Abdominal skin temperature drops measurably during NEC onset
+   - IRT alone: SUFFICIENT — signal is a localised abdominal cooling pattern
+     (35.3°C vs baseline 36.6°C in affected quadrants)
+   - RGB-D camera alongside: adds automation (auto-segmentation of abdomen),
+     but does NOT add diagnostic value. IRT can work alone.
+   - NEC is the most common GI emergency in premature infants; mortality 15-30%
+   - This is a compelling secondary use case for the same device
+
+2. RESPIRATORY DISTRESS / APNOEA
+   - Thermal imaging of nose/mouth detects airflow via temperature oscillation
+   - Contactless respiratory rate monitoring validated in neonates
+   - Transient Tachypnoea of the Newborn (TTN) and Respiratory Distress Syndrome
+     (RDS) detectable via breathing pattern changes
+   - Apnoea of prematurity: cessation of breathing > 20 seconds — thermal
+     imaging can flag this without chest leads
+
+3. HYPOTHERMIA / COLD STRESS
+   - Premature neonates are extremely vulnerable to cold stress
+   - IRT provides continuous, non-contact core-peripheral gradient monitoring
+   - Particularly useful during skin-to-skin (kangaroo care) transitions
+
+4. JAUNDICE SEVERITY PROXY
+   - Indirect — phototherapy causes localised skin cooling where applied
+   - IRT can monitor phototherapy effectiveness non-invasively
+   - Bilirubin level correlation remains an indirect signal, not direct
+
+5. CONGENITAL HEART DEFECTS (CHD) PROXY
+   - Poor peripheral perfusion (cold extremities) can be an early sign of
+     critical CHD before pulse oximetry desaturation occurs
+   - Documented thermal gradient asymmetry in ductal-dependent lesions
+
+Priority ranking for pitch:
+  1st: Sepsis (strongest evidence, Leante-Castellanos 2017 threshold validated)
+  2nd: NEC (clear thermal signal, IRT alone sufficient, no competitor)
+  3rd: Apnoea (contactless, parents value this highly for home)
+
+
+================================================================================
+SECTION 16: COMPETITIVE LANDSCAPE
+================================================================================
+
+Direct competitors to IRT neonatal monitoring:
+
+1. HeRO MONITOR (Vectorius Medical / now part of Natus)
+   - Detects Heart Rate Variability (HRV) changes before sepsis
+   - FDA cleared, used in NICUs
+   - CONTACT-BASED (ECG patches on skin — infection risk, irritation)
+   - Only monitors sepsis — no NEC, no apnoea, no thermal gradient
+   - Does NOT provide spatial/thermal information
+
+2. OWLET SMART SOCK (consumer)
+   - Pulse oximetry + heart rate
+   - FDA cleared for O2 monitoring
+   - No temperature, no thermal gradient
+   - Cannot detect sepsis or NEC early
+
+3. SNUZA / ANGELCARE (consumer)
+   - Movement-based apnoea monitors
+   - No temperature, no sepsis signal
+   - Contact-based
+
+4. NATUS NEUROLOGY / PHILIPS NICU MONITORS
+   - Multi-parameter physiological monitoring (ECG, SpO2, RR, temp)
+   - All CONTACT-BASED
+   - No spatial thermal mapping
+
+IRT's unique competitive position:
+  - Non-contact (infection control)
+  - Continuous (no intermittent spot checks)
+  - Multi-condition (sepsis + NEC + apnoea + hypothermia in one device)
+  - Predictive (detects physiological change HOURS before clinical signs)
+  - No ionising radiation
+  - No consumables
+
+No existing product combines non-contact + continuous + multi-condition.
+This is the genuine whitespace.
+
+
+================================================================================
+SECTION 17: LIABILITY AND REGULATORY FRAMEWORK
+================================================================================
+
+Q: If a baby dies and our device didn't catch it, are we liable?
+
+Answer: Risk substantially mitigated if the device is:
+  1. Classified as adjunct/screening (not diagnostic)
+  2. Cleared via FDA 510(k) as Class II device
+  3. Labelled clearly as "not a replacement for clinical assessment"
+  4. Using validated thresholds (Leante-Castellanos 2017 CPTD >2°C for >=4h)
+  5. Keeping clinician in the loop (alerts, not diagnoses)
+
+Analogy: Mammography screening misses 10-20% of breast cancers. Radiologists
+are not routinely sued for those misses when standard protocols are followed.
+A screening tool that performs within its labelled parameters is protected.
+
+Consumer vs NICU distinction:
+  - NICU adjunct path: FDA 510(k), hospital accountability for clinical
+    interpretation, lower direct liability for device maker
+  - Consumer product path: Higher liability risk, stricter FTC/FDA scrutiny,
+    requires very conservative labelling ("wellness monitoring only")
+  - Recommended path: Start NICU adjunct -> build evidence -> expand to consumer
+
+510(k) predicate candidates:
+  - HeRO Monitor (sepsis adjunct)
+  - Existing FDA-cleared thermal cameras (Seek, FLIR)
+  - Any cleared neonatal temperature monitoring device
+
+
+================================================================================
+SECTION 18: CONSUMER "BABY WHOOP" CONCEPT
+================================================================================
+
+Concept: A wearable/crib-side device for home use by all parents to detect
+early signs of illness in infants. Inspired by WHOOP (athlete biometrics).
+
+What pathologies could it realistically detect:
+  1. Early infection/sepsis (thermal gradient, HRV)
+  2. Apnoea (contactless breathing via thermal or radar)
+  3. Hypothermia / cold stress
+  4. Fever (surface temperature)
+  5. Potentially NEC (abdominal cooling) — more relevant premature infants
+
+Current IRT consumer problem: clothing blocks infrared signal
+  Solution A (immediate): Smart sleepwear with thermal windows at sole/wrist
+  Solution B (near-term V2): Microwave Radiometry (MWR)
+
+What makes this different from Owlet:
+  - Owlet: SpO2 + HR (single-point, contact, sock)
+  - Baby Whoop: Thermal gradient (spatial, non-contact) + optional radar apnoea
+  - Multi-condition vs single-condition
+  - Non-contact = no fiddling with wires/probes overnight
+
+
+================================================================================
+SECTION 19: MICROWAVE RADIOMETRY (MWR) — CONSUMER FEASIBILITY
+================================================================================
+
+What MWR is:
+  - Passively detects thermal radiation in the 1-10 GHz microwave spectrum
+  - Penetrates clothing and 2-5 cm into tissue (subcutaneous temperature)
+  - No emitted radiation — purely passive detection (safe for infants)
+  - Accuracy: ±0.4°C — approaching medical-grade threshold of ±0.5°C
+
+Why MWR solves the clothing problem for a consumer baby monitor:
+  - IRT cannot see through clothing (8-14 µm blocked by fabric)
+  - MWR can — temperature measured without undressing infant
+  - This is the single biggest barrier to IRT consumer deployment
+
+What the research shows:
+  - Wearable MWR patches validated in paediatric oncology patients (PMC 2022)
+    — demonstrates safety and feasibility in children
+  - MWR validated for oncological detection and inflammatory arthritis
+    (subsurface thermal change detection — same mechanism as sepsis fever)
+  - FMCW radar (related microwave tech) for infant apnoea: active clinical
+    trials as of 2025 (JMIR protocol paper) — radar can replace contact
+    breathing monitors
+  - Smartwatch algorithms detected pre-symptomatic SARS-CoV-2 in 80% of
+    cases — shows wearable passive monitoring can catch infection early
+
+Honest readiness assessment:
+  Technology        | Consumer Readiness | Baby Use Case
+  ------------------|--------------------|--------------------------
+  IRT               | High               | Sepsis CPTD, NEC abdominal
+  FMCW Radar        | Medium (2025 RCT)  | Contactless apnoea
+  MWR patch         | Medium (3-5 yrs)   | Subcutaneous fever through clothes
+  Wearable RF temp  | Medium             | Continuous sleep monitoring
+
+No published paper has combined MWR + neonatal sepsis detection specifically.
+This gap is either a research opportunity or an invention gap — notable for IP.
+
+Recommended product roadmap:
+  V1 (now):  IRT crib-side unit for NICU adjunct — validated, deployable
+  V2 (2-3y): IRT + FMCW radar consumer crib monitor (apnoea + sepsis)
+  V3 (4-5y): IRT + MWR integrated patch — through-clothing monitoring
+
+Pitch framing:
+  Lead with IRT (evidence base, validated thresholds, NICU revenue path).
+  MWR is a compelling roadmap slide that differentiates technical ambition
+  and shows the consumer scaling story without overpromising on V1.
+
+
+================================================================================
 END OF DOCUMENT
 ================================================================================
