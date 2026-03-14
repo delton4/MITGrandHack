@@ -131,16 +131,44 @@ async def _run_replay(
     _alert_engine.reset(patient_id)
 
     engine = ReplayEngine(
-        patient_id=patient_id,
         alert_engine=_alert_engine,
-        pose_detector=_pose_detector,
-        speed=speed,
+        pipeline=_pose_detector,
     )
 
-    async for message in engine.stream():
+    async for message in engine.replay(patient_id, speed):
         await _send_json(ws, message)
 
     # Signal replay complete
+    await _send_json(ws, {
+        "type": "replay_complete",
+        "patient_id": patient_id,
+    })
+
+
+async def _run_demo(
+    ws: WebSocket,
+    patient_id: str,
+    speed: float,
+) -> None:
+    """Stream demo escalation data for a patient over the WebSocket."""
+    if ReplayEngine is None:
+        await _send_json(ws, {
+            "type": "error",
+            "message": "replay module not available yet",
+        })
+        return
+
+    _alert_engine.reset(patient_id)
+
+    engine = ReplayEngine(
+        alert_engine=_alert_engine,
+        pipeline=_pose_detector,
+    )
+
+    async for message in engine.demo_escalation(speed):
+        await _send_json(ws, message)
+
+    # Signal demo complete
     await _send_json(ws, {
         "type": "replay_complete",
         "patient_id": patient_id,
@@ -235,6 +263,26 @@ async def websocket_endpoint(ws: WebSocket):
 
                 current_task = asyncio.create_task(
                     _run_replay(ws, patient_id, speed)
+                )
+                continue
+
+            # ---- start_demo -------------------------------------------------
+            if action == "start_demo":
+                patient_id = msg.get("patient_id")
+                if not patient_id:
+                    await _send_json(ws, {
+                        "type": "error",
+                        "message": "patient_id is required for start_demo",
+                    })
+                    continue
+
+                speed = float(msg.get("speed", config.REPLAY_SPEED))
+
+                # Stop any running stream before starting a new one
+                await _cancel_current()
+
+                current_task = asyncio.create_task(
+                    _run_demo(ws, patient_id, speed)
                 )
                 continue
 

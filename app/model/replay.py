@@ -19,7 +19,9 @@ Usage::
 from __future__ import annotations
 
 import asyncio
+import base64
 import logging
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
@@ -123,6 +125,10 @@ class ReplayEngine:
             logger.warning("Empty CSV for patient %s", patient_id)
             return
 
+        # Pre-load a static thermal image as a base64 data URI so every
+        # yielded message includes a visible frame for the UI.
+        static_frame_b64 = self._load_static_thermal_image()
+
         # Try to find thermal images for this patient (optional)
         thermal_images = self._find_thermal_images(patient_id)
 
@@ -164,8 +170,10 @@ class ReplayEngine:
             # --- Peripheral temp summary (for top-level field) ---
             peripheral_temp = self._peripheral_summary(zones)
 
-            # --- Optional annotated frame ---
+            # --- Annotated frame (pipeline) or static fallback ---
             frame_b64 = self._try_annotate_frame(thermal_images, patient_id)
+            if frame_b64 is None:
+                frame_b64 = static_frame_b64
 
             # --- Compute top-level CPTD from raw values (pre-filter) ---
             # The alert_result["cptd"] is post-filter; we also provide the
@@ -201,9 +209,126 @@ class ReplayEngine:
 
             yield message
 
+    async def demo_escalation(self, speed: float = 1.0):
+        """Async generator yielding a simulated sepsis escalation sequence.
+
+        Produces 40 data points over ~30 seconds (adjusted by *speed*) that
+        ramp CPTD through all four alert levels:
+
+        - Points  1-10: normal   (CPTD 0.8 -> 1.5)
+        - Points 11-20: warning  (CPTD 2.0 -> 3.4)
+        - Points 21-30: high     (CPTD 3.5 -> 4.9)
+        - Points 31-40: critical (CPTD 5.0 -> 6.5)
+
+        Core temperature stays near 36.5 C; peripheral temperature decreases
+        to create the gradient.
+
+        Yields dicts in the same WebSocket format as :meth:`replay`.
+        """
+        patient_id = "demo"
+        self.alert_engine.reset(patient_id)
+
+        static_frame_b64 = self._load_static_thermal_image()
+
+        # Define the four phases: (start_cptd, end_cptd, count)
+        phases = [
+            (0.8, 1.5, 10),   # normal
+            (2.0, 3.4, 10),   # warning
+            (3.5, 4.9, 10),   # high
+            (5.0, 6.5, 10),   # critical
+        ]
+
+        base_core = 36.5
+        interval = 0.75 / max(speed, 0.01)
+        now = datetime.now(tz=timezone.utc)
+        point_index = 0
+
+        for start_cptd, end_cptd, count in phases:
+            for i in range(count):
+                # Linear interpolation within the phase
+                t = i / max(count - 1, 1)
+                cptd_target = start_cptd + t * (end_cptd - start_cptd)
+
+                core = base_core
+                peripheral = round(core - cptd_target, 2)
+
+                # Distribute peripheral across hands and feet
+                hand_temp = round(peripheral + 0.1, 2)
+                foot_temp = round(peripheral - 0.1, 2)
+
+                alert_result = self.alert_engine.process(
+                    patient_id=patient_id,
+                    core=core,
+                    left_hand=hand_temp,
+                    right_hand=hand_temp,
+                    left_foot=foot_temp,
+                    right_foot=foot_temp,
+                )
+
+                peripheral_temp = round((hand_temp + hand_temp) / 2, 2)
+                ts = now + timedelta(seconds=point_index * 0.75)
+
+                message = {
+                    "timestamp": ts.isoformat(),
+                    "patient_id": patient_id,
+                    "mode": "demo",
+                    "core_temp": core,
+                    "peripheral_temp": peripheral_temp,
+                    "cptd": alert_result["cptd"],
+                    "zones": {
+                        "core": core,
+                        "left_hand": hand_temp,
+                        "right_hand": hand_temp,
+                        "left_foot": foot_temp,
+                        "right_foot": foot_temp,
+                    },
+                    "alert": {
+                        "level": alert_result["alert_level"],
+                        "message": alert_result["alert_message"],
+                        "cptd_threshold": config.CPTD_WARNING,
+                        "consecutive_abnormal": alert_result["consecutive_abnormal"],
+                    },
+                    "frame_base64": static_frame_b64,
+                    "keypoints": [],
+                }
+
+                yield message
+                point_index += 1
+                await asyncio.sleep(interval)
+
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
+
+    @staticmethod
+    def _load_static_thermal_image() -> Optional[str]:
+        """Load the first .jpeg from the Greek thermal image directory.
+
+        Returns a base64 JPEG data URI string, or None if unavailable.
+        """
+        image_dir = config.GREEK_IMAGE_DIR
+        if not image_dir.is_dir():
+            return None
+
+        jpegs = sorted(image_dir.glob("*.jpeg"))
+        if not jpegs:
+            # Also try .jpg extension
+            jpegs = sorted(image_dir.glob("*.jpg"))
+        if not jpegs:
+            return None
+
+        try:
+            import cv2
+
+            frame = cv2.imread(str(jpegs[0]))
+            if frame is None:
+                return None
+            _, buf = cv2.imencode(".jpg", frame)
+            b64 = base64.b64encode(buf).decode("ascii")
+            return f"data:image/jpeg;base64,{b64}"
+        except Exception:
+            logger.debug("Failed to load static thermal image", exc_info=True)
+            return None
 
     @staticmethod
     def _load_csv(csv_path: Path) -> pd.DataFrame:

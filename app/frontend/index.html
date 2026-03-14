@@ -80,8 +80,29 @@
     text-transform: uppercase;
   }
 
-  .connection-status {
+  .header-right {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mute-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    line-height: 1;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .mute-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+  .mute-btn.muted { color: var(--red); border-color: var(--red); }
+
+  .connection-status {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -172,6 +193,23 @@
   }
 
   .btn-stop:hover { background: #e53935; }
+
+  .btn-demo {
+    background: var(--accent);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .btn-demo:hover { background: #4090e0; }
+
+  .btn-view-toggle {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border);
+  }
+
+  .btn-view-toggle:hover { border-color: var(--accent); }
+  .btn-view-toggle.active { border-color: var(--accent); background: rgba(88,166,255,0.15); color: var(--accent); }
 
   .btn:disabled {
     opacity: 0.4;
@@ -384,10 +422,85 @@
     font-family: var(--mono);
   }
 
+  /* ── Multi-Patient Grid ───────────────────────────────────────── */
+  .multi-view-container {
+    display: none;
+    padding: 20px 32px;
+  }
+
+  .multi-view-container.active {
+    display: block;
+  }
+
+  .multi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .patient-tile {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .tile-patient-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .tile-alert-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .tile-cptd {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    transition: color 0.3s;
+  }
+
+  .tile-cptd-unit {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .tile-sparkline {
+    width: 100%;
+    height: 60px;
+    display: block;
+  }
+
+  .tile-status {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
   /* ── Responsive ───────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .main { grid-template-columns: 1fr; }
-    header, .controls, .chart-section { padding-left: 16px; padding-right: 16px; }
+    .multi-grid { grid-template-columns: 1fr; }
+    header, .controls, .chart-section, .multi-view-container { padding-left: 16px; padding-right: 16px; }
     .main { padding: 16px; }
   }
 </style>
@@ -403,9 +516,12 @@
       <div class="subtitle">Neonatal Thermal Sepsis Detection</div>
     </div>
   </div>
-  <div class="connection-status">
-    <div class="status-dot" id="statusDot"></div>
-    <span id="statusText">Disconnected</span>
+  <div class="header-right">
+    <button class="mute-btn" id="muteBtn" title="Mute/Unmute audio alerts">&#x1F50A;</button>
+    <div class="connection-status">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Disconnected</span>
+    </div>
   </div>
 </header>
 
@@ -429,89 +545,104 @@
     <span id="startBtnIcon">&#9654;</span>
     <span id="startBtnText">Start</span>
   </button>
+  <button class="btn btn-demo" id="demoBtn" disabled>
+    &#9881; Demo
+  </button>
   <button class="btn btn-stop" id="stopBtn" disabled>
     &#9632; Stop
   </button>
+  <div class="control-group" style="margin-left:12px;">
+    <button class="btn btn-view-toggle" id="viewToggleBtn">Multi View</button>
+  </div>
   <div class="controls-spacer"></div>
   <span class="mode-badge" id="modeBadge">Replay Mode</span>
 </div>
 
-<!-- ── Main Content ──────────────────────────────────────────────── -->
-<div class="main">
-  <!-- Left: Thermal Image -->
-  <div class="card">
-    <div class="card-header">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-3A1.5 1.5 0 019 13.5v-3z"/></svg>
-      Thermal Image
-    </div>
-    <div class="thermal-viewer" id="thermalViewer">
-      <div class="thermal-placeholder" id="thermalPlaceholder">
-        <div class="icon">&#x1F321;</div>
-        <p>No image available</p>
-        <p style="margin-top:4px;opacity:0.6">Select a patient and press Start</p>
+<!-- ── Single View: Main Content ─────────────────────────────────── -->
+<div id="singleView">
+  <div class="main">
+    <!-- Left: Thermal Image -->
+    <div class="card">
+      <div class="card-header">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-3A1.5 1.5 0 019 13.5v-3z"/></svg>
+        Thermal Image
       </div>
-      <img id="thermalImage" style="display:none" alt="Annotated thermal frame">
+      <div class="thermal-viewer" id="thermalViewer">
+        <div class="thermal-placeholder" id="thermalPlaceholder">
+          <div class="icon">&#x1F321;</div>
+          <p>No image available</p>
+          <p style="margin-top:4px;opacity:0.6">Select a patient and press Start</p>
+        </div>
+        <img id="thermalImage" style="display:none" alt="Annotated thermal frame">
+      </div>
+    </div>
+
+    <!-- Right: CPTD Dashboard -->
+    <div class="card">
+      <div class="card-header">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 16A8 8 0 108 0a8 8 0 000 16zm.25-11.75v4.5l3.25 1.95-.5.83L7.5 9.5V4.25h.75z"/></svg>
+        CPTD Monitor
+      </div>
+      <div class="card-body">
+        <div class="cptd-display">
+          <div class="cptd-label">Core-Peripheral Temperature Difference</div>
+          <div class="cptd-value" id="cptdValue" style="color:var(--text-muted);">
+            --<span class="cptd-unit">&deg;C</span>
+          </div>
+          <div>
+            <span class="alert-badge alert-normal" id="alertBadge">Awaiting Data</span>
+          </div>
+          <div class="alert-message" id="alertMessage">No active monitoring session</div>
+        </div>
+
+        <div class="zones-grid">
+          <div class="zone-item core">
+            <div class="zone-name">Core (Torso)</div>
+            <div class="zone-temp null-val" id="zoneCore">--</div>
+          </div>
+          <div class="zone-item">
+            <div class="zone-name">Left Hand</div>
+            <div class="zone-temp null-val" id="zoneLeftHand">--</div>
+          </div>
+          <div class="zone-item">
+            <div class="zone-name">Right Hand</div>
+            <div class="zone-temp null-val" id="zoneRightHand">--</div>
+          </div>
+          <div class="zone-item">
+            <div class="zone-name">Left Foot</div>
+            <div class="zone-temp null-val" id="zoneLeftFoot">--</div>
+          </div>
+          <div class="zone-item">
+            <div class="zone-name">Right Foot</div>
+            <div class="zone-temp null-val" id="zoneRightFoot">--</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Right: CPTD Dashboard -->
-  <div class="card">
-    <div class="card-header">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 16A8 8 0 108 0a8 8 0 000 16zm.25-11.75v4.5l3.25 1.95-.5.83L7.5 9.5V4.25h.75z"/></svg>
-      CPTD Monitor
-    </div>
-    <div class="card-body">
-      <div class="cptd-display">
-        <div class="cptd-label">Core-Peripheral Temperature Difference</div>
-        <div class="cptd-value" id="cptdValue" style="color:var(--text-muted);">
-          --<span class="cptd-unit">&deg;C</span>
-        </div>
-        <div>
-          <span class="alert-badge alert-normal" id="alertBadge">Awaiting Data</span>
-        </div>
-        <div class="alert-message" id="alertMessage">No active monitoring session</div>
+  <!-- ── Chart ──────────────────────────────────────────────────── -->
+  <div class="chart-section">
+    <div class="chart-card">
+      <div class="card-header">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 1v14h14V1H1zm13 13H2V2h12v12zM3 12l3-5 2 3 3-4 2 2.5"/></svg>
+        CPTD Time Series
       </div>
-
-      <div class="zones-grid">
-        <div class="zone-item core">
-          <div class="zone-name">Core (Torso)</div>
-          <div class="zone-temp null-val" id="zoneCore">--</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Left Hand</div>
-          <div class="zone-temp null-val" id="zoneLeftHand">--</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Right Hand</div>
-          <div class="zone-temp null-val" id="zoneRightHand">--</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Left Foot</div>
-          <div class="zone-temp null-val" id="zoneLeftFoot">--</div>
-        </div>
-        <div class="zone-item">
-          <div class="zone-name">Right Foot</div>
-          <div class="zone-temp null-val" id="zoneRightFoot">--</div>
-        </div>
+      <div class="chart-container">
+        <canvas id="cptdChart" height="180"></canvas>
+      </div>
+      <div class="timestamp-bar">
+        <span id="chartStart">--</span>
+        <span id="chartEnd">--</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── Chart ──────────────────────────────────────────────────────── -->
-<div class="chart-section">
-  <div class="chart-card">
-    <div class="card-header">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 1v14h14V1H1zm13 13H2V2h12v12zM3 12l3-5 2 3 3-4 2 2.5"/></svg>
-      CPTD Time Series
-    </div>
-    <div class="chart-container">
-      <canvas id="cptdChart" height="180"></canvas>
-    </div>
-    <div class="timestamp-bar">
-      <span id="chartStart">--</span>
-      <span id="chartEnd">--</span>
-    </div>
+<!-- ── Multi View: Patient Grid ──────────────────────────────────── -->
+<div class="multi-view-container" id="multiView">
+  <div class="multi-grid" id="multiGrid">
+    <!-- Tiles injected by JS -->
   </div>
 </div>
 
@@ -545,6 +676,7 @@
   const patientSelect   = $('patientSelect');
   const speedSelect     = $('speedSelect');
   const startBtn        = $('startBtn');
+  const demoBtn         = $('demoBtn');
   const stopBtn         = $('stopBtn');
   const startBtnText    = $('startBtnText');
   const startBtnIcon    = $('startBtnIcon');
@@ -562,12 +694,62 @@
   const chartCanvas     = $('cptdChart');
   const chartStart      = $('chartStart');
   const chartEnd        = $('chartEnd');
+  const muteBtn         = $('muteBtn');
+  const viewToggleBtn   = $('viewToggleBtn');
+  const singleViewEl    = $('singleView');
+  const multiViewEl     = $('multiView');
+  const multiGrid       = $('multiGrid');
 
   // ── State ──────────────────────────────────────────────────────
   let ws = null;
   let isRunning = false;
   const chartData = [];       // { time: string, cptd: number, level: string }
   const MAX_CHART_POINTS = 200;
+  let allPatients = [];       // full patient list from server
+
+  // ── Audio alert state ──────────────────────────────────────────
+  let audioMuted = false;
+  let lastAlertLevel = 'normal';    // track escalation for single view
+  let audioCtx = null;
+
+  function getAudioCtx() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return audioCtx;
+  }
+
+  function playBeep() {
+    if (audioMuted) return;
+    try {
+      const ctx = getAudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 800;
+      gain.gain.value = 0.3;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.2);
+    } catch (e) {
+      // Audio not available — ignore silently
+    }
+  }
+
+  muteBtn.addEventListener('click', () => {
+    audioMuted = !audioMuted;
+    muteBtn.textContent = audioMuted ? '\u{1F507}' : '\u{1F50A}';
+    muteBtn.classList.toggle('muted', audioMuted);
+    // Ensure AudioContext is resumed on user gesture
+    if (!audioMuted && audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  });
+
+  // ── Multi-view state ───────────────────────────────────────────
+  let isMultiView = false;
+  const multiTiles = {};  // patientId -> { ws, data[], lastLevel, elements }
 
   // ── Fetch Patients ─────────────────────────────────────────────
   async function fetchPatients() {
@@ -577,6 +759,7 @@
 
       // API may return an array of strings or an object with a patients field
       const patients = Array.isArray(data) ? data : (data.patients || []);
+      allPatients = patients.map(p => typeof p === 'string' ? p : (p.id || p.patient_id));
 
       patientSelect.innerHTML = '';
       if (patients.length === 0) {
@@ -595,6 +778,7 @@
       });
 
       startBtn.disabled = false;
+      demoBtn.disabled = false;
     } catch (err) {
       patientSelect.innerHTML = '<option value="">Server unavailable</option>';
       console.warn('Failed to fetch patients:', err);
@@ -685,6 +869,12 @@
       cptdValue.style.color = 'var(--text-muted)';
       cptdValue.style.animation = 'none';
     }
+
+    // Audio alert: beep on escalation to critical
+    if (level === 'critical' && lastAlertLevel !== 'critical') {
+      playBeep();
+    }
+    lastAlertLevel = level;
 
     // Update alert badge
     updateAlertBadge(level, msg.alert);
@@ -912,6 +1102,7 @@
   function setRunning(running) {
     isRunning = running;
     startBtn.disabled = running;
+    demoBtn.disabled  = running;
     stopBtn.disabled  = !running;
     patientSelect.disabled = running;
     speedSelect.disabled   = running;
@@ -935,6 +1126,9 @@
     chartData.length = 0;
     drawChart();
 
+    // Reset alert escalation tracking
+    lastAlertLevel = 'normal';
+
     // Reset display
     thermalImage.style.display = 'none';
     thermalPlaceholder.style.display = 'block';
@@ -945,16 +1139,258 @@
     setRunning(true);
   });
 
+  demoBtn.addEventListener('click', () => {
+    const patientId = patientSelect.value;
+    if (!patientId) return;
+
+    const speed = parseFloat(speedSelect.value);
+
+    // Clear previous chart data
+    chartData.length = 0;
+    drawChart();
+
+    // Reset alert escalation tracking
+    lastAlertLevel = 'normal';
+
+    // Reset display
+    thermalImage.style.display = 'none';
+    thermalPlaceholder.style.display = 'block';
+    thermalPlaceholder.querySelector('p').textContent = 'Starting demo...';
+
+    connectWS();
+    sendAction('start_demo', { patient_id: patientId, speed });
+    setRunning(true);
+  });
+
   stopBtn.addEventListener('click', () => {
     sendAction('stop');
     setRunning(false);
   });
 
+  // ── Multi-View Toggle ──────────────────────────────────────────
+  viewToggleBtn.addEventListener('click', () => {
+    isMultiView = !isMultiView;
+    viewToggleBtn.textContent = isMultiView ? 'Single View' : 'Multi View';
+    viewToggleBtn.classList.toggle('active', isMultiView);
+
+    if (isMultiView) {
+      singleViewEl.style.display = 'none';
+      multiViewEl.classList.add('active');
+      startMultiView();
+    } else {
+      singleViewEl.style.display = '';
+      multiViewEl.classList.remove('active');
+      stopMultiView();
+    }
+  });
+
+  function getMultiPatients() {
+    // Prefer baby_40, baby_42, baby_44, baby_46 if they exist; otherwise first 4
+    const preferred = ['baby_40', 'baby_42', 'baby_44', 'baby_46'];
+    const available = preferred.filter(p => allPatients.includes(p));
+    if (available.length >= 4) return available.slice(0, 4);
+    // Fill from allPatients
+    const result = [...available];
+    for (const p of allPatients) {
+      if (result.length >= 4) break;
+      if (!result.includes(p)) result.push(p);
+    }
+    return result;
+  }
+
+  function startMultiView() {
+    stopMultiView(); // clean up any prior state
+
+    const patients = getMultiPatients();
+    multiGrid.innerHTML = '';
+
+    patients.forEach(pid => {
+      // Create tile DOM
+      const tile = document.createElement('div');
+      tile.className = 'patient-tile';
+      tile.innerHTML =
+        '<div class="tile-header">' +
+          '<span class="tile-patient-name">' + pid + '</span>' +
+          '<span class="tile-alert-badge alert-normal">Awaiting</span>' +
+        '</div>' +
+        '<div class="tile-cptd" style="color:var(--text-muted);">--<span class="tile-cptd-unit">&deg;C</span></div>' +
+        '<canvas class="tile-sparkline" width="200" height="60"></canvas>' +
+        '<div class="tile-status">Connecting...</div>';
+      multiGrid.appendChild(tile);
+
+      const els = {
+        badge:     tile.querySelector('.tile-alert-badge'),
+        cptd:      tile.querySelector('.tile-cptd'),
+        sparkline: tile.querySelector('.tile-sparkline'),
+        status:    tile.querySelector('.tile-status'),
+      };
+
+      const tileState = {
+        ws: null,
+        data: [],
+        lastLevel: 'normal',
+        elements: els,
+      };
+
+      // Open WebSocket
+      const tileWs = new WebSocket(WS_URL);
+
+      tileWs.onopen = () => {
+        els.status.textContent = 'Connected';
+        tileWs.send(JSON.stringify({
+          action: 'start_replay',
+          patient_id: pid,
+          speed: 5,
+        }));
+      };
+
+      tileWs.onclose = () => {
+        els.status.textContent = 'Disconnected';
+      };
+
+      tileWs.onerror = () => {
+        els.status.textContent = 'Error';
+      };
+
+      tileWs.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          handleTileMessage(pid, msg);
+        } catch (e) { /* ignore */ }
+      };
+
+      tileState.ws = tileWs;
+      multiTiles[pid] = tileState;
+    });
+  }
+
+  function stopMultiView() {
+    for (const pid of Object.keys(multiTiles)) {
+      const tile = multiTiles[pid];
+      if (tile.ws && tile.ws.readyState <= WebSocket.OPEN) {
+        try {
+          tile.ws.send(JSON.stringify({ action: 'stop' }));
+        } catch (e) { /* ignore */ }
+        tile.ws.close();
+      }
+    }
+    // Clear state
+    for (const key of Object.keys(multiTiles)) {
+      delete multiTiles[key];
+    }
+    multiGrid.innerHTML = '';
+  }
+
+  function handleTileMessage(pid, msg) {
+    const tile = multiTiles[pid];
+    if (!tile) return;
+
+    const els = tile.elements;
+    const cptd = msg.cptd;
+    const level = msg.alert ? msg.alert.level : 'normal';
+
+    // Update CPTD value
+    if (cptd != null) {
+      const color = COLORS[level] || COLORS.normal;
+      els.cptd.innerHTML = cptd.toFixed(2) + '<span class="tile-cptd-unit">&deg;C</span>';
+      els.cptd.style.color = color;
+    }
+
+    // Update alert badge
+    const labels = { normal: 'Normal', warning: 'Warning', high: 'High', critical: 'Critical' };
+    els.badge.className = 'tile-alert-badge alert-' + level;
+    els.badge.textContent = labels[level] || 'Normal';
+
+    // Audio alert: beep on escalation to critical (any tile)
+    if (level === 'critical' && tile.lastLevel !== 'critical') {
+      playBeep();
+    }
+    tile.lastLevel = level;
+
+    // Sparkline data
+    if (cptd != null) {
+      tile.data.push({ cptd, level });
+      if (tile.data.length > 20) tile.data.shift();
+      drawSparkline(els.sparkline, tile.data);
+    }
+
+    // Status
+    if (msg.type === 'replay_complete') {
+      els.status.textContent = 'Complete';
+    } else if (msg.timestamp) {
+      els.status.textContent = formatTime(msg.timestamp);
+    }
+  }
+
+  function drawSparkline(canvas, data) {
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width  = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const W = rect.width;
+    const H = rect.height;
+    const PAD = 4;
+
+    ctx.clearRect(0, 0, W, H);
+
+    if (data.length < 2) return;
+
+    const vals = data.map(d => d.cptd);
+    const yMin = 0;
+    const yMax = Math.max(Math.ceil(Math.max(...vals, THRESHOLDS.critical + 1)), 7);
+
+    function xPos(i) { return PAD + (i / (data.length - 1)) * (W - PAD * 2); }
+    function yPos(v) { return PAD + (H - PAD * 2) - ((v - yMin) / (yMax - yMin)) * (H - PAD * 2); }
+
+    // Threshold line (critical)
+    ctx.strokeStyle = 'rgba(211,47,47,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    const critY = yPos(THRESHOLDS.critical);
+    ctx.beginPath();
+    ctx.moveTo(PAD, critY);
+    ctx.lineTo(W - PAD, critY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Data line
+    ctx.strokeStyle = '#58a6ff';
+    ctx.lineWidth = 1.5;
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    data.forEach((d, i) => {
+      const x = xPos(i);
+      const y = yPos(d.cptd);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Last point dot
+    const last = data[data.length - 1];
+    ctx.fillStyle = COLORS[last.level] || COLORS.normal;
+    ctx.beginPath();
+    ctx.arc(xPos(data.length - 1), yPos(last.cptd), 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
   // ── Resize handling ────────────────────────────────────────────
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => drawChart(), 100);
+    resizeTimer = setTimeout(() => {
+      drawChart();
+      // Redraw sparklines
+      for (const pid of Object.keys(multiTiles)) {
+        const tile = multiTiles[pid];
+        if (tile.data.length >= 2) {
+          drawSparkline(tile.elements.sparkline, tile.data);
+        }
+      }
+    }, 100);
   });
 
   // ── Init ───────────────────────────────────────────────────────
