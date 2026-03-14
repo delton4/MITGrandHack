@@ -1,0 +1,452 @@
+================================================================================
+THERMAL/INFRARED IMAGING FOR SURGICAL & WOUND-RELATED MONITORING
+IN NEONATES AND PEDIATRIC PATIENTS — RESEARCH LITERATURE REVIEW
+================================================================================
+Compiled: March 14, 2026
+
+
+TABLE OF CONTENTS
+-----------------
+1. Landmark Pediatric Surgical Thermography Study
+2. Scoping Reviews of Neonatal Thermal Imaging
+3. Pediatric Burn Depth Assessment
+4. Post-Operative Cardiac Surgery Monitoring
+5. Necrotizing Enterocolitis (NEC) Detection via Thermography
+6. Skin Graft Viability Monitoring
+7. Critically Ill Children — Thermal Distribution Assessment
+8. Vascular Compromise and Compartment Syndrome Detection
+9. Umbilical Catheter Placement Verification
+10. Summary Table
+
+
+================================================================================
+1. LANDMARK PEDIATRIC SURGICAL THERMOGRAPHY STUDY
+================================================================================
+
+PAPER #1
+--------
+Title:    Infrared Thermography: Experience from a Decade of Pediatric Imaging
+Authors:  Saxena AK, Willital GH
+Year:     2008
+Journal:  European Journal of Pediatrics, 167(7), 757-764
+DOI:      https://doi.org/10.1007/s00431-007-0583-z
+
+Key Findings:
+- Performed 483 IRT examinations over 10 years (1990-2000) on 285 pediatric
+  patients aged 1 week to 16 years, covering a wide range of surgical pathologies.
+- IRT identified a temperature increase of 3.7 deg C associated with sternal wound
+  abscess formation; 42 children assessed for infection showed abscess areas with
+  a temperature increase of 3.6 +/- 0.5 deg C, and wound infections displayed a
+  positive temperature differential.
+- IRT was effective for follow-up of hemangiomas, vascular malformations, digit
+  reimplantation, burns assessment, and monitoring skin/vascular growth after
+  biomaterial implants in neonates with gastroschisis and giant omphaloceles.
+- In the emergency room, IRT was valuable for rapid diagnosis of extremity
+  thrombosis, varicoceles, inflammation, abscesses, gangrene, and wound infections.
+- Concluded that IRT is non-invasive, has no biological side effects, requires
+  no sedation/anesthesia, and can be repeated as desired for follow-up with
+  objective, reproducible results.
+
+RELEVANCE TO NEOTHERM: This is the single most relevant paper — it directly
+demonstrates IRT utility across the full spectrum of pediatric surgical conditions
+including wound infections, vascular monitoring, and neonatal surgical applications
+over a 10-year clinical experience.
+
+
+================================================================================
+2. SCOPING REVIEWS OF NEONATAL THERMAL IMAGING
+================================================================================
+
+PAPER #2
+--------
+Title:    Thermal Imaging Applications in Neonatal Care: A Scoping Review
+Authors:  Topalidou A, Ali N, Sekulic S, Downe S
+Year:     2019
+Journal:  BMC Pregnancy and Childbirth, 19, 381
+DOI:      https://doi.org/10.1186/s12884-019-2533-y
+
+Key Findings:
+- Comprehensive scoping review identifying multiple applications of thermal
+  imaging in neonatal care, including thermoregulation assessment, detection
+  of internal abnormalities, and screening for necrotizing enterocolitis.
+- Thermal imaging can screen newborns for internal abnormalities because
+  deep-lying structures in newborns have less insulating tissue, making
+  thermal signatures of underlying pathology more detectable at the skin surface.
+- Identified methodological challenges including environmental parameters
+  (incubators, radiant warmers) that affect thermal readings.
+- Concluded that thermal imaging is a reliable and non-invasive method for
+  continuous monitoring of neonatal temperature with potential for pathology
+  diagnosis.
+
+
+PAPER #3
+--------
+Title:    Review of Biomedical Applications of Contactless Imaging of Neonates
+          Using Infrared Thermography and Beyond
+Authors:  ALZubaidi AK, Ethawi Y, Schmolzer GM, Sherif S, Narvey M, Seshia M
+Year:     2018
+Journal:  Methods and Protocols, 1(4), 39
+DOI:      https://doi.org/10.3390/mps1040039
+
+Key Findings:
+- Comprehensive review of contactless infrared thermography applications in
+  neonatal medicine, covering respiratory monitoring, thermoregulation,
+  and disease detection.
+- Highlighted that neonatal IRT is particularly advantageous because neonates
+  are vulnerable to contact-based sensors that can damage fragile skin and
+  disrupt thermoregulation.
+- Discussed technical considerations for IRT in incubator environments
+  including camera selection, calibration, and environmental compensation.
+
+
+================================================================================
+3. PEDIATRIC BURN DEPTH ASSESSMENT
+================================================================================
+
+PAPER #4
+--------
+Title:    Contribution of Thermal Imaging in Determining the Depth of
+          Pediatric Acute Burns
+Authors:  Ganon S, Guedon A, Cassier S, Atlan M
+Year:     2020 (online 2019)
+Journal:  Burns, 46(5), 1091-1099
+DOI:      https://doi.org/10.1016/j.burns.2019.11.020
+
+Key Findings:
+- Pilot study of 13 children: superficial dermal burns were 1.7 deg C
+  higher than the contralateral side, while deep dermal burns were 2.3 deg C
+  lower than the contralateral side.
+- When compared with histological results, IRT correctly identified 100% of
+  both superficial and deep burns, while clinical assessment identified only
+  83.33% of superficial and 42.85% of deep burns.
+- Concluded that the FLIR One Thermal Imager is an inexpensive, non-invasive,
+  easily accessible device providing fast measurements (2 seconds) and analyses
+  (2 minutes) that measure dermis perfusion reflecting burn depth in children
+  with excellent specificity.
+
+PAPER #5
+--------
+Title:    Noninvasive Determination of Burn Depth in Children by Digital
+          Infrared Thermal Imaging
+Authors:  Medina-Preciado JD, Kolosovas-Machuca ES, Velez-Gomez E,
+          Miranda-Altamirano A, Gonzalez FJ
+Year:     2013
+Journal:  Journal of Biomedical Optics, 18(6), 061204
+DOI:      https://doi.org/10.1117/1.JBO.18.6.061204
+
+Key Findings:
+- Demonstrated that digital infrared thermal imaging can noninvasively
+  determine burn depth in children by measuring skin temperature differences
+  that correlate with the degree of vascular damage in the dermis.
+- Deep burns appear colder due to decreased microvascular blood flow, while
+  superficial burns appear warmer due to epithelium loss, inflammation,
+  and edema.
+- Validated thermography as a practical clinical tool for pediatric burn
+  assessment that can guide surgical decision-making (conservative vs.
+  grafting).
+
+PAPER #6
+--------
+Title:    The Use of the FLIR ONE Pro Thermal Camera for Paediatric Burn
+          Wound Depth Assessment: A Pilot Study
+Authors:  [Authors not fully confirmed in search — published 2026]
+Year:     2026
+Journal:  Burns (ScienceDirect)
+Link:     https://www.sciencedirect.com/science/article/pii/S030541792600094X
+
+Key Findings:
+- Most recent pilot study demonstrating the FLIR ONE Pro ($250 device) as a
+  portable, inexpensive, and accessible tool for pediatric burn depth assessment.
+- Particularly valuable in resource-limited settings where Laser Doppler
+  Imaging (LDI) is unavailable.
+- Deep burns appear colder due to decreased microvascular blood flow;
+  temperature difference thresholds can reliably distinguish superficial
+  from deep burns requiring surgical intervention.
+
+
+================================================================================
+4. POST-OPERATIVE CARDIAC SURGERY MONITORING IN CHILDREN
+================================================================================
+
+PAPER #7
+--------
+Title:    Hemodynamic Assessment in Children After Cardiac Surgery: A Pilot
+          Study on the Value of Infrared Thermography
+Authors:  Bridier A, Shcherbakova M, Kawaguchi A, Poirier N, Said A,
+          Noumeir R, Jouvet P
+Year:     2023
+Journal:  Frontiers in Pediatrics, 11, 1083962
+DOI:      https://doi.org/10.3389/fped.2023.1083962
+
+Key Findings:
+- Assessed correlation between thermal gradient obtained by IRT and oxygen
+  extraction ratio (O2ER) in children aged 0-18 years following cardiac
+  surgery with cardiopulmonary bypass.
+- Found a significant but weak correlation between thermal gradient by IRT
+  and O2ER, suggesting potential for early detection of low cardiac output
+  syndrome post-operatively.
+- Used FLIR One Pro thermal imaging camera in the pediatric ICU setting.
+- Concluded that IRT is a promising non-invasive technology for multimodal
+  monitoring of postoperative cardiac surgery patients, but image acquisition
+  methods need improvement (e.g., permanently installed bedside cameras)
+  before clinical incorporation.
+
+RELEVANCE TO NEOTHERM: Directly demonstrates feasibility of thermal camera
+monitoring in pediatric post-operative/ICU settings. The identified need for
+permanent bedside camera installation aligns with a continuous monitoring
+approach.
+
+
+================================================================================
+5. NECROTIZING ENTEROCOLITIS (NEC) DETECTION VIA THERMOGRAPHY
+================================================================================
+
+PAPER #8
+--------
+Title:    Infrared Thermal Imaging (Thermography) of the Abdomen in
+          Extremely Low Birthweight Infants
+Authors:  Rice HE, Hollingsworth CL, Bradsher E, Danko ME, Crosby SM,
+          Goldberg RN, Tanaka DT, Knobel RB
+Year:     2010
+Journal:  Journal of Surgical Radiology, 1(2), 82-89
+Link:     https://scholars.duke.edu/publication/723960
+
+Key Findings:
+- Prospectively examined clinical, radiographic, and thermal imaging data in
+  13 ELBW infants (<1000g, <29 weeks gestation) during the first month of life.
+- Found that abdominal skin temperature was significantly lower in infants
+  with NEC (35.3 +/- 0.8 deg C) compared to those without (36.6 +/- 0.9 deg C;
+  p<0.05).
+- Demonstrated feasibility of using an FLIR SC640 infrared camera to capture
+  body temperatures of extremely premature infants in heated, humid incubators.
+- Concluded that thermography may provide new insight into the role of
+  regional perfusion in NEC and guide clinicians caring for infants with
+  intestinal perfusion problems.
+
+RELEVANCE TO NEOTHERM: Directly relevant — demonstrates that thermal imaging
+can detect intra-abdominal pathology in the most vulnerable neonatal population,
+and that temperature differentials between body regions correlate with serious
+surgical conditions.
+
+
+PAPER #9
+--------
+Title:    Thermal and RGB-D Imaging for Necrotizing Enterocolitis Detection
+Authors:  Shi Y, Payeur P, Frize M, Bariciak E
+Year:     2020
+Journal:  IEEE International Symposium on Medical Measurements and Applications
+          (MeMeA), Bari, Italy, pp. 1-6
+DOI:      https://doi.org/10.1109/MeMeA49120.2020.9137344
+
+Key Findings:
+- Proposed a novel automated image acquisition and analysis system combining
+  an infrared thermal camera with an RGB-D (depth) sensor for detection of NEC
+  in preterm newborns.
+- Found higher degree of thermal asymmetry in the NEC group compared to
+  healthy controls, with the NEC group showing a lower decrease in temperature
+  over time (possibly due to increased heat from inflamed bowels).
+- Demonstrated feasibility of automated, continuous thermal monitoring for
+  early NEC diagnosis in the NICU setting.
+
+RELEVANCE TO NEOTHERM: Demonstrates the potential for automated,
+computer-aided thermal imaging analysis — directly relevant to a continuous
+monitoring device concept.
+
+
+================================================================================
+6. SKIN GRAFT VIABILITY MONITORING
+================================================================================
+
+PAPER #10
+---------
+Title:    Skin Graft Monitoring Using Forward-Looking Infrared Thermal Imaging
+Authors:  Hwang YS, Byeon JY, Lee DW, Kim JH, Lim S, Choi HJ
+Year:     2024
+Journal:  International Wound Journal, 21(11), e70107
+DOI:      https://doi.org/10.1111/iwj.70107
+
+Key Findings:
+- Studied 63 patients with skin defects (May 2022 - August 2023); infrared
+  thermal images were obtained on postoperative days 0, 2, 4, 6, and 8.
+- Groups with successful full-thickness and split-thickness skin grafts showed
+  a gradual increase in graft temperature, peaking on POD 6 and decreasing
+  on POD 8; failed grafts showed persistently lower temperatures.
+- Concluded that infrared thermal imaging provides non-invasive real-time
+  assessment of graft status and can predict graft success or failure.
+
+NOTE: This study was performed primarily in adults. Pediatric-specific skin
+graft monitoring with thermography appears to be an underexplored area in the
+literature, representing a research gap.
+
+
+================================================================================
+7. CRITICALLY ILL CHILDREN — THERMAL DISTRIBUTION ASSESSMENT
+================================================================================
+
+PAPER #11
+---------
+Title:    Optical Thermography Infrastructure to Assess Thermal Distribution
+          in Critically Ill Children
+Authors:  Shcherbakova M, Noumeir R, Levy M, Bridier A, Lestrade V, Jouvet P
+Year:     2022
+Journal:  IEEE Open Journal of Engineering in Medicine and Biology, 3, 1-6
+DOI:      https://doi.org/10.1109/OJEMB.2021.3136403
+PMC:      PMC8975240
+
+Key Findings:
+- Developed and validated an optical thermography infrastructure for use
+  in the pediatric intensive care unit (PICU) to analyze temperature profiles
+  of critically ill children.
+- Median core temperature extracted from thermal images was 33.88 deg C
+  [IQR 32.74-34.19] and median limb temperature was 30.21 deg C
+  [IQR 28.89-33.13].
+- Demonstrated that thermography is effective to estimate body temperature
+  distribution and detect perfusion abnormalities in critically ill children.
+
+RELEVANCE TO NEOTHERM: Validates the engineering infrastructure needed for
+continuous thermal monitoring in pediatric critical care settings, directly
+applicable to NICU deployment.
+
+
+================================================================================
+8. VASCULAR COMPROMISE AND COMPARTMENT SYNDROME DETECTION
+================================================================================
+
+PAPER #12
+---------
+Title:    Infrared Imaging of Trauma Patients for Detection of Acute
+          Compartment Syndrome of the Leg
+Authors:  Katz LM, Nauriyal V, Nagaraj S, Finch A, Pearlstein K,
+          Szymanowski A, Sproule C, Rich PB, Bhatt DL, Schwarzenberger K
+Year:     2008
+Journal:  Journal of Trauma, 64(5), 1168-1175
+DOI:      https://doi.org/10.1097/TA.0b013e318166d0d2 (PubMed: 18496371)
+
+Key Findings:
+- Legs that developed compartment syndrome had a significantly greater
+  difference in proximal vs. distal surface temperature (8.80 +/- 2.05 deg C)
+  compared to legs without compartment syndrome (1.22 +/- 0.88 deg C).
+- Demonstrated that thermography can provide rapid, non-invasive diagnosis
+  of compartment syndrome before the need for amputation or death from
+  vascular compromise.
+- While this study focused on adult trauma patients, the principle of
+  temperature gradient detection for vascular compromise is directly
+  applicable to neonatal limb perfusion monitoring.
+
+NOTE: No dedicated studies were found on neonatal compartment syndrome
+detection with thermography. This represents a significant research gap,
+especially relevant for neonates with arterial line complications or
+positional vascular compromise.
+
+
+================================================================================
+9. UMBILICAL CATHETER PLACEMENT VERIFICATION
+================================================================================
+
+No published research was found on using thermal imaging for umbilical
+catheter (UVC/UAC) placement verification in neonates.
+
+Current standard methods for verification include:
+- Radiographic imaging (abdominal X-ray) — primary standard
+- Real-time ultrasound (emerging alternative, shown to reduce X-ray exposure)
+
+RESEARCH GAP: This represents a potential novel application for thermal
+imaging. Theoretically, an umbilical catheter carrying warm fluids could
+produce a detectable thermal signature along its path, allowing non-ionizing
+verification of placement. However, this has not been studied.
+
+
+================================================================================
+10. SUMMARY TABLE
+================================================================================
+
+# | Application Area               | Key Paper                  | Year | Evidence Level
+--|--------------------------------|----------------------------|------|---------------
+1 | Pediatric surgical (broad)     | Saxena & Willital          | 2008 | 10-yr clinical series
+2 | Neonatal care (review)         | Topalidou et al.           | 2019 | Scoping review
+3 | Neonatal IRT (review)          | ALZubaidi et al.           | 2018 | Narrative review
+4 | Pediatric burn depth           | Ganon et al.               | 2020 | Pilot study (n=13)
+5 | Pediatric burn depth           | Medina-Preciado et al.     | 2013 | Clinical study
+6 | Pediatric burn depth           | [Authors TBC]              | 2026 | Pilot study
+7 | Post-op cardiac surgery        | Bridier et al.             | 2023 | Pilot study
+8 | NEC detection (ELBW)           | Rice, Knobel et al.        | 2010 | Feasibility (n=13)
+9 | NEC detection (automated)      | Shi, Payeur et al.         | 2020 | Engineering/feasibility
+10| Skin graft monitoring          | Hwang et al.               | 2024 | Clinical study (n=63)
+11| Critically ill children (PICU) | Shcherbakova et al.        | 2022 | Infrastructure validation
+12| Compartment syndrome           | Katz et al.                | 2008 | Clinical study (adult)
+
+
+================================================================================
+KEY TAKEAWAYS FOR NEOTHERM
+================================================================================
+
+1. STRONG EVIDENCE BASE FOR PEDIATRIC SURGICAL USE: Saxena & Willital (2008)
+   provides a decade of evidence across 483 examinations that IRT works for
+   wound infection detection, vascular monitoring, and post-surgical follow-up
+   in pediatric patients including neonates.
+
+2. BURN DEPTH ASSESSMENT IS THE MOST VALIDATED APPLICATION: Multiple studies
+   (Ganon 2020, Medina-Preciado 2013, FLIR ONE Pro 2026) demonstrate that
+   thermal imaging outperforms clinical assessment for burn depth determination
+   in children, with 100% accuracy vs. 42-83% for clinical judgment.
+
+3. NEC DETECTION SHOWS PROMISE: Temperature differentials between abdomen and
+   thorax correlate with NEC status in ELBW infants (Rice et al. 2010),
+   and automated systems are being developed (Shi et al. 2020).
+
+4. POST-OPERATIVE MONITORING IS FEASIBLE BUT EARLY: Bridier et al. (2023)
+   showed that thermal gradients correlate with hemodynamic status after
+   pediatric cardiac surgery, but the technology needs refinement for
+   routine clinical use.
+
+5. CRITICAL RESEARCH GAPS IDENTIFIED:
+   - No studies on neonatal compartment syndrome detection with thermography
+   - No studies on umbilical catheter verification via thermal imaging
+   - Limited pediatric-specific skin graft monitoring studies
+   - No studies on surgical site infection prediction (vs. detection) in neonates
+   - Need for continuous monitoring systems (most studies use point-in-time images)
+
+6. TECHNOLOGY IS ACCESSIBLE: FLIR ONE Pro ($250) has been validated in
+   multiple pediatric studies, demonstrating that affordable thermal imaging
+   is feasible in clinical settings.
+
+
+================================================================================
+SOURCES / FULL REFERENCE LIST
+================================================================================
+
+[1]  Saxena AK, Willital GH. European Journal of Pediatrics. 2008;167(7):757-764.
+     https://doi.org/10.1007/s00431-007-0583-z
+
+[2]  Topalidou A, Ali N, Sekulic S, Downe S. BMC Pregnancy Childbirth. 2019;19:381.
+     https://doi.org/10.1186/s12884-019-2533-y
+
+[3]  ALZubaidi AK et al. Methods and Protocols. 2018;1(4):39.
+     https://doi.org/10.3390/mps1040039
+
+[4]  Ganon S, Guedon A, Cassier S, Atlan M. Burns. 2020;46(5):1091-1099.
+     https://doi.org/10.1016/j.burns.2019.11.020
+
+[5]  Medina-Preciado JD et al. J Biomedical Optics. 2013;18(6):061204.
+     https://doi.org/10.1117/1.JBO.18.6.061204
+
+[6]  [FLIR ONE Pro paediatric burn study]. Burns. 2026.
+     https://www.sciencedirect.com/science/article/pii/S030541792600094X
+
+[7]  Bridier A et al. Frontiers in Pediatrics. 2023;11:1083962.
+     https://doi.org/10.3389/fped.2023.1083962
+
+[8]  Rice HE, Knobel RB et al. J Surgical Radiology. 2010;1(2):82-89.
+     https://scholars.duke.edu/publication/723960
+
+[9]  Shi Y, Payeur P, Frize M, Bariciak E. IEEE MeMeA 2020, pp. 1-6.
+     https://doi.org/10.1109/MeMeA49120.2020.9137344
+
+[10] Hwang YS et al. Int Wound Journal. 2024;21(11):e70107.
+     https://doi.org/10.1111/iwj.70107
+
+[11] Shcherbakova M et al. IEEE Open J Eng Med Biol. 2022;3:1-6.
+     https://doi.org/10.1109/OJEMB.2021.3136403
+
+[12] Katz LM et al. J Trauma. 2008;64(5):1168-1175.
+     PubMed: 18496371

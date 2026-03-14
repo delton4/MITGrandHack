@@ -1,0 +1,587 @@
+================================================================================
+AI / ML / DEEP LEARNING APPLIED TO NEONATAL THERMAL/INFRARED IMAGING
+Comprehensive Literature Review — Compiled March 2026
+================================================================================
+
+
+================================================================================
+1. DEEP LEARNING CLASSIFICATION OF NEONATAL HEALTH FROM THERMAL IMAGES
+================================================================================
+
+PAPER 1.1
+----------
+Title: Health Status Detection of Neonates Using Infrared Thermography and
+       Deep Convolutional Neural Networks
+Authors: Ornek AH, Ceylan M, Ervural S
+Year: 2019
+Journal: Infrared Physics & Technology (Elsevier)
+DOI/Link: https://www.sciencedirect.com/science/article/abs/pii/S1350449519303123
+
+Key Findings:
+- First study to combine IRT and deep CNNs for neonatal health status
+  detection (healthy vs. unhealthy classification).
+- Thermal images of 38 neonates (19 healthy, 19 unhealthy) captured at
+  Selcuk University NICU over one year. Dataset augmented from 3,800 to
+  30,400 images.
+- Achieved 99.58% accuracy, 99.73% specificity, 99.43% sensitivity, and
+  0.996 AUC. 15,159/15,200 healthy thermograms and 15,114/15,200 unhealthy
+  thermograms were correctly classified.
+
+
+PAPER 1.2
+----------
+Title: Medical Thermograms' Classification Using Deep Transfer Learning
+       Models and Methods
+Authors: Ornek AH, Ceylan M
+Year: 2022
+Journal: Multimedia Tools and Applications (Springer)
+DOI/Link: https://link.springer.com/article/10.1007/s11042-021-11852-6
+
+Key Findings:
+- Compared nine pre-trained deep transfer learning models (VGG16, VGG19,
+  Xception, ResNet101, ResNet50, Inceptionv3, InceptionResNetv2, MobileNet,
+  DenseNet201) with two classification methods (softmax and SVM) for
+  healthy/unhealthy neonatal classification.
+- Best results: VGG19 + SVM achieved 100.00% specificity, sensitivity, and
+  accuracy on the neonatal thermogram dataset.
+- Demonstrated that transfer learning effectively addresses the challenge of
+  limited neonatal thermal image data.
+
+
+PAPER 1.3
+----------
+Title: CodCAM: A New Ensemble Visual Explanation for Classification of
+       Medical Thermal Images
+Authors: Ornek AH, Ceylan M
+Year: 2023
+Journal: Quantitative InfraRed Thermography Journal, Vol. 21, No. 3
+DOI/Link: https://www.tandfonline.com/doi/full/10.1080/17686733.2023.2167459
+
+Key Findings:
+- Trained CNN model to classify neonatal thermograms as healthy/unhealthy,
+  achieving 99.91% train accuracy, 99.47% validation accuracy, and 99.82%
+  test accuracy.
+- Proposed CodCAM, a new ensemble Explainable AI (XAI) method combining
+  GradCAM, GradCAM++, LayerCAM, and EigenCAM to visualize which regions of
+  neonatal thermograms drive classification decisions.
+- Enables medical specialists to understand which body regions influence the
+  CNN's decision, building clinical trust in AI models.
+
+
+PAPER 1.4
+----------
+Title: A New Approach for Super-Resolution and Classification Applications
+       on Neonatal Thermal Images
+Authors: Ornek AH, Ceylan M
+Year: 2023
+Journal: Quantitative InfraRed Thermography Journal, Vol. 21, No. 3
+DOI/Link: https://www.tandfonline.com/doi/abs/10.1080/17686733.2023.2179282
+
+Key Findings:
+- Applied super-resolution models combined with transfer learning
+  (ResNet101, Xception) for neonatal thermal image classification.
+- Super-resolution preprocessing increased healthy/unhealthy classification
+  accuracy by approximately 10% compared to low-resolution inputs.
+- ResNet101 yielded the most successful classification results among the
+  tested architectures.
+
+
+================================================================================
+2. OBJECT DETECTION / ROI SEGMENTATION IN NEONATAL THERMAL IMAGES
+================================================================================
+
+PAPER 2.1
+----------
+Title: A Method for Improving Semantic Segmentation Using Thermographic
+       Images in Infants
+Authors: Hesse N, Lyra S, Leonhardt S, et al.
+Year: 2022 (published online Jan 2022)
+Journal: BMC Medical Imaging
+DOI/Link: https://bmcmedimaging.biomedcentral.com/articles/10.1186/s12880-021-00730-0
+
+Key Findings:
+- Developed semantic segmentation for automatic ROI setting in infant
+  thermal images, classifying pixels into five classes: head, body, arms,
+  legs, and "other."
+- U-Net GAN with Self-Attention (SA) achieved best results: 93.5% accuracy
+  and 70.4% mean Intersection over Union (mIoU), outperforming standard
+  U-Net (92.9% accuracy, 64.5% mIoU).
+- Eliminates the need for manual ROI selection, making thermal analysis
+  practical for continuous clinical monitoring.
+
+
+PAPER 2.2
+----------
+Title: Multi-Modal Body Part Segmentation of Infants Using Deep Learning
+Authors: Hesse N, Lyra S, Leonhardt S, et al.
+Year: 2023
+Journal: BioMedical Engineering OnLine (Springer)
+DOI/Link: https://link.springer.com/article/10.1186/s12938-023-01092-0
+
+Key Findings:
+- Compared three U-Net-based neural networks for infant body part
+  segmentation using RGB, LWIR (thermal), and a hybrid fusion approach.
+  Dataset: 600 visible + 600 thermography images from 20 infant recordings.
+- Fusion model achieved best results with mIoU of 0.85, closely followed by
+  RGB-only model; thermal-only model achieved mIoU of 0.75.
+- First study to report multi-modal approach for infant body part
+  segmentation, combining cross-modality transfer learning with classical
+  augmentation strategies.
+
+
+================================================================================
+3. MULTI-MODAL FUSION (THERMAL + RGB + DEPTH) FOR NEONATAL MONITORING
+================================================================================
+
+PAPER 3.1
+----------
+Title: Camera Fusion for Real-Time Temperature Monitoring of Neonates
+       Using Deep Learning
+Authors: Lyra S, Mayer L, Ou L, Chen D, Timms P, Schäfer A, Leonhardt S,
+         Antink CH
+Year: 2022
+Journal: Medical & Biological Engineering & Computing (Springer)
+DOI/Link: https://link.springer.com/article/10.1007/s11517-022-02561-9
+
+Key Findings:
+- Presented a deep learning approach for real-time neonatal temperature
+  monitoring using multi-camera fusion (RGB + infrared thermography).
+- Used trained DL keypoint detector for body landmark prediction in RGB
+  images, with image registration to transfer landmarks to thermographic
+  recordings for local body surface temperature extraction.
+- Demonstrated extraction of central-peripheral temperature differences
+  (cpTD) to support early detection of clinical symptoms such as neonatal
+  sepsis.
+
+
+PAPER 3.2
+----------
+Title: Sensor Fusion for the Robust Detection of Facial Regions of
+       Neonates Using Neural Networks
+Authors: Lyra S, et al.
+Year: 2023
+Journal: Sensors (MDPI), Vol. 23, No. 10, 4910
+DOI/Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC10223875/
+
+Key Findings:
+- Novel indirect fusion approach combining thermal camera, RGB camera, and
+  3D Time-of-Flight (ToF) camera, tailored for short distances inside
+  neonatal incubators.
+- Evaluated RetinaNet and YOLOv3 architectures for neonatal face detection.
+  First study to train a neural network with fusion data of neonates,
+  increasing data efficiency by 66%.
+- ToF camera addresses the problem of varying neonate sizes affecting
+  calibration distance in direct thermal-RGB fusion.
+
+
+PAPER 3.3
+----------
+Title: Neonatal Pose Estimation in the Unaltered Clinical Environment
+       with Fusion of RGB, Depth and IR Images
+Authors: Sherwood D, et al.
+Year: 2025
+Journal: npj Digital Medicine (Nature)
+DOI/Link: https://www.nature.com/articles/s41746-025-01929-z
+
+Key Findings:
+- Clinical study collecting RGB, depth, and IR video from 24 neonates with
+  no modifications to clinical care, using Azure Kinect camera at 30 fps.
+- Late fusion method for torso keypoint localization achieved best average
+  precision score of 0.811.
+- Found that chest covering and side-lying decrease performance by 0.15 and
+  0.10 respectively, occurring 50% and 44% of the time — highlighting the
+  importance of validation in realistic clinical conditions.
+
+
+================================================================================
+4. TRANSFER LEARNING APPROACHES FOR NEONATAL THERMAL IMAGE ANALYSIS
+================================================================================
+
+PAPER 4.1
+----------
+Title: Deep Learning Based Super Resolution and Classification
+       Applications for Neonatal Thermal Images
+Authors: Ornek AH, Ceylan M
+Year: 2021
+Journal: Traitement du Signal (IIETA), Vol. 38, No. 5
+DOI/Link: https://www.iieta.org/journals/ts/paper/10.18280/ts.380511
+
+Key Findings:
+- Designed a CNN-based classifier and applied transfer learning using
+  ResNet101 and Xception pre-trained models.
+- ResNet101 produced the most successful classification results for
+  neonatal healthy/unhealthy detection.
+- Super-resolution preprocessing improved classification success by ~10%
+  over low-resolution images.
+
+
+PAPER 4.2
+----------
+Title: Convolutional Neural Networks-Based Approach to Detect Neonatal
+       Respiratory System Anomalies with Limited Thermal Image
+Authors: Ornek AH, Ceylan M, Ervural S
+Year: 2021
+Journal: Traitement du Signal (IIETA), Vol. 38, No. 2
+DOI/Link: https://www.iieta.org/journals/ts/paper/10.18280/ts.380222
+
+Key Findings:
+- Used CNNs to classify neonatal respiratory system abnormalities vs.
+  cardiovascular and abdominal diseases from thermal images.
+- Classification accuracy improved from 84.5% to 90.9% with 4x data
+  augmentation.
+- Demonstrated feasibility of disease-specific classification (not just
+  healthy/unhealthy) from neonatal thermograms.
+
+
+PAPER 4.3
+----------
+Title: Thermogram Classification Using Deep Siamese Network for Neonatal
+       Disease Detection with Limited Data
+Authors: Ervural S, Ceylan M
+Year: 2022
+Journal: Quantitative InfraRed Thermography Journal, Vol. 19, No. 5
+DOI/Link: https://www.tandfonline.com/doi/full/10.1080/17686733.2021.2010379
+
+Key Findings:
+- Applied Siamese neural networks (meta-learning / one-shot learning) for
+  multi-class neonatal disease classification from thermograms with very
+  limited data.
+- Achieved disease-specific accuracies: 99.4% for infection diseases, 96.4%
+  for oesophageal atresia, 97.4% for intestinal atresia, and 94.02% for
+  necrotising enterocolitis.
+- Siamese networks effectively address the fundamental challenge of creating
+  large thermogram databases given newborn sensitivity.
+
+
+================================================================================
+5. REAL-TIME PROCESSING SYSTEMS FOR NEONATAL THERMAL MONITORING
+================================================================================
+
+PAPER 5.1
+----------
+Title: Non-Contact Respiratory Rate Monitoring Using Thermal and Visible
+       Imaging: A Pilot Study on Neonates
+Authors: Maurya L, et al.
+Year: 2023
+Journal: Journal of Clinical Monitoring and Computing (Springer)
+DOI/Link: https://link.springer.com/article/10.1007/s10877-022-00945-8
+
+Key Findings:
+- Integrated visible (RGB) and thermal (T) image sequences for ROI
+  selection and tracking for breathing rate extraction. Deep-learning-based
+  tracking-by-detection detects ROI in RGB images, mapped to thermal images
+  via RGB-T image registration.
+- Average error of 1.5 bpm for neonates compared to contact belt reference;
+  0.1 bpm for healthy adults in steady conditions.
+- Bland-Altman analysis confirmed good agreement, providing evidence for
+  use as a contactless respiratory rate monitoring method.
+
+
+PAPER 5.2
+----------
+Title: Non-Contact Automatic Vital Signs Monitoring of Infants in a
+       Neonatal Intensive Care Unit Based on Neural Networks
+Authors: Chaichulee S, et al.
+Year: 2021
+Journal: Journal of Imaging (MDPI), Vol. 7, No. 8, 122
+DOI/Link: https://www.mdpi.com/2313-433X/7/8/122
+
+Key Findings:
+- Developed neural network-based system for automatic non-contact vital
+  signs monitoring (heart rate, respiratory rate) in NICU using camera data.
+- Demonstrated feasibility of continuous, cable-free monitoring that reduces
+  risks associated with contact sensors on premature neonatal skin.
+- Used CNN-based approaches for automatic detection and tracking of infant
+  body regions from video feeds.
+
+
+================================================================================
+6. PREDICTIVE MODELS COMBINING THERMAL DATA WITH OTHER VITAL SIGNS
+================================================================================
+
+PAPER 6.1
+----------
+Title: AI-Guided Computing Insights into a Thermostat Monitoring Neonatal
+       Intensive Care Unit (NICU)
+Authors: Khalid R, et al.
+Year: 2023
+Journal: Sensors (MDPI), Vol. 23, No. 9, 4492
+DOI/Link: https://www.mdpi.com/1424-8220/23/9/4492
+
+Key Findings:
+- Used CFD (computational fluid dynamics) simulations and machine learning
+  to predict thermal performance in NICU incubators in real time.
+- ML model learns patterns in temperature fluctuations to feed information
+  into thermostat systems for automated environmental control.
+- Demonstrated that AI can handle large NICU datasets and identify patterns
+  in sensor readings for improved neonatal thermal management.
+
+
+PAPER 6.2
+----------
+Title: Towards Intelligent NICU Monitoring: Real-Time Anomaly Detection
+       in Vital Signs Using Deep Learning Models
+Authors: [Multiple authors]
+Year: 2024
+Journal: Proceedings of the 2024 7th Artificial Intelligence and Cloud
+         Computing Conference (ACM)
+DOI/Link: https://dl.acm.org/doi/10.1145/3719384.3719467
+
+Key Findings:
+- Compared LSTM, GRU, and 1D-CNN deep learning architectures for real-time
+  anomaly detection in NICU vital signs (heart rate, respiratory rate,
+  temperature, oxygen saturation, blood pressure).
+- LSTM model achieved best results: 94.1% accuracy, 93.2% precision, 90.5%
+  recall, and 3.2% false alarm rate.
+- Designed for real-time deployment to support clinical decision-making in
+  neonatal intensive care.
+
+
+================================================================================
+7. SYNTHETIC DATA GENERATION / DATA AUGMENTATION FOR NEONATAL THERMAL
+================================================================================
+
+PAPER 7.1
+----------
+Title: Data Augmentation of Neonatal Thermal Images Using Deep Learning
+Authors: Ornek AH, Ceylan M
+Year: 2021
+Journal: IEEE Conference Publication (IEEE TIPTEKNO)
+DOI/Link: https://ieeexplore.ieee.org/document/9579769/
+
+Key Findings:
+- Used DCGAN (Deep Convolutional GAN) to generate synthetic neonatal
+  thermal images that resemble original images yet provide greater diversity
+  than traditional augmentation methods.
+- Traditional augmentation (brightness, color, noise, resolution changes)
+  produces copies with limited diversity; DCGAN generates truly novel
+  variations.
+- Addresses the fundamental challenge that obtaining neonatal thermal images
+  is costly and constrained by patient/hospital conditions.
+
+
+PAPER 7.2
+----------
+Title: Conditional Generative Adversarial Networks for Data Augmentation
+       of a Neonatal Image Dataset
+Authors: Hesse N, Lyra S, et al.
+Year: 2023
+Journal: Sensors (MDPI), Vol. 23, No. 2, 999
+DOI/Link: https://www.mdpi.com/1424-8220/23/2/999
+
+Key Findings:
+- Adapted Pix2PixHD (conditional GAN) as an image-to-image translation
+  network to synthesize photorealistic neonatal images from edge detection
+  frames.
+- Trained on European infant dataset, tested on Indian NICU dataset to
+  explore cross-population augmentation with diverse skin tones. 28% of
+  generated images rated as more realistic than manually augmented images.
+- Achieved FID score of 103.82, demonstrating promising results for cGAN-
+  based augmentation of highly limited neonatal datasets.
+
+
+PAPER 7.3
+----------
+Title: Classification of Neonatal Diseases with Limited Thermal Image Data
+Authors: Ervural S, Ceylan M
+Year: 2022
+Journal: Multimedia Tools and Applications (Springer)
+DOI/Link: https://link.springer.com/article/10.1007/s11042-021-11391-0
+
+Key Findings:
+- Proposed classification model combining data augmentation and AI for
+  neonatal disease detection with limited data (20 images per neonate from
+  44 neonates).
+- Best classification accuracy of 94% achieved; 89% when testing with
+  images from neonates not used in training.
+- Addressed the critical challenge that early diagnosis from limited data
+  is vital due to high neonatal mortality rates and imaging constraints.
+
+
+================================================================================
+8. EDGE COMPUTING / EMBEDDED SYSTEMS FOR BEDSIDE THERMAL AI
+================================================================================
+
+PAPER 8.1
+----------
+Title: AI-Guided Computing Insights into a Thermostat Monitoring Neonatal
+       Intensive Care Unit (NICU)
+Authors: Khalid R, et al.
+Year: 2023
+Journal: Sensors (MDPI), Vol. 23, No. 9, 4492
+DOI/Link: https://www.mdpi.com/1424-8220/23/9/4492
+
+Key Findings:
+- Explored using machine learning models integrated with NICU thermostat
+  systems for real-time temperature prediction and environmental control.
+- ML identifies patterns in temperature fluctuations and sensor readings,
+  feeding predictions to control systems for automated response.
+- Demonstrated feasibility of AI-guided computing at the bedside for
+  improved thermal management in neonatal care environments.
+
+
+================================================================================
+9. RECENT AI + THERMAL IMAGING FOR NEONATAL CARE (2024-2025)
+================================================================================
+
+PAPER 9.1
+----------
+Title: Advancing Newborn Care: Precise Time of Birth Detection Using
+       AI-Driven Thermal Imaging with Adaptive Normalization
+Authors: Garcia-Torres J, Meinich-Bache O, et al.
+Year: 2025
+Journal: Computers in Biology and Medicine (Elsevier)
+DOI/Link: https://www.sciencedirect.com/science/article/pii/S0010482525000769
+
+Key Findings:
+- First AI-driven Time of Birth (ToB) detector combining AI with thermal
+  imaging. Three-step approach: (1) adaptive normalization via Gaussian
+  Mixture Models, (2) AI model for newborn detection in thermal frames,
+  (3) post-processing for ToB estimation.
+- Achieved 88.1% precision and 89.3% recall for newborn detection in
+  thermal frames, with median ToB deviation of 2.7 seconds from manual
+  annotations.
+- Privacy-preserving approach (GDPR-compliant) leveraging newborns' higher
+  skin temperature for identification without identifiable imagery.
+
+
+PAPER 9.2
+----------
+Title: Two-Stream Thermal Imaging Fusion for Enhanced Time of Birth
+       Detection in Neonatal Care
+Authors: Garcia-Torres J, et al.
+Year: 2025
+Journal: arXiv preprint / IEEE Conference Publication
+DOI/Link: https://arxiv.org/abs/2503.03244
+
+Key Findings:
+- Novel two-stream fusion system combining static image analysis and
+  dynamic video analysis to detect ToB from thermal recordings in delivery
+  rooms and operating theaters.
+- Achieved 95.7% precision and 84.8% recall in detecting birth within
+  short video clips.
+- Captures richer spatiotemporal features by integrating static and dynamic
+  streams for more robust birth detection.
+
+
+PAPER 9.3
+----------
+Title: Emerging Innovations in Neonatal Monitoring: A Comprehensive Review
+       of Progress and Potential for Non-Contact Technologies
+Authors: [Multiple authors]
+Year: 2024
+Journal: Frontiers in Pediatrics
+DOI/Link: https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2024.1442753/full
+
+Key Findings:
+- Comprehensive review of non-contact monitoring technologies for neonates,
+  covering thermal imaging, RGB cameras, radar, and other modalities.
+- CNNs are identified as essential for advancing non-contact monitoring,
+  particularly for processing image data from thermal and visible cameras.
+- Highlights challenges including need for large annotated datasets, "black
+  box" nature of deep learning models, and validation in realistic clinical
+  scenarios.
+
+
+PAPER 9.4
+----------
+Title: Next Generation of Non-Contact and Wireless Vital Sign Monitoring
+       Technology in the Neonatal Intensive Care Unit: A Systematic Review
+Authors: [Multiple authors]
+Year: 2025
+Journal: Pediatric Research (Nature)
+DOI/Link: https://www.nature.com/articles/s41390-025-04469-0
+
+Key Findings:
+- Systematic review of 60 studies (Jan 2014 - Aug 2024): 43 non-contact
+  and 17 wireless sensor studies for neonatal vital sign monitoring.
+- Thermal imaging used for respiratory rate monitoring (less affected by
+  visual obstructions than RGB cameras) and body temperature monitoring.
+- Identified the integration of multiple camera modalities (thermal + RGB)
+  with deep learning as a key emerging trend for comprehensive neonatal
+  monitoring.
+
+
+================================================================================
+SUMMARY TABLE
+================================================================================
+
+No. | First Author  | Year | Focus Area                  | Best Accuracy/Performance
+----|---------------|------|-----------------------------|---------------------------
+1   | Ornek AH      | 2019 | CNN classification          | 99.58% acc, 0.996 AUC
+2   | Ornek AH      | 2022 | Transfer learning           | 100% (VGG19+SVM)
+3   | Ornek AH      | 2023 | XAI (CodCAM)               | 99.82% test acc
+4   | Ornek AH      | 2023 | Super-resolution + TL       | +10% over low-res
+5   | Hesse N       | 2022 | Semantic segmentation       | 93.5% acc, 70.4% mIoU
+6   | Hesse N       | 2023 | Multi-modal segmentation    | 0.85 mIoU (fusion)
+7   | Lyra S        | 2022 | Camera fusion temp monitor  | Real-time cpTD
+8   | Lyra S        | 2023 | Sensor fusion face detect   | 66% data efficiency gain
+9   | Sherwood D    | 2025 | Pose estimation RGB+D+IR    | 0.811 avg precision
+10  | Maurya L      | 2023 | Resp rate (thermal+visible) | 1.5 bpm avg error
+11  | Ervural S     | 2022 | Siamese network limited data| 99.4% (infection)
+12  | Ervural S     | 2022 | Disease class limited data  | 94% accuracy
+13  | Ornek AH      | 2021 | DCGAN augmentation          | Novel thermal synthesis
+14  | Hesse N       | 2023 | cGAN Pix2PixHD augment      | FID 103.82
+15  | Garcia-Torres | 2025 | AI ToB detection (thermal)  | 88.1% prec, 2.7s median
+16  | Garcia-Torres | 2025 | Two-stream ToB fusion       | 95.7% precision
+17  | Khalid R      | 2023 | AI thermostat NICU          | Real-time prediction
+18  | [ACM 2024]    | 2024 | LSTM anomaly detection      | 94.1% accuracy
+
+
+================================================================================
+KEY RESEARCH GROUPS
+================================================================================
+
+1. ORNEK / CEYLAN / ERVURAL GROUP (Selcuk / Konya Technical Univ., Turkey)
+   - Most prolific group in neonatal thermal DL classification
+   - Published 8+ papers (2019-2023) covering CNN classification, transfer
+     learning, super-resolution, Siamese networks, GAN augmentation, and XAI
+   - Dataset: Selcuk University NICU, 38-44 neonates
+
+2. LYRA / HESSE / LEONHARDT GROUP (RWTH Aachen / Fraunhofer, Germany)
+   - Focus on multi-modal fusion, segmentation, and camera systems
+   - Published on RGB-thermal-depth fusion, body part segmentation, face
+     detection with sensor fusion, and cGAN data augmentation
+
+3. GARCIA-TORRES / MEINICH-BACHE GROUP (Univ. of Stavanger, Norway)
+   - "NewbornTime" project: AI + thermal imaging for delivery room care
+   - Focus on privacy-preserving ToB detection using thermal cameras
+   - Most recent work (2025) on two-stream fusion approaches
+
+4. MAURYA et al. (UK / India collaboration)
+   - Non-contact respiratory rate monitoring using thermal+visible imaging
+   - Clinical pilot studies with neonates
+
+
+================================================================================
+TECHNOLOGY LANDSCAPE SUMMARY
+================================================================================
+
+ARCHITECTURES USED:
+- Classification: Custom CNNs, VGG16/19, ResNet50/101, Xception,
+  InceptionV3, InceptionResNetV2, MobileNet, DenseNet201
+- Segmentation: U-Net, U-Net GAN, U-Net GAN + Self-Attention
+- Detection: RetinaNet, YOLOv3, keypoint detectors
+- Few-shot learning: Siamese networks
+- Data generation: DCGAN, Pix2PixHD (cGAN)
+- Time-series: LSTM, GRU, 1D-CNN
+- Fusion: Late fusion, indirect fusion (with ToF depth)
+- XAI: GradCAM, GradCAM++, LayerCAM, EigenCAM, CodCAM
+
+KEY CHALLENGES IDENTIFIED:
+1. Very limited neonatal thermal datasets (ethical/practical constraints)
+2. High variability in clinical conditions (covering, positioning)
+3. Need for real-time processing at the bedside
+4. "Black box" nature of deep learning limits clinical trust
+5. Cross-population generalization (skin tone, body size variation)
+6. Validation in realistic, uncontrolled clinical environments
+7. Integration with existing NICU clinical workflows
+
+EMERGING TRENDS (2024-2025):
+1. Privacy-preserving thermal-only approaches (GDPR-compliant)
+2. Multi-modal fusion (RGB + thermal + depth) for robust monitoring
+3. Explainable AI (XAI) methods for clinical interpretability
+4. Synthetic data generation via GANs for dataset augmentation
+5. Pose estimation and activity monitoring beyond temperature
+6. Integration with delivery room care (Time of Birth detection)
+7. Systematic reviews synthesizing the growing evidence base

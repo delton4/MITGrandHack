@@ -1,0 +1,394 @@
+================================================================================
+THERMAL/INFRARED IMAGING FOR BRAIN-RELATED CONDITIONS IN NEONATES AND INFANTS
+Published Research Papers -- Compiled 2026-03-14
+================================================================================
+
+This document compiles published research on using thermal/infrared cameras and
+non-invasive thermal measurements for detecting and monitoring brain-related
+conditions in neonates and infants, including HIE, therapeutic hypothermia
+monitoring, cerebral blood flow assessment, and fontanelle-based brain
+temperature measurement.
+
+================================================================================
+PAPER 1 -- Thermal Index for Brain Injury Assessment (Clinical Study)
+================================================================================
+
+Title:    Thermal Index for early non-invasive assessment of brain injury in
+          newborns treated with therapeutic hypothermia: preliminary report
+Authors:  Walas W, Maczko A, Halaba Z, Bandola D, Ostrowski Z, Rojczyk M,
+          Nowak AJ
+Year:     2021
+Journal:  Scientific Reports, 11, 12578
+DOI:      10.1038/s41598-021-92139-6
+URL:      https://www.nature.com/articles/s41598-021-92139-6
+
+Key Findings:
+- Evaluated the usefulness of a novel "Thermal Index" (TI) for early,
+  non-invasive assessment of the degree of brain damage in newborns undergoing
+  therapeutic hypothermia due to perinatal asphyxia.
+- The TI is derived from the newborn's heat balance calculated using only
+  non-invasive thermal measurements (skin surface temperatures, environmental
+  temperature, cooling device parameters).
+- This preliminary clinical report demonstrates that the Thermal Index shows
+  promise as an accessible physiological biomarker and early predictor of brain
+  injury severity and mortality in neonates with moderate or severe HIE,
+  correlating with MRI-diagnosed injury patterns.
+
+Relevance to NeoTherm: DIRECTLY RELEVANT. Demonstrates that surface thermal
+measurements can serve as a biomarker for brain injury severity in neonates --
+exactly the type of non-invasive thermal assessment that infrared camera
+technology could automate and enhance.
+
+================================================================================
+PAPER 2 -- Theoretical Basis for Thermal Brain Injury Assessment
+================================================================================
+
+Title:    Theoretical basis for the use of non-invasive thermal measurements
+          to assess the brain injury in newborns undergoing therapeutic
+          hypothermia
+Authors:  Walas W, Bandola D, Ostrowski Z, Rojczyk M, Maczko A, Halaba Z,
+          Nowak AJ
+Year:     2020
+Journal:  Scientific Reports, 10, 22167
+DOI:      10.1038/s41598-020-79009-3
+URL:      https://www.nature.com/articles/s41598-020-79009-3
+
+Key Findings:
+- Proposes a new non-invasive methodology to estimate thermogenesis (metabolic
+  heat production) in newborns with perinatal asphyxia undergoing therapeutic
+  hypothermia.
+- Metabolic heat production is calculated from the newborn's heat balance using
+  results of ONLY non-invasive thermal measurements -- no invasive probes
+  required.
+- The measurement system works with standard therapeutic hypothermia equipment
+  and includes GSM connectivity for remote monitoring without disturbing medical
+  personnel. Demonstrates that the temperature of the active cooling medium
+  correlates with the severity of brain injury diagnosed by MRI.
+
+Relevance to NeoTherm: DIRECTLY RELEVANT. Provides the theoretical and
+mathematical foundation showing that non-invasive surface thermal measurements
+can be used to infer brain metabolic state and injury severity.
+
+================================================================================
+PAPER 3 -- Radiometric Thermometry for Brain Temperature in Asphyxiated Newborns
+================================================================================
+
+Title:    Non-invasive measurement of brain temperature using radiometric
+          thermometry: experimental validation and clinical observations in
+          asphyxiated newborns
+Authors:  Bass WT, et al.
+Year:     2014
+Journal:  Journal of Neonatal-Perinatal Medicine, 7(4), 279-286
+DOI:      10.3233/NPM-14814041
+URL:      https://pubmed.ncbi.nlm.nih.gov/25468621/
+
+Key Findings:
+- Validated radiometric thermometry (RadT) sensors against direct tissue
+  measurements in a swine model cooled to 33-34 degrees C, finding RadT
+  measurements comparable to invasive fiber optic probes at multiple brain
+  depths.
+- Applied RadT non-invasively in 30 newborn infants with HIE undergoing
+  therapeutic hypothermia. Found approximately 1 degree C increase in brain
+  temperature relative to rectal temperature in 60% of infants.
+- Critically, an increase in brain temperature measured by the RadT sensors
+  was significantly associated with the presence of cerebral white matter
+  injury (p=0.01), suggesting brain temperature elevation is a marker for
+  injury.
+
+Relevance to NeoTherm: HIGHLY RELEVANT. Demonstrates that non-invasive
+thermal measurement of the neonatal brain can detect temperature elevations
+associated with white matter injury, supporting the concept that thermal
+signatures can indicate brain pathology.
+
+================================================================================
+PAPER 4 -- Brain Temperature Discriminates Between Brain Conditions (Landmark)
+================================================================================
+
+Title:    Brain temperature discriminates between neonates with damaged,
+          hypoperfused, and normal brains
+Authors:  Simbruner G, Nanz S, Fleischhacker E, Derganc M
+Year:     1994
+Journal:  American Journal of Perinatology, 11(2), 137-143
+DOI:      10.1055/s-2007-994574
+URL:      https://pubmed.ncbi.nlm.nih.gov/8198656/
+
+Key Findings:
+- Landmark study measuring core head temperature noninvasively (zero-gradient
+  method) in 16 neonates: 7 healthy, 7 with cerebral damage, and 2 with
+  cerebral hypoperfusion from congenital heart disease.
+- The difference between core head temperature and esophageal temperature was
+  0.72 +/- 0.12 degrees C in normal neonates, only 0.16 +/- 0.4 degrees C in
+  infants with cerebral damage, and 0.9-1.2 degrees C in infants with cerebral
+  hypoperfusion.
+- Brain temperature pattern correctly discriminated between all infants
+  according to their brain condition, except one with mild HIE. Demonstrates
+  that brain temperature depends on cerebral perfusion and level of brain
+  injury.
+
+Relevance to NeoTherm: FOUNDATIONAL. This seminal paper establishes that
+non-invasive head temperature measurement can distinguish between normal,
+damaged, and hypoperfused neonatal brains -- the core scientific premise
+underlying thermal imaging for neonatal brain assessment.
+
+================================================================================
+PAPER 5 -- Regional Brain Temperature During Whole-Body Cooling (MRS study)
+================================================================================
+
+Title:    An In Vivo Assessment of Regional Brain Temperature during
+          Whole-Body Cooling for Neonatal Encephalopathy
+Authors:  Wu TW, Wisnowski JL, Geisler RF, Reitman A, Ho E, Tamrazi B,
+          Chapman R, Bluml S
+Year:     2020
+Journal:  The Journal of Pediatrics, 220, 73-79.e3
+DOI:      10.1016/j.jpeds.2020.01.019
+URL:      https://pubmed.ncbi.nlm.nih.gov/32089332/
+
+Key Findings:
+- Used MR spectroscopy thermometry to assess regional brain temperatures during
+  whole-body therapeutic hypothermia in neonates with HIE, measuring basal
+  ganglia, thalamus, cortical gray matter, and white matter temperatures.
+- Found that whole-body hypothermia was effective in cooling deep brain
+  structures, but superficial structures were warmer and significantly higher
+  than rectal temperature.
+- White matter (superficial) temperature did not correlate well with rectal
+  temperature, suggesting that standard rectal monitoring may not accurately
+  reflect brain surface temperature -- highlighting the need for direct brain
+  temperature monitoring.
+
+Relevance to NeoTherm: HIGHLY RELEVANT. Demonstrates that superficial brain
+temperature differs from core body temperature during therapeutic hypothermia,
+meaning surface-facing thermal imaging (e.g., through the fontanelle or
+scalp) could provide unique, clinically valuable information not captured
+by standard monitoring.
+
+================================================================================
+PAPER 6 -- Brain Temperature Monitoring Review (Comprehensive)
+================================================================================
+
+Title:    Brain temperature monitoring in newborn infants: Current
+          methodologies and prospects
+Authors:  Verma V, Lange F, Bainbridge A, Harvey-Jones K, Robertson NJ,
+          Tachtsidis I, Mitra S
+Year:     2022
+Journal:  Frontiers in Pediatrics, 10, 1008539
+DOI:      10.3389/fped.2022.1008539
+URL:      https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2022.1008539/full
+
+Key Findings:
+- Comprehensive review of all current methods for monitoring neonatal brain
+  temperature, including MRS thermometry (accuracy ~0.2 degrees C, precision
+  0.3 degrees C), near-infrared spectroscopy (NIRS) for continuous cot-side
+  monitoring, zero-heat-flux thermometry, and radiometric thermometry.
+- Emphasizes that perinatal brain injuries (neonatal encephalopathy, seizures)
+  induce changes in brain temperature due to altered metabolic and hemodynamic
+  states, making brain temperature a clinically important indicator.
+- Argues that non-invasive, continuous brain temperature measurement in the
+  neonatal neurocritical care setting could enable selection of candidates who
+  may benefit from adjusted hypothermia therapy or additional neuroprotective
+  therapies.
+
+Relevance to NeoTherm: ESSENTIAL REFERENCE. Provides the definitive review
+of the field, validating the clinical need for non-invasive brain temperature
+monitoring in neonates and cataloging all existing methodologies -- infrared
+thermography-based approaches fit directly into this landscape.
+
+================================================================================
+PAPER 7 -- Thermal Imaging in Neonatal Care: Scoping Review
+================================================================================
+
+Title:    Thermal imaging applications in neonatal care: a scoping review
+Authors:  Topalidou A, Ali N, Sekulic S, Downe S
+Year:     2019
+Journal:  BMC Pregnancy and Childbirth, 19, 388
+DOI:      10.1186/s12884-019-2533-y
+URL:      https://link.springer.com/article/10.1186/s12884-019-2533-y
+
+Key Findings:
+- Systematic scoping review identifying five broad themes of thermal imaging
+  in neonatal care: (1) general thermal physiology, (2) heat loss and
+  respiratory monitoring, (3) identification of internal pathologies including
+  NEC, (4) other uses, and (5) technical concerns.
+- Concludes that thermal imaging can screen newborns for internal abnormalities
+  because deep-lying structures in newborns have less insulation than in older
+  patients. This is particularly relevant for brain assessment through the
+  fontanelle.
+- Notes that despite promising results since the 1970s, no large prospective
+  studies have been conducted, and methodological challenges (incubator
+  environments, radiant warmers) remain barriers to clinical adoption.
+
+Relevance to NeoTherm: ESSENTIAL REFERENCE. The most comprehensive review
+of thermal imaging specifically in neonatal care. Validates the feasibility
+while identifying the research gaps NeoTherm could address.
+
+================================================================================
+PAPER 8 -- Cerebral Blood Flow and Brain Thermal Stability (2026)
+================================================================================
+
+Title:    Investigating Roles of Cerebral Blood Flow to Maintain Thermal
+          Stability of Neonatal Brain Against Cold Stress Using Non-Invasive
+          Probes for Brain Perfusion and Temperature Gradient
+Authors:  Iwata S, Tsuda K, Kinoshita M, Saitoh S, Iwata O
+Year:     2026
+Journal:  Biosensors, 16(2), 127
+DOI:      10.3390/bios16020127
+URL:      https://www.mdpi.com/2079-6374/16/2/127
+
+Key Findings:
+- Used a multimodal non-invasive biosensor approach (infrared thermometry,
+  zero-heat-flux thermometry, time-resolved NIRS, and Doppler ultrasound) to
+  examine how cerebral blood flow influences neonatal brain temperature during
+  mild cold stress (incubator-to-cot transfer) in 43 stable infants.
+- Found that while rectal temperature remained stable during environmental
+  temperature drops (29.7 to 26.8 degrees C), the relationship between
+  cerebral blood flow (SVC flow) and superficial brain temperature shifted
+  significantly, returning to baseline after 2 hours.
+- Demonstrates that non-invasive cot-side biosensors can successfully monitor
+  the relationship between brain perfusion and temperature, offering a
+  clinically practical approach to understanding cerebral thermoregulation.
+
+Relevance to NeoTherm: DIRECTLY RELEVANT. Most recent paper (2026) showing
+that infrared thermometry combined with other non-invasive sensors can assess
+brain thermal dynamics and perfusion in real-time at the cot-side.
+
+================================================================================
+PAPER 9 -- Infrared Thermography for Preterm Thermoregulation
+================================================================================
+
+Title:    Infrared thermography for detailed registration of thermoregulation
+          in premature infants
+Authors:  Heimann K, Jergus K, Abbas AK, Heussen N, Leonhardt S,
+          Orlikowsky T
+Year:     2013
+Journal:  Journal of Perinatal Medicine, 41(5), 613-620
+DOI:      10.1515/jpm-2012-0239
+URL:      https://pubmed.ncbi.nlm.nih.gov/23443261/
+
+Key Findings:
+- Evaluated skin temperature using non-contact infrared thermography (IRT) in
+  multiple body areas (leg, back, arm, head, upper abdomen) of 10 premature
+  infants, comparing with two conventional temperature sensors.
+- Demonstrated that IRT provides detailed spatial and temporal information
+  about temperature regulation and distribution across the body, including the
+  head, without requiring any contact with the vulnerable neonate.
+- Suggested that IRT may reduce the need for skin thermistors in preterm
+  temperature monitoring, providing richer thermoregulatory data while
+  eliminating risks of skin damage from adhesive sensors.
+
+Relevance to NeoTherm: RELEVANT. Validates infrared thermography as a viable
+method for contactless neonatal temperature monitoring including the head
+region, demonstrating the technical feasibility of the approach.
+
+================================================================================
+PAPER 10 -- Continuous Thermographic Monitoring of Heat Oscillations
+================================================================================
+
+Title:    Continuous monitoring using thermography can capture the heat
+          oscillations maintaining body temperature in neonates
+Authors:  Morimoto A, Nakamura S, Koyano K, et al.
+Year:     2024
+Journal:  Scientific Reports, 14, 10449
+DOI:      10.1038/s41598-024-60718-y
+URL:      https://www.nature.com/articles/s41598-024-60718-y
+
+Key Findings:
+- Used contactless infrared thermography (IRT) to measure skin temperature
+  every 15 seconds in 27 neonates in incubators, extracting two frequency
+  components of heat oscillations using the Savitzky-Golay method.
+- Demonstrated that continuous IRT can capture the spontaneous thermal
+  metabolism of neonates, including cyclic heat oscillations that maintain
+  body temperature equilibrium between metabolic heat production and
+  environmental heat transfer.
+- Provides evidence that continuous thermographic monitoring offers insights
+  into neonatal metabolic status that cannot be obtained from intermittent
+  temperature spot-checks.
+
+Relevance to NeoTherm: RELEVANT. Demonstrates the power of continuous infrared
+thermographic monitoring to capture dynamic metabolic information in neonates,
+supporting the concept of using IR cameras for real-time physiological
+assessment.
+
+================================================================================
+ADDITIONAL RELEVANT REFERENCE -- Brain-Eyelid Thermal Tunnel
+================================================================================
+
+Title:    Infrared Imaging of the Brain-Eyelid Thermal Tunnel: A Promising
+          Method for Measuring Body Temperature in Afebrile Children
+Authors:  (Multiple authors)
+Year:     2023
+Journal:  International Journal of Environmental Research and Public Health,
+          20(19), 6867
+DOI:      (available at MDPI)
+URL:      https://www.mdpi.com/1660-4601/20/19/6867
+
+Key Findings:
+- Identified the Brain Thermal Tunnel (BTT) as a pathway between the cavernous
+  sinus and the superior medial orbit providing a non-invasive route for
+  measuring internal brain temperature via infrared thermography.
+- The skin overlying the BTT (~900 micrometers thick, fat-free) lacks thermal
+  insulation, allowing high-intensity infrared emission that reflects
+  underlying brain temperature.
+- Demonstrates that BTT infrared thermography of the inner canthus of the
+  eye reliably measures body/brain temperature, with potential applications
+  for estimating brain temperature in cases of severe intracerebral brain
+  injury.
+
+Relevance to NeoTherm: RELEVANT. The brain thermal tunnel concept could be
+adapted for neonatal brain temperature assessment, and the thin skin of the
+neonatal fontanelle provides an even more direct thermal window to the brain.
+
+================================================================================
+SUMMARY OF KEY THEMES AND IMPLICATIONS FOR NEOTHERM
+================================================================================
+
+1. BRAIN INJURY DETECTION VIA THERMAL SIGNATURES:
+   The Walas/Bandola group (Papers 1-2) has demonstrated that non-invasive
+   thermal measurements during therapeutic hypothermia can predict brain injury
+   severity, validated against MRI. The Thermal Index concept directly supports
+   infrared camera-based brain assessment.
+
+2. BRAIN TEMPERATURE AS A DIAGNOSTIC MARKER:
+   Simbruner (1994, Paper 4) established that head temperature patterns
+   distinguish between normal, damaged, and hypoperfused neonatal brains.
+   Bass (2014, Paper 3) showed brain temperature elevation correlates with
+   white matter injury. These findings provide the scientific basis for using
+   thermal imaging as a diagnostic tool.
+
+3. SUPERFICIAL VS. DEEP BRAIN TEMPERATURE:
+   Wu et al. (2020, Paper 5) showed that superficial brain temperature
+   diverges from rectal temperature during cooling, meaning surface thermal
+   imaging provides unique information not captured by standard monitoring.
+
+4. FONTANELLE AS A THERMAL WINDOW:
+   Multiple papers note that neonates have less insulation over deep
+   structures, and the fontanelle provides a direct, unossified window to
+   brain thermal activity -- ideal for infrared thermography.
+
+5. TECHNICAL FEASIBILITY:
+   Papers 8-10 demonstrate that contactless infrared thermography can
+   successfully measure and continuously monitor neonatal temperature at
+   the cot-side with high temporal resolution, supporting clinical deployment.
+
+6. GAP IN THE LITERATURE:
+   No study has yet combined modern high-resolution infrared cameras with
+   AI/machine learning to create a real-time, automated brain condition
+   screening tool for neonates -- this is the exact gap NeoTherm can fill.
+
+================================================================================
+SEARCH METHODOLOGY
+================================================================================
+
+Searches conducted on 2026-03-14 using the following queries:
+- "infrared thermography hypoxic ischemic encephalopathy neonate"
+- "thermal imaging therapeutic hypothermia newborn brain"
+- "fontanelle temperature infrared neonatal brain"
+- "thermal index brain injury neonate Walas"
+- "head cooling thermal monitoring newborn"
+- "cerebral temperature infrared thermography infant"
+- "non-invasive brain temperature neonatal"
+- Additional targeted searches for specific authors and DOIs
+
+NOTE ON INTRACRANIAL HEMORRHAGE:
+No published research was found specifically using infrared thermography for
+direct detection of intracranial hemorrhage in neonates. Light-based optical
+imaging (time-of-flight) has been explored for hemorrhage detection but uses
+a different modality. This represents a potential research gap and opportunity.

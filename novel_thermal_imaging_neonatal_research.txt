@@ -1,0 +1,637 @@
+============================================================================
+NOVEL & EMERGING APPLICATIONS OF THERMAL/INFRARED IMAGING IN NEONATAL CARE
+Published Research Papers - Compiled March 2026
+============================================================================
+
+TABLE OF CONTENTS
+------------------
+1. Systematic Reviews & Scoping Reviews
+2. Thermal Imaging for Jaundice / Bilirubin Monitoring
+3. Brain Injury / HIE Detection via Thermal Measurements
+4. Seizure Detection Using Cameras in Neonates
+5. Kangaroo Care / Skin-to-Skin Contact Monitoring
+6. Machine Learning / AI + Neonatal Thermal Imaging
+7. Abdominal Thermography for NEC / Feeding / Gut Assessment
+8. Respiratory Monitoring & Apnea Detection
+9. Core-Peripheral Temperature Gradient & Sepsis Detection
+10. Continuous Thermal Monitoring & Thermoregulation
+
+================================================================================
+1. SYSTEMATIC REVIEWS & SCOPING REVIEWS
+================================================================================
+
+1a. Topalidou A, Ali N, Sekulic S, Downe S.
+    "Thermal imaging applications in neonatal care: a scoping review"
+    Year: 2019
+    Journal: BMC Pregnancy and Childbirth, 19, 388
+    Key Findings: Searched EMBASE, MEDLINE, and MIDIRS; identified 21 studies
+    from 442 hits. Five broad themes emerged: general thermal physiology; heat
+    loss and respiratory monitoring; identification of internal pathologies
+    (including NEC); other uses; and technical concerns. Most studies had small
+    cohorts (4-29 participants). Despite promising results since the 1970s, no
+    large prospective studies exist. The authors concluded that thermal imaging
+    is reliable and non-invasive for continuous neonatal temperature monitoring
+    with potential for diagnosing pathologies including internal abnormalities.
+    DOI: https://doi.org/10.1186/s12884-019-2533-y
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC6814124/
+
+1b. Defined Authors (multiple).
+    "Uses of infrared thermography in acute illness: a systematic review"
+    Year: 2024
+    Journal: Frontiers in Medicine, 11, 1412854
+    Key Findings: Included 30 studies conducted in emergency departments and
+    intensive care units involving adult, paediatric, and neonatal patients.
+    IRT shows promise for early identification of acute illness including
+    sepsis. One neonatal ICU study explored whether peripheral vasodilatation
+    promoted sleep onset in preterm neonates. The review highlights the growing
+    but still limited evidence base for IRT in acute care settings.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC11232369/
+
+1c. Knobel RB, Guenther BD, Rice HE.
+    "Thermoregulation and thermography in neonatal physiology and disease"
+    Year: 2011
+    Journal: Biological Research for Nursing, 13(3), 274-282
+    Key Findings: Foundational narrative review covering the use of infrared
+    thermography in neonatal physiology and disease. Discusses thermal imaging
+    as a non-invasive, non-contact method for monitoring neonatal temperature.
+    Describes applications including NEC detection and thermoregulation
+    assessment. Established the theoretical framework for subsequent NIRT
+    research.
+    DOI: https://doi.org/10.1177/1099800411403467
+    Link: https://pubmed.ncbi.nlm.nih.gov/21586499/
+
+1d. Rakholia MV et al.
+    "Infrared thermography in paediatrics: a narrative review of clinical use"
+    Year: 2018
+    Journal: BMC Pediatrics (PMC5862192)
+    Key Findings: Reviewed clinical uses of IRT in pediatric populations
+    including neonates. Covers applications in temperature monitoring,
+    vascular assessment, and inflammation detection. Notes that IRT is
+    non-invasive, radiation-free, and particularly suited for vulnerable
+    pediatric populations.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC5862192/
+
+================================================================================
+2. THERMAL IMAGING FOR JAUNDICE / BILIRUBIN MONITORING
+================================================================================
+
+NOTE: Direct infrared thermography for bilirubin detection is not well-
+established in the literature. Most non-invasive bilirubin research uses
+optical/colorimetric methods rather than thermal imaging. However, the
+following adjacent studies are relevant:
+
+2a. Chung HU et al.
+    "Neonatal wearable device for colorimetry-based real-time detection of
+    jaundice with simultaneous sensing of vitals"
+    Year: 2021
+    Journal: Science Advances, 7(10), eabe3793
+    Key Findings: Developed a wearable transcutaneous bilirubinometer with
+    SpO2 and HR sensing. Bilirubin levels measured by absorbance differences
+    of blue (460 nm) and green (570 nm) lights, while SpO2/HR use red (640 nm)
+    and infrared (950 nm) LED lights. Clinical experiments on neonates
+    demonstrated feasibility of simultaneous bilirubin, SpO2, and HR
+    detection. This demonstrates the integration of IR sensing into
+    multi-parameter neonatal monitoring.
+    DOI: https://doi.org/10.1126/sciadv.abe3793
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC7929506/
+
+2b. Authors not specified in search.
+    "Artificial Intelligence non-invasive methods for neonatal jaundice
+    detection: A review"
+    Year: 2025
+    Journal: Artificial Intelligence in Medicine (ScienceDirect)
+    Key Findings: AI models incorporating neural networks achieve >90%
+    accuracy in detecting jaundice compared to traditional methods.
+    Integration of RGB and HSV color spaces yields strong performance
+    (RMSE 1.13, R2 0.91). Model achieved 96.87% accuracy in classifying
+    jaundice status into three categories. While primarily optical rather
+    than thermal, demonstrates AI potential for non-invasive neonatal
+    diagnostics.
+    Link: https://www.sciencedirect.com/science/article/pii/S0933365725000235
+
+2c. Kailavasan M et al.
+    "Artificial intelligence-based non-invasive bilirubin prediction for
+    neonatal jaundice using 1D convolutional neural network"
+    Year: 2025
+    Journal: Scientific Reports (Nature)
+    Key Findings: Used 1D convolutional neural networks for non-invasive
+    bilirubin prediction. Demonstrates the growing trend of AI-based
+    approaches for neonatal jaundice assessment that could potentially
+    be combined with thermal imaging modalities.
+    Link: https://www.nature.com/articles/s41598-025-96100-9
+
+================================================================================
+3. BRAIN INJURY / HIE DETECTION VIA THERMAL MEASUREMENTS
+================================================================================
+
+3a. Walas W, Halaba ZP, Szczapa T, Rudzki L et al.
+    "Thermal Index for early non-invasive assessment of brain injury in
+    newborns treated with therapeutic hypothermia: preliminary report"
+    Year: 2021
+    Journal: Scientific Reports, 11, 12079
+    Key Findings: Developed and evaluated a new "Thermal Index" (TI) to
+    assess the degree of brain damage in newborns undergoing therapeutic
+    hypothermia for perinatal asphyxia. The TI is based on non-invasive
+    thermal measurements. Analysis applied to six newborns treated with TH
+    in a NICU in 2018. Because perinatal asphyxia causes dysfunction of
+    the thermoregulation center, assessing endogenous heat production
+    non-invasively may serve as a biomarker for brain injury severity.
+    Results were encouraging as a preliminary report.
+    DOI: https://doi.org/10.1038/s41598-021-92139-6
+    Link: https://www.nature.com/articles/s41598-021-92139-6
+
+3b. Walas W, Halaba ZP, Szczapa T et al.
+    "Theoretical basis for the use of non-invasive thermal measurements to
+    assess the brain injury in newborns undergoing therapeutic hypothermia"
+    Year: 2020
+    Journal: Scientific Reports, 10, 22167
+    Key Findings: Proposed a new non-invasive methodology to estimate
+    thermogenesis (metabolic heat production) in newborns with perinatal
+    asphyxia undergoing therapeutic hypothermia. The method calculates
+    metabolic heat production from the newborn's heat balance using only
+    non-invasive thermal measurements. This paper provides the theoretical
+    framework for the Thermal Index approach. Key insight: since HIE
+    disrupts the thermoregulation center, thermal measurements can
+    indirectly reflect brain injury severity.
+    DOI: https://doi.org/10.1038/s41598-020-79009-3
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC7747633/
+
+3c. Cizmeci MN et al.
+    "Relationship between temperature variability and brain injury on
+    magnetic resonance imaging in cooled newborn infants after perinatal
+    asphyxia"
+    Year: 2017
+    Journal: Journal of Perinatology
+    Key Findings: Temperature variability and percentage of temperatures
+    within the target range were associated with severity of brain injury
+    on MRI in cooled newborn infants after perinatal asphyxia. Suggests
+    that temperature monitoring patterns during therapeutic hypothermia
+    can predict neurological outcomes.
+    DOI: https://doi.org/10.1038/jp.2017.96
+    Link: https://www.nature.com/articles/jp201796
+
+3d. Cowan D et al.
+    "Brain temperature monitoring in newborn infants: Current methodologies
+    and prospects"
+    Year: 2022
+    Journal: Frontiers in Pediatrics, 10, 1008539
+    Key Findings: Comprehensive review of brain temperature monitoring
+    methods in newborns. Discusses MRS-based brain temperature measurement
+    (accuracy up to 0.2 C, precision 0.3 C). Notes that MRI cannot be
+    performed in ICU during therapeutic hypothermia, highlighting the need
+    for bedside non-invasive approaches like infrared thermography.
+    Link: https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2022.1008539/full
+
+================================================================================
+4. SEIZURE DETECTION USING CAMERAS IN NEONATES
+================================================================================
+
+NOTE: Thermal camera-based seizure detection in neonates is an extremely
+nascent field. Most neonatal seizure detection research uses EEG or video
+(RGB) cameras rather than thermal imaging. Key adjacent work:
+
+4a. Cattani L et al.
+    "Maximum-likelihood detection of neonatal clonic seizures by video
+    image processing"
+    Year: 2014
+    Journal: Conference proceedings (referenced in multiple reviews)
+    Key Findings: Used a multi-camera setup and maximum-likelihood
+    detection for seizure prediction in neonatal patients. Focused on
+    detecting characteristic movement patterns of clonic seizures using
+    video image processing. While not specifically thermal imaging,
+    established the framework for camera-based (including thermal)
+    neonatal seizure detection.
+
+4b. Cattani L et al.
+    "Monitoring infants by automatic video processing: A unified approach
+    to motion analysis"
+    Year: 2017
+    Journal: Computers in Biology and Medicine, 80, 158-165
+    Key Findings: Presented a unified approach to contact-less, low-cost
+    video processing for automatic detection of neonatal diseases
+    characterized by specific movement patterns, including clonic seizures
+    and apneas. The periodicity analysis of luminance signals could
+    potentially be extended to thermal video streams.
+    Link: https://www.sciencedirect.com/science/article/abs/pii/S0010482516303031
+
+4c. Neonatal Seizure Detection Using a Wearable Multi-Sensor System
+    Year: 2023
+    Journal: PMC (PMC10294985)
+    Key Findings: Explored wearable multi-sensor systems (including
+    accelerometers and physiological sensors) for neonatal seizure
+    detection. While not specifically thermal, demonstrates the trend
+    toward multi-modal monitoring that could incorporate thermal data.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC10294985/
+
+================================================================================
+5. KANGAROO CARE / SKIN-TO-SKIN CONTACT MONITORING
+================================================================================
+
+5a. Abbas AK, Heimann K, Blazek V, Orlikowsky T, Leonhardt S.
+    "Neonatal infrared thermography imaging: Analysis of heat flux during
+    different clinical scenarios"
+    Year: 2012
+    Journal: Infrared Physics & Technology, 55, 538-548
+    Key Findings: Studied 12 preterm babies across different clinical
+    scenarios including kangaroo mother care (KMC), convective incubators,
+    and open radiant warmers. First IR thermography application to KMC
+    was performed at RWTH Aachen University Hospital (August 2009). Baby
+    covered with IR-transparent polyethylene foil during KMC to allow IR
+    camera viewing. Concluded that IR thermography can be used as a
+    standard temperature monitoring technique across different neonatal
+    care scenarios. Developed compensation techniques for each scenario.
+    Link: https://www.sciencedirect.com/science/article/abs/pii/S135044951200059X
+
+5b. Abbas AK, Heimann K, Jergus K, Orlikowsky T, Leonhardt S.
+    "Intelligent neonatal monitoring based on a virtual thermal sensor"
+    Year: 2014
+    Journal: BMC Medical Imaging, 14, 9
+    Key Findings: Proposed a "virtual thermal sensor" concept for
+    intelligent neonatal monitoring. The system uses infrared thermography
+    to create a virtual representation of the neonate's thermal state,
+    enabling continuous and non-contact monitoring. Applicable to multiple
+    clinical scenarios including incubators and KMC. Infrared digital
+    cameras are precise and can measure neonates' body temperature rapidly
+    without physical contact, consistent with the minimal stimulation
+    protocol.
+    DOI: https://doi.org/10.1186/1471-2342-14-9
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC4015601/
+
+5c. Ludington-Hoe SM, Lewis T, Morgan K, Cong X, Anderson L, Reese S.
+    "Breast and infant temperatures with twins during shared kangaroo care"
+    Year: 2006
+    Journal: JOGNN, 35(2), 223-231
+    Key Findings: Examined thermal dynamics between mother and twin infants
+    during shared kangaroo care. Maternal breast temperature met each
+    infant's neutral thermal zone within 5 minutes of KC onset. This
+    foundational study demonstrated the thermal synchrony between mother
+    and infant during skin-to-skin contact.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC1890034/
+
+================================================================================
+6. MACHINE LEARNING / AI + NEONATAL THERMAL IMAGING
+================================================================================
+
+6a. Ornek AH, Ceylan M, Ervural S.
+    "Health status detection of neonates using infrared thermography and
+    deep convolutional neural networks"
+    Year: 2019 (published 2020)
+    Journal: Infrared Physics & Technology, 103, 103044
+    Key Findings: FIRST study to combine IRT with deep CNNs for neonatal
+    health status detection. Thermal images from 19 healthy and 19 unhealthy
+    neonates captured at Selcuk University NICU over one year. Achieved
+    99.58% accuracy, 99.73% specificity, 99.43% sensitivity, and 0.996 AUC
+    for 30,400 thermal images. Demonstrated feasibility of automated
+    health classification from thermal data alone.
+    Link: https://www.sciencedirect.com/science/article/abs/pii/S1350449519303123
+
+6b. Ornek AH, Ceylan M.
+    "A new approach for super-resolution and classification applications
+    on neonatal thermal images" (TSRGAN+ model)
+    Year: 2023
+    Journal: Quantitative InfraRed Thermography Journal, 21(3)
+    Key Findings: Developed TSRGAN+ deep network for super-resolution of
+    neonatal thermal images. Used 250 premature (healthy) and 250 unhealthy
+    baby images from a Variocam HD thermal camera, downscaled at 1/2, 1/4,
+    1/8 ratios. Trained CNN achieved 99.91% accuracy (train), 99.47%
+    (validation), 99.82% (test). Demonstrates that even low-resolution
+    thermal images can be enhanced for reliable classification.
+    DOI: https://doi.org/10.1080/17686733.2023.2179282
+    Link: https://www.tandfonline.com/doi/abs/10.1080/17686733.2023.2179282
+
+6c. Ornek AH, Ceylan M.
+    "CodCAM: A new ensemble visual explanation for classification of
+    medical thermal images"
+    Year: 2023
+    Journal: Quantitative InfraRed Thermography Journal, 21(3)
+    Key Findings: Developed CodCAM, a new ensemble Explainable AI (XAI)
+    method combining GradCAM, GradCAM++, LayerCAM, and EigenCAM to
+    visualize which regions of neonatal thermograms affect CNN classification
+    decisions. Allows medical specialists to understand which thermal
+    patterns indicate healthy vs. unhealthy status. Achieved 99.91%
+    accuracy. Important for clinical trust and adoption.
+    DOI: https://doi.org/10.1080/17686733.2023.2167459
+    Link: https://www.tandfonline.com/doi/abs/10.1080/17686733.2023.2167459
+
+6d. Ornek AH, Ceylan M.
+    "Convolutional Neural Networks-Based Approach to Detect Neonatal
+    Respiratory System Anomalies with Limited Thermal Image"
+    Year: 2021
+    Journal: Traitement du Signal, 38(2)
+    Key Findings: Applied CNNs to detect respiratory system anomalies in
+    neonates using limited thermal image data. Addressed the common
+    challenge of small datasets in medical imaging through data
+    augmentation techniques. Demonstrated that CNNs can detect respiratory
+    anomalies from thermal images even with limited training data.
+    Link: https://www.iieta.org/journals/ts/paper/10.18280/ts.380222
+
+6e. Lyra S, Mayer L, Ou L, Chen D et al.
+    "Camera fusion for real-time temperature monitoring of neonates using
+    deep learning"
+    Year: 2022
+    Journal: Medical & Biological Engineering & Computing, 60, 1789-1800
+    Key Findings: Fused thermal, RGB, and 3D TOF cameras for enhanced
+    neonatal facial detection and reliable HR, RR, and body temperature
+    measurements using dual neural networks. Deep learning-based infant
+    body landmark detection automates identification of core and peripheral
+    sites. Clinical trial with 40 preterm infants in NICU validated
+    feasibility. This multi-modal approach represents the state of the
+    art in camera-based neonatal monitoring.
+    DOI: https://doi.org/10.1007/s11517-022-02561-9
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC9079037/
+
+6f. Schwarz CE et al.
+    "A Setup for Camera-Based Detection of Simulated Pathological States
+    Using a Neonatal Phantom"
+    Year: 2022
+    Journal: Sensors (PMC8838518)
+    Key Findings: Developed a neonatal phantom setup for testing camera-
+    based detection of simulated pathological states. Uses thermal and
+    visible-light cameras. Important methodological contribution for
+    validating thermal imaging algorithms before clinical deployment.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC8838518/
+
+6g. Park H et al.
+    "The past, current, and future of neonatal intensive care units with
+    artificial intelligence: a systematic review"
+    Year: 2023
+    Journal: npj Digital Medicine, 6, 217
+    Key Findings: Systematic review of AI applications in NICUs including
+    thermal imaging-based approaches. Covers the integration of multiple
+    sensing modalities (thermal, RGB, depth) with deep learning for
+    contactless vital sign monitoring. Identifies thermal imaging as a
+    key enabling technology for next-generation NICU monitoring.
+    Link: https://www.nature.com/articles/s41746-023-00941-5
+
+================================================================================
+7. ABDOMINAL THERMOGRAPHY FOR NEC / FEEDING / GUT ASSESSMENT
+================================================================================
+
+7a. Rice HE, Hollingsworth CL, Bradsher E, Danko ME, Crosby SM,
+    Goldberg RN, Tanaka DT, Knobel RB.
+    "Infrared thermal imaging (thermography) of the abdomen in extremely
+    low birthweight infants"
+    Year: 2010
+    Journal: Journal of Surgical Radiology, 1(4)
+    Key Findings: Assessed feasibility of infrared thermal imaging for
+    abdominal skin temperature measurement in ELBW infants and explored
+    association with NEC. Overall, mean abdominal skin temperature was
+    lower than thoracic skin temperature. Infants with radiographic NEC
+    had significantly lower mean abdominal skin temperature (35.3 +/- 0.8 C)
+    compared to those without NEC (36.6 +/- 0.9 C). Foundational study
+    demonstrating thermal signature differences in NEC.
+    Link: https://scholars.duke.edu/publication/723960
+
+7b. Schaefer G, Ornek AH, Ceylan M, Abdulhamit S.
+    "Assessment of Abdominal Skin Temperature Change in Premature Newborns
+    with NEC Compared to Healthy Controls"
+    Year: 2011 (book chapter)
+    Journal: Springer (978-3-642-23508-5)
+    Key Findings: Compared abdominal skin temperature patterns in premature
+    newborns with NEC versus healthy controls. Found that NEC cases show
+    characteristic abdominal temperature changes detectable by infrared
+    thermography. The regression analysis indicated a slower decrease of
+    superficial abdominal temperature in the NEC group, attributed to
+    increased heat from inflamed bowel.
+    Link: https://link.springer.com/chapter/10.1007/978-3-642-23508-5_51
+
+7c. Payeur P et al.
+    "Thermal and RGB-D Imaging for Necrotizing Enterocolitis Detection"
+    Year: 2020
+    Journal: IEEE International Symposium on Medical Measurements and
+    Applications (MeMeA)
+    Key Findings: Proposed a novel automated system combining an infrared
+    thermal camera (FLIR Thermovision A320) with an RGB-D sensor
+    (Microsoft Kinect Xbox One) for NEC detection. Color and depth
+    information automates and refines abdominal segmentation compared to
+    standalone IR image processing. Multi-modal approach improves
+    uniformity of thermal data extraction for reliable comparative
+    temperature analysis. Represents a significant advance toward
+    automated NEC screening.
+    DOI: https://doi.org/10.1109/MeMeA49120.2020.9137344
+    Link: https://ieeexplore.ieee.org/document/9137344/
+
+7d. Infrared Imaging Tools for NEC Diagnosis Guided by RGB-D Sensing
+    (CHEO Research Institute / University of Ottawa)
+    Year: Ongoing research program
+    Key Findings: Active research program at Children's Hospital of Eastern
+    Ontario (CHEO) developing infrared imaging tools for NEC diagnosis
+    guided by RGB-D sensing. Building on the 2020 IEEE work to create
+    clinically deployable systems for early NEC detection.
+    Link: https://www.cheoresearch.ca/research/projects/infrared-imaging-tools-for-necrotizing-enterocolitis-nec-diagnosis-guided-by-rgb-d-sensing/
+
+7e. Herry CL et al.
+    "Detection of Necrotizing Enterocolitis in newborns using abdominal
+    thermal signature analysis"
+    Year: 2015
+    Journal: IEEE Conference Publication
+    Key Findings: Explored abdominal thermal signature analysis for NEC
+    detection. Examined temperature differentials between chest and abdomen
+    as abnormal perfusion may be critical both in development of NEC and
+    for its diagnosis. IRT technology may decrease medical costs and
+    length of stay by enabling early surveillance of skin temperature
+    differentials associated with NEC.
+    DOI: https://doi.org/10.1109/MeMeA.2015.7145168
+    Link: https://ieeexplore.ieee.org/document/7145168/
+
+7f. Infrared Thermal Imaging to Detect Inflammatory Intra-Abdominal
+    Conditions (likely NEC-related)
+    Year: 2020
+    Journal: WSEAS Transactions on Biology and Biomedicine
+    Key Findings: Investigated infrared thermal imaging for detecting
+    inflammatory intra-abdominal conditions. Relevant to both NEC and
+    feeding intolerance assessment in neonates.
+    Link: https://wseas.com/journals/bab/2020/a225108-078.pdf
+
+NOTE ON FEEDING INTOLERANCE: Direct studies on thermal imaging for feeding
+intolerance assessment were not found in the literature. However, the NEC
+detection research (which involves gut inflammation and perfusion changes)
+provides the closest available evidence. Distinguishing benign feeding
+intolerance from early NEC remains a clinical challenge where thermal
+imaging could potentially contribute.
+
+================================================================================
+8. RESPIRATORY MONITORING & APNEA DETECTION
+================================================================================
+
+8a. Abbas AK, Heimann K, Jergus K, Orlikowsky T, Leonhardt S.
+    "Neonatal non-contact respiratory monitoring based on real-time
+    infrared thermography"
+    Year: 2011
+    Journal: BioMedical Engineering OnLine, 10, 93
+    Key Findings: Pioneering study on non-contact respiratory monitoring
+    in neonates using real-time infrared thermography. Demonstrated that
+    small temperature variations around the nose during inspiratory and
+    expiratory phases can be used to estimate respiratory flow. Enabled
+    differentiation between types of apnea and monitoring under various
+    clinical conditions. Established the field of thermal respiratory
+    monitoring in neonates.
+    DOI: https://doi.org/10.1186/1475-925X-10-93
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC3258209/
+
+8b. Maurya L, Zwiggelaar R, Chawla D et al.
+    "Non-contact respiratory rate monitoring using thermal and visible
+    imaging: a pilot study on neonates"
+    Year: 2023
+    Journal: Journal of Clinical Monitoring and Computing, 37, 815-828
+    Key Findings: Integrated visible (RGB) and thermal (T) image sequences
+    for ROI selection and tracking for breathing rate extraction. Used
+    deep learning-based tracking-by-detection approach. Average error for
+    neonates was 1.5 bpm. Bland-Altman analysis showed good agreement
+    with reference method. Provides evidence for contactless respiratory
+    rate detection in clinical settings.
+    DOI: https://doi.org/10.1007/s10877-022-00945-8
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC10175339/
+
+8c. Heimann K et al.
+    "Infrared thermography for detailed registration of thermoregulation
+    in premature infants"
+    Year: 2013
+    Journal: Journal of Perinatal Medicine, 41(5), 613-620
+    Key Findings: Evaluated skin temperature using non-contact IRT at
+    multiple body areas of preterm infants to provide detailed information
+    about temperature regulation and distribution. Measurements across
+    different clinical scenarios including incubator phases and
+    skin-to-skin care sessions. Established methodology for detailed
+    thermographic assessment in premature infants.
+    Link: https://pubmed.ncbi.nlm.nih.gov/23443261/
+
+8d. Pereira CB, Czaplik M, Blanik N, Rossaint R, Blazek V, Leonhardt S.
+    "Multi-camera infrared thermography for infant respiration monitoring"
+    Year: 2020
+    Journal: BioMedical Engineering OnLine (PMC7510882)
+    Key Findings: Used multiple infrared cameras for infant respiration
+    monitoring. Multi-camera approach addresses challenges of single-camera
+    setups (occlusion, pose changes). Thermal imaging detects convective
+    heat transfer changes at the infra-nasal region. Can differentiate
+    between different types of apnea: since apnea is complete cessation
+    of airflow for >=10 seconds, thermal cessation of nasal temperature
+    oscillation provides direct evidence of apneic events.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC7510882/
+
+================================================================================
+9. CORE-PERIPHERAL TEMPERATURE GRADIENT & SEPSIS DETECTION
+================================================================================
+
+9a. Authors (2025 study).
+    "Thermal imaging-based core peripheral temperature difference
+    measurement for neonatal monitoring in the NICU"
+    Year: 2025
+    Journal: PMC (PMC11919349)
+    Key Findings: Developed a thermal infrared (TIR)-based approach for
+    non-contact, fully automatic, and continuous core-peripheral
+    temperature difference (CPTD) measurement. Deep learning-based infant
+    body landmark detection automates identification of core and peripheral
+    sites. Validated in a clinical trial with critically ill and preterm
+    infants (gestational age 29-40 weeks). CPTD serves as a key biomarker
+    for hemodynamic status and early warning of shock and severe infection.
+    Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC11919349/
+
+9b. Ussat M et al.
+    "Central-peripheral temperature gradient: An early diagnostic sign of
+    late-onset neonatal sepsis in very low birth weight infants"
+    Year: 2012 (estimated)
+    Journal: (Referenced in multiple reviews)
+    Key Findings: In preterm infants, thermal gradient alteration was
+    present in 12 cases, associated with sepsis onset in 10 cases.
+    Sensitivity of 90.9% and specificity of 90% for sepsis detection.
+    Demonstrates that core-peripheral temperature gradient is a powerful
+    early diagnostic marker for neonatal sepsis.
+    Link: https://pubmed.ncbi.nlm.nih.gov/22945277/
+
+================================================================================
+10. CONTINUOUS THERMAL MONITORING & THERMOREGULATION
+================================================================================
+
+10a. Morimoto A, Nakamura S, Koyano K et al.
+     "Continuous monitoring using thermography can capture the heat
+     oscillations maintaining body temperature in neonates"
+     Year: 2024
+     Journal: Scientific Reports, 14, 10564
+     Key Findings: Used IRT to measure skin temperature every 15 seconds
+     in neonates in incubators. Analyzed thermal data from 27 neonates
+     (32 measurements). Extracted two frequency components (A and B) using
+     the Savitzky-Golay method. Demonstrated that continuous thermographic
+     monitoring can capture heat oscillations involved in thermoregulation,
+     providing insights into spontaneous thermal metabolism in neonates.
+     DOI: https://doi.org/10.1038/s41598-024-60718-y
+     Link: https://www.nature.com/articles/s41598-024-60718-y
+
+10b. Bhatia M et al.
+     "Infrared Thermography with High Accuracy in a Neonatal Incubator"
+     Year: 2022
+     Journal: Annals of Biomedical Engineering (PMC8890465)
+     Key Findings: Developed a calibration method providing high accuracy
+     for both point-in-time and continuous thermal monitoring in neonatal
+     incubators. Addresses the key technical challenge that incubator
+     environments (controlled temperature, humidity) affect IRT accuracy.
+     The approach avoids skin contact (no thermistor attachment),
+     eliminating risk of skin damage in fragile neonates.
+     Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC8890465/
+
+10c. Knobel-Dail RB et al.
+     "Body Temperature in Premature Infants During the First Week of Life:
+     Exploration Using Infrared Thermal Imaging"
+     Year: 2017
+     Journal: Journal of Thermal Biology (PMC5657603)
+     Key Findings: Studied body temperature patterns in premature infants
+     during the first week using IRT. Provided detailed thermal mapping
+     of preterm infant thermoregulation during the critical early postnatal
+     period. Contributed to understanding of heat loss patterns and
+     thermal challenges faced by premature infants.
+     Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC5657603/
+
+================================================================================
+COMPREHENSIVE REVIEW (Bonus)
+================================================================================
+
+Emerging innovations in neonatal monitoring: a comprehensive review of
+progress and potential for non-contact technologies.
+Year: 2024
+Journal: Frontiers in Pediatrics, 12, 1442753
+Key Findings: Comprehensive review covering non-contact monitoring
+technologies for neonates including thermal imaging, RGB cameras, and
+sensor fusion approaches. Reviews the integration of deep learning with
+camera systems for vital sign extraction. Notes that despite significant
+research progress, integration into standard NICU clinical practice
+remains limited. Identifies thermal imaging as a key enabler for
+cable-free NICU monitoring.
+Link: https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2024.1442753/full
+
+================================================================================
+SUMMARY OF GAPS AND OPPORTUNITIES
+================================================================================
+
+1. JAUNDICE/BILIRUBIN: No direct thermal imaging studies exist. This
+   represents a significant research gap. Bilirubin detection currently
+   relies on optical/colorimetric methods, but thermal correlates of
+   hyperbilirubinemia have not been systematically explored.
+
+2. HIE/BRAIN INJURY: The Thermal Index approach (Walas et al., 2020-2021)
+   is promising but based on only 6 patients. Larger validation studies
+   are critically needed. Non-invasive bedside brain injury assessment
+   during therapeutic hypothermia remains an unmet clinical need.
+
+3. SEIZURE DETECTION: Thermal cameras for seizure detection in neonates
+   is essentially unexplored. Video-based (RGB) seizure detection exists,
+   and thermal cameras could add physiological data (skin temperature
+   changes during seizure activity) that RGB cannot capture.
+
+4. KANGAROO CARE: IR thermography has been applied to KMC (Abbas 2012)
+   but only in small studies. Opportunity for larger studies on thermal
+   dynamics during KMC and development of continuous monitoring systems.
+
+5. AI/ML: Rapidly growing field. The Ornek/Ceylan group (Selcuk/Konya
+   Technical University, Turkey) has been prolific. Key limitation:
+   most studies use data from a single center. Multi-center validation
+   and larger, more diverse datasets are needed.
+
+6. NEC/ABDOMINAL: Most promising emerging application. Multiple studies
+   show abdominal temperature differences in NEC. Automated RGB-D +
+   thermal fusion systems (Payeur et al., 2020) show potential for
+   real-time NEC screening. Feeding intolerance assessment via
+   thermography is unexplored but theoretically possible.
+
+7. RESPIRATORY: Most mature application area. Multiple validated
+   approaches exist from Abbas (2011) through Maurya (2023). Main
+   barrier is integration into clinical workflow.

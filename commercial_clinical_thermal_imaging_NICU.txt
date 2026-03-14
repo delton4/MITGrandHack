@@ -1,0 +1,512 @@
+================================================================================
+COMMERCIAL/CLINICAL THERMAL IMAGING SYSTEMS FOR NICU:
+RESEARCH PAPERS, TECHNICAL CHALLENGES, AND REGULATORY CONSIDERATIONS
+================================================================================
+Compiled: March 2026
+
+TABLE OF CONTENTS
+1. Scoping Reviews & Comprehensive Reviews
+2. Commercial Camera Systems Evaluated in NICU Settings
+3. Incubator-Compatible Thermal Imaging Solutions (Plexiglas/LWIR Challenge)
+4. Camera Calibration Methods for NICU Environments
+5. Core-Peripheral Temperature Difference & Deep Learning Systems
+6. Respiratory Monitoring via Thermal Imaging
+7. Wearable vs Non-Contact Monitoring Comparisons
+8. Regulatory Pathways (FDA & CE Marking)
+9. Cost-Effectiveness & Low-Resource Settings
+10. IR Band Comparison (LWIR vs MWIR vs SWIR) for Neonatal Use
+
+================================================================================
+1. SCOPING REVIEWS & COMPREHENSIVE REVIEWS
+================================================================================
+
+PAPER 1:
+Title: Thermal imaging applications in neonatal care: a scoping review
+Authors: Topalidou A, Ali N, Sekulic S, Downe S
+Year: 2019
+Journal: BMC Pregnancy and Childbirth, 19, 381
+Key Findings: Systematic review of 21 studies (from 442 hits across EMBASE,
+MEDLINE, and MIDIRS). Concludes that thermal imaging is a reliable and
+non-invasive method for continuous monitoring of emitted temperature of
+neonates, with potential for diagnosing pathologies including internal
+abnormalities. However, introduction into everyday neonatology practice faces
+several methodological challenges, particularly environmental parameters
+when infants are in incubators or open radiant warmers. Big-cohort studies
+using established methodological protocols are notably absent from the
+literature.
+DOI: 10.1186/s12884-019-2533-y
+Link: https://link.springer.com/article/10.1186/s12884-019-2533-y
+
+PAPER 2:
+Title: Review of Biomedical Applications of Contactless Imaging of Neonates
+       Using Infrared Thermography and Beyond
+Authors: AlZubaidi AK, et al.
+Year: 2018
+Journal: Methods and Protocols, 1(4), 39 (MDPI)
+Key Findings: Comprehensive review of contactless imaging for recording
+physiological signals, surface changes, and internal structures. Highlights
+advantages including quick data generation, no skin contact (reducing skin
+breakdown and infection risk), and minimizing the number of probes attached
+to fragile preterm infants. Covers MWIR and LWIR camera technologies and
+their respective applications in neonatal monitoring.
+DOI: 10.3390/mps1040039
+Link: https://www.mdpi.com/2409-9279/1/4/39
+
+PAPER 3:
+Title: Emerging innovations in neonatal monitoring: a comprehensive review
+       of progress and potential for non-contact technologies
+Authors: (Multiple authors)
+Year: 2024
+Journal: Frontiers in Pediatrics, 12, 1442753
+Key Findings: Reviews the current reliance on wearable or contact sensor
+technologies for vital sign monitoring and their complications (discomfort,
+skin damage, infections). Examines emerging non-contact technologies
+including thermal imaging, camera-based systems, and radar. Thermal imaging
+is noted as particularly advantageous as it is less affected by visual
+obstructions that compromise other camera-based systems.
+Link: https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2024.1442753/full
+
+================================================================================
+2. COMMERCIAL CAMERA SYSTEMS EVALUATED IN NICU SETTINGS
+================================================================================
+
+PAPER 4:
+Title: Body temperature in premature infants during the first week of life:
+       Exploration using infrared thermal imaging
+Authors: Knobel-Dail RB, Holditch-Davis D, Sloane R, Guenther BD, Katz AR
+Year: 2017
+Journal: Journal of Thermal Biology, 69, 118-123
+Key Findings: Used a FLIR SC640 uncooled infrared camera to capture full
+body temperatures of 30 extremely premature VLBW infants in heated, humid
+incubators. Found that very premature infants exhibit abnormal thermal
+patterns, keeping foot temperatures warmer than abdominal temperatures
+during their first 12 hours. IR imaging measurements were in close agreement
+with skin thermistors using Bland-Altman technique. Demonstrates IR
+thermography as viable for continuous monitoring in heated/humid incubators.
+Camera: FLIR SC640 (uncooled, LWIR)
+DOI: 10.1016/j.jtherbio.2017.06.007
+Link: https://pubmed.ncbi.nlm.nih.gov/29037371/
+
+PAPER 5:
+Title: Infrared thermography for detailed registration of thermoregulation
+       in premature infants
+Authors: Heimann K, Jergus K, Abbas AK, Heussen N, Leonhardt S,
+         Orlikowsky T
+Year: 2013
+Journal: Journal of Perinatal Medicine, 41(5), 613-620
+Key Findings: Evaluated skin temperature using non-contact IRT in multiple
+body areas of 10 preterm infants (median 27 weeks gestation). Temperature
+on central areas (abdomen, back) was maintained but rose distinctively on
+head and leg during certain procedures. Demonstrated that IRT can provide
+detailed temperature mapping across multiple body regions simultaneously,
+something not possible with conventional point thermometry.
+Camera: Used in conjunction with IRBIS Professional software
+DOI: 10.1515/jpm-2012-0239
+Link: https://pubmed.ncbi.nlm.nih.gov/23443261/
+
+PAPER 6:
+Title: Multi-camera infrared thermography for infant respiration monitoring
+Authors: Lorato I, Stuijk S, Meftah M, Verkruijsse W, de Haan G
+Year: 2020
+Journal: Biomedical Optics Express, 11(9), 4950-4964
+Key Findings: Used three FLIR Lepton cameras (low-cost, uncooled
+microbolometer, LWIR) to collect thermal videos of neonates in open beds.
+Multiple cameras positioned to increase coverage of both respiration motion
+and flow. Tested on 152 minutes of recordings on 7 infants, achieving mean
+absolute error of 2.07 breaths/min compared with chest impedance. Shows
+that consumer-grade, low-cost thermal cameras can be viable for NICU
+respiratory monitoring.
+Camera: FLIR Lepton (3x cameras, uncooled microbolometer, LWIR, ~$200 each)
+DOI: 10.1364/BOE.397188
+Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC7510882/
+
+================================================================================
+3. INCUBATOR-COMPATIBLE THERMAL IMAGING SOLUTIONS (PLEXIGLAS/LWIR)
+================================================================================
+
+KEY CHALLENGE:
+Plexiglas (polymethylmethacrylate/PMMA) used in incubator hoods is opaque
+to long-wave infrared (LWIR, 8-14 um) radiation, with emissivity ~0.97,
+making it act as a thermal radiator rather than a window. This means the
+camera sees the temperature of the Plexiglas itself, not the infant inside.
+
+SOLUTIONS DOCUMENTED IN LITERATURE:
+
+(a) Polyethylene (PE) Window Replacement:
+    - PE foil (0.01 mm thickness) provides ~92-94% transmissivity for LWIR
+    - A 10x15 cm window cut in the incubator canopy, sealed with PE foil
+    - Medical-grade PE used to maintain sterility
+    - Referenced in Abbas et al. 2012, Heimann et al. 2013
+
+(b) Plastic Wrap/Cling Film:
+    - Cutout in incubator lid covered with standard plastic wrap
+    - Preserves thermal environment while allowing IR transmission
+    - Lower image quality than PE foil due to wrinkles/non-uniformity
+    - Referenced in Knobel-Dail et al. 2017
+
+(c) Camera Inside Incubator:
+    - Some studies mount small cameras inside the incubator
+    - Avoids the Plexiglas problem entirely
+    - Challenge: camera must tolerate high humidity (60-80% RH) and
+      warmth (32-36C) inside incubator
+
+(d) Open-Bed / Radiant Warmer Studies:
+    - Many studies avoid the problem by using open-bed or radiant warmer
+      settings where there is direct line-of-sight to the infant
+
+PAPER 7:
+Title: Intelligent neonatal monitoring based on a virtual thermal sensor
+Authors: Abbas AK, Leonhardt S
+Year: 2014
+Journal: BMC Medical Imaging, 14, 9
+Key Findings: Designed a virtual temperature sensing application using IR
+camera with IRBIS Professional software, imaging through a PE window
+(0.01 mm thickness, 92-94% IR transmission) installed in the incubator
+canopy. Addressed temperature and humidity variations as the main factors
+preventing accurate calibration in convective incubators. Implemented
+real-time calibration during clinical measurement to avoid incorrect
+temperature registration.
+DOI: 10.1186/1471-2342-14-9
+Link: https://bmcmedimaging.biomedcentral.com/articles/10.1186/1471-2342-14-9
+
+================================================================================
+4. CAMERA CALIBRATION METHODS FOR NICU ENVIRONMENTS
+================================================================================
+
+PAPER 8:
+Title: Neonatal infrared thermography imaging: Analysis of heat flux during
+       different clinical scenarios
+Authors: Abbas AK, Heimann K, Blazek V, Orlikowsky T, Leonhardt S
+Year: 2012
+Journal: Infrared Physics & Technology, 55(6), 538-548
+Key Findings: Introduced a compensation technique based on modeling physical
+interactions within the measurement scene. Derived different temperature
+compensation equations for three measurement environments: (1) convective
+neonatal incubators, (2) Kangaroo Mother Care, and (3) open radiant warmers.
+Each environment requires a different calibration approach due to different
+sources of thermal interference (humidity, air convection, radiant heat).
+With appropriate compensation, IRT can serve as a standard temperature
+monitoring technique for neonates.
+DOI: 10.1016/j.infrared.2012.07.001
+Link: https://www.sciencedirect.com/science/article/abs/pii/S135044951200059X
+
+PAPER 9:
+Title: Infrared Thermography with High Accuracy in a Neonatal Incubator
+Authors: Hamada T, et al.
+Year: 2022
+Journal: Annals of Biomedical Engineering, 50(10), 1257-1267
+Key Findings: Established a new calibration method for IRT in incubators,
+evaluated using a variable-temperature blackbody furnace at different
+incubator settings. Improved the percentage of data with mean absolute error
+(MAE) < 0.3C from 4.2% (standard method) to 93.1% (new method). Two of
+three IRTs achieved MAE < 0.1C under all conditions. The method uses a
+non-heating blackbody as a reference source (concept: both measured object
+and reference source are equally influenced by thermal drift), and includes
+automatic non-uniformity calibration (ANUC) to compensate for temperature
+drift during measurements. Provides high accuracy for both point-in-time
+and continuous monitoring.
+DOI: 10.1007/s10439-022-02937-w
+Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC8890465/
+
+CALIBRATION CHALLENGES SUMMARY:
+- Incubator air temperature (32-36C) raises ambient background
+- High humidity (60-80% RH) affects IR transmission through air
+- Convective air currents create non-uniform thermal environment
+- Plexiglas/PE window introduces transmission losses
+- Camera thermal drift over time requires periodic NUC
+- Different clinical scenarios (incubator vs KMC vs radiant warmer) need
+  different calibration models
+
+================================================================================
+5. CORE-PERIPHERAL TEMPERATURE DIFFERENCE & DEEP LEARNING SYSTEMS
+================================================================================
+
+PAPER 10:
+Title: Thermal imaging-based core peripheral temperature difference
+       measurement for neonatal monitoring in the NICU
+Authors: Zhang Y, Song R, et al.
+Year: 2025
+Journal: Biomedical Optics Express, 16(3), 965
+Key Findings: Clinical trial with 40 preterm infants (Feb-Aug 2024) at
+Nanfang Hospital, Southern Medical University, China. Used deep
+learning-based infant body landmark detection to automate identification of
+core (chest/abdomen) and peripheral (hand) sites for continuous CPTD
+monitoring. Fine-tuned a high-resolution Transformer architecture for pose
+estimation in neonatal thermal images. CPTD is a key biomarker for
+hemodynamic status, early shock recognition, peripheral perfusion
+assessment, and sepsis monitoring in preterm infants.
+DOI: 10.1364/BOE.547131
+Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC11919349/
+
+PAPER 11:
+Title: Camera fusion for real-time temperature monitoring of neonates using
+       deep learning
+Authors: Lyra S, Rixen J, Heimann K, Karthik S, Joseph J, Leonhardt S,
+         Hoog Antink C
+Year: 2022
+Journal: Medical & Biological Engineering & Computing, 60(7), 1887-1901
+Key Findings: Deep learning approach combining RGB + IR cameras for neonatal
+temperature monitoring. Used transfer-learned keypoint detector for body
+landmark prediction in RGB images, then image registration to transform
+landmarks to IRT frames for temperature extraction. Demonstrated feasibility
+of low-cost embedded GPUs for real-time processing. The multi-modal approach
+(RGB for landmark detection + IR for temperature) addresses the challenge
+that body landmarks are difficult to detect directly in thermal images.
+DOI: 10.1007/s11517-022-02561-9
+Link: https://link.springer.com/article/10.1007/s11517-022-02561-9
+
+================================================================================
+6. RESPIRATORY MONITORING VIA THERMAL IMAGING
+================================================================================
+
+PAPER 12:
+Title: Neonatal non-contact respiratory monitoring based on real-time
+       infrared thermography
+Authors: Abbas AK, Heimann K, Jergus K, Orlikowsky T, Leonhardt S
+Year: 2011
+Journal: BioMedical Engineering OnLine, 10, 93
+Key Findings: Demonstrated that neonatal respiration rate can be monitored
+by analyzing anterior naris (nostril) temperature profiles associated with
+inspiration/expiration phases. IR thermography allows non-contact respiratory
+monitoring inside the NICU, detecting convective heat transfer changes that
+differentiate between different types of apnea (central vs obstructive).
+This represents a step towards replacing potentially harmful cable-based
+sensors in neonatology.
+DOI: 10.1186/1475-925X-10-93
+Link: https://link.springer.com/article/10.1186/1475-925X-10-93
+
+PAPER 13:
+Title: Non-contact respiratory rate monitoring using thermal and visible
+       imaging: a pilot study on neonates
+Authors: (Multiple authors)
+Year: 2022
+Journal: Journal of Clinical Monitoring and Computing
+Key Findings: Pilot study using thermal and visible imaging modalities for
+non-contact respiratory rate monitoring in neonates. Thermal imaging detects
+temperature variations around the nose during inspiratory/expiratory phases.
+The technique leverages the fact that exhaled air is warmer than inhaled air,
+creating measurable thermal signatures at the nostrils.
+Link: https://link.springer.com/article/10.1007/s10877-022-00945-8
+
+================================================================================
+7. WEARABLE vs NON-CONTACT MONITORING COMPARISONS
+================================================================================
+
+KEY COMPARISON POINTS FROM LITERATURE:
+
+WEARABLE SENSORS:
+- Thermistors: accuracy +/- 0.1C
+- Thermocouples: accuracy +/- 0.5C
+- Continuous monitoring capability
+- Risk of skin damage in preterm infants (fragile skin)
+- Risk of infection from adhesives and cables
+- Limited to single-point measurement
+- Wearable sensors detected temperatures 0.2C lower than clinical thermometers
+
+NON-CONTACT THERMAL IMAGING:
+- Full-body temperature mapping (hundreds/thousands of measurement points)
+- No skin contact = no skin damage or infection risk
+- Can detect spatial temperature gradients and patterns
+- Affected by environmental factors (humidity, ambient temperature)
+- Requires line-of-sight (problematic with Plexiglas incubators)
+- Higher equipment cost (though FLIR Lepton ~$200 changing this)
+- Requires calibration for NICU environment
+- Cannot directly measure core body temperature (surface only)
+
+PAPER 14:
+Title: Continuous monitoring using thermography can capture the heat
+       oscillations maintaining body temperature in neonates
+Authors: Morimoto N, et al.
+Year: 2024
+Journal: Scientific Reports, 14, 11143
+Key Findings: Used IRT to measure skin temperature every 15 seconds of 27
+neonates (32 measurements) in incubators. Extracted two frequency components
+of temperature oscillation using Savitzky-Golay method. Demonstrated that
+contactless IRT can capture subtle thermoregulatory oscillations that are
+invisible to conventional point thermometry, providing insights into
+spontaneous thermal metabolism in neonates.
+DOI: 10.1038/s41598-024-60718-y
+Link: https://www.nature.com/articles/s41598-024-60718-y
+
+PAPER 15:
+Title: Health status detection of neonates using infrared thermography and
+       deep convolutional neural networks
+Authors: (Multiple authors)
+Year: 2019 (published online)
+Journal: Infrared Physics & Technology
+Key Findings: Combined IRT and deep CNNs for the first time to detect health
+status of neonates. Thermal images from 19 healthy and 19 unhealthy neonates
+achieved 99.58% accuracy, 99.73% specificity, and 99.43% sensitivity. This
+demonstrates the diagnostic potential of thermal imaging beyond simple
+temperature measurement, using AI pattern recognition on thermal images.
+Link: https://www.sciencedirect.com/science/article/abs/pii/S1350449519303123
+
+================================================================================
+8. REGULATORY PATHWAYS (FDA & CE MARKING)
+================================================================================
+
+FDA REGULATORY FRAMEWORK:
+- Telethermographic systems: classified under 21 CFR 884.2980(a)
+- Product code: LHQ (for adjunctive diagnostic use)
+- Class I (adjunctive): 510(k) exempt in some cases, or standard 510(k)
+- Class III (standalone diagnostic): requires Premarket Approval (PMA)
+- 510(k) pathway: demonstrate substantial equivalence to predicate device
+- Typical 510(k) timeline: 90 days after FDA acceptance
+- FDA requires premarket notification for IR clinical electronic thermometers
+  with telethermographic functions due to "newer technology requiring
+  additional testing"
+
+FDA-CLEARED EXAMPLES:
+- Meditherm thermal imaging cameras (Class I, 510(k) cleared, adjunctive)
+- Thermidas IR System ThIR-A615 (K200999)
+- Med-Hot MTI 2000 Thermal Imaging System
+- Multiple FLIR, ICI, Optotherm systems cleared under product code LHQ
+
+IMPORTANT FDA DISTINCTION:
+- Simple infrared clinical electronic thermometers: recently exempted from
+  510(k) requirements (Federal Register, June 2025)
+- Infrared thermometers WITH telethermographic functions: still require
+  510(k) because these include newer technology requiring additional testing
+- For a NICU thermal imaging system: would likely require 510(k) at minimum,
+  potentially as Class II device with special controls
+
+EU/CE MARKING UNDER MDR 2017/745:
+- Medical Device Regulation (MDR) fully applicable since May 2021
+- Infrared thermometers: typically Class IIa (measuring devices)
+- Requirements: Quality Management System (ISO 13485), technical
+  documentation (Annexes II & III), clinical evaluation, Notified Body
+  assessment (for Class IIa and above), EU Declaration of Conformity,
+  Unique Device Identifier (UDI), post-market surveillance
+- Clinical Evaluation Report (CER) required
+- For novel NICU thermal monitoring: may need clinical investigation data
+
+================================================================================
+9. COST-EFFECTIVENESS & LOW-RESOURCE SETTINGS
+================================================================================
+
+PAPER 16:
+Title: Evaluation of a continuous neonatal temperature monitor for
+       low-resource settings: a device feasibility pilot study
+Authors: (Multiple authors)
+Year: 2020
+Journal: BMJ Paediatrics Open, 4(1), e000668
+Key Findings: Low-cost continuous neonatal temperature monitor (NTM)
+developed for low-resource settings meets ISO 80601-2-56 standards for
+accuracy. The NTM has potential to decrease hypothermia burden in low-resource
+settings by providing real-time temperature measurement. Portability allows
+continuous monitoring during Kangaroo Mother Care. Preterm infants have 28%
+higher risk of death for every 1C drop in admission temperature to NICU.
+DOI: 10.1136/bmjpo-2020-000668
+Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC7228652/
+
+COST COMPARISON (approximate, from literature):
+- Single-use skin temperature probe: $5-15 per probe
+- Continuous wired thermistor system: $500-2,000 per unit
+- FLIR Lepton (uncooled microbolometer): ~$200 per camera
+- FLIR SC640 (research-grade uncooled): ~$10,000-20,000
+- Cooled MWIR camera (research-grade): ~$30,000-100,000+
+- Optris PI series (industrial uncooled): ~$3,000-8,000
+- "Smart" incubator with integrated thermal control: part of incubator
+  cost ($15,000-50,000+)
+
+================================================================================
+10. IR BAND COMPARISON (LWIR vs MWIR vs SWIR) FOR NEONATAL USE
+================================================================================
+
+LWIR (Long-Wave Infrared, 8-14 um):
+- Sensor: uncooled microbolometer (e.g., vanadium oxide, amorphous silicon)
+- Cost: lowest (consumer cameras available)
+- Peak emission of human body (~37C) falls in this range (Wien's law peak ~9.3 um)
+- Best for ambient/body temperature measurement
+- BLOCKED by Plexiglas/PMMA incubator hoods (major limitation)
+- Transmitted by polyethylene (PE) film (~92-94%)
+- Most widely used in neonatal thermal imaging studies
+- Examples: FLIR Lepton, FLIR SC640, Optris PI series
+
+MWIR (Mid-Wave Infrared, 3-5 um):
+- Sensor: cooled InSb or HgCdTe detectors
+- Cost: high ($30,000-100,000+)
+- Better spatial resolution than LWIR
+- Also blocked by Plexiglas, but some glass/crystal materials transmit
+- Higher sensitivity to temperature differences
+- Used in some research studies (Abbas/Leonhardt group)
+- Requires cryogenic cooling = bulky, noisy, power-hungry
+- Not practical for routine clinical NICU use currently
+
+SWIR (Short-Wave Infrared, 0.9-1.7 um):
+- Sensor: InGaAs
+- Detects reflected IR, not emitted thermal radiation
+- NOT suitable for body temperature measurement
+- Could be useful for imaging through certain materials
+- Not relevant for thermal monitoring of neonates
+
+RECOMMENDATION FROM LITERATURE:
+LWIR with uncooled microbolometer sensors is the consensus choice for
+clinical NICU thermal imaging due to cost, size, and adequate sensitivity
+for body temperature ranges. The Plexiglas challenge is addressed through
+PE window modifications or open-bed monitoring.
+
+================================================================================
+SUMMARY OF KEY CAMERA MODELS USED IN NICU RESEARCH
+================================================================================
+
+| Camera Model       | Type   | Band | Resolution | Approx Cost | Studies |
+|-------------------|--------|------|------------|-------------|---------|
+| FLIR SC640        | Uncooled| LWIR | 640x480    | $10-20K     | Knobel-Dail 2017 |
+| FLIR Lepton       | Uncooled| LWIR | 80x60/160x120 | $200    | Lorato 2020 |
+| Optris PI series  | Uncooled| LWIR | 382x288+   | $3-8K       | Abbas 2014 |
+| FLIR A-series     | Uncooled| LWIR | Various    | $5-15K      | Multiple studies |
+| Various cooled    | Cooled  | MWIR | High       | $30-100K+   | Research only |
+
+================================================================================
+REFERENCES (FULL LIST)
+================================================================================
+
+1. Topalidou A, Ali N, Sekulic S, Downe S. (2019). BMC Pregnancy Childbirth, 19, 381.
+   DOI: 10.1186/s12884-019-2533-y
+
+2. AlZubaidi AK, et al. (2018). Methods Protoc, 1(4), 39.
+   DOI: 10.3390/mps1040039
+
+3. Knobel-Dail RB, et al. (2017). J Therm Biol, 69, 118-123.
+   DOI: 10.1016/j.jtherbio.2017.06.007
+
+4. Heimann K, et al. (2013). J Perinat Med, 41(5), 613-620.
+   DOI: 10.1515/jpm-2012-0239
+
+5. Lorato I, et al. (2020). Biomed Opt Express, 11(9), 4950-4964.
+   DOI: 10.1364/BOE.397188
+
+6. Abbas AK, Leonhardt S. (2014). BMC Med Imaging, 14, 9.
+   DOI: 10.1186/1471-2342-14-9
+
+7. Abbas AK, et al. (2012). Infrared Phys Technol, 55(6), 538-548.
+   DOI: 10.1016/j.infrared.2012.07.001
+
+8. Hamada T, et al. (2022). Ann Biomed Eng, 50(10), 1257-1267.
+   DOI: 10.1007/s10439-022-02937-w
+
+9. Zhang Y, Song R, et al. (2025). Biomed Opt Express, 16(3), 965.
+   DOI: 10.1364/BOE.547131
+
+10. Lyra S, et al. (2022). Med Biol Eng Comput, 60(7), 1887-1901.
+    DOI: 10.1007/s11517-022-02561-9
+
+11. Abbas AK, et al. (2011). Biomed Eng Online, 10, 93.
+    DOI: 10.1186/1475-925X-10-93
+
+12. Morimoto N, et al. (2024). Sci Rep, 14, 11143.
+    DOI: 10.1038/s41598-024-60718-y
+
+13. (2019). Infrared Phys Technol - Health status detection w/ deep CNNs.
+
+14. (2020). BMJ Paediatr Open, 4(1), e000668.
+    DOI: 10.1136/bmjpo-2020-000668
+
+15. (2024). Front Pediatr, 12, 1442753 - Emerging innovations review.
+
+16. (2022). J Clin Monit Comput - Non-contact respiratory rate pilot study.
+
+================================================================================
+END OF DOCUMENT
+================================================================================

@@ -1,0 +1,400 @@
+================================================================================
+THERMAL/INFRARED IMAGING IN NEONATAL PHOTOTHERAPY, JAUNDICE, AND SKIN CARE
+Literature Review — Compiled March 2026
+================================================================================
+
+This document summarizes published research on using thermal/infrared cameras
+during phototherapy, jaundice management, and skin-related conditions in neonates.
+
+
+================================================================================
+1. SKIN TEMPERATURE MONITORING DURING PHOTOTHERAPY FOR NEONATAL JAUNDICE
+================================================================================
+
+PAPER 1
+-------
+Title:    Effect of Phototherapy on Thermal Environment of the Newborn
+Authors:  Smales OR
+Year:     1978
+Journal:  Archives of Disease in Childhood, 53(2), 172-174
+DOI:      10.1136/adc.53.2.172
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC1545343/
+
+Key Findings:
+Oxygen consumption was studied in 40 newborn babies undergoing phototherapy for
+hyperbilirubinaemia, both nursed in incubators and open cots. Exposure to
+phototherapy caused a rise in temperature at the mattress surface. This was one
+of the earliest studies demonstrating that phototherapy alters the thermal
+environment around the neonate.
+
+
+PAPER 2
+-------
+Title:    Responsiveness of Cutaneous Vasculature to Thermal Stimulation
+          During Phototherapy in Neonatal Jaundice
+Authors:  Pezzati M, Biagiotti R, Vangi V, Lombardi E, Wiechmann L, Rubaltelli FF
+Year:     1999
+Journal:  Acta Paediatrica, 88(10), 1096-1100
+DOI:      10.1111/j.1651-2227.1999.tb00993.x
+Link:     https://pubmed.ncbi.nlm.nih.gov/10485311/
+
+Key Findings:
+During open-bed phototherapy, skin blood flow increased significantly by ~70%,
+without any significant change in skin or rectal temperature. The study examined
+vasoregulatory reactions to dynamic changes in local skin temperature during
+phototherapy using thermal stimulation with warm and cool air currents applied
+to infants with physiological jaundice.
+
+
+================================================================================
+2. THERMAL EFFECTS OF LED vs CONVENTIONAL PHOTOTHERAPY ON NEONATAL SKIN
+================================================================================
+
+PAPER 3
+-------
+Title:    Body Temperature Changes of Newborns Under Fluorescent Versus LED
+          Phototherapy
+Authors:  Enver C, Gursoy T, Ovali F
+Year:     2013
+Journal:  Indian Journal of Pediatrics, 81(8), 751-754
+DOI:      10.1007/s12098-013-1209-2
+Link:     https://pubmed.ncbi.nlm.nih.gov/24037476/
+
+Key Findings:
+LED phototherapy of >=60 uW/cm2/nm intensity significantly increased body
+temperature in hyperbilirubinemic newborns, whereas LED phototherapy at low
+irradiances and conventional phototherapy with blue fluorescent light did not
+cause significant hyperthermia. Mean body temperature was 36.7+/-0.1C in the
+conventional fluorescent group, 36.6+/-0.2C in low-intensity LED, and
+37.7+/-0.2C in high-intensity LED group.
+
+
+PAPER 4
+-------
+Title:    Heating of Newborn Infants Due to Blue Light-Emitting Diode
+          Fibreoptic Phototherapy Pads
+Authors:  Ng PL, Carlisle T, Ly M, Morris SA
+Year:     2017
+Journal:  Neonatology, 112(2), 103-109
+DOI:      10.1159/000464318
+Link:     https://pubmed.ncbi.nlm.nih.gov/28445880/
+
+Key Findings:
+LED fibreoptic phototherapy pads are heated by high-intensity blue light, and
+the thermal environment and temperature of babies should be monitored closely
+during LED fibreoptic phototherapy. A temperature probe placed between the skin
+and the pad will not accurately reflect core temperature during fibreoptic
+phototherapy, raising concerns about undetected overheating.
+
+
+PAPER 5
+-------
+Title:    Optimization of the Incubator Air Temperature During LED Phototherapy
+          Treatment for the Preterm Infant
+Authors:  Yassin FC, Delanaud S, Szcrupak C, et al.
+Year:     2021
+Journal:  European Journal of Pediatrics, 180, 277-281
+DOI:      10.1007/s00431-020-03724-2
+Link:     https://pubmed.ncbi.nlm.nih.gov/32594245/
+
+Key Findings:
+Phototherapy treatment increased the mean incubator roof temperature by 2.9C
+(p<0.001) and the incubator air temperature by 1C (p<0.001). Analytical
+calorimetry was used to calculate the additional energy received during
+phototherapy and determine optimal incubator air temperature for thermoneutrality.
+Optimal air temperature settings during phototherapy should be 0.51 to 1.25C
+lower than standard references, for preterm infants weighing 500 to 2000g.
+
+
+================================================================================
+3. INFRARED THERMOGRAPHY IN NEONATAL THERMOREGULATION AND SKIN ASSESSMENT
+================================================================================
+
+PAPER 6
+-------
+Title:    Neonatal Skin Temperature Distribution Using Infra-Red Colour
+          Thermography
+Authors:  Clark RP, Stothers JK
+Year:     1980
+Journal:  Journal of Physiology, 302, 323-333
+DOI:      10.1113/jphysiol.1980.sp013245
+Link:     https://pubmed.ncbi.nlm.nih.gov/7411454/
+
+Key Findings:
+One of the earliest studies using infrared colour thermography to map neonatal
+skin temperature. Seven infants were studied in a modified temperature-controlled
+incubator. Linear regression showed that upper arm and upper thigh temperatures
+represented the mean value most closely, while upper abdomen and head were both
+warmer and less responsive to environmental change than the mean skin temperature.
+This foundational work established regional temperature mapping in neonates.
+
+
+PAPER 7
+-------
+Title:    Infrared Thermography for Detailed Registration of Thermoregulation
+          in Premature Infants
+Authors:  Heimann K, Jergus K, Abbas AK, Heussen N, Leonhardt S, Orlikowsky T
+Year:     2013
+Journal:  Journal of Perinatal Medicine, 41(5), 613-620
+DOI:      10.1515/jpm-2012-0239
+Link:     https://pubmed.ncbi.nlm.nih.gov/23443261/
+
+Key Findings:
+Evaluated skin temperature by using different measurement positions with
+non-contact infrared thermography (IRT) in multiple body areas of preterm
+infants. Ten premature infants (median 27 weeks GA; age 36 days; weight 1322g)
+were studied, with measurements during incubator phases and standardized
+skin-to-skin care sessions. Demonstrated that IRT provides detailed information
+about regional temperature distribution and thermoregulatory responses in
+premature infants.
+
+
+PAPER 8
+-------
+Title:    Body Temperature in Premature Infants During the First Week of Life:
+          Exploration Using Infrared Thermal Imaging
+Authors:  Knobel-Dail RB, Holditch-Davis D, Sloane R, Guenther BD, Katz DJ
+Year:     2017
+Journal:  Journal of Thermal Biology, 69, 118-123
+DOI:      10.1016/j.jtherbio.2017.06.005
+Link:     https://pubmed.ncbi.nlm.nih.gov/29037371/
+
+Key Findings:
+Used infrared imaging to measure abdominal and foot temperature in extremely
+premature infants in heated, humid incubators. Measurements were successful and
+in close agreement with temperatures measured by skin thermistors (validated
+using Bland-Altman analysis). This is significant because the insufficiently
+keratinized epidermal barrier of premature skin makes the attachment of
+traditional sensors difficult, making non-contact IRT particularly valuable.
+
+
+PAPER 9
+-------
+Title:    Thermoregulation and Thermography in Neonatal Physiology and Disease
+Authors:  Knobel RB, Guenther BD, Rice HE
+Year:     2011
+Journal:  Biological Research for Nursing, 13(3), 274-282
+DOI:      10.1177/1099800411403467
+Link:     https://pubmed.ncbi.nlm.nih.gov/21586499/
+
+Key Findings:
+Comprehensive review of thermoregulation physiology in neonates and the
+potential of infrared thermography as a clinical tool. Infrared thermography
+can detect pathological conditions involving inflammatory responses and can
+provide visual thermal maps from major body parts. The review established the
+theoretical and practical framework for using thermography in neonatal
+physiology and disease detection.
+
+
+================================================================================
+4. RECENT ADVANCES: HIGH-ACCURACY IRT AND CONTINUOUS MONITORING IN NICU
+================================================================================
+
+PAPER 10
+--------
+Title:    Infrared Thermography with High Accuracy in a Neonatal Incubator
+Authors:  Hamada K, Hirakawa E, Asano H, Hayashi H, Mine T, Ichikawa T, Nagata Y
+Year:     2022
+Journal:  Annals of Biomedical Engineering, 50(5), 529-539
+DOI:      10.1007/s10439-022-02937-w
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC8890465/
+
+Key Findings:
+Addressed the critical challenge that IRT generally has insufficient accuracy for
+medical use inside incubators. The proposed method improved the percentage of data
+with mean absolute error (MAE) <0.3C to 93.1% compared to 4.2% using the standard
+method. Two of three IRTs achieved MAE <0.1C under all conditions, providing high
+accuracy suitable for both point measurements and continuous monitoring.
+
+
+PAPER 11
+--------
+Title:    Continuous Monitoring Using Thermography Can Capture the Heat
+          Oscillations Maintaining Body Temperature in Neonates
+Authors:  Morimoto A, Nakamura S, Koyano K, et al.
+Year:     2024
+Journal:  Scientific Reports, 14, Article 10449
+DOI:      10.1038/s41598-024-60718-y
+Link:     https://www.nature.com/articles/s41598-024-60718-y
+
+Key Findings:
+Used contactless infrared thermography to measure skin temperature every 15
+seconds in neonates within an incubator. Analyzed thermal data from 27 neonates
+(32 measurements), extracting two frequency components using the Savitzky-Golay
+method. Demonstrated that continuous thermographic monitoring can capture
+spontaneous thermal metabolism and heat oscillations, suggesting a role for
+assessing thermoregulatory maturity in neonates.
+
+
+PAPER 12
+--------
+Title:    Thermal Imaging-Based Core Peripheral Temperature Difference
+          Measurement for Neonatal Monitoring in the NICU
+Authors:  Zhang Y, Song D, et al.
+Year:     2025
+Journal:  Biomedical Optics Express, 16(3), 965
+DOI:      (see link)
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC11919349/
+
+Key Findings:
+Proposed a thermal infrared (TIR)-based approach enabling non-contact, fully
+automatic, and continuous core-peripheral temperature difference (CPTD) measurement
+for neonates. A prospective study involving 40 preterm infants in a NICU
+demonstrated feasibility of continuous, fully-automatic CPTD monitoring using deep
+learning (high-resolution Transformer architecture). CPTD is a key biomarker for
+assessing hemodynamic status and serves as an early warning indicator of potential
+shock and severe infection.
+
+
+================================================================================
+5. AI AND DEEP LEARNING WITH NEONATAL THERMAL IMAGING
+================================================================================
+
+PAPER 13
+--------
+Title:    Health Status Detection of Neonates Using Infrared Thermography and
+          Deep Convolutional Neural Networks
+Authors:  Ornek AH, Ceylan M, Ervural S
+Year:     2019
+Journal:  Infrared Physics & Technology, 103, Article 103044
+DOI:      10.1016/j.infrared.2019.103044
+Link:     https://www.sciencedirect.com/science/article/abs/pii/S1350449519303123
+
+Key Findings:
+First study to combine IRT and deep convolutional neural networks (CNNs) for
+detecting health status of neonates. Neonatal thermal images were taken in the
+NICU of Selcuk University (Konya, Turkey) over a one-year period. The approach
+demonstrated the potential for automated, non-contact health assessment of
+neonates using thermal imaging combined with machine learning.
+
+
+================================================================================
+6. SCOPING REVIEW: COMPREHENSIVE OVERVIEW OF THERMAL IMAGING IN NEONATAL CARE
+================================================================================
+
+PAPER 14
+--------
+Title:    Thermal Imaging Applications in Neonatal Care: A Scoping Review
+Authors:  Rambaud-Althaus C, et al. (multiple authors)
+Year:     2019
+Journal:  BMC Pregnancy and Childbirth, 19, Article 388
+DOI:      10.1186/s12884-019-2533-y
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC6814124/
+
+Key Findings:
+Comprehensive scoping review examining thermal imaging across all neonatal care
+applications. From 442 search hits, 21 studies met inclusion criteria. A
+significant proportion (n=9) were published in the most recent 8 years, showing
+growing research interest. The review highlighted that although thermal imaging
+in neonatal care began in the 1970s with promising results, no large prospective
+studies have yet examined both benefits and barriers to clinical adoption.
+Thermal imaging is identified as a completely non-invasive and non-contact method
+of assessing emitted temperature, but not yet a standard method for neonatal
+monitoring.
+
+
+================================================================================
+7. INFRARED VEIN VISUALIZATION FOR PERIPHERAL VENOUS ACCESS IN NEONATES
+================================================================================
+
+PAPER 15
+--------
+Title:    Infrared Vein Visualisation Devices for Ease of Intravenous Access in
+          Children: Hope Versus Hype
+Authors:  (multiple authors)
+Year:     2023
+Journal:  Anaesthesiology Intensive Therapy (AIT)
+DOI:      (see link)
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC10158443/
+
+Key Findings:
+Reviewed the evidence on infrared vein visualization devices in pediatric and
+neonatal populations. Near-infrared light allows visualization of small (0.2mm)
+and superficial (up to 8mm) veins. Most studies did not demonstrate major impact
+in the general pediatric population, though the devices may be beneficial in
+children with difficult intravenous access. A limitation is that the 2D display
+prevents estimation of vessel depth.
+
+
+PAPER 16
+--------
+Title:    Efficacy of Infrared Vein Visualization Versus Standard Technique for
+          Peripheral Venous Cannulation in Infant and Toddler Populations:
+          A Randomized Study
+Authors:  (multiple authors)
+Year:     2023
+Journal:  Children (MDPI), 10(10), 1680
+DOI:      (see link)
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC10605772/
+
+Key Findings:
+Randomized study examining efficacy of infrared vein visualization in infants and
+toddlers. The vein finder group had significantly lower pain scores and shorter
+crying durations, with improved behavioural states including longer durations in
+deep sleep and reduced active alert states. However, success rate improvement was
+not statistically significant across the general population studied.
+
+
+================================================================================
+SUMMARY OF IDENTIFIED RESEARCH GAPS
+================================================================================
+
+Based on this literature search, the following areas have LIMITED or NO published
+research specifically using thermal/infrared cameras:
+
+1. SKIN INTEGRITY ASSESSMENT VIA THERMAL IMAGING IN NEONATES
+   - No studies found specifically using thermal cameras to detect or monitor
+     medical adhesive-related skin injuries (MARSI) in neonates
+   - MARSI is a well-documented problem (9.25-41.5% incidence in NICU), but
+     thermal imaging has not been applied to this use case
+
+2. DIAPER DERMATITIS DETECTION
+   - No published studies found using thermal cameras for early detection of
+     diaper dermatitis or skin breakdown in the diaper area of neonates
+   - This represents an unexplored application area
+
+3. SKIN MATURATION ASSESSMENT VIA THERMOGRAPHY
+   - While premature infant thermoregulation is well studied with IRT, no
+     studies specifically use thermal imaging to assess epidermal maturation
+     or barrier function development over time
+
+4. BREAST MILK TEMPERATURE MONITORING
+   - Only consumer products (MilkChecker, Coroflo) exist; no published
+     clinical research on using thermal cameras for breast milk temperature
+     assessment during feeding
+
+5. REAL-TIME THERMAL MONITORING DURING PHOTOTHERAPY
+   - While the thermal effects of phototherapy are documented, no studies
+     have proposed or tested a continuous thermal imaging surveillance system
+     specifically for monitoring neonatal temperature during phototherapy
+
+These gaps represent significant opportunities for NeoTherm innovation.
+
+
+================================================================================
+RELEVANCE TO NEOTHERM PROJECT
+================================================================================
+
+Key takeaways for NeoTherm development:
+
+- PHOTOTHERAPY THERMAL RISK IS REAL: High-intensity LED phototherapy (>=60
+  uW/cm2/nm) significantly increases body temperature. Incubator air temp
+  should be reduced by 0.5-1.25C during phototherapy. Continuous thermal
+  monitoring during phototherapy is an unmet clinical need.
+
+- IRT ACCURACY IN INCUBATORS IS ACHIEVABLE: Hamada et al. (2022) achieved
+  MAE <0.1C inside incubators with proper calibration methods, validating
+  the technical feasibility of NeoTherm's approach.
+
+- NON-CONTACT IS CRITICAL: Premature neonatal skin is insufficiently
+  keratinized, making sensor attachment difficult and potentially injurious.
+  Thermal cameras eliminate this problem entirely.
+
+- SKIN CONDITION DETECTION IS AN UNTAPPED OPPORTUNITY: No published research
+  applies thermal imaging to MARSI, diaper dermatitis, or skin maturation
+  monitoring in neonates -- all potential NeoTherm differentiators.
+
+- CPTD MONITORING FOR SEPSIS: The 2025 Zhang et al. paper validates
+  automated core-peripheral temperature difference monitoring using deep
+  learning + thermal cameras for early sepsis detection in NICU -- directly
+  aligned with NeoTherm's vision.

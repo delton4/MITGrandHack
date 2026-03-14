@@ -1,0 +1,291 @@
+================================================================================
+THERMAL/INFRARED IMAGING FOR CARDIOVASCULAR & HEMODYNAMIC MONITORING IN NEONATES
+Published Research Papers - Compiled 2026-03-14
+================================================================================
+
+-------------------------------------------------------------------------------
+PAPER 1: Hemodynamic Shock Prediction from Thermal Images (Foundational ML Paper)
+-------------------------------------------------------------------------------
+Title: Predicting Hemodynamic Shock from Thermal Images using Machine Learning
+Authors: Nagori A, Dhingra LS, Bhatnagar A, Lodha R, Tavpritesh S
+Year: 2019
+Journal: Scientific Reports (Nature), 9, Article 91
+DOI: 10.1038/s41598-018-36586-8
+Link: https://www.nature.com/articles/s41598-018-36586-8
+
+Key Findings:
+- Demonstrated an affordable, non-invasive, non-contact thermal imaging system for
+  automated shock detection and prediction in a pediatric ICU of a tertiary care hospital.
+- Used 539 thermal images (253 with concomitant intra-arterial blood pressure) and
+  histogram of oriented gradient (HOG) features for ML-based region-of-interest
+  segmentation achieving 96% agreement with a human expert.
+- Center-to-periphery temperature difference + pulse rate fed into a generalized linear
+  mixed-effects model achieved AUC of 75% at 0 hours (classification), 77% at 3 hours,
+  and 69% at 12 hours (prediction).
+
+-------------------------------------------------------------------------------
+PAPER 2: Deep Learning on Thermal Videos for Shock Prediction (Advanced Follow-up)
+-------------------------------------------------------------------------------
+Title: Early Prediction of Hemodynamic Shock in Pediatric Intensive Care Units
+       With Deep Learning on Thermal Videos
+Authors: Vats V, Nagori A, Singh P, Dutt R, Bandhey H, Wason R, Lodha R, Sethi T
+Year: 2022
+Journal: Frontiers in Physiology, 13, Article 862411
+DOI: 10.3389/fphys.2022.862411
+Link: https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2022.862411/full
+
+Key Findings:
+- Advanced noncontact thermal imaging for continuous hemodynamic shock monitoring
+  using 103,936 frames from 406 videos recorded longitudinally on 22 pediatric patients.
+- Deep learning (LSTM models) extracted Center-to-Peripheral Difference (CPD) from
+  thermal videos and predicted shock status up to 6 hours in advance.
+- Best AUC-ROC of 0.81 +/- 0.06 and AUC-PR of 0.78 +/- 0.05 at 5-hour prediction
+  horizon, providing sufficient lead time for clinical intervention.
+- Used low-cost Seek Thermal Compact camera (resolution 206x156 thermal pixels),
+  demonstrating feasibility with frugal open-source technology.
+
+-------------------------------------------------------------------------------
+PAPER 3: Multi-Model Thermal Gradient Shock Prediction (Latest ML Approach)
+-------------------------------------------------------------------------------
+Title: Predicting Shock in Pediatric Patients Through Thermal Gradients and
+       Machine Learning: A Multi-Model Approach
+Authors: Espinoza Caro RA, Fajardo J
+Year: 2026
+Journal: IEEE Latin America Transactions, Volume 24, No. 2, pp. 144-152
+DOI: 10.1109/TLA.2026.10224 (approximate)
+Link: https://latamt.ieeer9.org/index.php/transactions/article/view/10224
+
+Key Findings:
+- Evaluated thermal gradients (abdomen-to-foot temperature difference) as non-invasive
+  physiological markers for predicting shock in pediatric patients.
+- Compared multiple ML models; best approach achieved AUC of 0.84, with sensitivity
+  of 0.90 and specificity of 0.74.
+- Demonstrated that combining thermal gradients with conventional vital signs (pulse rate,
+  age) enhances early risk stratification and supports clinical decision-making in PICU.
+
+-------------------------------------------------------------------------------
+PAPER 4: Hemodynamic Assessment Post-Cardiac Surgery via IRT (Cardiac Focus)
+-------------------------------------------------------------------------------
+Title: Hemodynamic assessment in children after cardiac surgery: A pilot study
+       on the value of infrared thermography
+Authors: Bridier A, Shcherbakova M, Kawaguchi A, Poirier N, Said C, Noumeir R, Jouvet P
+Year: 2023
+Journal: Frontiers in Pediatrics, 11, Article 1083962
+DOI: 10.3389/fped.2023.1083962
+Link: https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2023.1083962/full
+
+Key Findings:
+- Assessed correlation between thermal gradient obtained by IRT and oxygen extraction
+  ratio (O2ER) in 41 children (age 0-18) following cardiac surgery with cardiopulmonary bypass.
+- Found a significant but weak correlation between thermal gradient (inner canthus of
+  eye vs. peripheral temperature) and O2ER, suggesting potential for early detection
+  of low cardiac output syndrome.
+- Used FLIR One Pro thermal imaging camera; however, 46% of expected images were not
+  usable due to heat sources, obstruction, or temperature artifacts -- highlighting
+  practical challenges for clinical deployment.
+- Concluded IRT is promising for multimodal post-cardiac surgery monitoring but needs
+  validation in more severe patient populations.
+
+-------------------------------------------------------------------------------
+PAPER 5: Thermal Imaging-Based CPTD for Neonatal NICU Monitoring
+-------------------------------------------------------------------------------
+Title: Thermal imaging-based core peripheral temperature difference measurement
+       for neonatal monitoring in the NICU
+Authors: Zhang N, Song X, He J, Liang F, Yang J, Wang W
+Year: 2025
+Journal: Biomedical Optics Express, Volume 16, Issue 3, pp. 965-981
+DOI: 10.1364/BOE.549693
+Link: https://opg.optica.org/boe/abstract.cfm?uri=boe-16-3-965
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC11919349/
+
+Key Findings:
+- First clinical showcase of using a thermal infrared (TIR) camera for continuous,
+  non-contact, fully-automatic core-peripheral temperature difference (CPTD) monitoring
+  of preterm infants in a hospital NICU.
+- Leveraged deep learning to automatically identify chest-abdomen (core) and hand
+  (peripheral) regions in neonatal TIR videos with average precision of 76% (core)
+  and 85.5% (peripheral).
+- Prospective study of 40 preterm infants; demonstrated CPTD as a key biomarker
+  for hemodynamic status, with higher CPTD values correlating with circulatory disorders.
+- Addresses critical gap: traditional spot thermometer CPTD measurement cannot provide
+  continuous long-term automated monitoring.
+
+-------------------------------------------------------------------------------
+PAPER 6: Scoping Review of Thermal Imaging in Neonatal Care (Review Paper)
+-------------------------------------------------------------------------------
+Title: Thermal imaging applications in neonatal care: a scoping review
+Authors: Topalidou A, Ali N, Sekulic S, Downe S
+Year: 2019
+Journal: BMC Pregnancy and Childbirth, 19, Article 381
+DOI: 10.1186/s12884-019-2533-y
+Link: https://link.springer.com/article/10.1186/s12884-019-2533-y
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC6814124/
+
+Key Findings:
+- Comprehensive scoping review of 21 studies (from 442 initial hits) on thermal imaging
+  in neonatal care, with most studies having small cohorts (4-29 participants).
+- Identified five themes: general thermal physiology; heat loss and respiratory
+  monitoring; identification of internal pathologies (including NEC); other uses;
+  and technical concerns.
+- Highlighted that an infant who developed congestive heart failure demonstrated a
+  cooler chest area on thermal imaging, suggesting screening potential for cardiac
+  abnormalities.
+- Concluded thermal imaging is reliable and non-invasive for continuous neonatal
+  temperature monitoring but faces methodological challenges (incubators, radiant warmers).
+
+-------------------------------------------------------------------------------
+PAPER 7: Neonatal Health Status Detection using IRT + Deep CNNs
+-------------------------------------------------------------------------------
+Title: Health status detection of neonates using infrared thermography and deep
+       convolutional neural networks
+Authors: Ornek AH, Ceylan M, Ervural S
+Year: 2019
+Journal: Infrared Physics & Technology, 103, Article 103044
+DOI: 10.1016/j.infrared.2019.103044
+Link: https://www.sciencedirect.com/science/article/abs/pii/S1350449519303123
+
+Key Findings:
+- First study to combine IRT with deep CNNs for automated neonatal health status
+  classification (healthy vs. unhealthy) in a NICU setting.
+- Used 380-30,400 thermal images from 38 neonates at Selcuk University NICU over one
+  year; data augmentation improved classification accuracy from 84.5% to 90.9%.
+- Demonstrated that diseases and infections cause detectable local temperature
+  imbalances in neonates that can be captured by thermography and classified by AI,
+  enabling early-stage disease detection.
+
+-------------------------------------------------------------------------------
+PAPER 8: Thermoregulation and Thermography in Neonatal Physiology (Foundational)
+-------------------------------------------------------------------------------
+Title: Thermoregulation and Thermography in Neonatal Physiology and Disease
+Authors: Abbas AK, Heimann K, Jergus K, Orlikowsky T, Leonhardt S
+Year: 2012 (online 2011)
+Journal: Biological Research for Nursing, 14(4), pp. 338-348
+DOI: 10.1177/1099800411403467
+Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC3775585/
+
+Key Findings:
+- Foundational review of neonatal thermoregulation physiology and the role of infrared
+  thermography for non-contact thermal assessment.
+- Discussed how skin temperature patterns reflect underlying perfusion and hemodynamic
+  status, with peripheral vasoconstriction detectable through thermal gradients.
+- Established the scientific basis for using thermal imaging as a surrogate marker
+  for cardiovascular and hemodynamic assessment in neonates.
+
+-------------------------------------------------------------------------------
+PAPER 9: Infrared Thermography for Peripheral Perfusion in Septic Shock (Adult,
+         Methodologically Relevant)
+-------------------------------------------------------------------------------
+Title: Infrared Thermography Imaging for Assessment of Peripheral Perfusion in
+       Patients with Septic Shock
+Authors: (Multiple authors)
+Year: 2023
+Journal: PMC (peer-reviewed)
+DOI: See PMC link
+Link: https://pmc.ncbi.nlm.nih.gov/articles/PMC10295664/
+
+Key Findings:
+- IRT allows non-invasive evaluation of temperature distribution over a larger body
+  surface and permits evaluation of temperature gradients across extremities.
+- Cool skin and large skin temperature gradients were associated with more severe organ
+  failure and poor survival in septic shock patients.
+- Methodology directly applicable to neonatal populations: activation of sympathetic
+  nervous system during shock leads to peripheral vasoconstriction, reducing peripheral
+  temperature while core temperature remains stable -- detectable by thermal camera.
+
+-------------------------------------------------------------------------------
+PAPER 10: Capillary Refill Time Measurement Using Imaging Technology
+-------------------------------------------------------------------------------
+Title: Measurement of Capillary Refill Time (CRT) in Healthy Subjects Using a
+       Robotic Hand
+Authors: Kerr E, Coleman S, McGinnity TM, Shepherd A
+Year: 2018
+Journal: IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops,
+         Salt Lake City, UT, pp. 1372-1379
+DOI: N/A (Conference proceedings)
+Link: https://openaccess.thecvf.com/content_cvpr_2018_workshops/papers/w27/Kerr_Measurement_of_Capillary_CVPR_2018_paper.pdf
+
+Key Findings:
+- Developed a novel algorithm for objective CRT measurement using RGB camera and
+  biomimetic tactile fingertip sensors, applicable regardless of skin tone.
+- CRT is a key indicator of cardiovascular status; being able to accurately assess
+  peripheral perfusion could be life-saving in emergency settings.
+- While this paper used RGB rather than thermal cameras, it establishes the framework
+  for automated, objective CRT measurement -- thermal cameras could potentially offer
+  superior contrast for tracking reperfusion dynamics.
+
+-------------------------------------------------------------------------------
+PAPER 11: Emerging Innovations in Neonatal Non-Contact Monitoring (2024 Review)
+-------------------------------------------------------------------------------
+Title: Emerging innovations in neonatal monitoring: a comprehensive review of
+       progress and potential for non-contact technologies
+Authors: (Multiple authors)
+Year: 2024
+Journal: Frontiers in Pediatrics, 12, Article 1442753
+DOI: 10.3389/fped.2024.1442753
+Link: https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2024.1442753/full
+
+Key Findings:
+- Comprehensive review covering non-contact technologies for neonatal monitoring
+  including thermal infrared cameras for hemodynamic assessment.
+- TIR cameras offer significant benefits for NICU monitoring: rapid non-contact
+  temperature measurements, reduced cross-contamination risk, improved comfort,
+  and support for continuous 24/7 monitoring.
+- Neonates typically present with "cold shock" (elevated systemic vascular resistance,
+  low cardiac output, cold extremities) -- peripheral vasoconstriction identifiable
+  using center-to-peripheral temperature difference with thermal imaging.
+
+
+================================================================================
+SUMMARY TABLE
+================================================================================
+
+No. | First Author | Year | Focus Area                        | Key Metric
+----|-------------|------|-----------------------------------|------------------
+1   | Nagori      | 2019 | Shock prediction (ML)             | AUC 0.77 at 3h
+2   | Vats        | 2022 | Shock prediction (Deep Learning)  | AUC 0.81 at 5h
+3   | Espinoza    | 2026 | Shock prediction (Multi-model ML) | AUC 0.84
+4   | Bridier     | 2023 | Post-cardiac surgery hemodynamics | Weak correlation w/ O2ER
+5   | Zhang       | 2025 | Neonatal CPTD monitoring          | AP 76-85.5%
+6   | Topalidou   | 2019 | Scoping review (neonatal IRT)     | 21 studies reviewed
+7   | Ornek       | 2019 | Neonatal health classification    | 90.9% accuracy
+8   | Abbas       | 2012 | Thermoregulation physiology       | Foundational review
+9   | (Multiple)  | 2023 | Septic shock perfusion assessment | Temp gradients -> outcomes
+10  | Kerr        | 2018 | Capillary refill time measurement | Objective CRT method
+11  | (Multiple)  | 2024 | Non-contact neonatal monitoring   | Comprehensive review
+
+
+================================================================================
+KEY THEMES FOR NEOTHERM RELEVANCE
+================================================================================
+
+1. CONGENITAL HEART DISEASE SCREENING:
+   - No dedicated published study on thermal imaging for CHD screening exists yet.
+   - However, Topalidou (2019) noted a case where congestive heart failure produced
+     a cooler chest area on thermal imaging.
+   - Coarctation of the aorta produces upper-lower body temperature differences
+     (due to reduced blood flow distal to coarctation) -- this is a known clinical
+     sign but has NOT been studied with thermal cameras specifically. This represents
+     a NOVEL research opportunity for NeoTherm.
+
+2. HEMODYNAMIC SHOCK PREDICTION:
+   - Most developed area with 3 progressive papers (Nagori 2019 -> Vats 2022 ->
+     Espinoza 2026) showing improving ML performance (AUC 0.77 -> 0.81 -> 0.84).
+   - Core-to-peripheral temperature difference (CPTD/CPD) is the key biomarker.
+   - Low-cost cameras (Seek Thermal Compact ~$250) are sufficient.
+
+3. CARDIAC OUTPUT ESTIMATION:
+   - Bridier (2023) showed correlation between IRT thermal gradient and oxygen
+     extraction ratio (proxy for cardiac output) post-cardiac surgery.
+   - Weak but significant correlation suggests IRT alone insufficient -- needs
+     multimodal integration.
+
+4. CAPILLARY REFILL TIME:
+   - Objective measurement methods exist (Kerr 2018) but thermal cameras have not
+     been specifically validated for CRT in neonates. Another NOVEL opportunity.
+
+5. PERIPHERAL PERFUSION / VASCULAR RESISTANCE:
+   - Well-established that thermal imaging reflects peripheral perfusion status.
+   - Zhang (2025) demonstrated automated continuous CPTD monitoring in NICU.
+   - Directly applicable to NeoTherm's value proposition.
+
+================================================================================

@@ -1,0 +1,351 @@
+================================================================================
+THERMAL/INFRARED IMAGING FOR METABOLIC, ENDOCRINE, AND BROWN ADIPOSE TISSUE
+(BAT) ASSESSMENT IN NEONATES — RESEARCH PAPER COMPILATION
+================================================================================
+Date compiled: 2026-03-14
+================================================================================
+
+
+1. BMP8 AND ACTIVATED BROWN ADIPOSE TISSUE IN HUMAN NEWBORNS
+--------------------------------------------------------------------------------
+Authors:  Urisarri A, González-García I, Estévez-Salguero Á, Pata MP,
+          Milbank E, López N, Funcke J-B, Gerbert B, Perdomo G, Sonzogni SV,
+          Martínez-Sánchez N, Kühne H, López-Rivero A, et al.
+Year:     2021
+Journal:  Nature Communications, 12, 5274
+DOI:      https://doi.org/10.1038/s41467-021-25456-z
+
+Key findings:
+- Applied non-invasive infrared thermography (IRT) to investigate BAT-induced
+  thermogenesis in a cohort of 50 healthy human neonates, overcoming ethical
+  limitations of PET-CT or SPECT in newborns.
+- Demonstrated that BAT temperature (measured in the interscapular region)
+  correlates with core body temperature, and that a mild cold stimulus promotes
+  BAT activation in newborns.
+- Found that a single short-term cold stimulus during the first day of life
+  improves the body temperature adaptation to a subsequent cold event. Also
+  identified BMP8 as a molecular marker associated with BAT activation in
+  human neonates.
+
+SIGNIFICANCE FOR NEOTHERM: This is the landmark paper demonstrating that
+infrared thermography can non-invasively detect BAT activation in human
+newborns. It validates the fundamental premise that thermal cameras can
+assess metabolic thermogenic activity in neonates.
+
+
+2. AN UPDATED VIEW ON HUMAN NEONATAL THERMOGENESIS
+--------------------------------------------------------------------------------
+Authors:  González-García I, López-Rivero A, Funcke J-B, López M
+Year:     2022
+Journal:  Nature Reviews Endocrinology, 18, 212–223
+DOI:      https://doi.org/10.1038/s41574-022-00642-1
+
+Key findings:
+- Comprehensive review of mechanisms of non-shivering thermogenesis in human
+  neonates, centered on brown adipose tissue (BAT) as the primary thermogenic
+  organ after birth.
+- Discusses how infrared thermography is a suitable non-invasive technique that
+  can be safely applied to human babies to investigate BAT thermogenesis.
+- Highlights that newborns' high surface-area-to-volume ratio increases heat
+  loss, making BAT-mediated thermogenesis critical for survival, and that IRT
+  can monitor this process in real time.
+
+SIGNIFICANCE FOR NEOTHERM: Provides the authoritative endocrinological
+framework linking BAT activation, metabolic rate, and thermal imaging in
+neonates. Directly supports the scientific basis for using thermal cameras
+to assess metabolic/endocrine status in newborns.
+
+
+3. USE OF INFRARED THERMOGRAPHIC CALORIMETRY TO DETERMINE ENERGY EXPENDITURE
+   IN PRETERM INFANTS
+--------------------------------------------------------------------------------
+Authors:  Heimann K, Peschgens T, Kwiecien R, Stanzel S, Hoernchen H,
+          Merz U
+Year:     2000
+Journal:  American Journal of Clinical Nutrition, 71(4), 969–977
+DOI:      https://doi.org/10.1093/ajcn/71.4.969
+PubMed:   10731505
+
+Key findings:
+- Validated infrared thermographic calorimetry (ITC) against respiratory
+  indirect calorimetry (IC) in 10 healthy preterm infants over 3.5–5.5 hour
+  study periods.
+- ITC measures mean infant body surface temperature via IR camera and uses heat
+  loss theory to calculate radiant, convective, evaporative, and conductive
+  heat losses to determine total energy expenditure.
+- Concluded that ITC is an accurate, non-invasive method for measurement of
+  heat loss and energy expenditure in healthy preterm infants, offering a
+  useful clinical and research tool.
+
+SIGNIFICANCE FOR NEOTHERM: Directly demonstrates that infrared cameras can
+quantify metabolic energy expenditure in preterm neonates. This is the
+foundational validation study for using thermal imaging as a calorimetric
+tool in the NICU.
+
+
+4. INFRARED THERMOGRAPHIC CALORIMETRY APPLIED TO PRETERM INFANTS UNDER
+   RADIANT WARMERS
+--------------------------------------------------------------------------------
+Authors:  Heimann K, Peschgens T, Merz U
+Year:     1999
+Journal:  Journal of Thermal Biology, 24(1), 47–52
+DOI:      https://doi.org/10.1016/S0306-4565(98)00044-8
+
+Key findings:
+- Applied infrared thermographic calorimetry to 10 preterm infants (mean
+  weight 1.88 ± 1.29 kg) under radiant warmers, measuring mean energy
+  expenditure of 3.08 ± 0.55 kcal/kg/h.
+- When the radiant warmer was removed for 2.5 minutes, heat loss increased to
+  6.50 ± 1.07 kcal/kg/h and mean body temperature dropped by 1.0 ± 0.3°C.
+- Developed a correction method for the infrared interference caused by radiant
+  warmers, subtracting the warmer's power density output from the measured
+  radiant flux.
+
+SIGNIFICANCE FOR NEOTHERM: Shows the practical application of thermal imaging
+calorimetry in real NICU conditions (under radiant warmers) and quantifies
+how rapidly preterm infants lose heat when warming is interrupted — directly
+relevant to cold stress detection.
+
+
+5. BODY TEMPERATURE IN PREMATURE INFANTS DURING THE FIRST WEEK OF LIFE:
+   EXPLORATION USING INFRARED THERMAL IMAGING
+--------------------------------------------------------------------------------
+Authors:  Knobel-Dail RB, Holditch-Davis D, Sloane R, Guenther BD, Katz AR
+Year:     2017
+Journal:  Journal of Thermal Biology, 69, 118–123
+DOI:      https://doi.org/10.1016/j.jtherbio.2017.06.005
+PubMed:   29037371; PMC5657603
+
+Key findings:
+- Studied 30 VLBW (very low birth weight) infants using infrared thermography
+  (FLIR SC640 camera) in heated, humid incubators over their first two weeks
+  of life.
+- Confirmed that abdominal and foot temperatures measured by IRT closely agree
+  with skin thermistor measurements (validated via Bland-Altman technique) in
+  extremely premature infants (23–28 weeks gestational age).
+- Discovered that very premature infants exhibit abnormal thermal patterns:
+  foot temperatures remain warmer than abdominal temperatures for the first
+  12 hours of life, suggesting impaired vasomotor control — a pattern that
+  may predict adverse clinical outcomes.
+
+SIGNIFICANCE FOR NEOTHERM: Demonstrates thermal maturation patterns in preterm
+infants and shows that IRT can detect abnormal thermoregulatory patterns that
+may serve as early warning indicators of clinical deterioration.
+
+
+6. INFRARED THERMOGRAPHY FOR DETAILED REGISTRATION OF THERMOREGULATION IN
+   PREMATURE INFANTS
+--------------------------------------------------------------------------------
+Authors:  Heimann K, Jergus K, Abbas AK, Heussen N, Leonhardt S,
+          Orlikowsky T
+Year:     2013
+Journal:  Journal of Perinatal Medicine, 41(5), 613–620
+DOI:      https://doi.org/10.1515/jpm-2012-0239
+PubMed:   23443261
+
+Key findings:
+- Evaluated multi-site skin temperature using non-contact IRT in 10 premature
+  infants (median 27 weeks GA, weight 1322 g) across leg, back, arm, head,
+  and upper abdomen.
+- During transition from incubator to kangaroo (skin-to-skin) care, infants
+  cooled by a maximum of 0.62°C. From first to second kangaroo care session,
+  central temperatures (abdomen, back) were maintained while head and leg
+  temperatures rose distinctly.
+- Demonstrated that IRT provides more detailed spatial temperature information
+  than conventional contact sensors, revealing regional differences in
+  thermoregulation not detectable by standard monitoring.
+
+SIGNIFICANCE FOR NEOTHERM: Validates that IRT captures detailed regional
+thermoregulatory patterns in preterm infants that conventional sensors miss.
+Supports the concept that thermal imaging can monitor metabolic heat
+production across different body regions simultaneously.
+
+
+7. CONTINUOUS MONITORING USING THERMOGRAPHY CAN CAPTURE THE HEAT OSCILLATIONS
+   MAINTAINING BODY TEMPERATURE IN NEONATES
+--------------------------------------------------------------------------------
+Authors:  Morimoto A, Takahashi N, Kanda H, et al.
+Year:     2024
+Journal:  Scientific Reports, 14, 10870
+DOI:      https://doi.org/10.1038/s41598-024-60718-y
+PubMed:   38714775; PMC11076520
+
+Key findings:
+- Used infrared thermography to measure skin temperature every 15 seconds in
+  27 neonates inside incubators, extracting two frequency components of heat
+  oscillation (Components A and B).
+- Body temperature in infants is balanced between heat production from
+  metabolism and heat transfer to the environment; IRT can capture the dynamic
+  oscillatory patterns that maintain thermal homeostasis.
+- Demonstrated that contactless IRT can assess spontaneous thermal metabolism
+  in vulnerable neonates, revealing metabolic cycling patterns not visible
+  through conventional intermittent temperature measurements.
+
+SIGNIFICANCE FOR NEOTHERM: Demonstrates that continuous thermal monitoring
+captures dynamic metabolic heat production patterns in neonates. Supports
+the use of thermal cameras for ongoing assessment of metabolic status in
+NICU patients.
+
+
+8. THERMAL IMAGING APPLICATIONS IN NEONATAL CARE: A SCOPING REVIEW
+--------------------------------------------------------------------------------
+Authors:  Topalidou A, Ali N, Sekulic S, Downe S
+Year:     2019
+Journal:  BMC Pregnancy and Childbirth, 19, 381
+DOI:      https://doi.org/10.1186/s12884-019-2533-y
+PubMed:   31651266; PMC6814124
+
+Key findings:
+- Comprehensive scoping review of 21 studies on thermal imaging in neonatal
+  care. Identified five broad themes: (1) general thermal physiology,
+  (2) heat loss and respiratory monitoring, (3) identification of internal
+  pathologies (including NEC), (4) other uses, and (5) technical concerns.
+- Concluded that thermal imaging is a reliable, non-invasive method for
+  continuous monitoring of neonatal emitted temperature, with potential for
+  wellbeing assessment and diagnosis of pathologies including internal
+  abnormalities.
+- Noted that IRT is not yet a standard method for neonatal thermal monitoring
+  despite accumulating evidence supporting its clinical utility.
+
+SIGNIFICANCE FOR NEOTHERM: The most comprehensive review of neonatal thermal
+imaging applications. Confirms clinical potential while identifying that
+further research is needed for widespread clinical adoption — exactly the
+gap NeoTherm aims to fill.
+
+
+9. INFRARED THERMOGRAPHY IN NEWBORNS: THE FIRST HOUR AFTER BIRTH
+--------------------------------------------------------------------------------
+Authors:  Christidis I, Zotter H, Rosegger H, Engele H, Kurz R, Kerbl R
+Year:     2003
+Journal:  Gynäkologisch-geburtshilfliche Rundschau, 43(1), 31–35
+DOI:      https://doi.org/10.1159/000067168
+PubMed:   12499755
+
+Key findings:
+- Measured body surface temperature in 42 healthy full-term newborns within the
+  first hour after delivery using infrared thermography under several
+  environmental conditions (radiant heater, bathing, skin-to-skin contact).
+- Found that surface temperature immediately after birth shows a uniform whole-
+  body picture but is significantly lower than core temperature; peripheral
+  sites cool rapidly while trunk temperature is maintained.
+- Concluded that bathing in warm water leads to a more even temperature profile
+  and that radiant heaters and skin-to-skin contact are both effective methods
+  to prevent heat loss. IRT was validated as a simple and reliable tool for
+  neonatal skin temperature profiling.
+
+SIGNIFICANCE FOR NEOTHERM: Early validation study showing IRT can capture the
+dynamic thermoregulatory transition at birth, including BAT-mediated heat
+production patterns in the interscapular region.
+
+
+10. THERMOREGULATION AND THERMOGRAPHY IN NEONATAL PHYSIOLOGY AND DISEASE
+--------------------------------------------------------------------------------
+Authors:  Knobel RB, Guenther BD, Rice HE
+Year:     2011
+Journal:  Biological Research for Nursing, 13(3), 274–282
+DOI:      https://doi.org/10.1177/1099800411403467
+PubMed:   21586499; PMC3775585
+
+Key findings:
+- Described the development and application of IRT methodology for measuring
+  body temperature in neonates during the first month of life, examining
+  relationships between thermoregulation, perfusion, and disease.
+- Identified potential clinical applications: kangaroo care heat transfer,
+  body cooling for hypoxic-ischemic encephalopathy treatment, and early
+  detection of necrotizing enterocolitis through abdominal thermal patterns.
+- Established that IRT reveals perfusion-related temperature differentials
+  between central and peripheral body regions that may predict clinical
+  deterioration in premature infants.
+
+SIGNIFICANCE FOR NEOTHERM: Foundational methodological paper for neonatal
+IRT research. Establishes that thermal imaging can detect disease-related
+changes in perfusion and metabolism — supporting broader metabolic assessment
+applications.
+
+
+================================================================================
+ADDITIONAL RELEVANT PAPERS (not fully detailed above)
+================================================================================
+
+11. STRATEGIES FOR HYPOTHERMIA COMPENSATION IN ALTRICIAL AND PRECOCIAL
+    NEWBORN MAMMALS AND THEIR MONITORING BY INFRARED THERMOGRAPHY
+    Authors: Mota-Rojas D, Martínez-Burnes J, Villanueva-García D, et al.
+    Year: 2022
+    Journal: Veterinary Sciences, 9(5), 246
+    DOI: https://doi.org/10.3390/vetsci9050246
+    - Reviewed IRT monitoring of BAT thermogenesis in mammalian neonates,
+      including radiometric images from FLIR T1020 cameras showing temperature
+      differences in BAT-rich areas.
+
+12. FEASIBILITY OF USING INFRARED THERMAL IMAGING TO EXAMINE BROWN ADIPOSE
+    TISSUE IN INFANTS AGED 18 TO 25 MONTHS
+    Authors: Afsar RA, et al.
+    Year: 2021
+    Journal: (PubMed ID: 34781801)
+    - Demonstrated that cold exposure induces a thermal response suggestive of
+      BAT activity in infants, detectable by IRT.
+
+13. INFRARED THERMOGRAPHY WITH HIGH ACCURACY IN A NEONATAL INCUBATOR
+    Year: 2022
+    Journal: Annals of Biomedical Engineering
+    DOI: https://doi.org/10.1007/s10439-022-02937-w
+    PMC: 8890465
+    - Established improved calibration methods achieving 93.1% of measurements
+      with mean absolute error < 0.3°C inside neonatal incubators.
+
+14. BROWN FAT DETECTION BY INFRARED THERMOGRAPHY — AN INVALUABLE RESEARCH
+    METHODOLOGY WITH NOTEWORTHY UNCERTAINTIES
+    Authors: Leow MKS
+    Year: 2023
+    Journal: Endocrinology, Diabetes & Metabolism
+    DOI: https://doi.org/10.1002/edm2.378
+    - Mathematical analysis of uncertainties in IRT-based BAT detection;
+      confirms IRT is invaluable but notes need for standardized protocols.
+
+15. ON THE POSSIBILITY OF USING TEMPERATURE TO AID IN THYROID NODULE
+    INVESTIGATION
+    Year: 2020
+    Journal: Scientific Reports
+    DOI: https://doi.org/10.1038/s41598-020-78047-1
+    - While focused on adults, demonstrates that infrared thermography can
+      detect thyroid abnormalities via neck surface temperature changes,
+      with 50% sensitivity and 82% specificity. No neonatal thyroid screening
+      studies using IRT were found.
+
+
+================================================================================
+SUMMARY OF GAPS AND OPPORTUNITIES
+================================================================================
+
+WELL-ESTABLISHED EVIDENCE:
+- BAT activation detection via IRT in neonates (Urisarri et al. 2021)
+- Energy expenditure measurement via IRT calorimetry (Heimann et al. 2000)
+- Cold stress / thermoregulation monitoring in preterm infants (Knobel-Dail
+  et al. 2017; Heimann et al. 2013)
+- Thermal maturation patterns in preterm vs term infants (Knobel-Dail 2017;
+  Christidis 2003)
+- Continuous metabolic monitoring via thermal oscillations (Morimoto 2024)
+
+NOTABLE RESEARCH GAPS (opportunities for NeoTherm):
+1. THYROID SCREENING VIA NECK THERMOGRAPHY IN NEONATES: No published studies
+   found applying IRT specifically for neonatal thyroid function screening.
+   Adult thyroid nodule detection via IRT exists (50% sensitivity, 82%
+   specificity) but has not been translated to neonatal congenital
+   hypothyroidism screening.
+
+2. HYPOGLYCEMIA PREDICTION VIA THERMAL IMAGING: No direct studies linking
+   thermal camera data to neonatal blood glucose levels. Some emerging work
+   (HAPI-BELT system) uses camera + PPG sensors with deep learning to detect
+   hypoglycemia via proxy indicators (HR variability, respiratory patterns,
+   skin color changes) rather than direct thermal signatures.
+
+3. INTEGRATED METABOLIC-ENDOCRINE ASSESSMENT: No published system combines
+   BAT activation monitoring + energy expenditure estimation + metabolic
+   screening into a single thermal imaging platform for neonates.
+
+4. REAL-TIME AI-DRIVEN METABOLIC ALERTS: While continuous thermal monitoring
+   has been demonstrated, no published system uses machine learning on
+   continuous thermal data to generate real-time metabolic alerts in the NICU.
+
+These gaps represent significant innovation opportunities for NeoTherm.
+================================================================================

@@ -1,0 +1,521 @@
+================================================================================
+THERMAL/INFRARED CAMERAS FOR RESPIRATORY MONITORING, APNEA DETECTION,
+AND AIRWAY MANAGEMENT IN NEONATES — LITERATURE REVIEW
+================================================================================
+Compiled: 2026-03-14
+================================================================================
+
+TABLE OF CONTENTS
+-----------------
+1. Foundational Studies on Neonatal Respiratory Thermal Monitoring
+2. Apnea Detection and Classification (Obstructive vs Central)
+3. Multi-Camera and Advanced Algorithm Approaches
+4. Combined RGB-Thermal Imaging for Respiratory Rate
+5. Deep Learning / CNN Approaches for Respiratory Anomaly Detection
+6. Endotracheal Tube Temperature Monitoring via IRT
+7. Scoping / Comprehensive Reviews
+8. Summary of Key Gaps
+
+================================================================================
+1. FOUNDATIONAL STUDIES ON NEONATAL RESPIRATORY THERMAL MONITORING
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 1: Abbas et al. (2011)
+------------------------------------------------------------------------------
+Title:    "Neonatal non-contact respiratory monitoring based on real-time
+           infrared thermography"
+Authors:  Abbas AK, Heimann K, Jergus K, Orlikowsky T, Leonhardt S
+Year:     2011
+Journal:  BioMedical Engineering OnLine, 10:93
+DOI:      10.1186/1475-925X-10-93
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC3258209/
+
+Key Findings:
+- First study to apply infrared thermography-based respiratory monitoring
+  to a newborn infant population inside the NICU (previously only tested
+  on adults).
+- Respiration was successfully monitored based on a 0.3-0.5 degrees C
+  temperature difference between the inspiration and expiration phases at
+  the anterior naris (nostrils).
+- Used continuous wavelet transformation based on Daubechies wavelet
+  function to detect the breathing signal within the thermal image stream.
+- Demonstrated feasibility of non-contact respiratory monitoring in the
+  challenging NICU environment.
+
+------------------------------------------------------------------------------
+Paper 2: Pereira et al. (2017)
+------------------------------------------------------------------------------
+Title:    "Estimation of respiratory rate from thermal videos of preterm
+           infants"
+Authors:  Pereira CB, Heimann K, Venema B, Blazek V, Czaplik M, Leonhardt S
+Year:     2017
+Journal:  39th Annual International Conference of the IEEE Engineering in
+          Medicine and Biology Society (EMBC), pp. 3818-3821
+DOI:      10.1109/EMBC.2017.8037689
+Link:     https://ieeexplore.ieee.org/document/8037689/
+
+Key Findings:
+- Used temperature modulation around the nostrils over the respiratory cycle
+  to extract respiratory rate from preterm infants.
+- Incorporated a tracking algorithm to compensate for movement artifacts,
+  a key challenge in neonatal monitoring.
+- Served as an important early demonstration that thermal video processing
+  could be applied specifically to preterm infants in clinical settings.
+
+------------------------------------------------------------------------------
+Paper 3: Pereira et al. (2019)
+------------------------------------------------------------------------------
+Title:    "Noncontact Monitoring of Respiratory Rate in Newborn Infants
+           Using Thermal Imaging"
+Authors:  Pereira CB, Yu X, Goos T, Reiss I, Orlikowsky T, Heimann K,
+          Blazek V, Leonhardt S
+Year:     2019 (published online August 2018)
+Journal:  IEEE Transactions on Biomedical Engineering, Vol. 66, No. 4,
+          pp. 1105-1114
+DOI:      10.1109/TBME.2018.2866878
+Link:     https://pubmed.ncbi.nlm.nih.gov/30139045/
+
+Key Findings:
+- Presented a "black-box" algorithm for remote respiratory rate monitoring
+  in thermal videos that does NOT rely on tracking of specific anatomic
+  landmarks. Instead, it automatically distinguishes regions of interest
+  containing respiratory signal from those containing only noise.
+- Validated on 12 healthy adult volunteers first, then conducted a clinical
+  study on 8 newborn infants in the NICU.
+- Mean RMSE of approximately 4.15 +/- 1.44 breaths/min when compared to
+  reference methods.
+- Landmark-free approach is significant because neonatal faces are small
+  and facial feature detection is unreliable in this population.
+
+------------------------------------------------------------------------------
+Paper 4: Dos Santos et al. (2021)
+------------------------------------------------------------------------------
+Title:    "The use of thermographic techniques and analysis of thermal images
+           to monitor the respiratory rate of premature new-borns"
+Authors:  Dos Santos KM et al.
+Year:     2021
+Journal:  Case Studies in Thermal Engineering, Vol. 25, 100897
+DOI:      10.1016/j.csite.2021.100897
+Link:     https://www.sciencedirect.com/science/article/pii/S2214157X21000897
+
+Key Findings:
+- Presented thermographic imaging as a real-time monitoring tool for
+  respiratory rate in premature newborns, analyzing temperature changes
+  at the anterior nasal area (nostrils).
+- Emphasized the non-invasive nature as critical for monitoring this very
+  fragile patient population.
+- Demonstrated that thermal monitoring could track respiration continuously
+  without the skin damage risks associated with adhesive electrodes.
+
+
+================================================================================
+2. APNEA DETECTION AND CLASSIFICATION (OBSTRUCTIVE VS CENTRAL)
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 5: Lorato et al. (2021a) — Apnea Detection
+------------------------------------------------------------------------------
+Title:    "Automatic Separation of Respiratory Flow from Motion in Thermal
+           Videos for Infant Apnea Detection"
+Authors:  Lorato I, Stuijk S, Meftah M, Kommers D, Andriessen P,
+          van Pul C, de Haan G
+Year:     2021
+Journal:  Sensors, 21(18), 6306
+DOI:      10.3390/s21186306
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC8472592/
+
+Key Findings:
+- Proposed an automatic Respiratory Flow (RF) pixel detector NOT based on
+  facial/body landmarks. Based on properties of RF pixels in thermal videos
+  which appear in areas with a smooth circular gradient.
+- Five features combined with Gabor filters allow automatic selection of RF
+  pixels, enabling separation of respiratory flow from respiratory motion.
+- This separation is CRITICAL for apnea classification:
+    * Central apnea (CA): both respiratory motion AND flow are absent
+    * Obstructive apnea (OA): respiratory motion present but flow absent
+    * Mixed apnea: combination of both
+- Used low-cost thermal cameras on 15 infants in open beds (3 hours each).
+  Low resolution makes cameras cheaper and reduces privacy concerns.
+- Achieved 84% accuracy in separating flow from motion.
+- Patent applications filed for both the algorithm and a smart soother device.
+
+CLINICAL SIGNIFICANCE FOR APNEA DIFFERENTIATION:
+- Current chest impedance (CI) monitoring used in clinical practice has a
+  MAJOR limitation: it cannot distinguish between obstructive and central
+  apnea. CI detects chest wall motion only, so obstructive apneas (where
+  the infant makes breathing efforts against a blocked airway) appear as
+  normal breathing on CI.
+- Thermal imaging can detect BOTH flow (nasal airflow temperature changes)
+  AND motion (chest wall movement), making it uniquely suited to
+  differentiate apnea types — a clinically important distinction because
+  treatment differs for each type.
+
+------------------------------------------------------------------------------
+Paper 6: Contactless Apnea Event Detection (2025)
+------------------------------------------------------------------------------
+Title:    "Contactless apnea event detection using visible-thermal imaging"
+Authors:  (Authors from Signal, Image and Video Processing)
+Year:     2025
+Journal:  Signal, Image and Video Processing
+DOI:      10.1007/s11760-025-03959-2
+Link:     https://link.springer.com/article/10.1007/s11760-025-03959-2
+
+Key Findings:
+- Combined far infrared and near infrared imaging for breathing extraction
+  by analyzing chest motion AND nostril temperature variation.
+- Used a support vector machine (SVM) to classify apnea events.
+- Achieved F1 scores of 0.86 for obstructive apnea and 0.93 for central
+  apnea detection.
+- Demonstrates that multi-modal thermal+visible imaging can reliably
+  classify different apnea types in a contactless manner.
+
+
+================================================================================
+3. MULTI-CAMERA AND ADVANCED ALGORITHM APPROACHES
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 7: Lorato et al. (2020) — Multi-Camera
+------------------------------------------------------------------------------
+Title:    "Multi-camera infrared thermography for infant respiration
+           monitoring"
+Authors:  Lorato I, Stuijk S, Meftah M, Kommers D, Andriessen P,
+          van Pul C, de Haan G
+Year:     2020
+Journal:  Biomedical Optics Express, Vol. 11, pp. 4848-4861
+DOI:      10.1364/BOE.396222
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC7510882/
+
+Key Findings:
+- Proposed an algorithm to merge three low-resolution thermal camera views
+  and automatically detect pixels containing respiration motion or flow.
+- Tested on 152 minutes of recordings from 7 infants.
+- Comparison to chest impedance respiratory rate yielded a mean absolute
+  error of 2.07 breaths/min.
+- Three features used for pixel classification:
+    1. Pseudo-periodicity (predominant frequency of each pixel)
+    2. Respiration rate clusters (similarity of pixel to neighbors)
+    3. Thermal gradient (measure of thermal contrast)
+- Addressed key challenges: did NOT depend on facial landmark detection,
+  handled significant infant motion, and managed the presence of another
+  person (e.g., parent or nurse) in the field of view.
+
+------------------------------------------------------------------------------
+Paper 8: Lorato et al. (2021b) — Continuous Monitoring
+------------------------------------------------------------------------------
+Title:    "Towards Continuous Camera-Based Respiration Monitoring in Infants"
+Authors:  Lorato I, Stuijk S, Meftah M, Kommers D, Andriessen P,
+          van Pul C, de Haan G
+Year:     2021
+Journal:  Sensors, 21(7), 2268
+DOI:      10.3390/s21072268
+Link:     https://pubmed.ncbi.nlm.nih.gov/33804913/
+
+Key Findings:
+- Focused on continuous unobtrusive respiration monitoring with robust
+  motion handling.
+- Proposed a motion detector optimized for severe infant motion (head and
+  limb movements, non-nutritive sucking) combined with an automatic pixel
+  selection strategy for respiratory rate detection.
+- Dataset: 43 hours of both thermal AND RGB video from 17 infants.
+- Method successfully applied to BOTH RGB and thermal videos, compared
+  against chest impedance signals.
+- Addressed motion robustness as the primary challenge for continuous
+  clinical deployment.
+
+
+================================================================================
+4. COMBINED RGB-THERMAL IMAGING FOR RESPIRATORY RATE
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 9: Maurya et al. (2022)
+------------------------------------------------------------------------------
+Title:    "Non-contact respiratory rate monitoring using thermal and visible
+           imaging: a pilot study on neonates"
+Authors:  Maurya L, Zwiggelaar R, Chawla D, Mahapatra P
+Year:     2022 (published online December 2022)
+Journal:  Journal of Clinical Monitoring and Computing, 37, pp. 1175-1188
+DOI:      10.1007/s10877-022-00945-8
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC10175339/
+
+Key Findings:
+- Integrated visible (RGB) and thermal (T) image sequences for region of
+  interest selection and tracking for breathing rate extraction.
+- Used a deep-learning based tracking-by-detection approach: detects ROI in
+  RGB images and maps it to thermal images using RGB-T image registration.
+- In healthy adults: average absolute error of 0.1 bpm in stable conditions,
+  ~1.5 bpm with motion, ~1.8 bpm while talking.
+- In neonates: average error of 1.5 bpm.
+- Bland-Altman analysis showed good agreement with reference method.
+- Provided evidence for using this approach as a contactless method for
+  respiratory rate detection of neonates in clinical settings.
+
+------------------------------------------------------------------------------
+Paper 10: Lorato et al. (2024) — Comprehensive Review
+------------------------------------------------------------------------------
+Title:    "Thermal Cameras for Continuous and Contactless Respiration
+           Monitoring"
+Authors:  Lorato I et al.
+Year:     2024
+Journal:  Sensors, 24(24), 8118
+DOI:      10.3390/s24248118
+Link:     https://www.mdpi.com/1424-8220/24/24/8118
+
+Key Findings:
+- Comprehensive review of the state-of-the-art in respiration monitoring
+  using thermal cameras, dividing the system into: (1) acquiring data,
+  (2) defining and tracking region of interest, (3) extracting breathing
+  signal and respiration rate.
+- Highlights advantages of thermal cameras: contactless nature,
+  affordability, ability to capture both respiration motion and flow,
+  ability to operate in complete darkness without additional lighting
+  (suitable for overnight monitoring).
+- Notes that thermal cameras have become a focal point in research due to
+  their potential for clinical deployment in neonatal and other settings.
+
+
+================================================================================
+5. DEEP LEARNING / CNN APPROACHES FOR RESPIRATORY ANOMALY DETECTION
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 11: CNN-Based Neonatal Respiratory Anomaly Detection
+------------------------------------------------------------------------------
+Title:    "Convolutional Neural Networks-Based Approach to Detect Neonatal
+           Respiratory System Anomalies with Limited Thermal Image"
+Authors:  Cay G et al.
+Year:     2021
+Journal:  Traitement du Signal, Vol. 38, No. 2, pp. 437-442
+DOI:      10.18280/ts.380222
+Link:     https://www.iieta.org/journals/ts/paper/10.18280/ts.380222
+
+Key Findings:
+- Applied CNNs to classify neonatal respiratory abnormalities from thermal
+  images. Studied 34 neonates (16 pulmonary diseases, 10 cardiovascular,
+  8 renal/abdominal anomalies).
+- With data augmentation (4x increase in images via brightness, sharpening,
+  contrast adjustments), classification accuracy improved from 84.5% to
+  90.9%.
+- Demonstrates potential for automated screening of respiratory anomalies
+  (including respiratory distress syndrome) using thermal imaging combined
+  with deep learning.
+
+------------------------------------------------------------------------------
+Paper 12: Health Status Detection via IRT + Deep CNN
+------------------------------------------------------------------------------
+Title:    "Health status detection of neonates using infrared thermography
+           and deep convolutional neural networks"
+Authors:  (Various)
+Year:     2020
+Journal:  Infrared Physics & Technology
+Link:     https://www.sciencedirect.com/science/article/abs/pii/S1350449519303123
+
+Key Findings:
+- Achieved 99.58% accuracy, 99.73% specificity, 99.43% sensitivity, and
+  0.996 AUC for classification using 30,400 thermal images.
+- Demonstrated that thermal anomalies in neonates can be reliably detected
+  using infrared thermography combined with deep CNNs.
+- Capable of monitoring heart rate, respiratory rate, sleeplessness, and
+  restlessness — all from thermal imaging data.
+
+
+================================================================================
+6. ENDOTRACHEAL TUBE TEMPERATURE MONITORING VIA IRT
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 13: Hamada et al. (2025)
+------------------------------------------------------------------------------
+Title:    "Internal Temperature of Neonatal Endotracheal Tube Predicted by
+           Infrared Thermography: A Neonatal Bench Study"
+Authors:  Hamada K, Hirakawa E, Tanabe T, Mine T, Ichikawa T
+Year:     2025
+Journal:  Pediatric Pulmonology
+DOI:      10.1002/ppul.27425
+Link:     https://onlinelibrary.wiley.com/doi/10.1002/ppul.27425
+
+Key Findings:
+- Addressed the problem that neonatal ventilators monitor inspiratory gas
+  temperature outside the incubator, but temperature decreases as gas passes
+  through the circuit and ETT — no established method exists for measuring
+  internal ETT temperature.
+- Established a new method for predicting internal ETT temperature using
+  IRT camera to measure external surface temperature, validated against
+  thin thermocouple measurements inside the tube.
+- Achieved high accuracy: R^2 adj = 0.946 (proximal end) and 0.974
+  (distal end).
+- Non-contact method allows continuous monitoring without interfering with
+  ventilation. Important for airway management and preventing thermal
+  injury in the NICU.
+
+NOTE: This is a bench study (not yet tested on live neonates), but
+represents an important proof-of-concept for IRT in airway management.
+
+
+================================================================================
+7. SCOPING / COMPREHENSIVE REVIEWS
+================================================================================
+
+------------------------------------------------------------------------------
+Paper 14: Topalidou et al. (2019) — Scoping Review
+------------------------------------------------------------------------------
+Title:    "Thermal imaging applications in neonatal care: a scoping review"
+Authors:  Topalidou A, Ali N, Sekulic S, Downe S
+Year:     2019
+Journal:  BMC Pregnancy and Childbirth, 19:388
+DOI:      10.1186/s12884-019-2533-y
+Link:     https://pmc.ncbi.nlm.nih.gov/articles/PMC6814124/
+
+Key Findings:
+- Searched EMBASE, MEDLINE, MIDIRS; from 442 hits, 21 met inclusion criteria.
+- Five broad themes emerged:
+    1. General thermal physiology
+    2. Heat loss and respiratory monitoring
+    3. Identification of internal pathologies (e.g., necrotising enterocolitis)
+    4. Other uses of thermal imaging
+    5. Technical concerns
+- Concluded that thermal imaging is a reliable and non-invasive method for
+  continuous monitoring of neonatal temperature, with potential for
+  contributing to wellbeing assurance and pathology diagnosis.
+- Noted that despite promising results since the 1970s, no large prospective
+  studies have examined both benefits and barriers to clinical use.
+- Key methodological challenges: environmental parameters (incubators,
+  radiant warmers), standardization of measurement protocols.
+
+------------------------------------------------------------------------------
+Paper 15: Pereira et al. (2021) — Non-contact Breathing Rate Review
+------------------------------------------------------------------------------
+Title:    "Non-contact breathing rate monitoring in newborns: A review"
+Authors:  Pereira CB et al.
+Year:     2021
+Journal:  Computers in Biology and Medicine, Vol. 131, 104257
+DOI:      10.1016/j.compbiomed.2021.104257
+Link:     https://www.sciencedirect.com/science/article/abs/pii/S0010482521001153
+
+Key Findings:
+- Comprehensive review of non-contact breathing rate monitoring technologies
+  for newborns, including thermal imaging, radar-based, and RGB camera-based
+  approaches.
+- Highlighted that chest impedance-based monitoring (the clinical standard)
+  has major issues including mistaking the cardiac signal for breathing
+  during apnea events — a critical failure mode.
+- Noted immense scope for development in both thermal and radar-based
+  modalities for neonatal respiratory monitoring.
+
+------------------------------------------------------------------------------
+Paper 16: Emerging Innovations Review (2024)
+------------------------------------------------------------------------------
+Title:    "Emerging innovations in neonatal monitoring: a comprehensive
+           review of progress and potential for non-contact technologies"
+Authors:  (Frontiers in Pediatrics)
+Year:     2024
+Journal:  Frontiers in Pediatrics, 12:1442753
+DOI:      10.3389/fped.2024.1442753
+Link:     https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2024.1442753/full
+
+Key Findings:
+- Comprehensive review of non-contact monitoring technologies for neonates,
+  including thermal imaging, radar, and camera-based methods.
+- Highlighted the fusion of deep learning and thermal imaging as a potential
+  revolution in non-contact neonatal respiratory monitoring.
+- Identified that the field is moving towards multi-modal sensor fusion
+  approaches combining thermal, RGB, and depth camera data.
+
+
+================================================================================
+8. SUMMARY OF KEY GAPS AND NOTES
+================================================================================
+
+TOPICS WITH STRONG EVIDENCE:
+- Respiratory rate monitoring via nasal airflow thermal imaging (Papers 1-4, 7-9)
+- Apnea detection and obstructive vs central differentiation (Papers 5-6)
+- Non-contact vs contact comparison (discussed in Papers 14-16 reviews)
+
+TOPICS WITH LIMITED/EMERGING EVIDENCE:
+- CPAP/ventilator leak detection via thermal imaging:
+  ** No published studies found specifically using thermal/infrared cameras
+     for CPAP leak detection in neonates. Current leak detection relies on
+     flow sensors, pressure monitoring, and subjective clinical observation.
+  ** This represents a SIGNIFICANT RESEARCH GAP and potential innovation
+     area for NeoTherm. Thermal cameras could theoretically detect warm
+     exhaled air leaking around CPAP interfaces by visualizing temperature
+     differentials at the mask-face seal.
+
+- Endotracheal tube placement verification:
+  ** No studies found using thermal cameras to verify ETT position.
+  ** Hamada et al. (2025) is the closest — uses IRT to predict internal ETT
+     temperature (bench study). A separate line of research uses near-
+     infrared light (Opt-ETT device) for continuous ETT position monitoring,
+     but this is not thermal imaging.
+  ** Potential application: thermal cameras could detect exhaled warm air
+     patterns to confirm ETT is in the trachea (not esophagus), but this
+     has not been studied.
+
+- Pneumothorax detection via thermal imaging:
+  ** No direct studies found. One CNN study (Paper 11) detected neonatal
+     respiratory anomalies (including pulmonary diseases) from thermal
+     images, but did not specifically address pneumothorax.
+  ** Theoretical basis: a pneumothorax could cause asymmetric chest wall
+     thermal patterns due to altered ventilation, but this remains
+     unvalidated.
+
+- Respiratory distress syndrome assessment via thermal patterns:
+  ** No direct studies found specifically correlating thermal imaging
+     patterns with RDS severity or diagnosis.
+  ** The CNN approaches (Papers 11-12) classified respiratory anomalies
+     broadly but did not isolate RDS as a specific detection target.
+
+================================================================================
+KEY PERFORMANCE METRICS ACROSS STUDIES
+================================================================================
+
+Study                     | Metric                    | Value
+--------------------------|---------------------------|---------------------------
+Abbas et al. 2011         | Temp difference           | 0.3-0.5 deg C (insp/exp)
+Lorato et al. 2020        | MAE vs chest impedance    | 2.07 breaths/min
+Pereira et al. 2019       | RMSE                      | 4.15 +/- 1.44 breaths/min
+Maurya et al. 2022        | Average error (neonates)  | 1.5 bpm
+Maurya et al. 2022        | Average error (adults)    | 0.1 bpm (stable)
+Lorato et al. 2021a       | Flow/motion separation    | 84% accuracy
+Contactless apnea 2025    | F1 (obstructive apnea)    | 0.86
+Contactless apnea 2025    | F1 (central apnea)        | 0.93
+Cay et al. 2021           | CNN classification        | 90.9% (with augmentation)
+Health status 2020         | CNN classification        | 99.58% accuracy
+Hamada et al. 2025        | ETT temp prediction R^2   | 0.946-0.974
+
+================================================================================
+IMPLICATIONS FOR NEOTHERM PROJECT
+================================================================================
+
+1. RESPIRATORY RATE MONITORING is the most validated thermal imaging
+   application in neonatal care, with multiple studies showing feasibility
+   and reasonable accuracy (MAE 1.5-4.15 bpm).
+
+2. APNEA CLASSIFICATION (obstructive vs central) is a unique advantage of
+   thermal imaging over chest impedance — this is a strong differentiator
+   and clinical value proposition. Chest impedance CANNOT distinguish apnea
+   types; thermal imaging CAN.
+
+3. The field is moving toward MULTI-MODAL approaches (RGB + thermal) and
+   DEEP LEARNING for more robust detection.
+
+4. LOW-COST thermal cameras have been validated (Lorato et al.) — important
+   for cost-sensitive NICU deployments.
+
+5. KEY UNSOLVED CHALLENGES:
+   - Motion robustness (head turning, limb movement, non-nutritive sucking)
+   - Operation inside incubators (germanium windows needed for IR)
+   - Standardization of measurement protocols
+   - No large-scale prospective clinical trials yet
+
+6. UNEXPLORED OPPORTUNITIES (potential NeoTherm innovations):
+   - CPAP leak detection via thermal visualization
+   - ETT placement confirmation via exhaled air thermal patterns
+   - Pneumothorax detection via asymmetric thermal patterns
+   - RDS severity scoring from thermal breathing patterns
+
+================================================================================
+END OF LITERATURE REVIEW
+================================================================================
