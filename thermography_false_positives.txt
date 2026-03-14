@@ -1,0 +1,160 @@
+NON-SEPSIS CAUSES OF THERMOGRAPHIC FALSE POSITIVES
+====================================================
+Common conditions that could produce false positive sepsis signals in an
+infrared thermography-based sepsis detection system.
+
+
+1. CIRCULATORY / HEMODYNAMIC CAUSES
+-------------------------------------
+These directly mimic sepsis physiology — peripheral vasoconstriction and gradient loss.
+Any shock state produces the same thermal signal as septic shock.
+
+Condition                  | Mechanism
+---------------------------|--------------------------------------------------------------
+Cardiogenic shock          | Low cardiac output → peripheral vasoconstriction → cold extremities
+Hypovolemic shock          | Volume depletion → sympathetic response → peripheral shutdown
+Neurogenic shock           | Autonomic dysregulation → abnormal temperature distribution
+Pulmonary embolism         | Right heart strain → reduced perfusion → peripheral cooling
+Acute MI / heart failure   | Reduced output → compensatory vasoconstriction
+Severe anemia              | Altered peripheral perfusion patterns
+
+Key insight: The thermal gradient signal reflects microcirculatory failure generically —
+not sepsis specifically.
+
+
+2. DRUG AND VASOPRESSOR EFFECTS
+---------------------------------
+Massive confounder in ICU/ED settings.
+
+- Vasopressors (norepinephrine, vasopressin, phenylephrine) — directly cause peripheral
+  vasoconstriction; will produce artificially high gradients
+- Beta-blockers — blunt the normal thermal response to stress
+- Vasodilators (nitroglycerin, calcium channel blockers) — can normalize gradients in a
+  sick patient, causing false negatives
+- Inotropes (dobutamine) — alter peripheral blood flow unpredictably
+- Opioids / sedation — alter thermoregulation centrally
+- Epidural anesthesia — causes unilateral or regional vasodilation, asymmetric patterns
+
+
+3. ENVIRONMENTAL AND MEASUREMENT CONFOUNDERS
+----------------------------------------------
+Protocol failures, not true physiologic states.
+
+- Cold ambient temperature — vasoconstricts periphery in any patient
+- Insufficient acclimatization time — standard is 15-20 min; most studies used 5-10 min
+- Recent IV fluid infusion — cold IV fluids transiently lower peripheral temperatures
+- Warming blankets / heating pads — artificially elevate local temperatures
+- Wet skin / sweating — evaporative cooling creates artifactual cold zones
+- Tight clothing or compression devices — tourniquet effect on limb temperature
+- Camera angle and distance variation — changes absolute temperature readings
+
+
+4. INFLAMMATORY AND AUTOIMMUNE CONDITIONS
+-------------------------------------------
+Produce genuine thermal signal changes unrelated to sepsis.
+
+- Rheumatoid arthritis / inflammatory arthritis — warm joints, abnormal hand/finger temps
+- Lupus (SLE) — Raynaud's phenomenon causes cold finger gradients
+- Raynaud's phenomenon / disease — episodic finger vasospasm; fingertip cold = classic
+  sepsis signal; HIGH false positive risk
+- Scleroderma — persistent peripheral vasoconstriction
+- Vasculitis — focal thermal abnormalities
+- Inflammatory bowel disease flare — elevated core temperature, systemic inflammation
+
+
+5. NEUROLOGICAL CONDITIONS
+----------------------------
+Disrupt normal thermoregulatory control.
+
+- Stroke — unilateral thermal asymmetry; hemispheric strokes alter autonomic control
+- Spinal cord injury — below injury level loses sympathetic vasoconstriction →
+  paradoxically warm periphery
+- Autonomic neuropathy (diabetic, alcoholic) — blunts normal vasoconstriction response
+- Complex Regional Pain Syndrome (CRPS) — extreme focal thermal abnormalities
+- Seizures — postictal state causes transient thermal changes
+
+
+6. ENDOCRINE AND METABOLIC CONDITIONS
+---------------------------------------
+- Diabetic peripheral vascular disease — altered foot/toe temperatures; the great toe is
+  the primary measurement site in multiple sepsis studies
+- Hypothyroidism — reduced metabolic rate, cool periphery, low core temperature
+- Hyperthyroidism — elevated baseline temperatures throughout
+- Adrenal insufficiency (Addisonian crisis) — shock-like state with peripheral cooling
+- Pheochromocytoma — episodic catecholamine surges cause vasoconstriction
+- Severe hypothermia — confounds all temperature measurements
+
+
+7. POST-SURGICAL AND TRAUMA STATES
+-------------------------------------
+- Recent surgery — surgery itself causes hypothermia, vasoconstriction, and fluid shifts
+  that persist for hours (Hasanin et al. 2024 specifically studied this population)
+- Burns — massively alter skin thermal properties and emissivity
+- Traumatic injury / hemorrhagic shock — identical peripheral cooling to septic shock
+- Wound dressings and casts — block or alter thermal emission from underlying tissue
+
+
+8. NEONATAL-SPECIFIC FALSE POSITIVES
+--------------------------------------
+Especially important given the research gap in neonatal IRT.
+
+- Neonatal thermoregulatory immaturity — neonates cannot vasoconstrict efficiently;
+  temperature gradients are inherently less stable than in adults
+- Hypothermia of prematurity — preterm infants lose heat rapidly; any cold stress
+  creates peripheral-core gradient
+- Neonatal abstinence syndrome — maternal drug exposure causes abnormal autonomic responses
+- Congenital heart defects — altered cardiac output → abnormal peripheral perfusion
+- Polycythemia — elevated hematocrit alters peripheral perfusion patterns
+- Jaundice / phototherapy — phototherapy lights significantly alter skin temperature
+
+
+9. SKIN AND DERMATOLOGIC CONDITIONS
+-------------------------------------
+Alter emissivity or local thermal properties.
+
+- Cellulitis / localized infection — hot spot at infection site; may create artifactual
+  gradient if on a measured limb
+- Psoriasis / eczema — altered skin blood flow
+- Tattoos — alter local thermal absorption and emission
+- Edema — fluid accumulation changes thermal conductivity of tissue
+
+
+IMPLICATIONS FOR PRODUCT DESIGN
+=================================
+
+1. MULTI-SIGNAL APPROACH IS ESSENTIAL
+   No single thermographic metric is specific to sepsis. Combine IRT with at least one
+   other data point (HR, RR, SpO2 — available from bedside monitors via FHIR) to improve
+   specificity. Best-performing studies did this (Luo et al.: thermal heterogeneity +
+   clinical variables).
+
+2. SHOCK-TYPE DISAMBIGUATION IS THE HARDEST PROBLEM
+   Cardiogenic, hypovolemic, and septic shock are thermographically indistinguishable.
+   Options:
+   a) Flag all shock states — reframe as "microcirculatory failure detector"
+   b) Incorporate clinical context (recent surgery, fluid status, troponin) to disambiguate
+
+3. VASOPRESSOR FLAG
+   Any output should be suppressed or flagged as unreliable when vasopressors are active.
+   This should be a hard rule in the algorithm.
+
+4. ENVIRONMENTAL PROTOCOL ENFORCEMENT
+   The app should require the user to confirm:
+   - Acclimatization time completed
+   - Ambient temperature within acceptable range
+   - Absence of warming devices
+   Like a pre-flight checklist before accepting an image.
+
+5. RAYNAUD'S / PERIPHERAL VASCULAR DISEASE SCREENING
+   A simple intake question ("does the patient have Raynaud's or known peripheral vascular
+   disease?") could flag high false-positive risk patients before imaging.
+
+6. CONFIDENCE + CONFOUNDER OUTPUT
+   The algorithm should output not just a risk score but:
+   - A confidence level
+   - A list of detected confounders
+   So the clinician knows exactly how much to trust the signal.
+
+   Hackathon framing: "Our algorithm doesn't just output a score — it outputs a confidence
+   level and a list of confounders it detected, so the clinician knows exactly how much to
+   trust the signal."
