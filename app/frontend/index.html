@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoTherm — Neonatal Thermal Sepsis Detection</title>
+<style>
+  /* ── Reset & Base ─────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-primary:   #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card:      #1c2128;
+    --border:       #30363d;
+    --text-primary: #e6edf3;
+    --text-muted:   #8b949e;
+    --accent:       #58a6ff;
+    --green:        #4CAF50;
+    --yellow:       #FFC107;
+    --orange:       #FF9800;
+    --red:          #f44336;
+    --red-dark:     #d32f2f;
+    --font:         'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono:         'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --radius:       8px;
+  }
+
+  html { font-size: 15px; }
+  body {
+    font-family: var(--font);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ── Header ───────────────────────────────────────────────────── */
+  header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--red) 0%, var(--orange) 50%, var(--yellow) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+
+  .logo h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .logo .subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .connection-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+
+  .status-dot.connected { background: var(--green); }
+
+  /* ── Controls Bar ─────────────────────────────────────────────── */
+  .controls {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .control-group label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  select, button {
+    font-family: var(--font);
+    font-size: 0.85rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+
+  select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    cursor: pointer;
+    min-width: 160px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238b949e' viewBox='0 0 16 16'%3E%3Cpath d='M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+  }
+
+  select:hover { border-color: var(--accent); }
+  select:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(88,166,255,0.2); }
+
+  .btn {
+    padding: 8px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-start {
+    background: var(--green);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .btn-start:hover { background: #45a049; }
+
+  .btn-stop {
+    background: var(--red);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .btn-stop:hover { background: #e53935; }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .controls-spacer { flex: 1; }
+
+  .mode-badge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(88,166,255,0.15);
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Main Content ─────────────────────────────────────────────── */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px 32px;
+    max-height: calc(100vh - 220px);
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-body { padding: 16px; }
+
+  /* ── Thermal Image Viewer ─────────────────────────────────────── */
+  .thermal-viewer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+    background: #000;
+  }
+
+  .thermal-viewer img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .thermal-placeholder {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px;
+  }
+
+  .thermal-placeholder .icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.3;
+  }
+
+  .thermal-placeholder p {
+    font-size: 0.85rem;
+  }
+
+  /* ── CPTD Dashboard ───────────────────────────────────────────── */
+  .cptd-display {
+    text-align: center;
+    padding: 20px 16px;
+  }
+
+  .cptd-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .cptd-value {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: var(--mono);
+    line-height: 1.1;
+    transition: color 0.3s;
+  }
+
+  .cptd-unit {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-left: 2px;
+  }
+
+  .alert-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+
+  .alert-normal   { background: rgba(76,175,80,0.15);  color: var(--green);  }
+  .alert-warning  { background: rgba(255,152,0,0.15);  color: var(--orange); }
+  .alert-high     { background: rgba(244,67,54,0.15);  color: var(--red);    }
+  .alert-critical { background: rgba(211,47,47,0.2);   color: var(--red-dark); animation: pulse 1s ease-in-out infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+  }
+
+  .alert-message {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ── Zone Temperatures ────────────────────────────────────────── */
+  .zones-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .zone-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .zone-item.core {
+    grid-column: 1 / -1;
+    border-color: rgba(244,67,54,0.3);
+    background: rgba(244,67,54,0.05);
+  }
+
+  .zone-name {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .zone-temp {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: var(--mono);
+  }
+
+  .zone-temp.null-val {
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  /* ── Chart Section ────────────────────────────────────────────── */
+  .chart-section {
+    padding: 0 32px 24px;
+  }
+
+  .chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .chart-container {
+    padding: 12px 16px 16px;
+    position: relative;
+  }
+
+  canvas {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* ── Timestamp bar ────────────────────────────────────────────── */
+  .timestamp-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--mono);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; }
+    header, .controls, .chart-section { padding-left: 16px; padding-right: 16px; }
+    .main { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ────────────────────────────────────────────────────── -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">NT</div>
+    <div>
+      <h1>NeoTherm</h1>
+      <div class="subtitle">Neonatal Thermal Sepsis Detection</div>
+    </div>
+  </div>
+  <div class="connection-status">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">Disconnected</span>
+  </div>
+</header>
+
+<!-- ── Controls ──────────────────────────────────────────────────── -->
+<div class="controls">
+  <div class="control-group">
+    <label for="patientSelect">Patient</label>
+    <select id="patientSelect">
+      <option value="">Loading patients...</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label for="speedSelect">Speed</label>
+    <select id="speedSelect">
+      <option value="1">1x</option>
+      <option value="2">2x</option>
+      <option value="5">5x</option>
+    </select>
+  </div>
+  <button class="btn btn-start" id="startBtn" disabled>
+    <span id="startBtnIcon">&#9654;</span>
+    <span id="startBtnText">Start</span>
+  </button>
+  <button class="btn btn-stop" id="stopBtn" disabled>
+    &#9632; Stop
+  </button>
+  <div class="controls-spacer"></div>
+  <span class="mode-badge" id="modeBadge">Replay Mode</span>
+</div>
+
+<!-- ── Main Content ──────────────────────────────────────────────── -->
+<div class="main">
+  <!-- Left: Thermal Image -->
+  <div class="card">
+    <div class="card-header">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-3A1.5 1.5 0 019 13.5v-3z"/></svg>
+      Thermal Image
+    </div>
+    <div class="thermal-viewer" id="thermalViewer">
+      <div class="thermal-placeholder" id="thermalPlaceholder">
+        <div class="icon">&#x1F321;</div>
+        <p>No image available</p>
+        <p style="margin-top:4px;opacity:0.6">Select a patient and press Start</p>
+      </div>
+      <img id="thermalImage" style="display:none" alt="Annotated thermal frame">
+    </div>
+  </div>
+
+  <!-- Right: CPTD Dashboard -->
+  <div class="card">
+    <div class="card-header">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 16A8 8 0 108 0a8 8 0 000 16zm.25-11.75v4.5l3.25 1.95-.5.83L7.5 9.5V4.25h.75z"/></svg>
+      CPTD Monitor
+    </div>
+    <div class="card-body">
+      <div class="cptd-display">
+        <div class="cptd-label">Core-Peripheral Temperature Difference</div>
+        <div class="cptd-value" id="cptdValue" style="color:var(--text-muted);">
+          --<span class="cptd-unit">&deg;C</span>
+        </div>
+        <div>
+          <span class="alert-badge alert-normal" id="alertBadge">Awaiting Data</span>
+        </div>
+        <div class="alert-message" id="alertMessage">No active monitoring session</div>
+      </div>
+
+      <div class="zones-grid">
+        <div class="zone-item core">
+          <div class="zone-name">Core (Torso)</div>
+          <div class="zone-temp null-val" id="zoneCore">--</div>
+        </div>
+        <div class="zone-item">
+          <div class="zone-name">Left Hand</div>
+          <div class="zone-temp null-val" id="zoneLeftHand">--</div>
+        </div>
+        <div class="zone-item">
+          <div class="zone-name">Right Hand</div>
+          <div class="zone-temp null-val" id="zoneRightHand">--</div>
+        </div>
+        <div class="zone-item">
+          <div class="zone-name">Left Foot</div>
+          <div class="zone-temp null-val" id="zoneLeftFoot">--</div>
+        </div>
+        <div class="zone-item">
+          <div class="zone-name">Right Foot</div>
+          <div class="zone-temp null-val" id="zoneRightFoot">--</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Chart ──────────────────────────────────────────────────────── -->
+<div class="chart-section">
+  <div class="chart-card">
+    <div class="card-header">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 1v14h14V1H1zm13 13H2V2h12v12zM3 12l3-5 2 3 3-4 2 2.5"/></svg>
+      CPTD Time Series
+    </div>
+    <div class="chart-container">
+      <canvas id="cptdChart" height="180"></canvas>
+    </div>
+    <div class="timestamp-bar">
+      <span id="chartStart">--</span>
+      <span id="chartEnd">--</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Scripts ────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────
+  const API_BASE = 'http://localhost:8765';
+  const WS_URL   = 'ws://localhost:8765/ws';
+
+  const THRESHOLDS = {
+    warning:  2.0,
+    high:     3.5,
+    critical: 5.0,
+  };
+
+  const COLORS = {
+    normal:   '#4CAF50',
+    warning:  '#FF9800',
+    high:     '#f44336',
+    critical: '#d32f2f',
+  };
+
+  // ── DOM Elements ───────────────────────────────────────────────
+  const $ = id => document.getElementById(id);
+
+  const statusDot       = $('statusDot');
+  const statusText      = $('statusText');
+  const patientSelect   = $('patientSelect');
+  const speedSelect     = $('speedSelect');
+  const startBtn        = $('startBtn');
+  const stopBtn         = $('stopBtn');
+  const startBtnText    = $('startBtnText');
+  const startBtnIcon    = $('startBtnIcon');
+  const modeBadge       = $('modeBadge');
+  const thermalImage    = $('thermalImage');
+  const thermalPlaceholder = $('thermalPlaceholder');
+  const cptdValue       = $('cptdValue');
+  const alertBadge      = $('alertBadge');
+  const alertMessage    = $('alertMessage');
+  const zoneCore        = $('zoneCore');
+  const zoneLeftHand    = $('zoneLeftHand');
+  const zoneRightHand   = $('zoneRightHand');
+  const zoneLeftFoot    = $('zoneLeftFoot');
+  const zoneRightFoot   = $('zoneRightFoot');
+  const chartCanvas     = $('cptdChart');
+  const chartStart      = $('chartStart');
+  const chartEnd        = $('chartEnd');
+
+  // ── State ──────────────────────────────────────────────────────
+  let ws = null;
+  let isRunning = false;
+  const chartData = [];       // { time: string, cptd: number, level: string }
+  const MAX_CHART_POINTS = 200;
+
+  // ── Fetch Patients ─────────────────────────────────────────────
+  async function fetchPatients() {
+    try {
+      const resp = await fetch(API_BASE + '/patients');
+      const data = await resp.json();
+
+      // API may return an array of strings or an object with a patients field
+      const patients = Array.isArray(data) ? data : (data.patients || []);
+
+      patientSelect.innerHTML = '';
+      if (patients.length === 0) {
+        patientSelect.innerHTML = '<option value="">No patients found</option>';
+        return;
+      }
+
+      patients.forEach(p => {
+        const opt = document.createElement('option');
+        // Handle if p is a string or an object with id/name
+        const id   = typeof p === 'string' ? p : (p.id || p.patient_id);
+        const name = typeof p === 'string' ? p : (p.name || p.patient_id || p.id);
+        opt.value = id;
+        opt.textContent = name;
+        patientSelect.appendChild(opt);
+      });
+
+      startBtn.disabled = false;
+    } catch (err) {
+      patientSelect.innerHTML = '<option value="">Server unavailable</option>';
+      console.warn('Failed to fetch patients:', err);
+    }
+  }
+
+  // ── WebSocket ──────────────────────────────────────────────────
+  function connectWS() {
+    if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) {
+      return;
+    }
+
+    ws = new WebSocket(WS_URL);
+
+    ws.onopen = () => {
+      statusDot.classList.add('connected');
+      statusText.textContent = 'Connected';
+    };
+
+    ws.onclose = () => {
+      statusDot.classList.remove('connected');
+      statusText.textContent = 'Disconnected';
+      if (isRunning) {
+        setRunning(false);
+      }
+    };
+
+    ws.onerror = () => {
+      statusDot.classList.remove('connected');
+      statusText.textContent = 'Connection error';
+    };
+
+    ws.onmessage = (event) => {
+      try {
+        const msg = JSON.parse(event.data);
+        handleMessage(msg);
+      } catch (e) {
+        console.warn('Bad WS message:', e);
+      }
+    };
+  }
+
+  function sendAction(action, extra) {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      connectWS();
+      // Retry after connection
+      const retry = setInterval(() => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          clearInterval(retry);
+          ws.send(JSON.stringify({ action, ...extra }));
+        }
+      }, 100);
+      return;
+    }
+    ws.send(JSON.stringify({ action, ...extra }));
+  }
+
+  // ── Handle Incoming Message ────────────────────────────────────
+  function handleMessage(msg) {
+    // Update thermal image
+    if (msg.frame_base64) {
+      thermalImage.src = msg.frame_base64;
+      thermalImage.style.display = 'block';
+      thermalPlaceholder.style.display = 'none';
+    } else {
+      thermalImage.style.display = 'none';
+      thermalPlaceholder.style.display = 'block';
+      thermalPlaceholder.querySelector('p').textContent = 'No image for this frame';
+    }
+
+    // Update CPTD value
+    const cptd = msg.cptd;
+    const level = msg.alert ? msg.alert.level : 'normal';
+
+    if (cptd != null) {
+      const color = COLORS[level] || COLORS.normal;
+      cptdValue.innerHTML = cptd.toFixed(2) + '<span class="cptd-unit">&deg;C</span>';
+      cptdValue.style.color = color;
+
+      // Add pulsing to entire display on critical
+      if (level === 'critical') {
+        cptdValue.style.animation = 'pulse 1s ease-in-out infinite';
+      } else {
+        cptdValue.style.animation = 'none';
+      }
+    } else {
+      cptdValue.innerHTML = '--<span class="cptd-unit">&deg;C</span>';
+      cptdValue.style.color = 'var(--text-muted)';
+      cptdValue.style.animation = 'none';
+    }
+
+    // Update alert badge
+    updateAlertBadge(level, msg.alert);
+
+    // Update zone temps
+    updateZone(zoneCore,      msg.zones ? msg.zones.core       : null);
+    updateZone(zoneLeftHand,  msg.zones ? msg.zones.left_hand  : null);
+    updateZone(zoneRightHand, msg.zones ? msg.zones.right_hand : null);
+    updateZone(zoneLeftFoot,  msg.zones ? msg.zones.left_foot  : null);
+    updateZone(zoneRightFoot, msg.zones ? msg.zones.right_foot : null);
+
+    // Update chart
+    if (cptd != null) {
+      const timeLabel = msg.timestamp ? formatTime(msg.timestamp) : new Date().toLocaleTimeString();
+      chartData.push({ time: timeLabel, cptd, level });
+      if (chartData.length > MAX_CHART_POINTS) chartData.shift();
+      drawChart();
+    }
+
+    // Update mode badge
+    if (msg.mode) {
+      modeBadge.textContent = msg.mode.charAt(0).toUpperCase() + msg.mode.slice(1) + ' Mode';
+    }
+  }
+
+  function updateZone(el, val) {
+    if (val != null) {
+      el.textContent = val.toFixed(2) + '\u00B0C';
+      el.classList.remove('null-val');
+    } else {
+      el.textContent = '--';
+      el.classList.add('null-val');
+    }
+  }
+
+  function updateAlertBadge(level, alert) {
+    alertBadge.className = 'alert-badge alert-' + level;
+    const labels = {
+      normal:   'Normal',
+      warning:  'Warning',
+      high:     'High',
+      critical: 'Critical',
+    };
+    alertBadge.textContent = labels[level] || 'Normal';
+
+    if (alert && alert.message) {
+      alertMessage.textContent = alert.message;
+      if (alert.consecutive_abnormal > 0) {
+        alertMessage.textContent += ' (' + alert.consecutive_abnormal + ' consecutive)';
+      }
+    } else {
+      alertMessage.textContent = level === 'normal' ? 'Within normal range' : '';
+    }
+  }
+
+  function formatTime(ts) {
+    // Handle ISO string or common timestamp formats
+    const d = new Date(ts.replace(' ', 'T'));
+    if (isNaN(d.getTime())) return ts;
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+
+  // ── Chart Drawing ──────────────────────────────────────────────
+  function drawChart() {
+    const canvas = chartCanvas;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+
+    // Set canvas size to match CSS layout size
+    const rect = canvas.getBoundingClientRect();
+    canvas.width  = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const W = rect.width;
+    const H = rect.height;
+    const PAD = { top: 20, right: 20, bottom: 30, left: 50 };
+    const plotW = W - PAD.left - PAD.right;
+    const plotH = H - PAD.top - PAD.bottom;
+
+    // Clear
+    ctx.clearRect(0, 0, W, H);
+
+    if (chartData.length < 2) {
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '13px ' + getComputedStyle(document.body).fontFamily;
+      ctx.textAlign = 'center';
+      ctx.fillText('Waiting for data...', W / 2, H / 2);
+      return;
+    }
+
+    // Y range
+    const cptdValues = chartData.map(d => d.cptd);
+    const yMin = 0;
+    const yMax = Math.max(Math.ceil(Math.max(...cptdValues, THRESHOLDS.critical + 1)), 7);
+
+    function xPos(i) { return PAD.left + (i / (chartData.length - 1)) * plotW; }
+    function yPos(v) { return PAD.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH; }
+
+    // Grid lines
+    ctx.strokeStyle = '#21262d';
+    ctx.lineWidth = 1;
+    for (let v = 0; v <= yMax; v += 1) {
+      const y = yPos(v);
+      ctx.beginPath();
+      ctx.moveTo(PAD.left, y);
+      ctx.lineTo(PAD.left + plotW, y);
+      ctx.stroke();
+    }
+
+    // Threshold zones (filled areas)
+    // Normal zone: 0 to 2
+    ctx.fillStyle = 'rgba(76,175,80,0.06)';
+    ctx.fillRect(PAD.left, yPos(THRESHOLDS.warning), plotW, yPos(0) - yPos(THRESHOLDS.warning));
+
+    // Warning zone: 2 to 3.5
+    ctx.fillStyle = 'rgba(255,152,0,0.06)';
+    ctx.fillRect(PAD.left, yPos(THRESHOLDS.high), plotW, yPos(THRESHOLDS.warning) - yPos(THRESHOLDS.high));
+
+    // High zone: 3.5 to 5
+    ctx.fillStyle = 'rgba(244,67,54,0.06)';
+    ctx.fillRect(PAD.left, yPos(THRESHOLDS.critical), plotW, yPos(THRESHOLDS.high) - yPos(THRESHOLDS.critical));
+
+    // Critical zone: 5+
+    ctx.fillStyle = 'rgba(211,47,47,0.06)';
+    ctx.fillRect(PAD.left, yPos(yMax), plotW, yPos(THRESHOLDS.critical) - yPos(yMax));
+
+    // Threshold lines
+    const threshLines = [
+      { val: THRESHOLDS.warning,  color: COLORS.warning,  label: '2.0\u00B0C Warning' },
+      { val: THRESHOLDS.high,     color: COLORS.high,     label: '3.5\u00B0C High' },
+      { val: THRESHOLDS.critical, color: COLORS.critical, label: '5.0\u00B0C Critical' },
+    ];
+
+    threshLines.forEach(t => {
+      const y = yPos(t.val);
+      ctx.strokeStyle = t.color;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath();
+      ctx.moveTo(PAD.left, y);
+      ctx.lineTo(PAD.left + plotW, y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = t.color;
+      ctx.font = '10px ' + getComputedStyle(document.body).fontFamily;
+      ctx.textAlign = 'right';
+      ctx.fillText(t.label, PAD.left + plotW - 4, y - 4);
+    });
+
+    // Data line
+    ctx.strokeStyle = var_accent();
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    chartData.forEach((d, i) => {
+      const x = xPos(i);
+      const y = yPos(d.cptd);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Gradient fill under line
+    const gradient = ctx.createLinearGradient(0, PAD.top, 0, PAD.top + plotH);
+    gradient.addColorStop(0, 'rgba(88,166,255,0.25)');
+    gradient.addColorStop(1, 'rgba(88,166,255,0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    chartData.forEach((d, i) => {
+      const x = xPos(i);
+      const y = yPos(d.cptd);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.lineTo(xPos(chartData.length - 1), yPos(0));
+    ctx.lineTo(xPos(0), yPos(0));
+    ctx.closePath();
+    ctx.fill();
+
+    // Color-coded dots on data points (sparse if many points)
+    const dotInterval = Math.max(1, Math.floor(chartData.length / 60));
+    chartData.forEach((d, i) => {
+      if (i % dotInterval !== 0 && i !== chartData.length - 1) return;
+      const x = xPos(i);
+      const y = yPos(d.cptd);
+      ctx.fillStyle = COLORS[d.level] || COLORS.normal;
+      ctx.beginPath();
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Highlight latest point
+    const last = chartData[chartData.length - 1];
+    const lx = xPos(chartData.length - 1);
+    const ly = yPos(last.cptd);
+    ctx.fillStyle = COLORS[last.level] || COLORS.normal;
+    ctx.beginPath();
+    ctx.arc(lx, ly, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(lx, ly, 5, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Y-axis labels
+    ctx.fillStyle = '#8b949e';
+    ctx.font = '11px ' + getComputedStyle(document.body).fontFamily;
+    ctx.textAlign = 'right';
+    for (let v = 0; v <= yMax; v += 1) {
+      ctx.fillText(v + '\u00B0', PAD.left - 8, yPos(v) + 4);
+    }
+
+    // X-axis time labels
+    chartStart.textContent = chartData[0].time;
+    chartEnd.textContent   = chartData[chartData.length - 1].time;
+  }
+
+  function var_accent() { return '#58a6ff'; }
+
+  // ── Controls ───────────────────────────────────────────────────
+  function setRunning(running) {
+    isRunning = running;
+    startBtn.disabled = running;
+    stopBtn.disabled  = !running;
+    patientSelect.disabled = running;
+    speedSelect.disabled   = running;
+
+    if (running) {
+      startBtnIcon.textContent = '\u23F8';
+      startBtnText.textContent = 'Running';
+    } else {
+      startBtnIcon.textContent = '\u25B6';
+      startBtnText.textContent = 'Start';
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    const patientId = patientSelect.value;
+    if (!patientId) return;
+
+    const speed = parseFloat(speedSelect.value);
+
+    // Clear previous chart data
+    chartData.length = 0;
+    drawChart();
+
+    // Reset display
+    thermalImage.style.display = 'none';
+    thermalPlaceholder.style.display = 'block';
+    thermalPlaceholder.querySelector('p').textContent = 'Connecting...';
+
+    connectWS();
+    sendAction('start_replay', { patient_id: patientId, speed });
+    setRunning(true);
+  });
+
+  stopBtn.addEventListener('click', () => {
+    sendAction('stop');
+    setRunning(false);
+  });
+
+  // ── Resize handling ────────────────────────────────────────────
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => drawChart(), 100);
+  });
+
+  // ── Init ───────────────────────────────────────────────────────
+  fetchPatients();
+  connectWS();
+  drawChart();
+
+})();
+</script>
+
+</body>
+</html>
