@@ -1,0 +1,330 @@
+================================================================================
+MIT GRAND HACK — SESSION NOTES
+IRT FOR NEONATAL SEPSIS DETECTION
+================================================================================
+Date: March 14, 2026
+
+
+================================================================================
+SECTION 1: IRT FOR SEPSIS — EVALUATION FROM 6 RESEARCH PAPERS
+================================================================================
+
+Papers reviewed:
+  1. Du et al. (2026) — Emergency Medicine International (Systematic Review)
+  2. Hasanin et al. (2024) — BMC Anesthesiology
+  3. Stanley et al. (2024) — Frontiers in Medicine (Systematic Review)
+  4. Lath et al. (2025) — International Journal of Emergency Medicine
+  5. Ferraris et al. (2018) — PLOS ONE
+  6. Kazune et al. (2023) — Bioengineering
+
+--- IS IRT BETTER THAN STANDARD METHODS? ---
+
+No study demonstrates IRT is definitively superior to serum lactate, CRT,
+SOFA, or APACHE II. Two studies (Hasanin, Ferraris) explicitly show it is
+inferior or non-significant. Best framing: useful ADJUNCT, not replacement.
+
+Where IRT adds value over standard methods:
+  - Dark-skinned patients (mottling score unreliable)
+  - Resource-limited settings (lactate unavailable)
+  - Infection control / non-contact requirements
+  - Early warning: detects physiological changes HOURS before clinical signs
+  - Continuous monitoring without disturbing the patient
+
+--- ACCURACY STATS ---
+
+  Best performance:
+    - Paediatric ICU deep learning thermal video: AUC 0.81 ± 0.06
+      at 5h pre-shock (Vats et al.)
+    - Deep learning ResNet model: 84% sensitivity / 91% specificity (Luo et al.)
+
+  Moderate performance:
+    - Toe temperature at 12h: AUC 0.72, NPV 70% (Hasanin)
+    - Leg thermal heterogeneity: AUROC 0.866 for mortality (Luo et al.)
+    - Core-to-knee gradient for 7-day mortality: AUC 0.62 (Lath)
+
+  Poor / null performance:
+    - Core-to-toe for 28-day mortality: AUCs 0.5–0.6 (Lath)
+    - Fingertip IRT in COVID-19 sepsis: no predictive value (Gutowski)
+    - Knee temperature alone: not significant for ICU mortality (Ferraris)
+
+--- IS IT REALISTIC TO OFFER IN HOSPITALS? ---
+
+  Technically yes. Devices (FLIR C2, E8, A600) are commercially available,
+  portable, no consumables, ~£500–£3,000. Measurements take 5–10 seconds.
+
+  Barriers:
+    - Needs temperature-controlled room (~22°C)
+    - 10-minute patient acclimatisation required
+    - No validated clinical protocol currently exists
+    - Manual image analysis without AI is time-consuming
+    - No formal cost-effectiveness studies published
+
+--- IS IT WORTH USING vs. EMPIRICAL TREATMENT? ---
+
+  No — does not replace empirical treatment. Sepsis protocols should not
+  be delayed for IRT. Role is in monitoring, risk stratification, and
+  supplementing existing tools.
+
+
+================================================================================
+SECTION 2: IRT IN NEONATAL MEDICINE & RADIATION RISK
+================================================================================
+
+--- NEONATAL EVIDENCE ---
+
+  Direct NICU use (Barcat 2017, cited in Stanley et al.):
+    - IRT used in 29 preterm neonates to study sleep onset
+    - Narrower CPTDs associated with shorter wakefulness episodes
+    - Novel observation: vasodilation promotes sleep onset in preterm neonates
+
+  Neonatal sepsis marker (Leante-Castellanos 2017, cited in Du et al.):
+    - Persistent CPTD >2°C for ≥4 hours = sensitive early diagnostic marker
+      for LATE-ONSET neonatal sepsis
+    - This is the key validated threshold for neonatal IRT application
+
+  Paediatric ICU evidence:
+    - Nagori et al. (2019): ML on thermal gradients, AUC 0.75–0.77
+    - Vats et al. (2022): LSTM deep learning, AUC 0.81, detected shock
+      5 hours before onset
+
+  Caution (Stanley et al.):
+    "IRT should be used with caution in children until more data are
+    available to assist interpretation."
+
+--- RADIATION RISK ---
+
+  NONE. IRT is completely non-ionising.
+
+  The camera passively detects infrared radiation (8–14 μm wavelength)
+  naturally emitted by the body as heat. It emits nothing at the patient.
+  Explicitly described as "non-ionising" across all reviewed literature.
+
+  SAFETY NOTE: Active dynamic thermography (ADT), which applies a cold
+  stimulus, DOES carry risk in hypoperfused patients. Standard passive
+  IRT has no such concern.
+
+
+================================================================================
+SECTION 3: HOW IRT DETECTS SEPSIS — THE MECHANISM
+================================================================================
+
+--- THE PHYSICS ---
+
+Every object above absolute zero emits infrared radiation proportional to
+its surface temperature (Stefan-Boltzmann's law). The human body naturally
+emits infrared in the 8–14 μm wavelength range.
+
+An IRT camera is entirely passive — it reads naturally emitted body heat
+pixel by pixel, converting it into a real-time pseudocolour temperature map.
+
+--- THE PHYSIOLOGY ---
+
+In sepsis, the inflammatory response disrupts blood distribution:
+
+  Step 1 — Cytokines (IL-6, TNF-α, IL-1β) cause central vasodilation,
+           dropping systemic vascular resistance.
+
+  Step 2 — To protect vital organs, the sympathetic nervous system triggers
+           peripheral vasoconstriction (hands, feet, legs, skin).
+
+  Step 3 — Reduced peripheral blood flow → less warm blood reaching
+           extremities → periphery cools while core stays warm.
+
+  Step 4 — A measurable Central-Peripheral Temperature Difference (CPTD)
+           develops. This is what IRT detects.
+
+Validated threshold: >2°C difference sustained for ≥4 hours
+= early marker for sepsis/septic shock.
+
+--- WHAT IRT MEASURES ---
+
+  - CPTD: degree of peripheral vasoconstriction / shock severity
+  - Toe/fingertip temperature: distal perfusion (lowest in shock)
+  - Thermal heterogeneity: uneven microvascular flow (mottling made objective)
+  - Rate of temperature change over time: trajectory of deterioration
+  - Spatial skin temperature gradient maps
+
+--- WHY IRT DETECTS SEPSIS EARLIER THAN CLINICAL SIGNS ---
+
+  Peripheral vasoconstriction → skin cooling  ← IRT detects HERE
+           ↓
+  Blood pressure starts falling
+           ↓
+  Tachycardia, altered mental status, reduced urine output
+           ↓
+  Clinical sepsis recognised at bedside       ← Currently detected HERE
+
+Vats et al.: IRT predicted septic shock 5 HOURS before onset.
+
+--- WHY NEONATES ARE ESPECIALLY SUITED ---
+
+  - High surface-area-to-volume ratio → skin temp more sensitive to
+    perfusion changes
+  - Immature thermoregulation → more pronounced peripheral cooling response
+    to infection
+  - Cannot communicate symptoms → objective monitoring is critical
+
+
+================================================================================
+SECTION 4: NEONATAL SEPSIS STATISTICS — UNITED STATES
+================================================================================
+
+--- THE SCALE ---
+
+  - More than 18 babies under 28 days old die from sepsis EVERY DAY in the US
+    (Source: UF Health, 2024)
+  - Neonatal sepsis represents 18% of all baby deaths in the US
+  - >75,000 babies and children develop severe sepsis each year in the US
+  - Annual neonatal sepsis healthcare costs: $1.1 billion/year
+  - Neonates have the HIGHEST rate of ICU admissions for sepsis of any
+    age group in the US
+
+  Premature babies:
+    - 33% of infants born <28 weeks will acquire sepsis during NICU stay
+    - 36% of premature babies born before 28 weeks have ≥1 episode of
+      bacteremia during initial hospitalisation
+    - EOS is 10–20x more likely in premature very low birthweight infants
+
+--- MORTALITY (US) ---
+
+  All septic infants (US):                    ~10%
+  Infants with any comorbidity:               up to 30%
+  Premature infants <28 weeks (bacteremia):   up to 50%
+  Post-discharge mortality vs. non-sepsis:    RR 2.1
+
+--- LONG-TERM OUTCOMES IN SURVIVORS ---
+
+  - 35% of culture-proven sepsis survivors develop neurodevelopmental
+    impairment vs. 17% without sepsis
+  - ~50% of newborns who survive sepsis require ≥1 additional hospitalisation
+  - Cerebral palsy: OR 1.4–1.7
+  - Developmental delay: OR 1.3–1.6
+  - Vision impairment: OR 1.3–2.2
+  - Neurosensory deficits overall: OR 3.18 (95% CI 2.29–4.41)
+  - Periventricular leukomalacia (PVL): 22.4%
+  - Bronchopulmonary dysplasia (BPD): 30.8%
+  - Retinopathy of prematurity (ROP): 10.5%
+  - Impaired head growth at 2 years corrected age
+
+--- ECONOMIC BURDEN (US) ---
+
+  Total US cost treating severe sepsis in children (2016): $7.31 billion
+    (up from $4.8B in 2005)
+  Annual neonatal sepsis healthcare costs:                 $1.1 billion/yr
+  Additional cost per late-onset sepsis episode (preterm): ~$32,954
+  Hospital cost per 1,000 births — current screening:      $182,491
+  Hospital cost per 1,000 births — enhanced observation:   $85,879 (53% less)
+  Neonatal sepsis patients cost 2–3x more per admission than adults
+
+--- ANTIBIOTIC OVERTREATMENT ---
+
+  - 50–100 neonates receive empiric IV antibiotics for every 1 confirmed
+    case of early-onset sepsis (up to 250x the actual incidence)
+  - Consequences: antimicrobial resistance, microbiome disruption, increased
+    chronic disease risk, unnecessary hospitalisation, family separation
+
+
+================================================================================
+SECTION 5: EARLY-ONSET vs. LATE-ONSET SEPSIS — IRT APPLICABILITY
+================================================================================
+
+  Early-Onset Sepsis (EOS): within first 72 hours of life
+  Late-Onset Sepsis (LOS): after 72 hours
+
+  IRT is NOT well-suited for EOS because:
+    - All newborns undergo massive thermoregulatory transition at birth
+    - Normal CPTD is unstable and variable in first hours — no baseline
+    - EOS often presents with hypothermia, not fever — signal less predictable
+    - No validated IRT threshold exists for EOS
+    - Thermoregulatory instability makes sepsis signal indistinguishable
+      from normal newborn physiology
+
+  IRT IS well-suited for LOS because:
+    - Stable physiological baseline established by 72 hours
+    - Baby is already in NICU, continuously monitored
+    - >2°C sustained CPTD is validated specifically for LOS
+    - LOS accounts for 94.9% of all neonatal sepsis episodes
+
+  CONCLUSION: Focus on LATE-ONSET neonatal sepsis.
+  Acknowledge EOS as a limitation/future direction in the problem statement.
+
+
+================================================================================
+SECTION 6: WHY THE NICU IS THE IDEAL ENVIRONMENT FOR IRT
+================================================================================
+
+  1. High-risk population already identified and captive
+  2. LOS dominates — clear monitoring window (after 72h, during NICU stay)
+  3. No radiation, non-contact — ideal for fragile neonates
+  4. Diagnostic marker already validated (CPTD >2°C for ≥4h)
+  5. NICU solves IRT's main practical barriers:
+       - Incubators are already temperature-controlled
+       - Babies are immobile and undressed
+       - No acclimatisation problem
+       - Continuous monitoring is standard of care — IRT fits seamlessly
+  6. Technology demonstrated in NICU setting:
+       - Continuous monitoring shown with <0.55°C accuracy
+       - Respiratory rate, skin temperature, CPTD all measurable
+         non-contact and continuously
+  7. Could dramatically reduce antibiotic overtreatment
+  8. At $7.31B/year in paediatric sepsis costs, even modest improvement
+     in early detection has enormous economic and clinical ROI
+
+
+================================================================================
+SECTION 7: PROBLEM STATEMENT (FINAL)
+================================================================================
+
+"In the US, more than 18 babies under 28 days old die from sepsis every
+day, yet current detection methods — blood cultures, inflammatory markers,
+and clinical observation — identify sepsis only after clinical deterioration
+has already begun. This diagnostic delay drives both preventable deaths and
+rampant antibiotic overtreatment, with 50–100 neonates receiving empiric IV
+antibiotics for every single confirmed case."
+
+Key decisions made:
+  - Focus: ALL neonates (not just premature)
+  - Sepsis type: Late-onset (not early-onset — IRT not validated for EOS)
+  - No solution described in problem statement
+  - Stakeholder: Neonates in NICU
+  - Current practice: blood cultures, CRP, WCC, clinical observation
+  - Gap: reactive not preventative; no continuous non-invasive early warning
+
+
+================================================================================
+SECTION 8: SOURCE URLS
+================================================================================
+
+Neonatal Sepsis Stats (US):
+  https://ufhealth.org/stories/2024/neonatal-sepsis-understanding-and-preventing-risks-for-your-newborn
+  https://www.cdc.gov/abcs/reports/neonatal-sepsis.html
+  https://www.ncbi.nlm.nih.gov/books/NBK531478/
+  https://hcup-us.ahrq.gov/reports/SepsisUSBurdenHospitalCare.pdf
+  https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2025.1536948/full
+
+Long-Term Neurodevelopmental Outcomes:
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC6956113/
+  https://karger.com/neo/article/121/1/65/866413/Long-Term-Neurodevelopmental-Impairment-among-Very
+  https://link.springer.com/article/10.1186/s12887-024-04977-8
+
+Economic Costs:
+  https://www.sepsis.org/news/treating-children-for-sepsis-costs-soaring/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC10826394/
+  https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2023.1068367/full
+
+Antibiotic Overtreatment:
+  https://www.nature.com/articles/s41467-023-38156-7
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC12359153/
+
+IRT in NICU / Neonatal Monitoring:
+  https://www.nature.com/articles/s41598-024-60718-y
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC6814124/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC11528303/
+
+IRT Sepsis Mechanism:
+  https://www.researchgate.net/publication/335226862_Early_sepsis_recognition_based_on_infrared_thermography
+  https://link.springer.com/article/10.1186/s12884-019-2533-y
+
+================================================================================
+END OF DOCUMENT
+================================================================================
