@@ -1,0 +1,133 @@
+US REGULATORY AND LEGAL FRAMEWORK FOR AI SEPSIS THERMOGRAPHY SOFTWARE
+=======================================================================
+
+SOFTWARE LAYER ON A 510(k)-CLEARED DEVICE: WHAT'S REQUIRED
+============================================================
+
+1. DOES THE AI SOFTWARE NEED ITS OWN FDA CLEARANCE?
+----------------------------------------------------
+Almost certainly yes — but there's a clear path. The cleared hardware device's 510(k) does not
+extend to downstream software that outputs a clinical risk score. The software is a separate
+Software as a Medical Device (SaMD).
+
+The CDS exemption won't save you. To skip FDA review, software must meet 4 criteria simultaneously.
+The sepsis AI layer fails at least two:
+- It processes medical images (thermal) — explicitly excluded by FDA's 2026 CDS guidance
+- It outputs a specific clinical risk score in a time-sensitive emergency setting
+
+The good news: There are now real predicates. FDA authorized the Sepsis ImmunoScore
+(DEN230036, April 2024) — the first AI sepsis prediction tool — via De Novo. AlgoDx's
+NAVOY CDS then got a 510(k) citing it as predicate. A thermal AI could potentially pursue
+a 510(k) using these as predicates, though the different input modality (thermal vs. EHR
+lab values) may require De Novo instead.
+
+Recommended first step: Request a Pre-Sub (Q-Sub) meeting with FDA before committing to a
+pathway — free, takes ~3 months, and tells you definitively which route is required.
+
+
+2. QUALITY SYSTEM REQUIREMENTS
+-------------------------------
+Under the new QMSR (effective February 2, 2026), the startup must maintain:
+- Full design controls and software validation
+- Complaint handling and CAPA
+- Post-market MDR adverse event reporting (21 CFR Part 803)
+- A Predetermined Change Control Plan (PCCP) — highly recommended if the AI model will be
+  retrained over time, as it lets you update the algorithm post-clearance without filing a
+  new 510(k)
+
+
+3. HIPAA — AGREEMENTS REQUIRED
+--------------------------------
+Thermal images of patients are PHI. The startup is a Business Associate the moment any
+patient data touches its systems.
+
+Agreement            | When Required                              | Who Signs
+---------------------|--------------------------------------------|--------------------------
+BAA                  | Before any PHI flows                       | Startup + every hospital
+Sub-BAA              | If startup uses cloud vendors touching PHI | Startup + each subcontractor
+Data Use Agreement   | If hospital provides data for model training| Startup + hospital
+IRB Agreement        | If any data collection constitutes research | Startup + hospital's IRB
+
+Key BAA rules:
+- The startup cannot use patient thermal images to retrain the model without explicit
+  authorization or a DUA covering de-identified data
+- Any breach of PHI must be reported to the hospital within 60 days
+- Penalties for BAA failures: up to $1.9M per violation category
+
+
+4. FULL HOSPITAL CONTRACT STACK
+---------------------------------
+To deploy in a hospital the startup needs:
+1. BAA — HIPAA compliance, non-negotiable
+2. MSA/SaaS Agreement — license, SLAs, IP ownership, liability caps
+3. DUA — if using patient data for model improvement
+4. IT Security Assessment — SOC 2 Type II, HECVAT questionnaire, penetration test reports;
+   increasingly HITRUST CSF certification required by large health systems
+5. IRB Agreement — if any pilot/validation study is involved
+
+
+5. NEONATAL-SPECIFIC PRIVACY
+------------------------------
+- Parents are the HIPAA personal representative for neonates — any research use of neonatal
+  thermal images requires parental consent (both parents under Common Rule Subpart B),
+  no waivers allowed
+- De-identification is harder for neonates — small NICU populations have higher
+  re-identification risk; use Expert Determination method, not just Safe Harbor
+- California, New York, Texas each have state health privacy laws stricter than HIPAA
+
+
+6. INTEROPERABILITY STANDARDS
+-------------------------------
+Standard        | Purpose                                  | Required?
+----------------|------------------------------------------|---------------------------
+DICOM           | Receiving thermal images from device/PACS | Yes, for hospital integration
+HL7 FHIR R4     | Writing risk score back to EHR           | Yes, ONC-mandated
+SMART on FHIR   | Authorization for EHR app access         | Yes (Epic, Oracle, Meditech)
+HL7 v2          | Legacy hospital workflow systems         | Often needed
+
+Note: No dedicated DICOM modality tag exists for infrared thermography — a practical
+integration challenge the startup needs to solve early.
+
+
+7. LIABILITY PROTECTION
+------------------------
+Key contract provisions the startup must fight for:
+- "Adjunctive use only" labeling — required by FDA and the primary liability shield
+- Limitation of liability cap — fees paid in prior 12 months
+- Consequential damages waiver — mutual, no lost profits claims
+- Indemnification carve-out for clinician misuse or off-label use
+- Bias testing documentation — hospitals increasingly demand indemnification for
+  algorithmic bias claims; document demographic performance testing in the FDA submission
+
+Insurance hospitals will require:
+- E&O / Technology E&O: $2-5M
+- Cyber liability: $2-5M
+- Product liability: separate coverage often required
+- CGL: $1-2M per occurrence
+
+
+BOTTOM LINE
+-----------
+The software-on-cleared-hardware approach is strategically smart because:
+- The hardware regulatory burden is already solved
+- The software's own FDA path is shorter than it was 2 years ago (predicates now exist)
+- The "adjunctive tool" framing significantly reduces liability
+- BAA + MSA is standard enterprise SaaS — not exotic
+
+Pitch framing: "We don't build the camera. We build the AI brain that turns any cleared
+thermal camera into a sepsis early warning system — plugging into the hospital's EHR via FHIR."
+
+
+FULL REGULATORY DECISION TABLE
+================================
+Question                                  | Answer
+------------------------------------------|--------------------------------------------------------
+Does the AI sepsis layer need clearance?  | Yes — processes medical images, outputs clinical score
+What pathway?                             | De Novo likely; 510(k) possible (DEN230036 as predicate)
+Quality system?                           | QMSR (21 CFR 820, rev. Feb 2026) + ISO 13485:2016
+Is thermal imaging data PHI?              | Yes — identifiable patient images = PHI
+BAA required?                             | Yes — startup is a Business Associate
+Hospital contract stack?                  | BAA + MSA + DUA + IRB + IT security assessment
+Neonatal-specific requirements?           | Dual parental consent; state law variations; Expert De-id
+Interoperability standards?               | DICOM + HL7 FHIR R4 + SMART on FHIR + HL7 v2
+Liability protection strategy?            | Adjunctive labeling + caps + damages waiver + bias testing
