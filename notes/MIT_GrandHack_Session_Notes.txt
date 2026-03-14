@@ -1,6 +1,6 @@
 ================================================================================
 MIT GRAND HACK — SESSION NOTES
-IRT FOR NEONATAL SEPSIS DETECTION
+IRT FOR SEPSIS DETECTION: NEONATAL & POST-OPERATIVE POPULATIONS
 ================================================================================
 Date: March 14, 2026
 
@@ -324,6 +324,291 @@ IRT in NICU / Neonatal Monitoring:
 IRT Sepsis Mechanism:
   https://www.researchgate.net/publication/335226862_Early_sepsis_recognition_based_on_infrared_thermography
   https://link.springer.com/article/10.1186/s12884-019-2533-y
+
+
+================================================================================
+SECTION 9: NEONATAL SEPSIS DIAGNOSIS — CURRENT STANDARD IN THE US
+================================================================================
+
+Gold Standard: Blood Culture
+  - Only definitive diagnosis is a POSITIVE blood culture
+  - Takes 48–72 hours to return results
+  - High false-negative rate — many septic babies have negative cultures
+    ("culture-negative sepsis")
+
+Laboratory Markers (all with significant limitations):
+  - CBC with differential: poor sensitivity and specificity in neonates
+  - CRP: good negative predictive value but poor positive predictive value;
+    rises late and cannot reliably justify starting or withholding treatment
+  - Procalcitonin: not sufficiently sensitive or specific to drive decisions
+
+Risk Stratification Tools:
+  - Neonatal EOS Calculator (web-based): scores risk based on gestational age,
+    maternal intrapartum fever, GBS colonisation, duration of membrane rupture,
+    intrapartum antibiotics. Risk score only — not a diagnostic tool.
+
+Clinical Observation:
+  - Nurses/doctors watch for: temperature instability, poor feeding, lethargy,
+    increased work of breathing, colour changes
+  - These are LATE signs — sepsis already established by the time they appear
+
+Core Gap:
+  No validated, continuous, real-time tool capable of detecting the early
+  physiological signature of sepsis before clinical signs appear.
+
+Sources:
+  https://www.ncbi.nlm.nih.gov/books/NBK531478/
+  https://www.hopkinsmedicine.org/-/media/files/allchildrens/clinical-pathways/nicu-early-onset-sepsis-clinical-pathway-final-2025-11-7.pdf
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC9675597/
+
+
+================================================================================
+SECTION 10: EYE-RELATED ANGLES FOR SEPSIS DETECTION
+================================================================================
+
+--- RETINAL CHANGES IN SEPSIS ---
+
+  - >50% of sepsis patients display retinal pathology: fluorescein-leaking
+    micro-aneurysms, vitreous haemorrhages, retinal haemorrhages (bilateral
+    in 75% of cases)
+  - Neonatal sepsis directly causes and worsens Retinopathy of Prematurity
+    (ROP): inflammatory cytokines modulate retinal vessel development
+  - Sepsis significantly increases risk of ANY stage ROP and severe ROP
+  - Fungal sepsis (Candida) specifically causes lens abscesses in neonates
+  - The retina is a direct, visible extension of the microvascular and
+    neurological system
+
+--- IRT AND THE INNER CANTHUS ---
+
+  - The inner canthus (corner of the eye) is already used as the CORE
+    temperature measurement site in IRT sepsis studies
+  - Used in the Hasanin study (repo) as the canthal-to-toe gradient reference
+  - Accessible even in neonates without skin contact
+  - Provides reliable, stable reference point for CPTD calculation
+
+--- COMBINED APPROACH POTENTIAL ---
+
+  IRT canthal temperature + retinal imaging could provide:
+    - Early physiological warning (temperature gradient) AND
+    - Confirmatory microvascular evidence (retinal changes)
+  This dual-modality approach could be a novel differentiator.
+
+Sources:
+  https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2821486
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC10842718/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC5474021/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC9270376/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC11905132/
+
+
+================================================================================
+SECTION 11: PIVOT — POST-OPERATIVE SEPSIS POPULATION
+================================================================================
+
+REASON FOR PIVOT:
+  ICU physician noted that post-op patients are monitored with CO, SVR, and
+  CVP — and this monitoring gap on the WARD (not ICU) is where patients fall
+  through the cracks.
+
+--- CO, SVR, CVP — WHAT THEY MEASURE AND LIMITATIONS ---
+
+  Cardiac Output (CO): volume of blood pumped per minute
+  Systemic Vascular Resistance (SVR): resistance peripheral vessels offer
+  Central Venous Pressure (CVP): proxy for right heart preload/fluid status
+
+  In sepsis: high CO + low SVR = classic warm shock pattern
+  These are MACROCIRCULATORY parameters — they detect sepsis once haemodynamic
+  compromise is established.
+
+  Key limitations:
+    - Require arterial line, central line, or PA catheter — invasive
+    - ICU/post-op only — not available on general wards
+    - CVP increasingly questioned as unreliable for fluid responsiveness
+    - Detect sepsis AFTER global circulation is disrupted
+
+  IRT vs. Hemodynamic Monitoring comparison:
+  ┌────────────────────┬──────────────────────────┬────────────────────────┐
+  │                    │ CO/SVR/CVP Monitoring     │ IRT                    │
+  ├────────────────────┼──────────────────────────┼────────────────────────┤
+  │ What it measures   │ Macrocirculation (global) │ Microcirculation (skin)│
+  │ Invasiveness       │ Invasive lines required   │ Non-contact            │
+  │ Availability       │ ICU only                  │ Portable, low cost     │
+  │ Timing             │ After haemodynamic drop   │ Before haemodynamic    │
+  │                    │                           │ compromise             │
+  │ Limitation         │ CVP unreliable for preload│ Affected by environment│
+  └────────────────────┴──────────────────────────┴────────────────────────┘
+
+  IMPORTANT: No paper demonstrates IRT is superior to CO/SVR/CVP.
+  The argument is complementarity, not superiority. IRT fills the gap
+  WHERE hemodynamic monitoring isn't present (the ward).
+
+--- POST-OP SEPSIS — US MARKET SIZE ---
+
+  - ~500,000 post-op sepsis cases per year (30% of 1.7M total US sepsis cases)
+  - 1–3% of all surgical patients develop post-op sepsis
+  - Mortality: 30–50%
+  - US sepsis market: $1.7 billion (2024), CAGR 5.1% through 2034
+  - North America sepsis diagnostics market: $467M (2024) → $700M by 2029
+  - Median hospital stay for post-op sepsis: 18 days (3x uncomplicated)
+  - Median hospital cost with sepsis: $57,032 vs $17,229 without (3.3x)
+  - Post-op is ~20x larger market by volume than neonatal sepsis
+
+--- 4-HOURLY VITALS — INTEGRATION OPPORTUNITY ---
+
+  US hospital standard: vitals every 4 hours for post-op patients
+  IRT integration:
+    - Takes 5–10 seconds per measurement
+    - Non-contact — nurse points camera during existing vitals round
+    - Adds peripheral perfusion data point alongside HR, BP, temp, SpO2
+    - Serial measurements every 4h captures CPTD trend over time
+    - Validated threshold (>2°C for ≥4h) maps perfectly to 4-hourly cadence
+
+--- PATIENT EXPOSURE — ADULTS VS. NEONATES ---
+
+  Concern: Privacy/dignity for adult patients, especially women
+
+  Reality:
+    - IRT does NOT require full body exposure
+    - Most validated measurement sites are extremity-based:
+        · Hands and fingers (always accessible)
+        · Feet and toes (always accessible)
+        · Inner canthus of eye (always accessible)
+        · Forearm (usually accessible)
+    - Central-peripheral gradient calculable from EXTREMITIES ALONE
+    - No need to expose chest, abdomen, or sensitive areas
+    - Privacy concern is largely resolved by extremity-only measurement
+
+  Temperature control:
+    - Post-op recovery rooms and ICUs are temperature-controlled
+    - Protocol standardisation needed (same conditions, same time post-op)
+    - General wards less controlled — a practical challenge to address
+
+
+================================================================================
+SECTION 12: HIGHEST-RISK SURGERIES FOR POST-OP SEPSIS
+================================================================================
+
+--- PROCEDURE VOLUMES AND SEPSIS RATES ---
+
+  ┌──────────────────┬───────────────────────┬─────────────┬──────────────────┐
+  │ Surgery          │ Annual US Procedures  │ Sepsis Rate │ Sepsis Cases/yr  │
+  ├──────────────────┼───────────────────────┼─────────────┼──────────────────┤
+  │ Colorectal       │ ~1.2 million          │ 2–3%        │ ~24,000–36,000   │
+  │ Small bowel      │ ~200,000              │ 2.75%       │ ~5,500           │
+  │ Gastric          │ ~80,000               │ 2.84%       │ ~2,270           │
+  │ Pancreatic       │ ~50,000               │ 3.17%       │ ~1,585           │
+  │ Esophageal       │ ~17,000               │ 3.84%       │ ~650             │
+  │ Splenic          │ Smaller volume        │ OR 7.7x     │ —                │
+  └──────────────────┴───────────────────────┴─────────────┴──────────────────┘
+
+  GI + cardiovascular + thoracic = 48.7% of ALL post-op sepsis cases
+
+--- WHEN DOES POST-OP SEPSIS PRESENT? ---
+
+  First 48 hours:
+    - SIRS is NORMAL post-op physiology — almost universal
+    - Impossible to distinguish true sepsis from normal surgical response
+    - Clinical scoring tools (NEWS, qSOFA) are essentially useless here
+
+  Day 3–5 — THE DANGER ZONE:
+    - Anastomotic leaks peak: median day 5–6, range 1–85 days
+    - CRP becomes meaningful discriminator from day 3 onwards
+    - SIRS has settled — new CPTD change is now significant
+    - 23.8% of leaks occur within 5 days ("very early" leakage)
+    - Patients deteriorating days 2–4 should be urgently reviewed
+
+  Day 5–7+:
+    - Wound infections, line infections, UTIs, pneumonia
+
+--- DO PATIENTS STAY LONG ENOUGH TO REACH THE DANGER ZONE? ---
+
+  YES — for every high-risk surgery:
+
+  ┌──────────────────────┬──────────────────────┬───────────────────────────┐
+  │ Surgery              │ Typical Hospital Stay│ Reaches Day 3–5?          │
+  ├──────────────────────┼──────────────────────┼───────────────────────────┤
+  │ Esophageal           │ 7–14 days            │ Yes — comfortably         │
+  │ Pancreatic           │ 7–10 days            │ Yes — comfortably         │
+  │ Small bowel          │ 7–14 days            │ Yes — comfortably         │
+  │ Gastric              │ 7–10 days            │ Yes — comfortably         │
+  │ Colorectal (open)    │ 7–10 days            │ Yes — comfortably         │
+  │ Colorectal (lap)     │ 5–7 days             │ Yes                       │
+  │ Splenic              │ 3–7 days             │ Yes — just about          │
+  └──────────────────────┴──────────────────────┴───────────────────────────┘
+
+  KEY INSIGHT: Median stay for post-op SEPSIS patients = 18 days.
+  Sepsis is being caught late and extending admission dramatically.
+  IRT monitoring from day 3 onwards could catch it hours earlier.
+
+--- PRIMARY TARGET POPULATION: COLORECTAL SURGERY ---
+
+  Colorectal surgery is the anchor population:
+    - Highest raw volume: 1.2 million procedures/year
+    - Meaningful sepsis rate: 2–3%
+    - Hospital stay: 5–10 days — fully covers danger zone
+    - ~30,000 preventable post-op sepsis cases/year from colorectal alone
+    - Well-defined, predictable patient pathway
+
+Sources:
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC2951484/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC6972282/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC8942007/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC5958846/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC8373714/
+  https://hcup-us.ahrq.gov/reports/statbriefs/sb281-Operating-Room-Procedures-During-Hospitalization-2018.jsp
+  https://www.globalinsightservices.com/reports/colorectal-procedure-market/
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC8469937/
+  https://www.prnewswire.com/news-releases/sepsis-market-is-projected-to-boost-at-a-cagr-of-5-1-in-the-us-during-the-forecast-period-20252034--delveinsight-302616582.html
+
+
+================================================================================
+SECTION 13: NEONATES vs. POST-OP — COMPARISON
+================================================================================
+
+  ┌─────────────────────────┬───────────────────────┬───────────────────────┐
+  │ Metric                  │ Neonates              │ Post-Op Adults        │
+  ├─────────────────────────┼───────────────────────┼───────────────────────┤
+  │ Annual US cases         │ ~26,000               │ ~300,000–500,000      │
+  │ Annual US deaths        │ ~6,500 (18/day)       │ ~90,000–150,000       │
+  │ Mortality rate          │ 10–50%                │ 30–50%                │
+  │ Market size             │ $1.1B neonatal costs  │ $7.31B+ adult costs   │
+  │ IRT evidence base       │ Stronger (validated   │ Less direct evidence  │
+  │                         │ threshold exists)     │                       │
+  │ Environment for IRT     │ Ideal (NICU)          │ Manageable (ward)     │
+  │ Monitoring gap          │ Smaller (already very │ LARGE — only 4-hourly │
+  │                         │ well monitored)       │ vitals on ward        │
+  │ Exposure concerns       │ None                  │ Manageable            │
+  │ Market scale            │ Smaller               │ ~20x larger           │
+  └─────────────────────────┴───────────────────────┴───────────────────────┘
+
+  RECOMMENDATION: Post-op ward population offers the larger market and
+  clearer monitoring gap. Neonatal remains more emotionally compelling
+  with stronger IRT evidence base. Colorectal surgery is the anchor
+  post-op population given volume and risk profile.
+
+
+================================================================================
+SECTION 14: UPDATED PROBLEM STATEMENT (POST-OP FOCUS TBD)
+================================================================================
+
+  Current drafted problem statement (neonatal focus):
+
+  "In the US, more than 18 babies under 28 days old die from sepsis every
+  day, yet current detection methods identify sepsis only after clinical
+  deterioration has already begun. This diagnostic delay leaves families
+  facing preventable loss or lifelong caregiving, while clinicians carry
+  the lasting burden of outcomes that may have been avoided."
+
+  Key decisions made:
+    - No em dashes in problem statement
+    - No solution described
+    - Human impact angle included (families + clinicians)
+    - Stat anchored to verified UF Health / CDC source
+    - Population: ALL neonates (not just premature)
+    - Focus: Late-onset sepsis (EOS excluded — IRT not validated for it)
+
+  Source for 18/day stat:
+    https://ufhealth.org/stories/2024/neonatal-sepsis-understanding-and-preventing-risks-for-your-newborn
 
 ================================================================================
 END OF DOCUMENT
