@@ -8,31 +8,35 @@
 
 /* ── CSS Variables ── */
 :root {
-  --epic-primary: #1F3A93;
-  --epic-primary-dark: #152A6B;
-  --epic-primary-light: #2E4EA8;
+  /* Hyperdrive uses a softer, more professional palette than old Hyperspace */
+  --epic-primary: #2D5BA4;        /* Softer blue — Hyperdrive header/accent */
+  --epic-primary-dark: #1E3F73;   /* Darker blue for hover states */
+  --epic-primary-light: #4A7FCC;  /* Light blue for highlights */
   --epic-bg: #FFFFFF;
-  --epic-chrome: #F5F5F5;
-  --epic-chrome-dark: #E8E8E8;
-  --epic-text: #333333;
-  --epic-text-secondary: #666666;
-  --epic-text-muted: #999999;
-  --epic-border: #E0E0E0;
-  --epic-border-dark: #CCC;
-  --epic-row-alt: #FAFBFC;
-  --epic-row-hover: #EDF2FF;
-  --epic-green: #28A745;
-  --epic-yellow: #FFC107;
-  --epic-orange: #FD7E14;
-  --epic-red: #DC3545;
-  --epic-teal: #00B4D8;
-  --epic-teal-light: #E6F9FC;
-  --epic-teal-dark: #0096B7;
-  --topbar-height: 48px;
-  --tabbar-height: 36px;
-  --navigator-width: 200px;
+  --epic-chrome: #F2F3F5;         /* Slightly cooler gray — Hyperdrive panels */
+  --epic-chrome-dark: #E4E5E9;
+  --epic-text: #1A1A2E;           /* Near-black, slightly blue — Epic body text */
+  --epic-text-secondary: #5A5F72; /* Medium gray-blue */
+  --epic-text-muted: #8E93A4;     /* Muted for labels */
+  --epic-border: #D8DAE0;         /* Cooler borders */
+  --epic-border-dark: #B8BBC4;
+  --epic-row-alt: #F7F8FA;        /* Very subtle alternating rows */
+  --epic-row-hover: #E8EDF6;      /* Blue-tinted hover */
+  --epic-green: #2E7D32;          /* More muted clinical green */
+  --epic-yellow: #F9A825;         /* Amber warning */
+  --epic-orange: #EF6C00;         /* Orange alert */
+  --epic-red: #C62828;            /* Darker clinical red */
+  --epic-teal: #00838F;           /* NeoTherm — darker teal */
+  --epic-teal-light: #E0F7FA;
+  --epic-teal-dark: #006064;
+  --epic-header-bg: #374151;      /* Hyperdrive toolbar — dark gray, not navy */
+  --epic-tab-active: #2D5BA4;     /* Active tab underline */
+  --topbar-height: 44px;          /* Slightly shorter — Hyperdrive is compact */
+  --tabbar-height: 34px;
+  --navigator-width: 192px;       /* Slightly narrower */
   --storyboard-height: auto;
-  --font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", monospace;
 }
 
 /* ── Reset & Base ── */
@@ -119,13 +123,13 @@ html, body {
 .topbar {
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, #1F3A93 0%, #17307E 100%);
-  color: #fff;
-  padding: 0 16px;
+  background: var(--epic-header-bg);
+  color: #F0F1F3;
+  padding: 0 12px;
   height: var(--topbar-height);
-  gap: 16px;
+  gap: 12px;
   z-index: 100;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  border-bottom: 1px solid #2A2F3A;
 }
 
 .topbar-left {
@@ -136,12 +140,13 @@ html, body {
 }
 
 .topbar-logo {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #fff;
+  color: #E8EAED;
   user-select: none;
+  opacity: 0.9;
 }
 
 .topbar-center {
@@ -166,12 +171,12 @@ html, body {
 
 .topbar-search-input {
   width: 100%;
-  height: 30px;
-  padding: 0 12px 0 32px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 4px;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
+  height: 28px;
+  padding: 0 10px 0 30px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  color: #E8EAED;
   font-size: 12px;
   font-family: var(--font-family);
   outline: none;
@@ -179,12 +184,13 @@ html, body {
 }
 
 .topbar-search-input::placeholder {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.4);
 }
 
 .topbar-search-input:focus {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 0 0 2px rgba(45,91,164,0.3);
 }
 
 .topbar-right {
@@ -277,28 +283,28 @@ html, body {
   height: 30px;
   padding: 0 14px;
   margin-bottom: -1px;
-  background: var(--epic-chrome-dark);
-  border: 1px solid var(--epic-border);
-  border-bottom: 1px solid var(--epic-border);
-  border-radius: 6px 6px 0 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
   cursor: pointer;
   font-size: 12px;
   color: var(--epic-text-secondary);
   white-space: nowrap;
-  transition: background 0.1s, color 0.1s;
+  transition: color 0.1s, border-color 0.15s;
   user-select: none;
 }
 
 .tabbar-tab:hover {
-  background: #f0f0f0;
+  color: var(--epic-text);
+  border-bottom-color: var(--epic-border-dark);
 }
 
 .tabbar-tab--active {
-  background: var(--epic-bg);
-  color: var(--epic-text);
-  border-bottom-color: var(--epic-bg);
-  font-weight: 500;
-  box-shadow: 0 -2px 0 var(--epic-primary) inset, 0 -1px 3px rgba(0,0,0,0.03);
+  background: transparent;
+  color: var(--epic-primary);
+  border-bottom-color: var(--epic-tab-active);
+  font-weight: 600;
 }
 
 .tabbar-tab-icon {
