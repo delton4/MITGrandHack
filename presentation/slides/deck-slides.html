@@ -2,622 +2,823 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920">
-<title>NeoTherm — Pitch Deck Slides</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team 218 — Global-Therma | MIT Grand Hack 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --ink: #1a2332;
-  --ink-light: #3d4f63;
-  --ink-muted: #64748b;
-  --surface: #f8f9fb;
-  --white: #ffffff;
-  --border: #dde2e8;
-  --border-light: #eceef2;
-  --teal-deep: #0c6e6e;
-  --teal: #0d8a8a;
-  --teal-light: #e6f5f5;
-  --blue: #2563a0;
-  --blue-light: #e8f0f8;
-  --amber: #b8860b;
-  --amber-light: #fef8e8;
-  --red-clinical: #c0392b;
-  --red-light: #fdf0ee;
-  --green-clinical: #1a7a4c;
-  --green-light: #edf7f1;
-  --phase1: #2563a0;
-  --phase2: #0d8a8a;
-  --phase3: #6b4c9a;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a2332;--ink-light:#3d4f63;--ink-muted:#64748b;
+  --surface:#f8f9fb;--white:#fff;--border:#dde2e8;--border-light:#eceef2;
+  --teal-deep:#0c6e6e;--teal:#0d8a8a;--teal-light:#e6f5f5;
+  --blue:#2563a0;--blue-light:#e8f0f8;
+  --amber:#b8860b;--amber-light:#fef8e8;
+  --red:#c0392b;--red-light:#fdf0ee;
+  --green:#1a7a4c;--green-light:#edf7f1;
+  --phase1:#2563a0;--phase2:#0d8a8a;--phase3:#6b4c9a;
+  --hack-blue:#1565C0;
 }
-
-html { font-size: 16px; -webkit-font-smoothing: antialiased; }
-body { font-family: 'DM Sans', sans-serif; color: var(--ink); background: #e0e0e0; }
-
-/* ─── SLIDE FRAMEWORK ─── */
-.slide {
-  width: 1920px;
-  height: 1080px;
-  background: var(--white);
-  position: relative;
-  overflow: hidden;
-  margin: 40px auto;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-}
-
-.slide-pad {
-  padding: 80px 120px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Top accent bar */
-.slide::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--teal), var(--blue), var(--phase3));
-}
-
-/* Slide number */
-.slide-num {
-  position: absolute;
-  bottom: 40px;
-  right: 120px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  color: var(--ink-muted);
-  letter-spacing: 0.05em;
-}
-
-/* NeoTherm watermark */
-.slide-brand {
-  position: absolute;
-  bottom: 40px;
-  left: 120px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  color: var(--border);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* ─── TYPOGRAPHY ─── */
-.label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 16px;
-}
-
-h1 {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--ink);
-}
-
-h2 {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
-  font-size: 52px;
-  line-height: 1.2;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-
-.subtitle {
-  font-size: 22px;
-  color: var(--ink-light);
-  line-height: 1.5;
-  max-width: 900px;
-}
-
-.big-number {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
-  color: var(--teal);
-  line-height: 1;
-}
-
-/* ─── COMPONENTS ─── */
-.flow-arrow {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex: 1;
-}
-.flow-step {
-  flex: 1;
-  text-align: center;
-  padding: 32px 24px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  position: relative;
-}
-.flow-step .icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  margin: 0 auto 16px;
-}
-.flow-step h3 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.flow-step p {
-  font-size: 15px;
-  color: var(--ink-muted);
-  line-height: 1.5;
-}
-.flow-connector {
-  width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.flow-connector::after {
-  content: '';
-  width: 40px;
-  height: 2px;
-  background: var(--teal);
-  position: relative;
-}
-.flow-connector::before {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid var(--teal);
-  border-top: 2px solid var(--teal);
-  transform: rotate(45deg);
-  margin-left: 30px;
-}
-
-.phase-card {
-  flex: 1;
-  padding: 36px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--white);
-  position: relative;
-}
-.phase-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: 10px 10px 0 0;
-}
-
-.stat-card {
-  text-align: center;
-  padding: 48px 32px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.stakeholder-card {
-  padding: 40px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  flex: 1;
-}
-
-.timeline-row {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  border-bottom: 1px solid var(--border-light);
-}
-.timeline-row:last-child { border-bottom: none; }
-.timeline-date {
-  padding: 16px 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 15px;
-  font-weight: 500;
-}
-.timeline-content {
-  padding: 16px 0 16px 24px;
-  font-size: 18px;
-  color: var(--ink-light);
-  line-height: 1.5;
-  border-left: 1px solid var(--border-light);
-}
-.timeline-content strong { color: var(--ink); }
-
-/* Navigation */
-.nav {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  display: flex;
-  gap: 8px;
-  background: var(--white);
-  padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-}
-.nav a {
-  color: var(--ink-muted);
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-.nav a:hover { background: var(--surface); color: var(--ink); }
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:#e0e0e0}
+.sw{width:100vw;display:flex;justify-content:center;padding:24px 0}
+.s{width:1920px;height:1080px;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;transform-origin:top center;flex-shrink:0}
+.s.w{background:var(--white)}.s.w::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--blue),var(--phase3))}
+.s.b{background:var(--hack-blue)}.s.d{background:var(--ink)}.s.img{background:#000}
+.p{padding:80px 120px;flex:1;display:flex;flex-direction:column}
+.sn{position:absolute;bottom:40px;right:120px;font-family:'JetBrains Mono',monospace;font-size:14px;opacity:.4}
+.sn.l{color:#fff}.sn.dk{color:var(--ink-muted)}
+.br{position:absolute;bottom:40px;left:120px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.25}
+.br.l{color:#fff}.br.dk{color:var(--ink)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;line-height:1.15;color:var(--ink)}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:52px;line-height:1.2;color:var(--ink);margin-bottom:12px}
+.sub{font-size:22px;color:var(--ink-light);line-height:1.5;max-width:900px}
+.big{font-family:'Instrument Serif',Georgia,serif;font-weight:400;line-height:1}
+.ht{font-family:'DM Sans',sans-serif;font-size:48px;font-weight:700;color:#fff;text-align:center}
+.hs{font-size:22px;color:rgba(255,255,255,.85);text-align:center;max-width:900px;margin:20px auto 0;line-height:1.6}
+.hp{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);font-size:18px;color:rgba(255,255,255,.9)}
+.cd{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:40px}
+.st{text-align:center;padding:40px 24px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.fs{flex:1;text-align:center;padding:28px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.fs h3{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px}
+.fs p{font-size:14px;color:var(--ink-muted);line-height:1.5}
+.cn{width:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--teal);font-size:24px}
+.nav{position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:4px;align-items:center;background:var(--white);padding:6px 10px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.1);font-family:'JetBrains Mono',monospace;font-size:10px;flex-wrap:wrap;max-width:420px}
+.nav a,.nav button{color:var(--ink-muted);text-decoration:none;padding:2px 6px;border-radius:3px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:inherit}
+.nav a:hover,.nav button:hover{background:var(--surface);color:var(--ink)}
+.nav .sep{width:1px;height:14px;background:var(--border);margin:0 2px}
+.nav .sb{background:var(--teal);color:#fff;padding:2px 8px;font-weight:500}
+body.pr{background:#fff;overflow:hidden}
+body.pr .nav{display:none}
+body.pr .sw{display:none;padding:0}
+body.pr .sw.ac{display:flex;padding:0;height:100vh!important}
+body.pr .s{box-shadow:none}
+.hi{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(26,35,50,.85);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 20px;border-radius:6px;z-index:200;pointer-events:none;opacity:0;transition:opacity .3s}
+body.pr .hi{opacity:1}body.pr .hi.fade{opacity:0}
 </style>
 </head>
 <body>
-
 <nav class="nav">
-  <a href="#slide-1">1</a><a href="#slide-2">2</a><a href="#slide-3">3</a>
-  <a href="#slide-4">4</a><a href="#slide-5">5</a><a href="#slide-6">6</a>
-  <a href="#slide-7">7</a><a href="#slide-8">8</a><a href="#slide-9">9</a>
+<a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a><a href="#s10">10</a><a href="#s11">11</a><a href="#s12">12</a><a href="#s13">13</a><a href="#s14">14</a><a href="#s15">15</a><a href="#s16">16</a><a href="#s17">17</a><a href="#s18">18</a><a href="#s19">19</a>
+<div class="sep"></div><button class="sb" onclick="eP()">F</button>
 </nav>
+<div class="hi" id="hi">&#8592; &#8594; navigate &middot; Cmd+Shift+4 screenshot &middot; Esc exit</div>
 
-<!-- ════════════════════════ SLIDE 1: TITLE ════════════════════════ -->
-<div class="slide" id="slide-1">
-  <div class="slide-pad" style="justify-content: center;">
-    <div class="label">Continuous Neonatal Thermal Monitoring</div>
-    <h1 style="font-size: 96px; margin-bottom: 24px;">NeoTherm</h1>
-    <p style="font-size: 28px; color: var(--ink-light); max-width: 800px; line-height: 1.5;">
-      Non-contact thermal imaging for early sepsis detection in the NICU — integrated directly into the hospital's existing EHR workflow.
-    </p>
-    <div style="margin-top: 64px; display: flex; gap: 40px; font-size: 15px; color: var(--ink-muted);">
-      <span>Pilot site: Northwell Cohen Children's Medical Center</span>
-      <span>|</span>
-      <span>March 2026</span>
-    </div>
-  </div>
-  <div class="slide-num">01</div>
+<!-- ============================================================ -->
+<!-- 1. BLUE OPENER                                                -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s b" id="s1">
+<div class="p" style="justify-content:center;align-items:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:40px">MIT Grand Hack 2026</div>
+<div class="ht" style="font-size:56px;letter-spacing:-.01em">Team 218 — Global-Therma</div>
+<div class="hs" style="font-size:24px;max-width:800px;margin-top:28px;color:rgba(255,255,255,.75);font-weight:300">Infrared thermography-enabled NICU monitoring<br>for early detection of circulatory deterioration</div>
+<div class="hp" style="display:flex;align-items:center;gap:10px;font-size:20px">
+<span style="color:#4CAF50;font-size:22px">&#10003;</span> InterSystems Prize
+</div>
+</div><div class="sn l">01</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 2. BABY PHOTO — FULL BLEED                                    -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s img" id="s2">
+<img src="india_nicu-dfid-crop.jpg" alt="Newborn in NICU" style="width:100%;height:100%;object-fit:cover">
+<div class="sn l">02</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 3. GLOBE PIE CHART — NEONATAL DEATH CAUSES                    -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s3">
+<div class="p" style="justify-content:center">
+<div style="display:flex;gap:100px;align-items:center">
+<!-- Donut Chart -->
+<div style="position:relative;width:480px;height:480px;flex-shrink:0">
+<svg viewBox="0 0 200 200" style="width:100%;height:100%;filter:drop-shadow(0 8px 32px rgba(0,0,0,.08))">
+<!-- Donut ring: radius 70, stroke-width 36 gives a donut -->
+<!-- Circumference = 2*pi*70 = 439.82 -->
+<!-- Late-onset sepsis: 34% = 149.54 -->
+<circle cx="100" cy="100" r="70" fill="none" stroke="#c0392b" stroke-width="36" stroke-dasharray="149.54 290.28" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+<!-- NEC: 22% = 96.76 -->
+<circle cx="100" cy="100" r="70" fill="none" stroke="#d35400" stroke-width="36" stroke-dasharray="96.76 343.06" stroke-dashoffset="-149.54" transform="rotate(-90 100 100)"/>
+<!-- Early-onset sepsis: 18% = 79.17 -->
+<circle cx="100" cy="100" r="70" fill="none" stroke="#e74c3c" stroke-width="36" stroke-dasharray="79.17 360.65" stroke-dashoffset="-246.30" transform="rotate(-90 100 100)"/>
+<!-- Cardiogenic shock: 12% = 52.78 -->
+<circle cx="100" cy="100" r="70" fill="none" stroke="#2563a0" stroke-width="36" stroke-dasharray="52.78 387.04" stroke-dashoffset="-325.47" transform="rotate(-90 100 100)"/>
+<!-- PDA/other: 14% = 61.57 -->
+<circle cx="100" cy="100" r="70" fill="none" stroke="#64748b" stroke-width="36" stroke-dasharray="61.57 378.25" stroke-dashoffset="-378.25" transform="rotate(-90 100 100)"/>
+<!-- Globe overlay lines for texture -->
+<circle cx="100" cy="100" r="52" fill="var(--white)"/>
+<circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+<ellipse cx="100" cy="100" rx="70" ry="25" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+<ellipse cx="100" cy="100" rx="70" ry="48" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+<line x1="30" y1="100" x2="170" y2="100" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+<line x1="100" y1="30" x2="100" y2="170" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+<!-- Center text -->
+<text x="100" y="93" text-anchor="middle" font-family="Instrument Serif" font-size="26" fill="#1a2332" font-weight="400">680,000</text>
+<text x="100" y="112" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#64748b" font-weight="400">deaths per year</text>
+</svg>
+</div>
+<!-- Legend -->
+<div style="flex:1">
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">Neonatal Deaths from Circulatory Failure</div>
+<div style="font-size:19px;line-height:1">
+<div style="display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--border-light)"><div style="width:24px;height:24px;border-radius:6px;background:#c0392b;flex-shrink:0"></div><div><strong style="color:var(--ink)">Late-onset sepsis</strong> <span style="color:var(--ink-muted);font-weight:300;margin-left:8px">34%</span></div></div>
+<div style="display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--border-light)"><div style="width:24px;height:24px;border-radius:6px;background:#d35400;flex-shrink:0"></div><div><strong style="color:var(--ink)">Necrotizing enterocolitis</strong> <span style="color:var(--ink-muted);font-weight:300;margin-left:8px">22%</span></div></div>
+<div style="display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--border-light)"><div style="width:24px;height:24px;border-radius:6px;background:#e74c3c;flex-shrink:0"></div><div><strong style="color:var(--ink)">Early-onset sepsis</strong> <span style="color:var(--ink-muted);font-weight:300;margin-left:8px">18%</span></div></div>
+<div style="display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--border-light)"><div style="width:24px;height:24px;border-radius:6px;background:#2563a0;flex-shrink:0"></div><div><strong style="color:var(--ink)">Cardiogenic shock</strong> <span style="color:var(--ink-muted);font-weight:300;margin-left:8px">12%</span></div></div>
+<div style="display:flex;align-items:center;gap:18px;padding:18px 0"><div style="width:24px;height:24px;border-radius:6px;background:#64748b;flex-shrink:0"></div><div><strong style="color:var(--ink)">PDA / other circulatory</strong> <span style="color:var(--ink-muted);font-weight:300;margin-left:8px">14%</span></div></div>
+</div>
+<div style="margin-top:32px;padding:20px 24px;background:var(--red-light);border-radius:10px;border:1px solid rgba(192,57,43,.08)">
+<div style="font-size:17px;line-height:1.6"><strong style="color:var(--red)">NeoTherm detects the thermal signature</strong> <span style="color:var(--ink-light)">common to all five.</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">03</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 4. PROBLEM                                                    -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s4">
+<div class="p">
+<div class="lb">The Problem</div>
+<h2 style="font-size:48px;margin-bottom:8px">Current diagnostics are nonspecific, variable, or late.</h2>
+<div style="flex:1;display:flex;gap:28px;margin-top:48px">
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+<div style="background:var(--red);padding:24px 32px">
+<div style="font-family:'Instrument Serif',serif;font-size:32px;color:#fff">Too Late</div>
+</div>
+<div style="padding:32px;flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6">Blood cultures take <strong style="color:var(--ink)">24-72 hours</strong></div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6">Clinical signs appear <strong style="color:var(--ink)">after</strong> deterioration begins</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6">Spot checks every 1-4h <strong style="color:var(--ink)">miss what happens between</strong></div>
+</div>
+</div>
+</div>
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+<div style="background:var(--amber);padding:24px 32px">
+<div style="font-family:'Instrument Serif',serif;font-size:32px;color:#fff">Too Invasive</div>
+</div>
+<div style="padding:32px;flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6"><strong style="color:var(--ink)">Adhesive probes</strong> damage premature skin</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6"><strong style="color:var(--ink)">Blood draws</strong> for CRP and procalcitonin</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6"><strong style="color:var(--ink)">78% of NICU devices</strong> used off-label</div>
+</div>
+</div>
+</div>
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+<div style="background:var(--ink-muted);padding:24px 32px">
+<div style="font-family:'Instrument Serif',serif;font-size:32px;color:#fff">Too Nonspecific</div>
+</div>
+<div style="padding:32px;flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--ink-muted);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6"><strong style="color:var(--ink)">Single-point probes</strong> miss spatial gradients</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--ink-muted);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6"><strong style="color:var(--ink)">Unreliable on dark skin</strong> (visual capillary refill)</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--ink-muted);margin-top:8px;flex-shrink:0"></div>
+<div style="font-size:17px;color:var(--ink-light);line-height:1.6"><strong style="color:var(--ink)">qSOFA, SIRS</strong> designed for adults</div>
+</div>
+</div>
+</div>
+</div>
+<div style="margin-top:auto;background:linear-gradient(135deg,#c0392b,#a93226);border-radius:12px;padding:28px 48px;display:flex;align-items:center;justify-content:space-between">
+<div style="font-size:20px;color:rgba(255,255,255,.9)">The cost of missed and delayed diagnoses</div>
+<div style="font-family:'Instrument Serif',serif;font-size:56px;color:#fff;letter-spacing:-.02em">$2.1B/yr</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">04</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 5. "BUT WHAT IF..." — TRANSITION                              -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s5">
+<div class="p" style="justify-content:center;align-items:center">
+<div style="text-align:center">
+<div style="font-size:22px;color:var(--ink-muted);margin-bottom:32px;letter-spacing:.01em;font-weight:300">What if we could see the warning signs 5 hours earlier?</div>
+<h1 style="font-size:100px;margin-bottom:64px;color:var(--ink);letter-spacing:-.02em">But what if...</h1>
+<div style="width:860px;height:480px;background:var(--surface);border:2.5px dashed var(--border);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto">
+<div style="text-align:center;color:var(--ink-muted)">
+<div style="font-size:64px;margin-bottom:20px;opacity:.2">&#9654;</div>
+<div style="font-size:18px;font-weight:500;color:var(--ink-light)">[ Claude GIF / Demo Animation ]</div>
+<div style="font-size:14px;margin-top:10px;color:var(--border)">Thermal imaging visualization</div>
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">05</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 6. CPTD SCIENCE                                               -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s6">
+<div class="p">
+<div class="lb">The Science</div>
+<h2 style="font-size:48px">One camera. The body tells us everything.</h2>
+<div style="flex:1;display:flex;gap:72px;margin-top:32px;align-items:center">
+<!-- Body SVG diagram -->
+<div style="flex:0 0 480px;display:flex;flex-direction:column;gap:12px">
+<div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08)">
+<img src="zhang-thermal-1.png" alt="Thermal image of neonate with keypoint overlay — Zhang et al. 2025" style="width:100%;display:block">
+</div>
+<div style="font-size:12px;color:var(--ink-muted);text-align:center;line-height:1.5">Thermal image with automated keypoint detection — Zhang et al. (2025), <em>Biomedical Optics Express</em>.<br>AI identifies chest-abdomen (core) and hand/foot (peripheral) regions to compute CPTD continuously.</div>
+</div>
+<!-- Right: Formula + stats -->
+<div style="flex:1">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px;margin-bottom:24px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:32px;color:var(--teal-deep);letter-spacing:-.01em">CPTD = T<sub style="font-size:20px">core</sub> &minus; T<sub style="font-size:20px">peripheral</sub></div>
+<div style="font-size:18px;color:var(--ink-light);line-height:1.65;margin-top:14px">Sepsis triggers vasoconstriction. Extremities cool while the core stays warm. This gradient is measurable <strong style="color:var(--ink)">continuously, passively, and without contact</strong> by thermal camera.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:24px">
+<div style="background:var(--teal-light);border-radius:12px;padding:24px 16px;text-align:center">
+<div class="big" style="font-size:48px;color:var(--teal-deep)">5 hrs</div>
+<div style="font-size:13px;color:var(--ink-muted);margin-top:6px">before clinical signs</div>
+</div>
+<div style="background:var(--green-light);border-radius:12px;padding:24px 16px;text-align:center">
+<div class="big" style="font-size:48px;color:var(--green)">83%</div>
+<div style="font-size:13px;color:var(--ink-muted);margin-top:6px">sensitivity</div>
+</div>
+<div style="background:var(--blue-light);border-radius:12px;padding:24px 16px;text-align:center">
+<div class="big" style="font-size:48px;color:var(--blue)">0.3&#176;C</div>
+<div style="font-size:13px;color:var(--ink-muted);margin-top:6px">automated accuracy</div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 16px;text-align:center">
+<div class="big" style="font-size:38px;color:var(--ink)">All tones</div>
+<div style="font-size:13px;color:var(--ink-muted);margin-top:6px">thermal, not visual</div>
+</div>
+</div>
+<div style="font-size:13px;color:var(--ink-muted);line-height:1.7;padding:0 4px">
+Leante-Castellanos (2012, 2017): n=129, adj. OR 23.60, NPV 94% &middot; Zhang et al. (2025): MAE 0.297&#176;C, 40 preterm infants &middot; Du et al. (2026): LSTM predicted shock 5h before onset
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">06</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 7. PIPELINE                                                   -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s7">
+<div class="p">
+<div class="lb">How It Works</div>
+<h2 style="font-size:48px">Four components. Existing infrastructure.</h2>
+<p class="sub" style="margin-bottom:48px;font-weight:300">No new network. No cloud. No custom EHR development.</p>
+<div style="display:flex;gap:0;align-items:stretch">
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px">
+<div style="width:56px;height:56px;border-radius:14px;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px">&#9678;</div>
+<div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:600;margin-bottom:8px">Incubator Module</div>
+<div style="font-size:15px;color:var(--ink-muted);line-height:1.6">Custom-built device<br>Mounts in incubator lid<br>FLIR Lepton + compute<br>&lt;$1,000/bed</div>
+</div>
+<div class="cn" style="font-size:28px">&rarr;</div>
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px">
+<div style="width:56px;height:56px;border-radius:14px;background:var(--amber-light);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px">&#9635;</div>
+<div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:600;margin-bottom:8px">On-Device AI</div>
+<div style="font-size:15px;color:var(--ink-muted);line-height:1.6">Built into the module<br>YOLOv8-Pose + CPTD<br>24h local buffer<br>No separate hardware</div>
+</div>
+<div class="cn" style="font-size:28px">&rarr;</div>
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--teal-light);border:2.5px solid var(--teal);border-radius:14px">
+<div style="width:56px;height:56px;border-radius:14px;background:rgba(13,138,138,.15);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px">&#11042;</div>
+<div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:600;color:var(--teal-deep);margin-bottom:8px">InterSystems<br>Health Connect</div>
+<div style="font-size:15px;color:var(--teal-deep);line-height:1.6">HL7v2 &#8596; FHIR R4<br>Message queue + audit<br>Routes to any EHR</div>
+<div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal-deep);text-transform:uppercase;letter-spacing:.1em;opacity:.7">Already at Northwell</div>
+</div>
+<div class="cn" style="font-size:28px">&rarr;</div>
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px">
+<div style="width:56px;height:56px;border-radius:14px;background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px">&#9776;</div>
+<div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:600;margin-bottom:8px">EHR Flowsheet</div>
+<div style="font-size:15px;color:var(--ink-muted);line-height:1.6">CPTD as vital signs<br>BPA alerts in Epic<br>Where clinicians look<br>NeoTherm widget</div>
+</div>
+</div>
+<div style="margin-top:40px;text-align:center;font-family:'Instrument Serif',serif;font-size:24px;color:var(--ink-light)">NeoTherm deploys once. Health Connect routes everywhere.</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">07</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 8. INTERSYSTEMS INTEGRATION                                   -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s8">
+<div class="p">
+<div class="lb" style="color:var(--teal-deep)">InterSystems Integration</div>
+<h2 style="font-size:46px">Health Connect is the backbone. FHIR R4 is the language.</h2>
+<div style="flex:1;display:flex;gap:36px;margin-top:28px">
+<!-- Left: 3 stacked cards -->
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="flex:1;background:var(--teal-light);border:1px solid rgba(13,138,138,.15);border-radius:12px;padding:28px 32px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal-deep);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Phase 1 — HL7v2 via Capsule</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.7">Edge box emits HL7v2 ORU. Capsule receives. Health Connect routes to EHR. <strong style="color:var(--ink)">Zero custom development.</strong></div>
+</div>
+<div style="flex:1;background:var(--teal-light);border:1px solid rgba(13,138,138,.15);border-radius:12px;padding:28px 32px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal-deep);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Phase 2-3 — FHIR R4 Direct</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.7">Observations posted to Health Connect FHIR endpoint. IRIS repository for audit. <strong style="color:var(--ink)">SMART on FHIR widget in Epic.</strong></div>
+</div>
+<div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 32px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">EHR Migration Bridge</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.7">Cohen Children's Epic go-live May 30, 2026. Health Connect routes to legacy before, Epic after. <strong style="color:var(--ink)">Deploy once.</strong></div>
+</div>
+</div>
+<!-- Right: FHIR code block -->
+<div style="flex:0 0 520px">
+<div style="background:var(--ink);border-radius:12px;padding:28px 32px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:#c8d6e5;height:100%;overflow:hidden">
+<div style="color:#636e7b;margin-bottom:8px">// FHIR R4 Observation &#8594; Health Connect</div>
+<div>{</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"resourceType"</span>: <span style="color:#a3d9a5">"Observation"</span>,</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"status"</span>: <span style="color:#a3d9a5">"final"</span>,</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"category"</span>: [{</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#7ec8e3">"coding"</span>: [{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"vital-signs"</span> }]</div>
+<div>&nbsp;&nbsp;}],</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"code"</span>: {</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#7ec8e3">"text"</span>: <span style="color:#a3d9a5">"Core-Peripheral Temp Diff"</span></div>
+<div>&nbsp;&nbsp;},</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"valueQuantity"</span>: {</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#7ec8e3">"value"</span>: <span style="color:#f0c674">3.2</span>,</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#7ec8e3">"unit"</span>: <span style="color:#a3d9a5">"Cel"</span>,</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#7ec8e3">"system"</span>: <span style="color:#a3d9a5">"http://unitsofmeasure.org"</span></div>
+<div>&nbsp;&nbsp;},</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"interpretation"</span>: [{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"H"</span> }],</div>
+<div>&nbsp;&nbsp;<span style="color:#7ec8e3">"component"</span>: [</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"Core"</span>, &nbsp;&nbsp;<span style="color:#7ec8e3">"value"</span>: <span style="color:#f0c674">36.8</span> },</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"L Hand"</span>, <span style="color:#7ec8e3">"value"</span>: <span style="color:#f0c674">33.1</span> },</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"R Hand"</span>, <span style="color:#7ec8e3">"value"</span>: <span style="color:#f0c674">33.6</span> },</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"L Foot"</span>, <span style="color:#7ec8e3">"value"</span>: <span style="color:#f0c674">31.5</span> },</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;{ <span style="color:#7ec8e3">"code"</span>: <span style="color:#a3d9a5">"R Foot"</span>, <span style="color:#7ec8e3">"value"</span>: <span style="color:#f0c674">32.1</span> }</div>
+<div>&nbsp;&nbsp;]</div>
+<div>}</div>
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">08</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 9. DEMO — NICU CENSUS                                         -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s9">
+<div class="p">
+<div class="lb">Live Demo — NICU Census</div>
+<h2 style="font-size:48px;margin-bottom:4px">12 patients. NeoTherm flags visible at a glance.</h2>
+<div style="flex:1;margin-top:24px;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08)">
+<img src="census-view.png" style="width:100%;height:100%;object-fit:cover;object-position:top">
+</div>
+<div style="margin-top:16px;font-size:16px;color:var(--ink-muted);text-align:center">Fully interactive Epic Hyperdrive replica. Built this weekend.</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">09</div>
+</div></div>
+
+<!-- 10. DEMO — BPA ALERT                                           -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s10">
+<div class="p">
+<div class="lb" style="color:var(--red)">Live Demo — BestPractice Alert</div>
+<h2 style="font-size:48px;margin-bottom:4px">CPTD crosses threshold. Alert fires on chart open.</h2>
+<div style="flex:1;margin-top:24px;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08)">
+<img src="garcia-bpa-modal.png" style="width:100%;height:100%;object-fit:cover;object-position:top">
+</div>
+<div style="margin-top:16px;font-size:16px;color:var(--ink-muted);text-align:center">Hospital-configured Epic BPA rule — no NeoTherm software generates the alert. No FDA clearance needed.</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">10</div>
+</div></div>
+
+<!-- 11. DEMO — NEOTHERM WIDGET                                     -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s11">
+<div class="p">
+<div class="lb" style="color:var(--teal)">Live Demo — NeoTherm Widget</div>
+<h2 style="font-size:48px;margin-bottom:4px">Dedicated tab. Trend data. Zone breakdown.</h2>
+<div style="flex:1;margin-top:24px;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08)">
+<img src="garcia-neotherm.png" style="width:100%;height:100%;object-fit:cover;object-position:top">
+</div>
+<div style="margin-top:16px;font-size:16px;color:var(--ink-muted);text-align:center">SMART on FHIR app queries InterSystems IRIS for Health for historical Observations. Deployed via Epic App Market.</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">11</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 10. GO-TO-MARKET — KEY SLIDE                                  -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s12">
+<div class="p">
+<div class="lb">Go-To-Market</div>
+<h2 style="font-size:48px;margin-bottom:32px">Built-out path to market.</h2>
+<div style="flex:1;display:flex;flex-direction:column;gap:0;position:relative">
+<!-- Vertical timeline line -->
+<div style="position:absolute;left:18px;top:16px;bottom:16px;width:3px;background:linear-gradient(180deg,var(--phase1),var(--phase2),var(--phase3),var(--green));border-radius:2px"></div>
+
+<!-- Milestone 1: Cohen Children's Pilot -->
+<div style="display:flex;gap:28px;padding-bottom:10px">
+<div style="flex-shrink:0;width:40px;display:flex;justify-content:center;padding-top:4px;z-index:1">
+<div style="width:16px;height:16px;border-radius:50%;background:var(--phase1);border:3px solid var(--white)"></div>
+</div>
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--phase1);border-radius:0 12px 12px 0;padding:22px 28px;display:flex;gap:24px;align-items:flex-start">
+<div style="flex-shrink:0;min-width:160px">
+<div style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--phase1)">Cohen Children's Pilot</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);margin-top:6px;text-transform:uppercase;letter-spacing:.06em">Q4 2026 &middot; Phase 1</div>
+</div>
+<div style="flex:1;font-size:15px;color:var(--ink-light);line-height:1.7">1-2 beds at Cohen Children's NICU. Display-only thermal + zone temps in Epic Flowsheet. IRB-approved validation study with <strong style="color:var(--ink)">Dr. Barry Weinberger as Clinical PI</strong>. Dual parental consent. 200+ neonates target.</div>
+</div>
 </div>
 
-<!-- ════════════════════════ SLIDE 2: THE PROBLEM ════════════════════════ -->
-<div class="slide" id="slide-2">
-  <div class="slide-pad">
-    <div class="label">The Problem</div>
-    <h2>Neonatal sepsis kills.<br>Current monitoring misses it.</h2>
-    <div style="flex: 1; display: flex; gap: 48px; margin-top: 48px; align-items: flex-start;">
-      <div style="flex: 1;">
-        <div style="font-size: 20px; color: var(--ink-light); line-height: 1.7;">
-          <div style="padding: 20px 0; border-bottom: 1px solid var(--border-light);">
-            <strong style="color: var(--ink);">Adhesive contact probes</strong> damage premature skin. Single-point measurement. Must be manually repositioned.
-          </div>
-          <div style="padding: 20px 0; border-bottom: 1px solid var(--border-light);">
-            <strong style="color: var(--ink);">Spot checks every 1–4 hours.</strong> Sepsis develops between readings. By the time vital signs change, the inflammatory cascade is already underway.
-          </div>
-          <div style="padding: 20px 0; border-bottom: 1px solid var(--border-light);">
-            <strong style="color: var(--ink);">No spatial temperature data.</strong> A single axillary probe cannot detect the core-peripheral gradient shift that precedes clinical sepsis signs.
-          </div>
-          <div style="padding: 20px 0;">
-            <strong style="color: var(--ink);">Late detection = worse outcomes.</strong> Each hour of delayed antibiotic treatment in neonatal sepsis increases mortality risk.
-          </div>
-        </div>
-      </div>
-      <div style="flex: 0 0 440px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 48px; text-align: center;">
-        <div class="big-number" style="font-size: 120px; color: var(--red-clinical);">78%</div>
-        <div style="font-size: 18px; color: var(--ink-light); margin-top: 12px; line-height: 1.5;">of NICU devices used off-label — most were never designed for neonatal skin</div>
-        <div style="font-size: 13px; color: var(--ink-muted); margin-top: 16px;">Shah et al., pediatric off-label device use</div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">02</div>
+<!-- Milestone 2: Silent Validation -->
+<div style="display:flex;gap:28px;padding-bottom:10px">
+<div style="flex-shrink:0;width:40px;display:flex;justify-content:center;padding-top:4px;z-index:1">
+<div style="width:16px;height:16px;border-radius:50%;background:var(--phase2);border:3px solid var(--white)"></div>
+</div>
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--phase2);border-radius:0 12px 12px 0;padding:22px 28px;display:flex;gap:24px;align-items:flex-start">
+<div style="flex-shrink:0;min-width:160px">
+<div style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--phase2)">Silent Validation</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);margin-top:6px;text-transform:uppercase;letter-spacing:.06em">Q1-Q2 2027 &middot; Phase 2</div>
+</div>
+<div style="flex:1;font-size:15px;color:var(--ink-light);line-height:1.7">Expand to 6-10 beds. CPTD computation runs silently &mdash; data recorded but <strong style="color:var(--ink)">alerts NOT shown to clinicians</strong>. Builds unbiased prospective dataset. Compare NeoTherm predictions against actual clinical outcomes. Gold standard for diagnostic validation.</div>
+</div>
 </div>
 
-<!-- ════════════════════════ SLIDE 3: CLINICAL INSIGHT ════════════════════════ -->
-<div class="slide" id="slide-3">
-  <div class="slide-pad">
-    <div class="label">The Clinical Insight</div>
-    <h2>The body signals sepsis through temperature gradients</h2>
-    <div style="flex: 1; display: flex; gap: 64px; margin-top: 40px; align-items: center;">
-      <!-- Body diagram -->
-      <div style="flex: 0 0 400px; position: relative; height: 600px;">
-        <svg viewBox="0 0 300 500" style="width: 100%; height: 100%;">
-          <!-- Simplified body outline -->
-          <!-- Head -->
-          <ellipse cx="150" cy="50" rx="35" ry="40" fill="#fde8e4" stroke="#ddd" stroke-width="1"/>
-          <!-- Torso - warm core -->
-          <rect x="100" y="90" width="100" height="160" rx="20" fill="#f4a89a" stroke="none"/>
-          <text x="150" y="175" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#c0392b" font-weight="500">CORE 36.8°C</text>
-          <!-- Arms -->
-          <rect x="55" y="100" width="35" height="120" rx="12" fill="#a8d8ea" stroke="none"/>
-          <rect x="210" y="100" width="35" height="120" rx="12" fill="#a8d8ea" stroke="none"/>
-          <!-- Hands - cool -->
-          <ellipse cx="72" cy="240" rx="18" ry="14" fill="#7bb8d4" stroke="none"/>
-          <ellipse cx="228" cy="240" rx="18" ry="14" fill="#7bb8d4" stroke="none"/>
-          <text x="72" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2563a0" font-weight="500">33.1°C</text>
-          <text x="228" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2563a0" font-weight="500">33.6°C</text>
-          <!-- Legs -->
-          <rect x="105" y="255" width="38" height="140" rx="12" fill="#a8d8ea" stroke="none"/>
-          <rect x="157" y="255" width="38" height="140" rx="12" fill="#a8d8ea" stroke="none"/>
-          <!-- Feet - coolest -->
-          <ellipse cx="124" cy="410" rx="20" ry="12" fill="#5a9fbf" stroke="none"/>
-          <ellipse cx="176" cy="410" rx="20" ry="12" fill="#5a9fbf" stroke="none"/>
-          <text x="124" y="438" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#1a3a5c" font-weight="500">31.5°C</text>
-          <text x="176" y="438" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#1a3a5c" font-weight="500">32.1°C</text>
-          <!-- Legend -->
-          <rect x="10" y="460" width="14" height="14" rx="3" fill="#f4a89a"/>
-          <text x="30" y="472" font-family="DM Sans" font-size="11" fill="#64748b">Warm core</text>
-          <rect x="110" y="460" width="14" height="14" rx="3" fill="#7bb8d4"/>
-          <text x="130" y="472" font-family="DM Sans" font-size="11" fill="#64748b">Cool periphery</text>
-        </svg>
-      </div>
-      <!-- Explanation -->
-      <div style="flex: 1;">
-        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 40px; margin-bottom: 32px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 28px; color: var(--teal-deep); margin-bottom: 8px; letter-spacing: -0.02em;">
-            CPTD = T<sub style="font-size: 18px;">core</sub> &minus; T<sub style="font-size: 18px;">peripheral</sub>
-          </div>
-          <div style="font-size: 18px; color: var(--ink-light); line-height: 1.6;">
-            Core-Peripheral Temperature Difference. In sepsis, sympathetic vasoconstriction cools extremities while the core remains stable.
-          </div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-          <div style="background: var(--green-light); border-radius: 10px; padding: 28px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--green-clinical); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Normal</div>
-            <div class="big-number" style="font-size: 48px; color: var(--green-clinical);">&lt; 2°C</div>
-          </div>
-          <div style="background: var(--red-light); border-radius: 10px; padding: 28px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--red-clinical); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Sepsis Marker</div>
-            <div class="big-number" style="font-size: 48px; color: var(--red-clinical);">&gt; 2°C</div>
-            <div style="font-size: 14px; color: var(--ink-muted); margin-top: 4px;">sustained ≥ 4 hours</div>
-          </div>
-        </div>
-        <div style="margin-top: 24px; font-size: 14px; color: var(--ink-muted); line-height: 1.6;">
-          Leante-Castellanos et al. (2012, 2017): CPTD >2°C for ≥4h — sensitivity 83%, NPV 94%, first clinical sign in 71% of cases.<br>
-          Zhang et al. (2025): Automated CPTD via thermal camera, MAE 0.297°C in 40 preterm infants.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">03</div>
+<!-- Milestone 3: RCT -->
+<div style="display:flex;gap:28px;padding-bottom:10px">
+<div style="flex-shrink:0;width:40px;display:flex;justify-content:center;padding-top:4px;z-index:1">
+<div style="width:16px;height:16px;border-radius:50%;background:var(--phase3);border:3px solid var(--white)"></div>
+</div>
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--phase3);border-radius:0 12px 12px 0;padding:22px 28px;display:flex;gap:24px;align-items:flex-start">
+<div style="flex-shrink:0;min-width:160px">
+<div style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--phase3)">Randomized<br>Controlled Trial</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);margin-top:6px;text-transform:uppercase;letter-spacing:.06em">Q3 2027-Q1 2028 &middot; Phase 3</div>
+</div>
+<div style="flex:1;font-size:15px;color:var(--ink-light);line-height:1.7">Full RCT with NeoTherm alerts active in intervention arm. Control arm continues standard monitoring. Primary endpoint: <strong style="color:var(--ink)">time-to-antibiotic</strong> in confirmed sepsis. Secondary: length of stay, mortality, cost. Powers the <strong style="color:var(--ink)">FDA De Novo submission</strong>.</div>
+</div>
 </div>
 
-<!-- ════════════════════════ SLIDE 4: HOW IT WORKS ════════════════════════ -->
-<div class="slide" id="slide-4">
-  <div class="slide-pad">
-    <div class="label">How It Works</div>
-    <h2>Four components. Existing hospital infrastructure.</h2>
-    <p class="subtitle" style="margin-bottom: 48px;">NeoTherm plugs into what Northwell already has — no new network topology, no cloud dependency, no custom EHR development.</p>
-    <div class="flow-arrow" style="gap: 0; position: relative;">
-      <div class="flow-step">
-        <div class="icon" style="background: var(--red-light); color: var(--red-clinical); font-size: 28px;">&#9678;</div>
-        <h3>Thermal Camera</h3>
-        <p>FLIR A400/A700 radiometric.<br>640x480 temp matrix per pixel.<br>Ceiling-mounted above isolette.</p>
-        <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted);">510(k) CLEARED — PRODUCT CODE LHQ</div>
-      </div>
-      <div class="flow-connector" style="position: relative;"></div>
-      <div class="flow-step">
-        <div class="icon" style="background: var(--amber-light); color: var(--amber); font-size: 28px;">&#9635;</div>
-        <h3>Edge AI Box</h3>
-        <p>Medical-grade (IEC 60601-1).<br>YOLOv8-Pose keypoints.<br>CPTD computation. Local 24h buffer.</p>
-        <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted);">PROCESSES AT BEDSIDE — NO CLOUD</div>
-      </div>
-      <div class="flow-connector" style="position: relative;"></div>
-      <div class="flow-step">
-        <div class="icon" style="background: var(--green-light); color: var(--green-clinical); font-size: 28px;">&#11042;</div>
-        <h3>Health Connect</h3>
-        <p>InterSystems integration engine.<br>Already at Northwell.<br>HL7v2 ↔ FHIR R4 translation.</p>
-        <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green-clinical);">EXISTING INFRASTRUCTURE</div>
-      </div>
-      <div class="flow-connector" style="position: relative;"></div>
-      <div class="flow-step">
-        <div class="icon" style="background: var(--teal-light); color: var(--teal-deep); font-size: 28px;">&#9776;</div>
-        <h3>EHR Flowsheet</h3>
-        <p>CPTD + zone temps as vitals.<br>BPA alerts on threshold.<br>Data where clinicians already look.</p>
-        <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted);">EPIC WAVE 2: MAY 30, 2026</div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">04</div>
+<!-- Milestone 4: Commercial Launch -->
+<div style="display:flex;gap:28px">
+<div style="flex-shrink:0;width:40px;display:flex;justify-content:center;padding-top:4px;z-index:1">
+<div style="width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid var(--white)"></div>
+</div>
+<div style="flex:1;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 12px 12px 0;padding:22px 28px;display:flex;gap:24px;align-items:flex-start">
+<div style="flex-shrink:0;min-width:160px">
+<div style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--green)">Commercial Launch</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);margin-top:6px;text-transform:uppercase;letter-spacing:.06em">2028+ &middot; Scale</div>
+</div>
+<div style="flex:1;font-size:15px;color:var(--ink-light);line-height:1.7">FDA clearance with RCT data. GPO contracts (<strong style="color:var(--ink)">Vizient, Premier</strong>). Expand to 20 hospitals &#8594; 100+ hospitals. Adult ICU expansion (<strong style="color:var(--ink)">$6-8B TAM</strong>).</div>
+</div>
 </div>
 
-<!-- ════════════════════════ SLIDE 5: REGULATORY STRATEGY ════════════════════════ -->
-<div class="slide" id="slide-5">
-  <div class="slide-pad">
-    <div class="label">Regulatory Strategy</div>
-    <h2>Three phases. Earlier market entry at each step.</h2>
-    <div style="flex: 1; display: flex; gap: 24px; margin-top: 40px;">
-      <div class="phase-card" style="border-top: 3px solid var(--phase1);">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--phase1); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Phase 1 — Pilot</div>
-        <div style="font-family: 'Instrument Serif', serif; font-size: 32px; color: var(--ink); margin-bottom: 16px;">Display &amp; Record</div>
-        <div style="display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; background: rgba(37,99,160,0.08); color: var(--phase1); border-radius: 4px; margin-bottom: 20px;">NO FDA SUBMISSION NEEDED</div>
-        <div style="font-size: 16px; color: var(--ink-light); line-height: 1.7;">
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">Camera is already 510(k) cleared</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">Software: display/store only (MDDS)</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">Physician off-label use is legal</div>
-          <div style="padding: 8px 0;">Zone temps to flowsheet via Capsule</div>
-        </div>
-      </div>
-      <div class="phase-card" style="border-top: 3px solid var(--phase2);">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--phase2); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Phase 2 — Trending</div>
-        <div style="font-family: 'Instrument Serif', serif; font-size: 32px; color: var(--ink); margin-bottom: 16px;">CPTD Trending</div>
-        <div style="display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; background: rgba(13,138,138,0.08); color: var(--phase2); border-radius: 4px; margin-bottom: 20px;">FDA ENFORCEMENT DISCRETION</div>
-        <div style="font-size: 16px; color: var(--ink-light); line-height: 1.7;">
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">CPTD computation on edge box</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">Historical vital sign trending</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">Hospital configures BPA rule in Epic</div>
-          <div style="padding: 8px 0;">FHIR R4 write-back to Health Connect</div>
-        </div>
-      </div>
-      <div class="phase-card" style="border-top: 3px solid var(--phase3);">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--phase3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Phase 3 — Cleared Product</div>
-        <div style="font-family: 'Instrument Serif', serif; font-size: 32px; color: var(--ink); margin-bottom: 16px;">AI Sepsis Warning</div>
-        <div style="display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 12px; background: rgba(107,76,154,0.08); color: var(--phase3); border-radius: 4px; margin-bottom: 20px;">510(k) OR DE NOVO</div>
-        <div style="font-size: 16px; color: var(--ink-light); line-height: 1.7;">
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">AI risk scoring + automated alerts</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">Predicate: Sepsis ImmunoScore (DEN230036)</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border-light);">SMART on FHIR widget in Epic</div>
-          <div style="padding: 8px 0;">Multi-condition: sepsis + NEC + perfusion</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">05</div>
 </div>
-
-<!-- ════════════════════════ SLIDE 6: MARKET ════════════════════════ -->
-<div class="slide" id="slide-6">
-  <div class="slide-pad">
-    <div class="label">Market Opportunity</div>
-    <h2>Zero commercial competitors. Globally.</h2>
-    <p class="subtitle" style="margin-bottom: 48px;">No NICU in the world uses thermal cameras in routine clinical care. 100+ published studies, zero clinical translation. NeoTherm is first to market.</p>
-    <div style="display: flex; gap: 24px; margin-bottom: 48px;">
-      <div class="stat-card" style="flex: 1;">
-        <div class="big-number" style="font-size: 64px;">$4.27B</div>
-        <div style="font-size: 16px; color: var(--ink-muted); margin-top: 8px;">NICU market (2025)</div>
-      </div>
-      <div class="stat-card" style="flex: 1;">
-        <div class="big-number" style="font-size: 64px;">13.25%</div>
-        <div style="font-size: 16px; color: var(--ink-muted); margin-top: 8px;">CAGR — monitoring devices</div>
-      </div>
-      <div class="stat-card" style="flex: 1;">
-        <div class="big-number" style="font-size: 64px;">0</div>
-        <div style="font-size: 16px; color: var(--ink-muted); margin-top: 8px;">Commercial thermal camera<br>products for NICU</div>
-      </div>
-      <div class="stat-card" style="flex: 1;">
-        <div class="big-number" style="font-size: 64px;">100+</div>
-        <div style="font-size: 16px; color: var(--ink-muted); margin-top: 8px;">Published studies — none<br>translated to clinical practice</div>
-      </div>
-    </div>
-    <div style="background: var(--teal-light); border: 1px solid rgba(13,138,138,0.15); border-radius: 10px; padding: 32px 40px; font-size: 18px; color: var(--ink-light); line-height: 1.6;">
-      <strong style="color: var(--teal-deep);">Sparse patent landscape.</strong> Most IP exists as academic publications, not patents. Significant opportunity for protection in automated thermal monitoring algorithms, AI neonatal disease detection, and incubator-compatible IR solutions.
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">06</div>
 </div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">12</div>
+</div></div>
 
-<!-- ════════════════════════ SLIDE 7: STAKEHOLDERS ════════════════════════ -->
-<div class="slide" id="slide-7">
-  <div class="slide-pad">
-    <div class="label">Northwell Partnership</div>
-    <h2>Dual-champion model. Clinical + Innovation.</h2>
-    <p class="subtitle" style="margin-bottom: 48px;">Two key stakeholders provide the tracks needed for hospital deployment — clinical access and institutional technology buy-in.</p>
-    <div style="display: flex; gap: 32px; margin-bottom: 40px;">
-      <div class="stakeholder-card">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">Clinical Champion</div>
-        <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--ink); margin-bottom: 4px;">Barry Weinberger, MD</div>
-        <div style="font-size: 18px; color: var(--ink-light); margin-bottom: 20px;">Associate Director, Neonatology — Cohen Children's Medical Center</div>
-        <div style="font-size: 16px; color: var(--ink-muted); line-height: 1.7;">
-          <div style="padding: 6px 0; border-bottom: 1px solid var(--border-light);">Direct NICU access at the target deployment site</div>
-          <div style="padding: 6px 0; border-bottom: 1px solid var(--border-light);">Clinical PI for IRB protocol at Feinstein Institutes</div>
-          <div style="padding: 6px 0;">Neonatology expertise for validation study design</div>
-        </div>
-      </div>
-      <div class="stakeholder-card">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">Innovation &amp; AI Champion</div>
-        <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--ink); margin-bottom: 4px;">Theodoros Zanos, PhD</div>
-        <div style="font-size: 18px; color: var(--ink-light); margin-bottom: 20px;">AVP, Exploration and Innovation — Division of Health AI, Northwell (RISES)</div>
-        <div style="font-size: 16px; color: var(--ink-muted); line-height: 1.7;">
-          <div style="padding: 6px 0; border-bottom: 1px solid var(--border-light);">Leads 16-person health AI team across Northwell</div>
-          <div style="padding: 6px 0; border-bottom: 1px solid var(--border-light);">Navigates IT security, Health Connect integration</div>
-          <div style="padding: 6px 0;">Path to innovation funding and institutional buy-in</div>
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px 32px; font-size: 16px; color: var(--ink-light); line-height: 1.6;">
-      <strong style="color: var(--ink);">Why dual-track matters:</strong> Hospital pilots fail when they have clinical enthusiasm but no IT pathway, or innovation funding but no NICU access. Weinberger opens the clinical door; Zanos opens the institutional one.
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">07</div>
+<!-- ============================================================ -->
+<!-- 11. BUSINESS CASE                                             -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s13">
+<div class="p">
+<div class="lb">The Business Case</div>
+<h2 style="font-size:48px">13.2x return. Pays for itself in 30 days.</h2>
+<div style="flex:1;display:flex;gap:36px;margin-top:36px">
+<!-- Left: 3 big stat cards -->
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;justify-content:center">
+<div class="big" style="font-size:72px;color:var(--teal)">$82,500</div>
+<div style="font-size:17px;color:var(--ink-muted);margin-top:10px">Annual cost (25-bed NICU)</div>
 </div>
-
-<!-- ════════════════════════ SLIDE 8: TIMELINE ════════════════════════ -->
-<div class="slide" id="slide-8">
-  <div class="slide-pad">
-    <div class="label">Deployment Timeline</div>
-    <h2>Aligned with Northwell's Epic rollout</h2>
-    <p class="subtitle" style="margin-bottom: 40px;">Cohen Children's (Long Island) goes live on Epic May 30, 2026 (Wave 2). We use the stabilization window to prepare, then deploy when the system is ready.</p>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 40px;">
-      <div class="timeline-row">
-        <div class="timeline-date" style="color: var(--phase1);">Q2 2026</div>
-        <div class="timeline-content"><strong>Partnerships &amp; IRB.</strong> Formalize with Weinberger + Zanos. Submit IRB to Feinstein Institutes. BAA negotiation. Epic Wave 2 goes live May 30.</div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-date" style="color: var(--phase1);">Q3 2026</div>
-        <div class="timeline-content"><strong>IT review &amp; procurement.</strong> HECVAT + pen test. Procure FLIR camera + edge box. Clinical engineering review. Capsule device type config. Epic stabilization period (2–3 months post-go-live).</div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-date" style="color: var(--phase1);">Q4 2026</div>
-        <div class="timeline-content"><strong>Phase 1 pilot launch.</strong> 1–2 beds. Display-only thermal feed + zone temps in flowsheet. IRB validation study begins. Nursing workflow assessment.</div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-date" style="color: var(--phase2);">Q1–Q2 2027</div>
-        <div class="timeline-content"><strong>Expand + Phase 2.</strong> 6–10 beds. Add CPTD trending. BPA configured by Epic team. Publish pilot results. Begin FDA Pre-Sub meeting.</div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-date" style="color: var(--phase3);">2027–2028</div>
-        <div class="timeline-content"><strong>FDA + Phase 3.</strong> Submit 510(k)/De Novo with clinical data. Deploy AI alerting + SMART on FHIR widget. Expand to additional Northwell NICUs.</div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">08</div>
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;justify-content:center">
+<div class="big" style="font-size:72px;color:var(--green)">$1.14M</div>
+<div style="font-size:17px;color:var(--ink-muted);margin-top:10px">Annual savings</div>
 </div>
-
-<!-- ════════════════════════ SLIDE 9: WHY NORTHWELL ════════════════════════ -->
-<div class="slide" id="slide-9">
-  <div class="slide-pad">
-    <div class="label">Why Cohen Children's</div>
-    <h2>The infrastructure is already there.<br>We plug in.</h2>
-    <div style="flex: 1; display: flex; gap: 24px; margin-top: 48px;">
-      <div class="stat-card" style="flex: 1; text-align: left; padding: 36px;">
-        <div style="font-size: 40px; margin-bottom: 16px;">&#9678;</div>
-        <div style="font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Capsule already deployed</div>
-        <div style="font-size: 15px; color: var(--ink-muted); line-height: 1.6;">Medical device integration platform handles every bedside monitor in the NICU. NeoTherm appears as one more device.</div>
-      </div>
-      <div class="stat-card" style="flex: 1; text-align: left; padding: 36px;">
-        <div style="font-size: 40px; margin-bottom: 16px;">&#11042;</div>
-        <div style="font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Health Connect in place</div>
-        <div style="font-size: 15px; color: var(--ink-muted); line-height: 1.6;">InterSystems integration engine routes to whatever EHR is current. Handles Epic cutover transparently.</div>
-      </div>
-      <div class="stat-card" style="flex: 1; text-align: left; padding: 36px;">
-        <div style="font-size: 40px; margin-bottom: 16px;">&#9776;</div>
-        <div style="font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Epic by May 2026</div>
-        <div style="font-size: 15px; color: var(--ink-muted); line-height: 1.6;">$1.2B investment. BPA rules, Flowsheet integration, SMART on FHIR — all available post-go-live.</div>
-      </div>
-      <div class="stat-card" style="flex: 1; text-align: left; padding: 36px;">
-        <div style="font-size: 40px; margin-bottom: 16px;">&#8635;</div>
-        <div style="font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Fully reversible</div>
-        <div style="font-size: 15px; color: var(--ink-muted); line-height: 1.6;">If the pilot doesn't work, unplug the edge box, remove Capsule mapping. Zero permanent changes to hospital systems.</div>
-      </div>
-    </div>
-    <div style="margin-top: 40px; text-align: center; font-size: 20px; color: var(--ink-light);">
-      NeoTherm deploys once. Health Connect routes everywhere.
-    </div>
-  </div>
-  <div class="slide-brand">NEOTHERM</div>
-  <div class="slide-num">09</div>
+<div style="flex:1;text-align:center;padding:36px 24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;justify-content:center">
+<div class="big" style="font-size:72px;color:var(--blue)">$65K</div>
+<div style="font-size:17px;color:var(--ink-muted);margin-top:10px">New CMS RPM revenue/yr</div>
 </div>
+</div>
+<!-- Right: ROI table + metrics -->
+<div style="flex:1.2;display:flex;flex-direction:column">
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px">Hospital ROI — 25-Bed NICU</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px">
+<div style="display:grid;grid-template-columns:1fr 180px;font-size:17px">
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">Pays (subscription)</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);text-align:right;font-weight:600;color:var(--red)">$82,500/yr</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">Gets (CMS RPM)</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);text-align:right;font-weight:600;color:var(--green)">+$31,987/yr</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">Gets (sepsis savings)</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);text-align:right;font-weight:600;color:var(--green)">+$1,140,000/yr</div>
+<div style="padding:18px 24px;font-weight:600;background:var(--teal-light)">Net benefit</div>
+<div style="padding:18px 24px;text-align:right;font-weight:700;color:var(--teal-deep);font-size:22px;background:var(--teal-light)">$1,089,487/yr</div>
+</div>
+</div>
+<div style="display:flex;gap:16px;flex:1">
+<div style="flex:1;background:var(--teal-light);border-radius:12px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center">
+<div class="big" style="font-size:52px;color:var(--teal-deep)">13.2x</div>
+<div style="font-size:15px;color:var(--teal-deep);margin-top:6px;font-weight:500">ROI</div>
+</div>
+<div style="flex:1;background:var(--green-light);border-radius:12px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center">
+<div class="big" style="font-size:52px;color:var(--green)">30 days</div>
+<div style="font-size:15px;color:var(--green);margin-top:6px;font-weight:500">Payback</div>
+</div>
+<div style="flex:1;background:var(--blue-light);border-radius:12px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;justify-content:center">
+<div class="big" style="font-size:52px;color:var(--blue)">82%</div>
+<div style="font-size:15px;color:var(--blue);margin-top:6px;font-weight:500">Gross margin</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">13</div>
+</div></div>
 
+<!-- ============================================================ -->
+<!-- 12. MARKET                                                    -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s14">
+<div class="p">
+<div class="lb">Market</div>
+<h2 style="font-size:46px">$2.1 billion problem. Zero competitors. We are first.</h2>
+<div style="flex:1;display:flex;gap:40px;margin-top:32px">
+<!-- Left: cost burden + funnel -->
+<div style="flex:1.2;display:flex;flex-direction:column;gap:16px">
+<div style="background:linear-gradient(135deg,#c0392b,#a93226);border-radius:14px;padding:32px;color:#fff">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Annual US Cost Burden</div>
+<div style="display:flex;gap:28px;align-items:baseline">
+<div class="big" style="font-size:64px;color:#fff">$2.14B</div>
+<div style="font-size:16px;color:rgba(255,255,255,.75);line-height:1.5">Sepsis $1.03B + NEC $1.11B<br>35,601 NICU beds &middot; 1,424 hospitals</div>
+</div>
+</div>
+<!-- TAM/SAM/SOM stepping funnel -->
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.12);border-radius:12px;padding:22px 28px;display:flex;justify-content:space-between;align-items:center">
+<div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal-deep);text-transform:uppercase;letter-spacing:.1em">TAM</div><div style="font-size:14px;color:var(--ink-muted);margin-top:2px">35,601 beds &times; $3,300/yr</div></div>
+<div class="big" style="font-size:40px;color:var(--teal-deep)">$117.5M</div>
+</div>
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.12);border-radius:12px;padding:22px 28px;margin-left:40px;display:flex;justify-content:space-between;align-items:center">
+<div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal-deep);text-transform:uppercase;letter-spacing:.1em">SAM</div><div style="font-size:14px;color:var(--ink-muted);margin-top:2px">Level III/IV, budget-ready</div></div>
+<div class="big" style="font-size:40px;color:var(--teal-deep)">$48.9M</div>
+</div>
+<div style="background:var(--teal);border-radius:12px;padding:22px 28px;margin-left:80px;display:flex;justify-content:space-between;align-items:center">
+<div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em">SOM — 3yr</div><div style="font-size:14px;color:rgba(255,255,255,.65);margin-top:2px">2,200 beds</div></div>
+<div class="big" style="font-size:40px;color:#fff">$7.9M</div>
+</div>
+</div>
+<!-- Right: competition + expansion -->
+<div style="flex:0 0 440px;display:flex;flex-direction:column;gap:16px">
+<div style="flex:1;background:var(--ink);border-radius:14px;padding:36px;color:#fff;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px">Competition</div>
+<div class="big" style="font-size:96px;color:var(--teal);margin-bottom:16px;letter-spacing:-.02em">0</div>
+<div style="font-size:18px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:20px">commercial thermal camera products for NICU. Anywhere.</div>
+<div style="font-size:13px;color:rgba(255,255,255,.35);border-top:1px solid rgba(255,255,255,.1);padding-top:14px">100+ published studies. Zero clinical translation.<br>&#8212; Frontiers Pediatrics, 2024</div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 24px;display:flex;align-items:center;gap:20px">
+<div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--phase3);text-transform:uppercase;letter-spacing:.1em">Expansion</div><div style="font-size:14px;color:var(--ink-light);margin-top:2px">Adult post-op ICU</div></div>
+<div class="big" style="font-size:36px;color:var(--phase3);margin-left:auto">$6-8B</div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 24px;display:flex;justify-content:space-between;align-items:center">
+<div style="font-size:15px;color:var(--ink-light)"><strong style="color:var(--ink)">Yr 3:</strong> $14.85M ARR &middot; 48% margin</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);font-weight:500">BEP Mo. 18</div>
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">14</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 13. NORTHWELL PARTNERSHIP                                     -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s15">
+<div class="p">
+<div class="lb">Northwell Partnership</div>
+<h2 style="font-size:48px;margin-bottom:8px">Champions. Infrastructure. Ready.</h2>
+<div style="flex:1;display:flex;gap:36px;margin-top:32px">
+<!-- Left: 2 stakeholder cards -->
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Clinical Champion</div>
+<div style="font-family:'Instrument Serif',serif;font-size:32px;color:var(--ink);margin-bottom:6px">Barry Weinberger, MD</div>
+<div style="font-size:17px;color:var(--ink-light);margin-bottom:10px">Assoc. Director, Neonatology &#8212; Cohen Children's</div>
+<div style="font-size:15px;color:var(--ink-muted);line-height:1.7">NICU access &middot; Clinical PI &middot; IRB at Feinstein Institutes</div>
+</div>
+<div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Innovation Champion</div>
+<div style="font-family:'Instrument Serif',serif;font-size:32px;color:var(--ink);margin-bottom:6px">Theodoros Zanos, PhD</div>
+<div style="font-size:17px;color:var(--ink-light);margin-bottom:10px">AVP, Exploration &amp; Innovation &#8212; Health AI (RISES)</div>
+<div style="font-size:15px;color:var(--ink-muted);line-height:1.7">16-person team &middot; IT approvals &middot; Health Connect integration</div>
+</div>
+</div>
+<!-- Right: infrastructure table + reversibility -->
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px">Already at Northwell</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;flex:1">
+<div style="display:grid;grid-template-columns:1fr auto;font-size:17px">
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">InterSystems Health Connect</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);color:var(--green);font-weight:600;text-align:right">Deployed</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">Philips Capsule MDIP</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);color:var(--green);font-weight:600;text-align:right">Deployed</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">Epic Hyperdrive</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);color:var(--blue);font-weight:600;text-align:right">May 2026</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light)">Feinstein Institutes (IRB)</div>
+<div style="padding:18px 24px;border-bottom:1px solid var(--border-light);color:var(--green);font-weight:600;text-align:right">Available</div>
+<div style="padding:18px 24px">RISES &#8212; Health AI</div>
+<div style="padding:18px 24px;color:var(--green);font-weight:600;text-align:right">Engaged</div>
+</div>
+</div>
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.12);border-radius:12px;padding:24px 28px;font-size:17px;color:var(--teal-deep);line-height:1.6"><strong>Fully reversible.</strong> Remove module from incubator lid, delete Capsule mapping. Zero permanent changes to hospital infrastructure.</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">15</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 14. REGULATORY ROADMAP                                        -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s16">
+<div class="p">
+<div class="lb">Regulatory Roadmap</div>
+<h2 style="font-size:48px;margin-bottom:8px">Phase 1 needs no FDA. We start now.</h2>
+<div style="flex:1;display:flex;gap:24px;margin-top:40px">
+<!-- Phase 1 -->
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="background:var(--phase1);color:#fff;padding:20px 28px;border-radius:14px 14px 0 0;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.08em">PHASE 1 &#8212; Q4 2026</div>
+<div style="flex:1;border:1px solid var(--border);border-top:none;border-radius:0 0 14px 14px;padding:32px 28px;display:flex;flex-direction:column">
+<div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--ink);margin-bottom:14px">Display &amp; Record</div>
+<div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;background:rgba(37,99,160,.08);color:var(--phase1);border-radius:6px;margin-bottom:16px;font-weight:500">NO FDA SUBMISSION</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:2">Camera 510(k) cleared<br>Software: MDDS only<br>Zone temps to Flowsheet<br>IRB at Cohen Children's<br><strong style="color:var(--ink)">1-2 beds pilot</strong></div>
+</div>
+</div>
+<!-- Phase 2 -->
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="background:var(--phase2);color:#fff;padding:20px 28px;border-radius:14px 14px 0 0;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.08em">PHASE 2 &#8212; Q1 2027</div>
+<div style="flex:1;border:1px solid var(--border);border-top:none;border-radius:0 0 14px 14px;padding:32px 28px;display:flex;flex-direction:column">
+<div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--ink);margin-bottom:14px">CPTD Trending</div>
+<div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;background:rgba(13,138,138,.08);color:var(--phase2);border-radius:6px;margin-bottom:16px;font-weight:500">ENFORCEMENT DISCRETION</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:2">CPTD computation<br>FHIR R4 to Health Connect<br>Hospital configures BPA<br>Publish results, Pre-Sub<br><strong style="color:var(--ink)">6-10 beds</strong></div>
+</div>
+</div>
+<!-- Phase 3 -->
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="background:var(--phase3);color:#fff;padding:20px 28px;border-radius:14px 14px 0 0;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.08em">PHASE 3 &#8212; 2027-28</div>
+<div style="flex:1;border:1px solid var(--border);border-top:none;border-radius:0 0 14px 14px;padding:32px 28px;display:flex;flex-direction:column">
+<div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--ink);margin-bottom:14px">AI Sepsis Warning</div>
+<div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;background:rgba(107,76,154,.08);color:var(--phase3);border-radius:6px;margin-bottom:16px;font-weight:500">510(k) / DE NOVO</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:2">AI risk scoring + alerts<br>SMART on FHIR widget<br>Multi-condition detection<br>Predicate: DEN230036<br><strong style="color:var(--ink)">National expansion</strong></div>
+</div>
+</div>
+</div>
+<div style="margin-top:20px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--phase1) 33%,var(--phase2) 33% 66%,var(--phase3) 66%)"></div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">16</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 15. INTERSYSTEMS CHALLENGE                                    -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s17">
+<div class="p">
+<div class="lb" style="color:var(--teal-deep)">The InterSystems Challenge</div>
+<h2 style="font-size:48px;margin-bottom:8px">Why Global-Therma wins.</h2>
+<div style="flex:1;display:flex;gap:28px;margin-top:32px">
+<!-- 2x2 grid -->
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px">
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.15);border-radius:14px;padding:32px">
+<div style="font-size:22px;font-weight:600;color:var(--teal-deep);margin-bottom:10px">Real interoperability problem</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.65">Medical device data that never reaches the EHR. We bridge thermal cameras to clinical workflows through Health Connect.</div>
+</div>
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.15);border-radius:14px;padding:32px">
+<div style="font-size:22px;font-weight:600;color:var(--teal-deep);margin-bottom:10px">HL7v2 + FHIR R4 &#8212; both paths</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.65">Phase 1 uses HL7v2 via Capsule. Phase 2-3 uses FHIR R4 direct. Health Connect bridges both standards seamlessly.</div>
+</div>
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.15);border-radius:14px;padding:32px">
+<div style="font-size:22px;font-weight:600;color:var(--teal-deep);margin-bottom:10px">Solves the EHR migration</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.65">Northwell: 30+ EHRs &#8594; Epic. Health Connect routes data to legacy before cutover, Epic after. Deploy once.</div>
+</div>
+<div style="background:var(--teal-light);border:1px solid rgba(13,138,138,.15);border-radius:14px;padding:32px">
+<div style="font-size:22px;font-weight:600;color:var(--teal-deep);margin-bottom:10px">IRIS as clinical repository</div>
+<div style="font-size:16px;color:var(--ink-light);line-height:1.65">Every reading stored in IRIS for Health. FDA audit trail built-in. SMART on FHIR widget queries IRIS for trends.</div>
+</div>
+</div>
+<!-- Dark sidebar -->
+<div style="flex:0 0 340px;display:flex;flex-direction:column;gap:16px">
+<div style="flex:1;background:var(--ink);border-radius:14px;padding:32px;color:#fff;display:flex;flex-direction:column;justify-content:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px">InterSystems Stack</div>
+<div style="font-size:18px;line-height:2.4">
+<span style="color:#7ec8e3">&#10003;</span> Health Connect<br>
+<span style="color:#7ec8e3">&#10003;</span> FHIR R4 Facade<br>
+<span style="color:#7ec8e3">&#10003;</span> IRIS for Health<br>
+<span style="color:#7ec8e3">&#10003;</span> SMART on FHIR<br>
+<span style="color:#7ec8e3">&#10003;</span> Message queuing<br>
+<span style="color:#7ec8e3">&#10003;</span> Multi-EHR routing
+</div>
+</div>
+<div style="background:var(--teal);border-radius:14px;padding:24px;text-align:center">
+<div style="font-size:20px;font-weight:600;color:#fff">Not a prototype.</div>
+<div style="font-size:15px;color:rgba(255,255,255,.8);margin-top:6px">Production architecture at the<br>largest US health system.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">17</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 16. THE ASK                                                   -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s w" id="s18">
+<div class="p" style="justify-content:center">
+<div style="text-align:center;max-width:1200px;margin:0 auto">
+<div style="font-size:20px;color:var(--ink-muted);margin-bottom:24px;font-weight:300">680,000 newborns die from circulatory failure every year. The science exists. The technology exists. The hospital wants it.</div>
+<h1 style="font-size:80px;margin-bottom:56px;letter-spacing:-.02em">We just need to plug it in.</h1>
+<div style="display:flex;gap:48px;justify-content:center;margin-bottom:56px">
+<div style="text-align:center">
+<div class="big" style="font-size:60px;color:var(--teal)">5 hrs</div>
+<div style="font-size:16px;color:var(--ink-muted);margin-top:8px">earlier detection</div>
+</div>
+<div style="width:1px;background:var(--border)"></div>
+<div style="text-align:center">
+<div class="big" style="font-size:60px;color:var(--teal)">13.2x</div>
+<div style="font-size:16px;color:var(--ink-muted);margin-top:8px">hospital ROI</div>
+</div>
+<div style="width:1px;background:var(--border)"></div>
+<div style="text-align:center">
+<div class="big" style="font-size:60px;color:var(--teal)">$0</div>
+<div style="font-size:16px;color:var(--ink-muted);margin-top:8px">new infrastructure</div>
+</div>
+<div style="width:1px;background:var(--border)"></div>
+<div style="text-align:center">
+<div class="big" style="font-size:60px;color:var(--teal)">0</div>
+<div style="font-size:16px;color:var(--ink-muted);margin-top:8px">competitors</div>
+</div>
+</div>
+<div style="font-size:22px;color:var(--ink-light);line-height:1.6;font-weight:300">One camera. InterSystems Health Connect. Every NICU in America.</div>
+<div style="font-size:28px;font-weight:600;color:var(--ink);margin-top:16px;letter-spacing:-.01em">Global-Therma. Early detection saves lives.</div>
+</div>
+</div>
+<div class="br dk">GLOBAL-THERMA</div><div class="sn dk">18</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- 17. BLUE CLOSER                                               -->
+<!-- ============================================================ -->
+<div class="sw"><div class="s b" id="s19">
+<div class="p" style="justify-content:center;align-items:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:40px">Team 218</div>
+<div class="ht" style="font-size:56px;letter-spacing:-.01em">Global-Therma</div>
+<div style="margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:20px 100px;text-align:left">
+<div style="font-size:22px;color:rgba(255,255,255,.9);font-weight:500">Name 1 <span style="color:rgba(255,255,255,.45);font-weight:300;margin-left:8px">Role</span></div>
+<div style="font-size:22px;color:rgba(255,255,255,.9);font-weight:500">Name 4 <span style="color:rgba(255,255,255,.45);font-weight:300;margin-left:8px">Role</span></div>
+<div style="font-size:22px;color:rgba(255,255,255,.9);font-weight:500">Name 2 <span style="color:rgba(255,255,255,.45);font-weight:300;margin-left:8px">Role</span></div>
+<div style="font-size:22px;color:rgba(255,255,255,.9);font-weight:500">Name 5 <span style="color:rgba(255,255,255,.45);font-weight:300;margin-left:8px">Role</span></div>
+<div style="font-size:22px;color:rgba(255,255,255,.9);font-weight:500">Name 3 <span style="color:rgba(255,255,255,.45);font-weight:300;margin-left:8px">Role</span></div>
+<div style="font-size:22px;color:rgba(255,255,255,.9);font-weight:500">Name 6 <span style="color:rgba(255,255,255,.45);font-weight:300;margin-left:8px">Role</span></div>
+</div>
+<div class="hp" style="display:flex;align-items:center;gap:10px;font-size:20px">
+<span style="color:#4CAF50;font-size:22px">&#10003;</span> InterSystems Prize
+</div>
+</div>
+<div class="sn l">19</div>
+</div></div>
+
+<script>
+const W=document.querySelectorAll('.sw');let c=0;
+function sc(){if(document.body.classList.contains('pr'))return;const s=Math.min(window.innerWidth/1920,1);W.forEach(w=>{w.querySelector('.s').style.transform=`scale(${s})`;w.style.height=(1080*s+48)+'px'})}
+function sp(){const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);W.forEach(w=>{w.querySelector('.s').style.transform=`scale(${s})`;w.style.height='100vh';w.style.alignItems='center'})}
+function sh(i){c=Math.max(0,Math.min(i,W.length-1));W.forEach((w,j)=>w.classList.toggle('ac',j===c))}
+function eP(){document.body.classList.add('pr');sh(0);sp();setTimeout(()=>document.getElementById('hi').classList.add('fade'),3000)}
+function xP(){document.body.classList.remove('pr');W.forEach(w=>{w.classList.remove('ac');w.style.alignItems=''});document.getElementById('hi').classList.remove('fade');sc()}
+sc();window.addEventListener('resize',()=>{sc();if(document.body.classList.contains('pr'))sp()});
+document.addEventListener('keydown',e=>{
+if((e.key==='f'||e.key==='F')&&!document.body.classList.contains('pr')&&document.activeElement.contentEditable!=='true')eP();
+if(!document.body.classList.contains('pr'))return;
+if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();sh(c+1)}
+if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();sh(c-1)}
+if(e.key==='Escape')xP();
+});
+document.querySelectorAll('.p h1,.p h2,.p h3,.p p,.p div,.p strong,.p span').forEach(el=>{
+el.addEventListener('dblclick',e=>{e.stopPropagation();el.contentEditable=true;el.focus();el.style.outline='2px solid #0d8a8a';el.style.outlineOffset='2px';el.style.borderRadius='3px'});
+el.addEventListener('blur',()=>{el.contentEditable=false;el.style.outline='';el.style.outlineOffset=''});
+});
+</script>
 </body>
 </html>

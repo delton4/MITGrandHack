@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoTherm — Appendix Slides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,11 +22,15 @@
 html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 body { font-family: 'DM Sans', sans-serif; color: var(--ink); background: #e0e0e0; }
 
+.slide-wrapper {
+  width: 100vw; display: flex; justify-content: center; align-items: flex-start; padding: 24px 0;
+}
 .slide {
   width: 1920px; height: 1080px; background: var(--white);
-  position: relative; overflow: hidden; margin: 40px auto;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
   display: flex; flex-direction: column;
+  transform-origin: top center; flex-shrink: 0;
 }
 .slide::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
@@ -59,9 +63,22 @@ h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-siz
 .code-block .seg { color: #7ec8e3; } .code-block .field { color: #f0c674; }
 .code-block .value { color: #a3d9a5; } .code-block .comment { color: #636e7b; }
 
-.nav { position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; gap: 8px; background: var(--white); padding: 8px 12px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
-.nav a { color: var(--ink-muted); text-decoration: none; padding: 4px 10px; border-radius: 4px; }
-.nav a:hover { background: var(--surface); color: var(--ink); }
+.nav { position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; gap: 8px; align-items: center; background: var(--white); padding: 8px 12px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.nav a, .nav button { color: var(--ink-muted); text-decoration: none; padding: 4px 10px; border-radius: 4px; font-family: inherit; font-size: inherit; background: none; border: none; cursor: pointer; }
+.nav a:hover, .nav button:hover { background: var(--surface); color: var(--ink); }
+.nav .sep { width: 1px; height: 16px; background: var(--border); margin: 0 4px; }
+.nav .screenshot-btn { background: #0d8a8a; color: #fff; padding: 4px 12px; font-weight: 500; }
+.nav .screenshot-btn:hover { background: #0c6e6e; color: #fff; }
+
+body.present { background: #fff; overflow: hidden; }
+body.present .nav { display: none; }
+body.present .slide-wrapper { display: none; padding: 0; }
+body.present .slide-wrapper.active-slide { display: flex; padding: 0; height: 100vh !important; }
+body.present .slide { box-shadow: none; }
+
+.screenshot-hint { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(26,35,50,0.85); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 20px; border-radius: 6px; z-index: 200; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+body.present .screenshot-hint { opacity: 1; }
+body.present .screenshot-hint.fade { opacity: 0; }
 </style>
 </head>
 <body>
@@ -69,11 +86,14 @@ h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-siz
 <nav class="nav">
   <span style="color: var(--ink-muted); padding: 4px 6px;">APPENDIX</span>
   <a href="#a1">A1</a><a href="#a2">A2</a><a href="#a3">A3</a>
-  <a href="#a4">A4</a><a href="#a5">A5</a><a href="#a6">A6</a><a href="#a7">A7</a>
+  <a href="#a4">A4</a><a href="#a5">A5</a><a href="#a6">A6</a><a href="#a7">A7</a><a href="#a8">A8</a><a href="#a9">A9</a>
+  <div class="sep"></div>
+  <button class="screenshot-btn" onclick="enterPresent()">Screenshot Mode (F)</button>
 </nav>
+<div class="screenshot-hint" id="hint">← → to navigate &nbsp;&nbsp; Cmd+Shift+4 to screenshot &nbsp;&nbsp; Esc to exit</div>
 
 <!-- ════════════════════════ A1: FULL ARCHITECTURE DIAGRAM ════════════════════════ -->
-<div class="slide" id="a1">
+<div class="slide-wrapper"><div class="slide" id="a1">
   <div class="slide-pad">
     <div class="label">Appendix A1 — Full Architecture Detail</div>
     <h2>System Architecture with Protocol Paths</h2>
@@ -150,9 +170,10 @@ h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-siz
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A1</div>
 </div>
+</div>
 
 <!-- ════════════════════════ A2: HL7v2 MESSAGE FORMAT ════════════════════════ -->
-<div class="slide" id="a2">
+<div class="slide-wrapper"><div class="slide" id="a2">
   <div class="slide-pad">
     <div class="label">Appendix A2 — HL7v2 Integration (Phase 1)</div>
     <h2>HL7v2 ORU^R01 Message Format</h2>
@@ -189,9 +210,10 @@ h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-siz
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A2</div>
 </div>
+</div>
 
 <!-- ════════════════════════ A3: FHIR R4 FORMAT ════════════════════════ -->
-<div class="slide" id="a3">
+<div class="slide-wrapper"><div class="slide" id="a3">
   <div class="slide-pad">
     <div class="label">Appendix A3 — FHIR R4 Integration (Phase 2–3)</div>
     <h2>FHIR R4 Observation Resource</h2>
@@ -224,9 +246,10 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A3</div>
 </div>
+</div>
 
 <!-- ════════════════════════ A4: REGULATORY DETAIL ════════════════════════ -->
-<div class="slide" id="a4">
+<div class="slide-wrapper"><div class="slide" id="a4">
   <div class="slide-pad">
     <div class="label">Appendix A4 — Regulatory Decision Table</div>
     <h2>FDA Regulatory Analysis</h2>
@@ -250,9 +273,10 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A4</div>
 </div>
+</div>
 
 <!-- ════════════════════════ A5: CLINICAL EVIDENCE ════════════════════════ -->
-<div class="slide" id="a5">
+<div class="slide-wrapper"><div class="slide" id="a5">
   <div class="slide-pad">
     <div class="label">Appendix A5 — Clinical Evidence Base</div>
     <h2>Key Research Citations</h2>
@@ -275,9 +299,10 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A5</div>
 </div>
+</div>
 
 <!-- ════════════════════════ A6: CONTRACT STACK ════════════════════════ -->
-<div class="slide" id="a6">
+<div class="slide-wrapper"><div class="slide" id="a6">
   <div class="slide-pad">
     <div class="label">Appendix A6 — Northwell Contract Stack</div>
     <h2>Deployment Requirements</h2>
@@ -333,9 +358,10 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A6</div>
 </div>
+</div>
 
 <!-- ════════════════════════ A7: NORTHWELL INFRASTRUCTURE ════════════════════════ -->
-<div class="slide" id="a7">
+<div class="slide-wrapper"><div class="slide" id="a7">
   <div class="slide-pad">
     <div class="label">Appendix A7 — Northwell Infrastructure Context</div>
     <h2>What Northwell Already Has</h2>
@@ -353,12 +379,206 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
       </tbody>
     </table>
     <div style="margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 28px; font-size: 15px; color: var(--ink-light); line-height: 1.6;">
-      <strong style="color: var(--ink);">EHR transition is an advantage, not a risk.</strong> Health Connect was built to bridge Northwell's 30+ EHR consolidation. NeoTherm deploys once to the edge box, speaks HL7v2, and Health Connect routes to whatever EHR is current. Zero changes needed at the bedside during the Epic cutover.
+      <strong style="color: var(--ink);">EHR transition is an advantage, not a risk.</strong> Health Connect was built to bridge Northwell's 30+ EHR consolidation. NeoTherm module deploys once in the incubator lid, speaks HL7v2, and Health Connect routes to whatever EHR is current. Zero changes needed during the Epic cutover.
     </div>
   </div>
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
   <div class="slide-num">A7</div>
 </div>
+</div>
 
+<!-- ════════════════════════ A8: HARDWARE COST ════════════════════════ -->
+<div class="slide-wrapper"><div class="slide" id="a8">
+  <div class="slide-pad">
+    <div class="label">Appendix A8 — Hardware: Incubator Module</div>
+    <h2>Custom-built device. &lt;$1,000/bed.</h2>
+    <p class="subtitle">Integrated module mounts in the incubator lid — camera, compute, and IR-transparent window in one unit. No ceiling mount. No separate edge box. No modification to the incubator.</p>
+    <div style="display: flex; gap: 32px; margin-top: 32px;">
+      <!-- BOM table -->
+      <div style="flex: 1;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px;">Bill of Materials — Prototype</div>
+        <table class="data-table">
+          <thead><tr><th>Component</th><th style="width:120px">Prototype</th><th style="width:120px">At Scale</th></tr></thead>
+          <tbody>
+            <tr><td>FLIR Lepton 3.5 + breakout</td><td>$250</td><td>$150</td></tr>
+            <tr><td>Raspberry Pi 4 + accessories</td><td>$100</td><td>$85</td></tr>
+            <tr><td>3D-printed housing + mount</td><td>$50</td><td>$18</td></tr>
+            <tr><td>IR-transparent window + frame</td><td>$25</td><td>$12</td></tr>
+            <tr><td>Blackbody reference + thermistor</td><td>$75</td><td>$45</td></tr>
+            <tr><td>Display (optional bedside)</td><td>$40</td><td>$30</td></tr>
+            <tr><td>Incubator brackets</td><td>$30</td><td>$15</td></tr>
+            <tr><td>Assembly + QC</td><td>$50</td><td>$28</td></tr>
+            <tr style="font-weight: 600;"><td>Total BOM</td><td style="color: var(--teal-deep);">$620</td><td style="color: var(--green);">$383</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Scale curve + key points -->
+      <div style="flex: 1;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px;">Economies of Scale</div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+          <div style="display: grid; grid-template-columns: 120px 100px 1fr; font-size: 14px;">
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--ink);">1–50 units</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink);">$620</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">3D printing, retail components</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">50–500</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$480</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">OEM pricing, bulk components</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">500–2K</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$383</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">Injection molding, supply agreements</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">2K–5K</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$340</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">Dedicated assembly line</div>
+            <div style="padding: 10px 16px; font-weight: 600;">10K+</div>
+            <div style="padding: 10px 16px; color: var(--green); font-weight: 600;">$275</div>
+            <div style="padding: 10px 16px; color: var(--ink-muted);">Custom ASIC, full automation</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <div style="flex: 1; background: var(--teal-light); border: 1px solid rgba(13,138,138,.12); border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--teal-deep);">&lt;$1K</div>
+            <div style="font-size: 13px; color: var(--teal-deep); margin-top: 4px;">Target per bed (prototype)</div>
+          </div>
+          <div style="flex: 1; background: var(--green-light); border: 1px solid rgba(26,122,76,.12); border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--green);">$275</div>
+            <div style="font-size: 13px; color: var(--green); margin-top: 4px;">At 10K+ scale</div>
+          </div>
+          <div style="flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--ink);">90%+</div>
+            <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">Gross margin at scale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 24px; font-size: 14px; color: var(--ink-light); line-height: 1.6;">
+      <strong style="color: var(--ink);">Design approach:</strong> Custom module integrates into existing incubator lid port. FLIR Lepton 3.5 thermal sensor + Raspberry Pi compute + IR-transparent window in one housing. CAD model complete. No incubator modification required — mounts in standard access port. All processing on-device, HL7v2 output to hospital network.
+    </div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A8</div>
+</div>
+</div>
+
+<!-- ════════════════════════ A9: LOS COST SAVINGS CALCULATION ════════════════════════ -->
+<div class="slide-wrapper"><div class="slide" id="a9">
+  <div class="slide-pad">
+    <div class="label">Appendix A9 — Length-of-Stay Cost Savings Model</div>
+    <h2>20% LOS reduction = $213M/year nationally</h2>
+    <p class="subtitle">Conservative estimate based on LOS reduction alone — excludes mortality reduction, antibiotic savings, and malpractice avoidance.</p>
+    <div style="display: flex; gap: 32px; margin-top: 28px;">
+      <!-- Left: the two source studies -->
+      <div style="flex: 1;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px;">Source Studies</div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin-bottom: 16px;">
+          <div style="font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Swanson et al. (2018) — HeRO Trial</div>
+          <div style="font-size: 14px; color: var(--ink-light); line-height: 1.6; margin-bottom: 8px;">
+            <em>J Pediatrics</em>, 198:162-167. PMID: 29703576<br>
+            Continuous heart rate characteristics monitoring in VLBW neonates.<br>
+            <strong style="color: var(--teal-deep);">Result: 3.2 days LOS reduction</strong> for sepsis survivors (P=.026).<br>
+            83.6% vs 80.1% discharged alive before day 120 (P=.014).
+          </div>
+          <div style="font-size: 13px; color: var(--ink-muted);">
+            <a href="https://www.sciencedirect.com/science/article/pii/S0022347618302968" style="color: var(--teal); text-decoration: none;">ScienceDirect</a> &ensp;|&ensp; Analog for NeoTherm: continuous monitoring → earlier intervention → shorter stay
+          </div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+          <div style="font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Rolnitsky et al. (2023) — Ontario NICU Costs</div>
+          <div style="font-size: 14px; color: var(--ink-light); line-height: 1.6; margin-bottom: 8px;">
+            <em>Frontiers in Pediatrics</em>, 11:1068367. PMC9941343<br>
+            12,660 infants, 23–30 weeks GA, all Ontario NICUs, 2010–2017.<br>
+            <strong style="color: var(--red);">Late-onset sepsis: +$32,954 incremental cost, +16 days LOS.</strong><br>
+            Per-day incremental cost: $32,954 / 16 = ~$2,060/day.
+          </div>
+          <div style="font-size: 13px; color: var(--ink-muted);">
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9941343/" style="color: var(--teal); text-decoration: none;">PMC Full Text</a>
+          </div>
+        </div>
+      </div>
+      <!-- Right: the calculation -->
+      <div style="flex: 1;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px;">Cost Savings Calculation</div>
+        <div style="background: var(--ink); border-radius: 10px; padding: 28px; color: #c8d6e5; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 2.2; margin-bottom: 20px;">
+<span style="color: #636e7b;">// Baseline (Rolnitsky et al.)</span>
+<span style="color: #7ec8e3;">Additional LOS per sepsis case</span> = <span style="color: #f0c674;">16 days</span>
+<span style="color: #7ec8e3;">Incremental cost per case</span>     = <span style="color: #f0c674;">$32,954</span>
+<span style="color: #7ec8e3;">Cost per additional day</span>        = <span style="color: #f0c674;">$2,060</span>
+
+<span style="color: #636e7b;">// Intervention effect (Swanson/HeRO analog)</span>
+<span style="color: #7ec8e3;">LOS reduction with monitoring</span>  = <span style="color: #a3d9a5;">3.2 days</span>
+<span style="color: #7ec8e3;">Percent LOS reduction</span>         = <span style="color: #a3d9a5;">3.2 / 16 = 20%</span>
+
+<span style="color: #636e7b;">// Savings per case (LOS only)</span>
+<span style="color: #7ec8e3;">Savings per case</span>              = <span style="color: #a3d9a5;">3.2 × $2,060 = $6,591</span>
+
+<span style="color: #636e7b;">// National impact (US)</span>
+<span style="color: #7ec8e3;">US sepsis cases/year</span>          = <span style="color: #f0c674;">~32,400</span>
+<span style="color: #7ec8e3;">National LOS savings</span>          = <span style="color: #a3d9a5;">32,400 × $6,591</span>
+                               = <span style="color: #a3d9a5; font-weight: bold;">$213,548,400/year</span>
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <div style="flex: 1; background: var(--teal-light); border: 1px solid rgba(13,138,138,.12); border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--teal-deep);">20%</div>
+            <div style="font-size: 12px; color: var(--teal-deep); margin-top: 4px;">LOS reduction</div>
+          </div>
+          <div style="flex: 1; background: var(--green-light); border: 1px solid rgba(26,122,76,.12); border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--green);">$6,591</div>
+            <div style="font-size: 12px; color: var(--green); margin-top: 4px;">saved per case</div>
+          </div>
+          <div style="flex: 1; background: var(--red-light); border: 1px solid rgba(192,57,43,.12); border-radius: 8px; padding: 20px; text-align: center;">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--red);">$213M</div>
+            <div style="font-size: 12px; color: var(--red); margin-top: 4px;">national/year</div>
+          </div>
+        </div>
+        <div style="margin-top: 16px; font-size: 13px; color: var(--ink-muted); line-height: 1.6; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px;">
+          <strong style="color: var(--ink);">Conservative estimate.</strong> This captures LOS savings only. Does not include: reduced mortality (HeRO showed improved alive-discharge rates), avoided antibiotic courses, avoided blood cultures, reduced malpractice exposure, or CMS quality penalty avoidance. Total economic impact is significantly higher.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A9</div>
+</div>
+</div>
+
+<script>
+const wrappers = document.querySelectorAll('.slide-wrapper');
+let currentSlide = 0;
+
+function scaleSlides() {
+  if (document.body.classList.contains('present')) return;
+  const vw = window.innerWidth;
+  const scale = Math.min(vw / 1920, 1);
+  wrappers.forEach(w => {
+    w.querySelector('.slide').style.transform = `scale(${scale})`;
+    w.style.height = (1080 * scale + 48) + 'px';
+  });
+}
+scaleSlides();
+window.addEventListener('resize', () => { scaleSlides(); if (document.body.classList.contains('present')) scalePresentSlide(); });
+
+function scalePresentSlide() {
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  wrappers.forEach(w => { w.querySelector('.slide').style.transform = `scale(${s})`; w.style.height = '100vh'; w.style.alignItems = 'center'; });
+}
+function showSlide(i) {
+  currentSlide = Math.max(0, Math.min(i, wrappers.length - 1));
+  wrappers.forEach((w, idx) => w.classList.toggle('active-slide', idx === currentSlide));
+}
+function enterPresent() { document.body.classList.add('present'); showSlide(0); scalePresentSlide(); setTimeout(() => document.getElementById('hint').classList.add('fade'), 3000); }
+function exitPresent() { document.body.classList.remove('present'); wrappers.forEach(w => { w.classList.remove('active-slide'); w.style.alignItems = ''; }); document.getElementById('hint').classList.remove('fade'); scaleSlides(); }
+
+document.addEventListener('keydown', (e) => {
+  if ((e.key === 'f' || e.key === 'F') && !document.body.classList.contains('present') && document.activeElement.contentEditable !== 'true') enterPresent();
+  if (!document.body.classList.contains('present')) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); showSlide(currentSlide + 1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); showSlide(currentSlide - 1); }
+  if (e.key === 'Escape') exitPresent();
+});
+
+document.querySelectorAll('.slide-pad h2, .slide-pad p, .slide-pad td, .slide-pad .label, .slide-pad .subtitle, .slide-pad div, .slide-pad strong, .slide-pad span').forEach(el => {
+  el.addEventListener('dblclick', (e) => { e.stopPropagation(); el.contentEditable = true; el.focus(); el.style.outline = '2px solid #0d8a8a'; el.style.outlineOffset = '2px'; el.style.borderRadius = '3px'; });
+  el.addEventListener('blur', () => { el.contentEditable = false; el.style.outline = ''; el.style.outlineOffset = ''; });
+});
+</script>
 </body>
 </html>
