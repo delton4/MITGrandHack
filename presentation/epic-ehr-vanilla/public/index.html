@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Epic Hyperdrive — NICU</title>
+  <link rel="stylesheet" href="/css/epic.css">
+</head>
+<body>
+  <div id="app">
+    <div id="topbar"></div>
+    <div id="tabbar"></div>
+    <div id="main-content">
+      <div id="view-container">
+        <!-- Patient list or chart view renders here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- BPA Modal overlay -->
+  <div id="bpa-overlay" class="bpa-overlay hidden"></div>
+
+  <!-- Loading spinner -->
+  <div id="loading-spinner" class="loading-spinner hidden">
+    <div class="spinner-ring"></div>
+  </div>
+
+  <!-- Scripts (order matters — utilities first, then components, then views, then app) -->
+  <script src="/js/api.js"></script>
+  <script src="/js/components/topbar.js"></script>
+  <script src="/js/components/tabbar.js"></script>
+  <script src="/js/components/navigator.js"></script>
+  <script src="/js/components/storyboard.js"></script>
+  <script src="/js/components/bpa-modal.js"></script>
+  <script src="/js/components/order-entry.js"></script>
+  <script src="/js/views/patient-list.js"></script>
+  <script src="/js/views/synopsis.js"></script>
+  <script src="/js/views/flowsheet.js"></script>
+  <script src="/js/views/results.js"></script>
+  <script src="/js/views/orders.js"></script>
+  <script src="/js/views/mar.js"></script>
+  <script src="/js/views/notes.js"></script>
+  <script src="/js/views/problem-list.js"></script>
+  <script src="/js/views/imaging.js"></script>
+  <script src="/js/views/neotherm.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
