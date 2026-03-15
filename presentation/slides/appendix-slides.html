@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>NeoTherm — Appendix Slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ink: #1a2332; --ink-light: #3d4f63; --ink-muted: #64748b;
+  --surface: #f8f9fb; --white: #ffffff; --border: #dde2e8; --border-light: #eceef2;
+  --teal-deep: #0c6e6e; --teal: #0d8a8a; --teal-light: #e6f5f5;
+  --blue: #2563a0; --blue-light: #e8f0f8;
+  --amber: #b8860b; --amber-light: #fef8e8;
+  --red-clinical: #c0392b; --red-light: #fdf0ee;
+  --green-clinical: #1a7a4c; --green-light: #edf7f1;
+  --phase1: #2563a0; --phase2: #0d8a8a; --phase3: #6b4c9a;
+}
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: 'DM Sans', sans-serif; color: var(--ink); background: #e0e0e0; }
+
+.slide {
+  width: 1920px; height: 1080px; background: var(--white);
+  position: relative; overflow: hidden; margin: 40px auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  display: flex; flex-direction: column;
+}
+.slide::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--blue), var(--phase3));
+}
+.slide-pad { padding: 80px 120px; flex: 1; display: flex; flex-direction: column; }
+.slide-num { position: absolute; bottom: 40px; right: 120px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-muted); }
+.slide-brand { position: absolute; bottom: 40px; left: 120px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--border); letter-spacing: 0.08em; text-transform: uppercase; }
+
+.label { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 48px; line-height: 1.2; color: var(--ink); margin-bottom: 12px; }
+.subtitle { font-size: 20px; color: var(--ink-light); line-height: 1.5; max-width: 900px; margin-bottom: 40px; }
+
+/* Table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.data-table th {
+  text-align: left; padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted);
+}
+.data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-light); line-height: 1.5; vertical-align: top; }
+.data-table td:first-child { font-weight: 600; color: var(--ink); }
+.data-table td a { color: var(--teal); text-decoration: none; }
+
+/* Code */
+.code-block {
+  background: var(--ink); color: #c8d6e5; font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.7; padding: 24px 28px; border-radius: 8px; overflow-x: auto;
+}
+.code-block .seg { color: #7ec8e3; } .code-block .field { color: #f0c674; }
+.code-block .value { color: #a3d9a5; } .code-block .comment { color: #636e7b; }
+
+.nav { position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; gap: 8px; background: var(--white); padding: 8px 12px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.nav a { color: var(--ink-muted); text-decoration: none; padding: 4px 10px; border-radius: 4px; }
+.nav a:hover { background: var(--surface); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span style="color: var(--ink-muted); padding: 4px 6px;">APPENDIX</span>
+  <a href="#a1">A1</a><a href="#a2">A2</a><a href="#a3">A3</a>
+  <a href="#a4">A4</a><a href="#a5">A5</a><a href="#a6">A6</a><a href="#a7">A7</a>
+</nav>
+
+<!-- ════════════════════════ A1: FULL ARCHITECTURE DIAGRAM ════════════════════════ -->
+<div class="slide" id="a1">
+  <div class="slide-pad">
+    <div class="label">Appendix A1 — Full Architecture Detail</div>
+    <h2>System Architecture with Protocol Paths</h2>
+    <div style="flex: 1; display: flex; gap: 0; margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 32px;">
+      <!-- 5-column layout -->
+      <div style="flex: 1; padding: 0 16px; border-right: 1px dashed var(--border);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);">NICU Bedside</div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">FLIR A400/A700</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">Radiometric, 640x480, GigE Vision</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">510(k) cleared, product code LHQ</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--phase1); margin-top: 8px; padding: 2px 6px; background: rgba(37,99,160,0.08); border-radius: 3px; display: inline-block;">PHASE 1</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Polyethylene IR Window</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">92–94% LWIR transmission</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">Insert in incubator access port</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Edge Compute Box</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">IEC 60601-1 certified</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">Spinnaker SDK + YOLOv8-Pose</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">CPTD computation, 24h local buffer</div>
+        </div>
+        <div style="text-align: center; padding: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal);">HL7v2 ORU &#8594;</div>
+      </div>
+      <div style="flex: 0.8; padding: 0 16px; border-right: 1px dashed var(--border);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);">Device Middleware</div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Philips Capsule MDIP</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">Vendor-neutral device integration</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">Receives HL7v2 on device VLAN</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green-clinical); margin-top: 8px; padding: 2px 6px; background: rgba(26,122,76,0.08); border-radius: 3px; display: inline-block;">EXISTING</div>
+        </div>
+        <div style="text-align: center; padding: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal);">HL7v2 &#8594;</div>
+      </div>
+      <div style="flex: 1; padding: 0 16px; border-right: 1px dashed var(--border);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);">Integration Engine</div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">InterSystems Health Connect</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">HL7v2 &#8596; FHIR R4 transform</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">Message queue, retry, audit log</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">Routes to legacy EHR OR Epic</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green-clinical); margin-top: 8px; padding: 2px 6px; background: rgba(26,122,76,0.08); border-radius: 3px; display: inline-block;">EXISTING</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">FHIR R4 Repository</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">InterSystems IRIS for Health</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">Queryable Observation history</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--phase2); margin-top: 8px; padding: 2px 6px; background: rgba(13,138,138,0.08); border-radius: 3px; display: inline-block;">PHASE 2–3</div>
+        </div>
+        <div style="text-align: center; padding: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal);">FHIR R4 | HL7v2 &#8594;</div>
+      </div>
+      <div style="flex: 1; padding: 0 16px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);">EHR (Legacy &#8594; Epic May 2026)</div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Flowsheet</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">CPTD + zone temps as vital sign rows</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--phase1); margin-top: 8px; padding: 2px 6px; background: rgba(37,99,160,0.08); border-radius: 3px; display: inline-block;">PHASE 1</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">BestPractice Alert</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">Hospital-configured rule on CPTD</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--phase2); margin-top: 8px; padding: 2px 6px; background: rgba(13,138,138,0.08); border-radius: 3px; display: inline-block;">PHASE 2</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">SMART on FHIR Widget</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">Dedicated NeoTherm tab in chart</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--phase3); margin-top: 8px; padding: 2px 6px; background: rgba(107,76,154,0.08); border-radius: 3px; display: inline-block;">PHASE 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A1</div>
+</div>
+
+<!-- ════════════════════════ A2: HL7v2 MESSAGE FORMAT ════════════════════════ -->
+<div class="slide" id="a2">
+  <div class="slide-pad">
+    <div class="label">Appendix A2 — HL7v2 Integration (Phase 1)</div>
+    <h2>HL7v2 ORU^R01 Message Format</h2>
+    <p class="subtitle">Edge box emits standard HL7v2 ORU messages on the medical device VLAN. Capsule receives it identically to any bedside monitor. Zero custom development.</p>
+    <div class="code-block" style="flex: 0; margin-bottom: 24px;">
+<span class="comment">// PHASE 1: Raw zone temperatures only (display/store — MDDS)</span>
+<span class="seg">MSH</span>|^~\&amp;|<span class="value">NEOTHERM</span>|<span class="value">NICU_BAY1A</span>|<span class="value">CAPSULE</span>|<span class="value">NORTHWELL</span>|20260315120000||<span class="field">ORU^R01</span>|MSG001|P|2.6
+<span class="seg">PID</span>|1||<span class="value">MRN12345</span>^^^NORTHWELL||<span class="value">GARCIA^MARIA</span>
+<span class="seg">OBR</span>|1|||<span class="field">NEOTHERM_THERMAL</span>|||20260315120000
+<span class="seg">OBX</span>|1|NM|<span class="field">CORE_TEMP^Core Temperature</span>||<span class="value">36.8</span>|degC|36.0-37.5||||F
+<span class="seg">OBX</span>|2|NM|<span class="field">L_HAND^Left Hand Temp</span>||<span class="value">33.1</span>|degC|||||F
+<span class="seg">OBX</span>|3|NM|<span class="field">R_HAND^Right Hand Temp</span>||<span class="value">33.6</span>|degC|||||F
+<span class="seg">OBX</span>|4|NM|<span class="field">L_FOOT^Left Foot Temp</span>||<span class="value">31.5</span>|degC|||||F
+<span class="seg">OBX</span>|5|NM|<span class="field">R_FOOT^Right Foot Temp</span>||<span class="value">32.1</span>|degC|||||F
+
+<span class="comment">// PHASE 2 adds these segments (CPTD computation + trending):</span>
+<span class="seg">OBX</span>|6|NM|<span class="field">CPTD^Core-Peripheral Temp Diff</span>||<span class="value">3.2</span>|degC|<span class="value">&lt;2.0</span>|<span class="value">H</span>|||F
+<span class="seg">OBX</span>|7|CE|<span class="field">ALERT_LEVEL</span>||<span class="value">HIGH</span>||||||F</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Transport</div>
+        <div style="font-size: 15px; color: var(--ink-light); line-height: 1.6;">TCP/MLLP on hospital medical device VLAN. Same protocol used by every bedside monitor at Northwell.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Routing</div>
+        <div style="font-size: 15px; color: var(--ink-light); line-height: 1.6;">Capsule receives &#8594; forwards to Health Connect &#8594; Health Connect transforms and routes to EHR flowsheet.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Frequency</div>
+        <div style="font-size: 15px; color: var(--ink-light); line-height: 1.6;">q15min summaries from continuous stream. Alert-level changes sent immediately. 24h local buffer on edge box.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A2</div>
+</div>
+
+<!-- ════════════════════════ A3: FHIR R4 FORMAT ════════════════════════ -->
+<div class="slide" id="a3">
+  <div class="slide-pad">
+    <div class="label">Appendix A3 — FHIR R4 Integration (Phase 2–3)</div>
+    <h2>FHIR R4 Observation Resource</h2>
+    <p class="subtitle">Posted directly to Health Connect's FHIR endpoint. Stored in IRIS repository. Queryable by SMART on FHIR widget.</p>
+    <div class="code-block" style="font-size: 12px;">
+<span class="field">POST</span> https://healthconnect.northwell.edu/fhir/r4/Observation
+Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
+
+{
+  <span class="field">"resourceType"</span>: <span class="value">"Observation"</span>,
+  <span class="field">"status"</span>: <span class="value">"final"</span>,
+  <span class="field">"category"</span>: [{<span class="field">"coding"</span>: [{
+    <span class="field">"system"</span>: <span class="value">"http://terminology.hl7.org/CodeSystem/observation-category"</span>,
+    <span class="field">"code"</span>: <span class="value">"vital-signs"</span>}]}],
+  <span class="field">"code"</span>: {
+    <span class="field">"coding"</span>: [{<span class="field">"system"</span>: <span class="value">"http://loinc.org"</span>, <span class="field">"code"</span>: <span class="value">"8329-5"</span>}],
+    <span class="field">"text"</span>: <span class="value">"Core-Peripheral Temperature Difference"</span>},
+  <span class="field">"subject"</span>: {<span class="field">"reference"</span>: <span class="value">"Patient/EPIC-FHIR-ID"</span>},
+  <span class="field">"effectiveDateTime"</span>: <span class="value">"2026-03-15T14:30:00-05:00"</span>,
+  <span class="field">"valueQuantity"</span>: {<span class="field">"value"</span>: <span class="seg">3.2</span>, <span class="field">"unit"</span>: <span class="value">"Cel"</span>, <span class="field">"system"</span>: <span class="value">"http://unitsofmeasure.org"</span>},
+  <span class="field">"interpretation"</span>: [{<span class="field">"coding"</span>: [{<span class="field">"code"</span>: <span class="value">"H"</span>, <span class="field">"display"</span>: <span class="value">"High"</span>}]}],
+  <span class="field">"component"</span>: [
+    {<span class="field">"code"</span>: {<span class="field">"text"</span>: <span class="value">"Core Temp"</span>}, <span class="field">"valueQuantity"</span>: {<span class="field">"value"</span>: <span class="seg">36.8</span>, <span class="field">"unit"</span>: <span class="value">"Cel"</span>}},
+    {<span class="field">"code"</span>: {<span class="field">"text"</span>: <span class="value">"L Hand"</span>},  <span class="field">"valueQuantity"</span>: {<span class="field">"value"</span>: <span class="seg">33.1</span>, <span class="field">"unit"</span>: <span class="value">"Cel"</span>}},
+    {<span class="field">"code"</span>: {<span class="field">"text"</span>: <span class="value">"R Hand"</span>},  <span class="field">"valueQuantity"</span>: {<span class="field">"value"</span>: <span class="seg">33.6</span>, <span class="field">"unit"</span>: <span class="value">"Cel"</span>}},
+    {<span class="field">"code"</span>: {<span class="field">"text"</span>: <span class="value">"L Foot"</span>},  <span class="field">"valueQuantity"</span>: {<span class="field">"value"</span>: <span class="seg">31.5</span>, <span class="field">"unit"</span>: <span class="value">"Cel"</span>}},
+    {<span class="field">"code"</span>: {<span class="field">"text"</span>: <span class="value">"R Foot"</span>},  <span class="field">"valueQuantity"</span>: {<span class="field">"value"</span>: <span class="seg">32.1</span>, <span class="field">"unit"</span>: <span class="value">"Cel"</span>}}]
+}</div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A3</div>
+</div>
+
+<!-- ════════════════════════ A4: REGULATORY DETAIL ════════════════════════ -->
+<div class="slide" id="a4">
+  <div class="slide-pad">
+    <div class="label">Appendix A4 — Regulatory Decision Table</div>
+    <h2>FDA Regulatory Analysis</h2>
+    <table class="data-table" style="margin-top: 24px;">
+      <thead>
+        <tr><th style="width: 340px;">Question</th><th>Answer</th><th style="width: 200px;">Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Does the AI layer need clearance?</td><td>Yes — processes medical images (thermal), outputs clinical score. CDS exemption fails Criterion 1.</td><td>FDA CDS Guidance (Jan 2026)</td></tr>
+        <tr><td>What pathway?</td><td>De Novo likely; 510(k) possible using Sepsis ImmunoScore (DEN230036, April 2024) as predicate.</td><td>FDA De Novo database</td></tr>
+        <tr><td>Is Phase 1 software a device?</td><td>No — display/store/transfer only. MDDS enforcement discretion applies.</td><td>FDA MDDS Guidance</td></tr>
+        <tr><td>Is Phase 2 trending a device?</td><td>Gray area — FDA enforcement discretion covers "historical trending of vital signs." No automated alerts from software.</td><td>FDA Enforcement Discretion Examples</td></tr>
+        <tr><td>Can physicians use camera off-label?</td><td>Yes — FDA does not regulate the practice of medicine. 21 CFR 801.4 applies to manufacturers only.</td><td>FD&amp;C Act; 21 CFR 801.4</td></tr>
+        <tr><td>Can hospital configure BPA?</td><td>Yes — hospital-configured alert rules are clinical practice, not manufacturer claims. No FDA clearance needed.</td><td>CDS Guidance; TTI Warning Letter</td></tr>
+        <tr><td>Is thermal image data PHI?</td><td>Yes — identifiable patient images = PHI. BAA required before any data flows.</td><td>HIPAA; HHS guidance</td></tr>
+        <tr><td>Quality system required?</td><td>QMSR (effective Feb 2, 2026). Design controls, CAPA, MDR reporting. PCCP recommended for model updates.</td><td>21 CFR 820 (rev. 2026)</td></tr>
+        <tr><td>Can it be sold as "wellness"?</td><td>No — NICU use is inherently clinical. Neonatal monitoring = medical management, not wellness.</td><td>FDA General Wellness Guidance (2026)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A4</div>
+</div>
+
+<!-- ════════════════════════ A5: CLINICAL EVIDENCE ════════════════════════ -->
+<div class="slide" id="a5">
+  <div class="slide-pad">
+    <div class="label">Appendix A5 — Clinical Evidence Base</div>
+    <h2>Key Research Citations</h2>
+    <table class="data-table" style="margin-top: 24px;">
+      <thead>
+        <tr><th style="width: 280px;">Claim</th><th>Evidence</th><th style="width: 180px;">Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CPTD >2°C = sepsis marker</td><td>Leante-Castellanos (2012, 2017): Prospective study of 129 VLBW infants. Adjusted OR 23.60, sensitivity 83%, NPV 94%. First clinical sign in 71% of cases.</td><td><a href="https://doi.org/10.1038/pr.2017.68">Pediatric Research</a></td></tr>
+        <tr><td>Automated CPTD via camera</td><td>Zhang et al. (2025): 40 preterm infants at Nanfang Hospital. MAE 0.297°C for CPTD measurement. Fully automatic, continuous monitoring.</td><td><a href="https://doi.org/10.1364/BOE.549693">Biomed Optics Express</a></td></tr>
+        <tr><td>Polyethylene IR window</td><td>92–94% LWIR transmission through LDPE film. Used by Aachen NIRT group and Lorato et al. for multi-camera NICU monitoring.</td><td><a href="https://www.medit.hia.rwth-aachen.de/en/research/research/single/project/neonatal-infrared-thermography-imaging-114">RWTH Aachen</a></td></tr>
+        <tr><td>Zero clinical adoption</td><td>"Non-contact technologies have yet to be adopted into clinical practice." 60 studies reviewed, all research/POC stage.</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11528303/">Frontiers Pediatrics (2024)</a></td></tr>
+        <tr><td>Camera FDA clearance</td><td>Product code LHQ, 21 CFR 884.2980(a). Class I. 14+ cleared devices including FLIR (K033967, 2004).</td><td><a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfPCD/classification.cfm?ID=LHQ">FDA PCD</a></td></tr>
+        <tr><td>AI sepsis predicate exists</td><td>Sepsis ImmunoScore (DEN230036, April 2024). First AI sepsis prediction tool authorized via De Novo. Creates predicate pathway.</td><td><a href="https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN230036.pdf">FDA De Novo</a></td></tr>
+        <tr><td>Off-label use legal</td><td>FDA does not regulate practice of medicine. 78.9% of NICU devices used off-label (Shah et al.). Standard of care in neonatal medicine.</td><td>21 CFR 801.4</td></tr>
+        <tr><td>TTI cautionary precedent</td><td>FDA warning letter (Feb 2019) to Total Thermal Imaging for bundling software with cleared FLIR camera. Camera clearance does not extend to software bundle.</td><td><a href="https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/total-thermal-imaging-inc-567742-02222019">FDA Warning Letter</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A5</div>
+</div>
+
+<!-- ════════════════════════ A6: CONTRACT STACK ════════════════════════ -->
+<div class="slide" id="a6">
+  <div class="slide-pad">
+    <div class="label">Appendix A6 — Northwell Contract Stack</div>
+    <h2>Deployment Requirements</h2>
+    <p class="subtitle">Cohen Children's (New Hyde Park, LI) — Epic Wave 2 go-live May 30, 2026. Coordinate pilot with EHR transition.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--red-clinical); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Required</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">BAA</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">Thermal images = PHI. 60-day breach reporting. Up to $1.9M per violation category.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--red-clinical); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Required</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">IRB Protocol</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">Feinstein Institutes. Dual parental consent. NY Public Health Law Article 24-A.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--red-clinical); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Required</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">IT Security</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">SOC 2 Type II. HECVAT. Pen test. Possibly HITRUST CSF for production.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Required</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">MSA / SaaS</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">License, SLAs (99.9% uptime), IP ownership, liability caps, damages waiver.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Required</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">DUA</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">If using pilot data for model training. Expert Determination de-identification (not Safe Harbor).</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Required</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">Clinical Engineering</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">Biomed validates IEC 60601-1. Camera mount review. Capsule device type config.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Insurance</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">E&amp;O + Cyber</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">$2–5M technology E&amp;O. $2–5M cyber liability. Required by Northwell for any clinical vendor.</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Insurance</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">Product Liability</div>
+        <div style="font-size: 14px; color: var(--ink-muted); line-height: 1.5;">Separate coverage. "Adjunctive use only" labeling is the primary liability shield.</div>
+      </div>
+      <div style="background: var(--teal-light); border: 1px solid rgba(13,138,138,0.15); border-radius: 8px; padding: 24px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal-deep); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Key Framing</div>
+        <div style="font-size: 18px; font-weight: 600; color: var(--teal-deep); margin-bottom: 6px;">Adjunctive Tool</div>
+        <div style="font-size: 14px; color: var(--ink-light); line-height: 1.5;">NeoTherm does not replace clinical judgment. "Adjunctive use" labeling is both FDA-required and the primary liability shield.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A6</div>
+</div>
+
+<!-- ════════════════════════ A7: NORTHWELL INFRASTRUCTURE ════════════════════════ -->
+<div class="slide" id="a7">
+  <div class="slide-pad">
+    <div class="label">Appendix A7 — Northwell Infrastructure Context</div>
+    <h2>What Northwell Already Has</h2>
+    <p class="subtitle">NeoTherm plugs into existing infrastructure. These are not new systems to install — they are already deployed and operational.</p>
+    <table class="data-table" style="margin-top: 24px;">
+      <thead>
+        <tr><th style="width: 220px;">System</th><th>Role in NeoTherm Pipeline</th><th style="width: 280px;">Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>InterSystems Health Connect</td><td>Central integration bus. Transforms HL7v2 &#8596; FHIR R4. Routes NeoTherm data to whichever EHR is current. Message queuing, retry, and full audit trail for FDA/IRB compliance.</td><td><a href="https://www.intersystems.com/northwell/">InterSystems case study</a><br><a href="https://www.j2interactive.com/clients/2016/04/northwell-health/">J2 Interactive</a></td></tr>
+        <tr><td>Philips Capsule MDIP</td><td>Vendor-neutral device integration. Receives HL7v2 from NeoTherm edge box on medical device VLAN. Forwards to Health Connect. Standard workflow for new monitor onboarding.</td><td><a href="https://www.usa.philips.com/healthcare/product/HCNOCTN508/capsule-medical-device-information-platform">Philips Capsule</a></td></tr>
+        <tr><td>Epic Hyperdrive</td><td>EHR target. Flowsheet rows, BPA rules, SMART on FHIR widget. Wave 1 (Western) live Nov 2025. Wave 2 (Central/LI, including Cohen Children's) go-live May 30, 2026.</td><td><a href="https://www.beckershospitalreview.com/healthcare-information-technology/ehrs/how-northwells-1-2b-epic-rollout-is-pacing/">Becker's (2026)</a></td></tr>
+        <tr><td>Feinstein Institutes for Medical Research</td><td>IRB for clinical validation study. Northwell's research arm. Handles dual parental consent protocols for neonatal research.</td><td>Northwell institutional</td></tr>
+        <tr><td>RISES (Division of Health AI)</td><td>Innovation sponsor. Led by Theodoros Zanos (AVP). Navigates technology adoption, IT security, and innovation funding pathways.</td><td>Northwell institutional</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 28px; font-size: 15px; color: var(--ink-light); line-height: 1.6;">
+      <strong style="color: var(--ink);">EHR transition is an advantage, not a risk.</strong> Health Connect was built to bridge Northwell's 30+ EHR consolidation. NeoTherm deploys once to the edge box, speaks HL7v2, and Health Connect routes to whatever EHR is current. Zero changes needed at the bedside during the Epic cutover.
+    </div>
+  </div>
+  <div class="slide-brand">NEOTHERM — APPENDIX</div>
+  <div class="slide-num">A7</div>
+</div>
+
+</body>
+</html>
