@@ -1,0 +1,546 @@
+OFF-LABEL USE OF FDA-CLEARED DEVICES & SOFTWARE REGULATORY FRAMEWORK
+======================================================================
+Research compiled: 2026-03-14
+Applicable to: NeoTherm — software platform using FDA-cleared thermal cameras in NICU
+
+This document answers seven specific regulatory questions relevant to NeoTherm's
+business model: building a software platform that takes input from an FDA 510(k)-
+cleared thermal camera and uses it for neonatal monitoring in the NICU.
+
+================================================================================
+
+1. CAN PHYSICIANS LEGALLY USE FDA-CLEARED MEDICAL DEVICES OFF-LABEL?
+=====================================================================
+
+YES. Unequivocally.
+
+LEGAL BASIS:
+- The FDA does NOT regulate the practice of medicine. This is a foundational
+  principle codified in the Federal Food, Drug, and Cosmetic Act (FD&C Act).
+  State law, not federal law, provides the authority and legal standards for the
+  practice of medicine.
+
+- 21 CFR 801.4 ("Meaning of intended uses") governs how the FDA determines a
+  device's intended use — but this regulation applies to MANUFACTURERS, not to
+  physicians. A firm's "intended use" is determined by labeling claims, advertising,
+  and circumstances of distribution — not by how a doctor ultimately uses the device.
+
+- The FDA itself has stated: "Once an approved device or drug is available, doctors
+  can prescribe it for any purpose they believe is warranted — regardless of what
+  the label says." (FDA FAQ on Medical Devices)
+
+- The American Academy of Orthopaedic Surgeons (AAOS) position statement confirms:
+  "Federal laws governing FDA regulations and drug use place no restrictions on
+  physicians' use of the product, and the agency has no authority to either allow
+  or disallow off-label use."
+
+PHYSICIAN RESPONSIBILITIES FOR OFF-LABEL USE:
+- Must be based on "firm scientific rationale and sound medical evidence"
+- Physician should maintain records of the product's use and effects
+- If expanding use to multiple patients systematically or publishing results, the
+  activity may cross into clinical research, requiring an IDE (Investigational
+  Device Exemption) and IRB approval
+- Standard malpractice liability applies — physician must exercise reasonable
+  clinical judgment
+
+CRITICAL DISTINCTION — MANUFACTURER vs. PHYSICIAN:
+- PHYSICIANS: Free to use any cleared device for any purpose they deem clinically
+  appropriate. This is the practice of medicine.
+- MANUFACTURERS: CANNOT promote, advertise, or market a device for off-label uses.
+  FDA regulations strictly prohibit manufacturer promotion of off-label uses.
+- Under 21 CFR 801.4, a manufacturer is not regarded as intending an unapproved use
+  "based solely on that firm's knowledge that such device was being prescribed or
+  used by health care providers for such use." (2021 Final Rule on Intended Use)
+
+NICU-SPECIFIC CONTEXT:
+- Off-label use is especially common — and often the standard of care — in
+  pediatric and neonatal medicine. Most devices used in NICUs were never specifically
+  cleared or approved for neonatal populations.
+- A study by Shah et al. found that 78.9% of children discharged from pediatric
+  hospitals were taking at least one off-label medication.
+- The FDA explicitly acknowledges this reality in its pediatric device guidance.
+
+BOTTOM LINE: A neonatologist CAN legally use an FDA 510(k)-cleared thermal camera
+(product code LHQ, "adjunctive diagnostic screening") in the NICU for neonatal
+temperature monitoring. No additional FDA clearance is needed for the PHYSICIAN'S
+clinical use of the device.
+
+Sources:
+- FDA FAQ on Medical Devices: https://www.fda.gov/files/about%20fda/published/Frequently-Asked-Questions-About-Medical-Devices---Information-Sheet.pdf
+- AAOS Position Statement: https://www.aaos.org/contentassets/1cd7f41417ec4dd4b5c4c48532183b96/1177-physician-directed-use-of-medical-products.pdf
+- 21 CFR 801.4: https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-801/subpart-A/section-801.4
+- VCI Off-Label Use Analysis: https://www.vcillc.com/resources/articles/label-use-medical-devices
+- PMC Off-Label Use Review: https://pmc.ncbi.nlm.nih.gov/articles/PMC9998554/
+
+================================================================================
+
+2. CAN A HOSPITAL USE A 510(k)-CLEARED THERMAL CAMERA IN THE NICU?
+====================================================================
+
+YES. If the camera has a valid 510(k) clearance for "adjunctive diagnostic
+screening," a hospital can deploy it in any clinical setting, including the NICU.
+
+HOW IT WORKS:
+- Thermal cameras cleared under product code LHQ (21 CFR 884.2980) are cleared for
+  "use as an adjunct to other clinical diagnostic procedures in the diagnosis,
+  quantifying, and screening of differences in skin surface temperature changes."
+- This clearance does NOT restrict the camera to a particular clinical setting
+  (e.g., breast clinic vs. NICU). The clearance is for a FUNCTION (adjunctive
+  thermal imaging), not a LOCATION.
+- A hospital's use of the camera in the NICU for temperature pattern monitoring is
+  off-label use by the treating physician — which is legal (see Section 1 above).
+- The hospital may need to go through its own internal processes:
+  - Medical staff committee approval for new technology
+  - Clinical engineering/biomedical review
+  - If used in a research protocol, IRB approval
+  - Risk management review (for liability purposes)
+
+IMPORTANT CAVEATS:
+- The HOSPITAL (and NeoTherm as a vendor) cannot MARKET or PROMOTE the camera for
+  neonatal use unless that specific intended use is cleared by the FDA.
+- The hospital's purchasing department may want documentation that the camera has
+  510(k) clearance, even if the specific NICU use is off-label.
+- Insurance/reimbursement for thermographic procedures may be limited (Aetna, for
+  example, considers thermography "experimental and investigational" for most uses
+  per their clinical policy bulletin).
+
+================================================================================
+
+3. "CLEARED" vs. "APPROVED" — WHAT IS THE DIFFERENCE?
+======================================================
+
+These terms have precise legal meanings and are NOT interchangeable.
+
+FDA CLEARED (510(k) Pathway):
+- Applies to: Class I and Class II medical devices (low to moderate risk)
+- Standard: Device must be "substantially equivalent" to a legally marketed
+  predicate device already on the market
+- Process: Manufacturer submits a 510(k) premarket notification demonstrating
+  substantial equivalence in intended use and technological characteristics
+- Evidence required: Bench testing, biocompatibility data, software validation;
+  clinical trials are usually NOT required
+- Timeline: Typically 3-12 months
+- Scope: Accounts for ~80% of all medical devices on the US market
+- Example: Thermal cameras (product code LHQ) are Class I devices that require
+  510(k) clearance
+
+FDA APPROVED (PMA Pathway):
+- Applies to: Class III medical devices (high risk — e.g., implants, life-
+  sustaining devices)
+- Standard: Must demonstrate "reasonable assurance of safety and effectiveness"
+  through rigorous scientific evidence
+- Process: Manufacturer submits a Premarket Approval (PMA) application with
+  extensive clinical trial data
+- Evidence required: Clinical trials (often randomized controlled trials),
+  manufacturing data, labeling review
+- Timeline: Typically 1-3+ years
+- Scope: ~10% of devices; reserved for highest-risk products
+- Example: Pacemakers, breast implants, artificial hearts
+
+FDA GRANTED (De Novo Pathway):
+- Applies to: Novel devices with no predicate, but low-to-moderate risk
+- Standard: "Reasonable assurance of safety and effectiveness" (like PMA) but
+  for lower-risk devices
+- Process: Manufacturer files a De Novo classification request
+- Once granted: The device becomes a predicate for future 510(k) submissions
+- Example: Sepsis ImmunoScore (DEN230036, April 2024) — the first AI sepsis
+  prediction tool — was authorized via De Novo
+- Relevance to NeoTherm: If NeoTherm's AI software has no exact predicate, De
+  Novo may be the required pathway, and a granted device would then become a
+  predicate for competitors
+
+WHY THIS MATTERS FOR NEOTHERM:
+- Thermal cameras are CLEARED (510(k), Class I) — not approved (PMA, Class III).
+  This is a much lower regulatory bar.
+- NeoTherm's AI software layer would likely need its own clearance or De Novo
+  authorization as SaMD. The camera's existing 510(k) does NOT cover the software.
+
+Sources:
+- FDA 510(k) Clearances: https://www.fda.gov/medical-devices/device-approvals-and-clearances/510k-clearances
+- GoodRx Cleared vs Approved: https://www.goodrx.com/classes/medical-supplies-and-devices/fda-approval-vs-fda-clearance
+- CITI Program Analysis: https://about.citiprogram.org/blog/understand-the-difference-between-fda-cleared-and-fda-approved-medical-devices/
+- Rimsys Regulatory Explainer: https://www.rimsys.io/blog/fda-listed-cleared-approved-granted
+
+================================================================================
+
+4. CAN SOFTWARE THAT TAKES INPUT FROM AN FDA-CLEARED CAMERA BE SOLD WITHOUT
+   ITS OWN FDA CLEARANCE?
+==========================================================================
+
+IT DEPENDS on what the software DOES and what CLAIMS it makes.
+
+SCENARIO A: Software that ONLY DISPLAYS thermal data (no analysis, no clinical
+claims) — LIKELY DOES NOT NEED ITS OWN 510(k)
+-------------------------------------------------------------------------
+Under FDA guidance on Medical Device Data Systems (MDDS):
+- "Software functions that are solely intended to transfer, store, convert formats,
+  or display medical device data and results, including medical images, waveforms,
+  signals, or other clinical information, are not devices and are not subject to
+  applicable FDA regulatory requirements."
+- Key word: "SOLELY." The software must do nothing beyond transfer, store, format-
+  convert, or display. No analysis. No alerts. No interpretation.
+- If NeoTherm built software that literally just displays the thermal camera's feed
+  on a monitor (like a fancy screen), this would fall under MDDS enforcement
+  discretion and would NOT need a 510(k).
+
+SCENARIO B: Software that ANALYZES thermal data or makes DIAGNOSTIC CLAIMS —
+NEEDS ITS OWN FDA CLEARANCE
+-------------------------------------------------------------------------
+If the software does ANY of the following, it is likely a regulated medical device
+(SaMD — Software as a Medical Device):
+- Processes or analyzes thermal images to detect patterns
+- Generates a clinical risk score, alert, or recommendation
+- Claims to detect, diagnose, or screen for any condition (e.g., sepsis, NEC,
+  hypothermia)
+- Applies AI/ML algorithms to thermal data for clinical purposes
+- Triggers clinical alerts based on thermal analysis
+
+SCENARIO C: Software with SIMPLE ALERTS (e.g., "temperature outside range") —
+GRAY AREA, BUT LIKELY NEEDS CLEARANCE
+-------------------------------------------------------------------------
+- FDA enforcement discretion examples include "software functions that provide
+  historical trending and comparison of vital signs (for example, body temperature,
+  heart rate, blood pressure, or respiratory rate)" — this suggests basic trending
+  MAY fall under enforcement discretion.
+- However, if the alert is intended to prompt clinical action (e.g., "investigate
+  for sepsis"), it crosses into SaMD territory.
+
+CAUTIONARY TALE — TOTAL THERMAL IMAGING, INC. (FDA Warning Letter, Feb 2019):
+- Company bundled FLIR's FDA-cleared thermal camera (K033967) with proprietary
+  software into a "Thermography Business Package."
+- Marketed the package for breast cancer screening as a standalone diagnostic tool.
+- FDA's response: "Clearance of a component of the Thermography Business Package
+  does not permit the marketing of the Thermography Business Package."
+- The software + camera combination created a new intended use (sole diagnostic
+  screening) that was NOT covered by FLIR's existing 510(k).
+- FDA ordered immediate cessation of distribution and cited 9 quality system
+  violations under 21 CFR Part 820.
+
+KEY REGULATORY PRINCIPLE:
+The camera's 510(k) covers the camera. Any software that materially changes the
+intended use, adds clinical claims, or creates a new device function requires its
+own regulatory authorization.
+
+Sources:
+- FDA MDDS Guidance: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/medical-device-data-systems-medical-image-storage-devices-and-medical-image-communications-devices
+- Total Thermal Imaging Warning Letter: https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/total-thermal-imaging-inc-567742-02222019
+- FDA SaMD Page: https://www.fda.gov/medical-devices/digital-health-center-excellence/software-medical-device-samd
+- FDA Enforcement Discretion Examples: https://www.fda.gov/medical-devices/device-software-functions-including-mobile-medical-applications/examples-software-functions-which-fda-will-exercise-enforcement-discretion
+
+================================================================================
+
+5. CLINICAL DECISION SUPPORT SOFTWARE — WHEN DOES IT NEED FDA CLEARANCE?
+=========================================================================
+
+The 21st Century Cures Act (Section 3060, enacted December 13, 2016) amended
+Section 520(o)(1)(E) of the FD&C Act to exclude certain Clinical Decision Support
+(CDS) software from the definition of "device" — meaning they do NOT need FDA
+clearance.
+
+THE FOUR CRITERIA (ALL MUST BE MET):
+
+To be excluded from the device definition, CDS software must meet ALL four criteria
+simultaneously under 21 U.S.C. Section 360j(o):
+
+CRITERION 1: The software is NOT intended to acquire, process, or analyze:
+  - A medical image, OR
+  - A signal from an in vitro diagnostic device, OR
+  - A pattern or signal from a signal acquisition system
+
+CRITERION 2: The software IS intended for the purpose of displaying, analyzing,
+or printing medical information about a patient or other medical information
+(such as peer-reviewed clinical studies and clinical practice guidelines).
+
+CRITERION 3: The software IS intended for the purpose of supporting or providing
+recommendations to a health care professional about prevention, diagnosis, or
+treatment of a disease or condition.
+
+CRITERION 4: The software IS intended for the purpose of enabling health care
+professionals to independently review the basis for such recommendations so that
+it is NOT the intent that such health care professional rely primarily on any of
+such recommendations to make a clinical diagnosis or treatment decision regarding
+an individual patient without independently reviewing the recommendation.
+
+HOW NEOTHERM'S SOFTWARE MEASURES AGAINST THE FOUR CRITERIA:
+
+Criterion 1: FAILS.
+  NeoTherm software would process thermal IMAGES from an infrared camera. The FDA
+  interprets "medical image" broadly to include "images generated by medical imaging
+  systems...that view any part(s) of the body or images acquired for a medical
+  purpose." Thermal images acquired to monitor neonatal temperature ARE medical
+  images. The 2026 CDS guidance explicitly preserves Criterion 1 unchanged —
+  software that analyzes medical images is NOT eligible for the CDS exemption.
+
+Criterion 2: PASSES.
+  The software would display and analyze medical information about a patient.
+
+Criterion 3: DEPENDS on design.
+  If the software provides recommendations to an HCP about prevention or diagnosis,
+  this criterion is met. The 2026 guidance now extends enforcement discretion to
+  software providing a "single output or recommendation" when clinically appropriate
+  (previously, single-output software was excluded from the exemption).
+
+Criterion 4: DEPENDS on design.
+  If the software is designed so the HCP can review the underlying basis (e.g.,
+  transparent algorithms, access to raw thermal data), this criterion could be met.
+  However, if the HCP is expected to primarily rely on the software's output (e.g.,
+  an automated sepsis alert), this criterion FAILS.
+
+VERDICT: NeoTherm's software CANNOT qualify for the CDS exemption because it
+fails Criterion 1 — it processes medical images (thermal images from an infrared
+camera). This is a statutory exclusion, not a matter of FDA interpretation.
+
+Even if Criterion 1 were somehow met, the 2026 CDS guidance specifically excludes
+from enforcement discretion software that "predict[s] time-critical events" —
+which a sepsis early warning system inherently does.
+
+Sources:
+- FDA CDS Guidance: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/changes-existing-medical-software-policies-resulting-section-3060-21st-century-cures-act
+- Arnold & Porter 2026 Analysis: https://www.arnoldporter.com/en/perspectives/advisories/2026/01/fda-cuts-red-tape-on-clinical-decision-support-software
+- Covington 2026 Takeaways: https://www.cov.com/news-and-insights/insights/2026/01/5-key-takeaways-from-fdas-revised-clinical-decision-support-cds-software-guidance
+- NAMSA CDS Analysis: https://namsa.com/resources/blog/fda-releases-guidance-clinical-decision-support-software/
+- Ropes & Gray CDS Analysis: https://www.ropesgray.com/en/insights/alerts/2022/10/is-your-clinical-decision-support-software-a-medical-device
+- Akin Gump CDS Analysis: https://www.akingump.com/en/insights/alerts/fda-changes-direction-in-final-cds-guidance
+
+================================================================================
+
+6. FDA GUIDANCE ON CDS EXEMPTIONS — 2022 AND 2026 UPDATES
+===========================================================
+
+TIMELINE OF KEY GUIDANCE DOCUMENTS:
+
+December 13, 2016: 21st Century Cures Act signed into law. Section 3060 amends
+  the FD&C Act to create statutory exclusions for certain software.
+
+September 28, 2022: FDA issues FINAL guidance on Clinical Decision Support
+  Software (superseding 2019 draft guidance). Key decisions:
+  - Narrow interpretation of Criterion 3: Software that provides a "specific
+    output or directive" rather than "options" or "recommendations" does NOT
+    qualify for exemption.
+  - Single-output CDS (e.g., "this patient has sepsis risk of 85%") is regulated
+    as a device.
+  - Software must present multiple options for the HCP to evaluate.
+
+January 6, 2026: FDA issues REVISED final guidance on CDS software. Key changes:
+
+  1. CRITERION 3 EXPANSION: FDA will now exercise enforcement discretion for CDS
+     that provides a single recommendation when "clinically appropriate" — reversing
+     the 2022 position. Example given: software recommending a specific FDA-approved
+     drug based on patient symptoms.
+
+  2. CLINICAL DOCUMENTATION TOOLS: Software that analyzes radiologist findings
+     (NOT the underlying images) to generate proposed report summaries may qualify
+     under enforcement discretion — provided the tool itself does not analyze the
+     underlying images and an HCP remains involved.
+
+  3. CRITERION 1 UNCHANGED: Software that acquires, processes, or analyzes medical
+     images or signals remains EXCLUDED from the CDS exemption. No change here.
+
+  4. TIME-CRITICAL PREDICTIONS EXCLUDED: The 2026 guidance specifically excludes
+     from enforcement discretion software that "predicts time-critical events"
+     (e.g., cardiovascular events within 24 hours). This directly impacts sepsis
+     prediction software.
+
+  5. USABILITY EMPHASIS: For Criterion 4, FDA stresses that transparency
+     information must be presented in ways that avoid information overload and
+     prioritize decision-relevant details.
+
+  6. NOTABLE OMISSIONS: The 2026 guidance says nothing about consumer-facing
+     decision support tools (patient chatbots, symptom checkers) or AI-specific
+     considerations, despite Commissioner Makary framing these as AI-focused
+     guidance.
+
+WHAT THIS MEANS FOR NEOTHERM:
+- The CDS exemption is NOT available for NeoTherm's core product (Criterion 1
+  failure: processes thermal images; plus time-critical prediction exclusion).
+- However, any AUXILIARY software NeoTherm builds that does NOT process images
+  and instead works with structured data (e.g., EHR data, lab values, nurse-
+  entered observations) MIGHT qualify for CDS exemption if it meets all four
+  criteria.
+
+Sources:
+- FDA 2026 CDS Guidance: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/changes-existing-medical-software-policies-resulting-section-3060-21st-century-cures-act
+- Arnold & Porter Advisory: https://www.arnoldporter.com/en/perspectives/advisories/2026/01/fda-cuts-red-tape-on-clinical-decision-support-software
+- DLA Piper Analysis: https://www.dlapiper.com/en-us/insights/publications/2026/01/fda-updates-its-clinical-decision-support-and-general-wellness-guidances-key-points
+- Covington Key Takeaways: https://www.cov.com/news-and-insights/insights/2026/01/5-key-takeaways-from-fdas-revised-clinical-decision-support-cds-software-guidance
+- FDA Town Hall (March 11, 2026): https://www.fda.gov/medical-devices/medical-devices-news-and-events/town-hall-clinical-decision-support-software-final-guidance-03112026
+
+================================================================================
+
+7. CAN YOU BUILD A "WELLNESS" OR "MONITORING" PRODUCT USING DATA FROM AN
+   FDA-CLEARED THERMAL CAMERA WITHOUT GETTING YOUR OWN 510(k)?
+========================================================================
+
+POTENTIALLY YES — but only if you strictly avoid clinical/diagnostic claims and
+meet the general wellness criteria. Here is the framework:
+
+PATHWAY A: GENERAL WELLNESS PRODUCT (Enforcement Discretion)
+-------------------------------------------------------------
+The FDA's General Wellness Policy (revised January 6, 2026) provides enforcement
+discretion for products meeting these requirements:
+
+Requirements to qualify:
+1. Intended solely for maintaining or encouraging a healthy lifestyle
+2. NOT intended to diagnose, prevent, or treat a disease or condition
+3. NOT intended as a substitute for an FDA-authorized device
+4. Does NOT include claims, functionality, or outputs that prompt or guide
+   specific clinical action
+5. Does NOT include values that mimic those used clinically (unless validated)
+6. Product must be low-risk (non-invasive, non-implanted)
+
+What the 2026 guidance NEWLY ALLOWS:
+- Non-invasive sensing devices (optical sensors) that estimate physiological
+  parameters for wellness purposes
+- Products that display values, ranges, trends, or longitudinal summaries in
+  domains like sleep, activity, and stress
+- General notifications when outputs fall outside normal ranges (as long as the
+  notification does not prompt specific clinical action)
+- Blood pressure estimation wearables for wellness (reversing prior enforcement
+  against WHOOP, Inc.)
+
+What is STILL PROHIBITED for wellness products:
+- Claims of "clinical accuracy" or "medical grade"
+- References to specific diseases or diagnostic thresholds
+- Ongoing alerts intended to manage disease
+- Prompts directing clinical action or medical management
+- Minimally invasive sensors (regardless of wellness-only claims)
+
+COULD NEOTHERM QUALIFY AS A WELLNESS PRODUCT?
+Likely NO for the core product. Here's why:
+- NeoTherm is intended for use in a NICU — inherently a clinical/medical setting
+- Neonates are patients under active medical care, not "wellness" subjects
+- Temperature monitoring in the NICU is inherently for medical management, not
+  "maintaining a healthy lifestyle"
+- Any sepsis detection or early warning function is diagnosing/screening for a
+  disease, which disqualifies the product from wellness status
+
+PATHWAY B: MDDS (DISPLAY-ONLY SOFTWARE) — Enforcement Discretion
+------------------------------------------------------------------
+If NeoTherm's software ONLY transfers, stores, converts formats, or displays the
+thermal camera's output — with NO analysis, NO alerts, NO interpretation — it may
+qualify under the MDDS enforcement discretion policy:
+
+- "Software functions that are solely intended to transfer, store, convert formats,
+  or display medical device data and results, including medical images...are not
+  devices."
+- The software must NOT modify the data or control any connected device.
+- The software must NOT add any clinical interpretation layer.
+
+A pure display product might be viable as a first version while pursuing FDA
+clearance for the AI layer, but it would have very limited clinical value and
+could not make any marketing claims about improving patient outcomes.
+
+PATHWAY C: ENFORCEMENT DISCRETION FOR LOW-RISK SOFTWARE
+--------------------------------------------------------
+The FDA maintains a list of software functions for which it exercises enforcement
+discretion. Relevant examples:
+- "Software functions that provide historical trending and comparison of vital
+  signs (for example, body temperature, heart rate, blood pressure, or respiratory
+  rate)" — THIS COULD APPLY to basic thermal trending.
+- "Software functions that aggregate and display trends in personal health
+  incidents"
+
+However, the enforcement discretion examples are illustrative, not exhaustive, and
+FDA reserves the right to change its approach. Building a business on enforcement
+discretion alone is risky.
+
+RECOMMENDED STRATEGY FOR NEOTHERM:
+===================================
+
+PHASE 1 (No FDA clearance needed):
+- Build software that DISPLAYS thermal camera feed in the NICU
+- Provide basic data storage and retrieval
+- Enable clinicians to view historical thermal images
+- Market as a "thermal visualization platform" with NO clinical claims
+- Regulatory basis: MDDS enforcement discretion + physician off-label use of the
+  cleared camera hardware
+
+PHASE 2 (Gray area — enforcement discretion):
+- Add basic vital sign trending (temperature over time)
+- Show trend lines and historical comparisons
+- NO automated alerts, NO risk scores, NO diagnostic claims
+- Regulatory basis: FDA enforcement discretion for vital sign trending software
+
+PHASE 3 (Requires FDA clearance/authorization):
+- Add AI analysis, sepsis risk scoring, automated alerts
+- Make clinical claims about early detection
+- Regulatory basis: 510(k) or De Novo authorization as SaMD
+- Predicates: Sepsis ImmunoScore (DEN230036), NAVOY CDS (510(k))
+- Start Pre-Sub (Q-Sub) meeting process with FDA during Phase 1
+
+This phased approach lets NeoTherm get to market faster with Phase 1 while
+pursuing the FDA pathway needed for Phase 3's full clinical product.
+
+Sources:
+- FDA General Wellness Guidance (2026): https://www.fda.gov/regulatory-information/search-fda-guidance-documents/general-wellness-policy-low-risk-devices
+- FDA MDDS Guidance: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/medical-device-data-systems-medical-image-storage-devices-and-medical-image-communications-devices
+- FDA Enforcement Discretion Examples: https://www.fda.gov/medical-devices/device-software-functions-including-mobile-medical-applications/examples-software-functions-which-fda-will-exercise-enforcement-discretion
+- Covington General Wellness Analysis: https://www.cov.com/en/news-and-insights/insights/2026/01/fda-issues-revised-guidance-on-general-wellness-products
+- Arnold & Porter Analysis: https://www.arnoldporter.com/en/perspectives/advisories/2026/01/fda-cuts-red-tape-on-clinical-decision-support-software
+- Ropes & Gray Digital Health Analysis: https://www.ropesgray.com/en/insights/alerts/2026/01/fda-adapts-with-the-times-on-digital-health-updated-guidances-on-general-wellness-products
+
+================================================================================
+
+SUMMARY DECISION TABLE
+========================
+
+Question                                          | Answer
+--------------------------------------------------|-------------------------------------------
+Can a physician use an FDA-cleared thermal        | YES — legal under practice of medicine
+camera off-label in the NICU?                     | doctrine. No FDA restriction.
+                                                  |
+Can a hospital deploy the camera in the NICU?     | YES — off-label clinical use by
+                                                  | physicians. Hospital may need internal
+                                                  | committee approvals.
+                                                  |
+Does "cleared" = "approved"?                      | NO. Cleared = 510(k), substantial
+                                                  | equivalence, Class I/II. Approved = PMA,
+                                                  | clinical trials, Class III.
+                                                  |
+Can display-only software be sold without 510(k)? | YES — under MDDS enforcement discretion,
+                                                  | if it ONLY transfers/stores/displays data
+                                                  | with zero analysis or clinical claims.
+                                                  |
+Can analytical/diagnostic software be sold        | NO — software that processes medical
+without 510(k)?                                   | images or makes clinical claims needs
+                                                  | its own FDA clearance/authorization.
+                                                  |
+Does CDS exemption apply to NeoTherm?             | NO — fails Criterion 1 (processes medical
+                                                  | images) and excluded for time-critical
+                                                  | predictions.
+                                                  |
+Can NeoTherm be sold as a "wellness" product?     | NO — NICU use is inherently clinical;
+                                                  | neonatal monitoring = medical management,
+                                                  | not wellness.
+                                                  |
+What is the fastest path to market?               | Phase 1: Display-only (MDDS, no 510(k))
+                                                  | Phase 2: Basic trending (enforcement
+                                                  | discretion)
+                                                  | Phase 3: AI/alerts (510(k) or De Novo)
+
+================================================================================
+
+KEY REGULATORY CITATIONS
+=========================
+
+Statutes & Regulations:
+- Federal Food, Drug, and Cosmetic Act (FD&C Act), Section 520(o)(1)(E)
+- 21st Century Cures Act, Section 3060 (Pub. L. 114-255)
+- 21 CFR 801.4 — Meaning of intended uses
+- 21 CFR 820 — Quality Management System Regulation (QMSR, eff. Feb 2, 2026)
+- 21 CFR 884.2980 — Telethermographic system (product code LHQ)
+- 21 CFR Part 803 — Medical Device Reporting
+
+FDA Guidance Documents:
+- Clinical Decision Support Software (Final Guidance, January 6, 2026)
+- General Wellness: Policy for Low Risk Devices (Revised, January 6, 2026)
+- Medical Device Data Systems, Medical Image Storage Devices, and Medical Image
+  Communications Devices (2022)
+- Changes to Existing Medical Software Policies Resulting from Section 3060 of
+  the 21st Century Cures Act
+- Software as a Medical Device (SaMD): Clinical Evaluation
+- Policy for Device Software Functions and Mobile Medical Applications
+
+FDA Enforcement Actions:
+- Total Thermal Imaging, Inc. Warning Letter (567742, February 22, 2019)
+- FDA Safety Communication on Thermography (2019)

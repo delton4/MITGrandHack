@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoTherm — Pilot Discussion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--ink:#1a2332;--ink2:#3d4f63;--ink3:#64748b;
+--bg:#f8f9fb;--white:#fff;--bdr:#dde2e8;
+--teal:#0d8a8a;--tealD:#0c6e6e;--tealL:#e6f5f5;
+--blue:#2563a0;--blueL:#e8f0f8;
+--amber:#b8860b;--amberL:#fef8e8;
+--red:#c0392b;--redL:#fdf0ee;
+--green:#1a7a4c;--greenL:#edf7f1;
+--purple:#6b4c9a;--purpleL:#f3eef8;
+--nw:#003DA5;--orange:#d35400;--orangeL:#fef5ec;
+}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:#e0e0e0}
+.W{width:100vw;display:flex;justify-content:center;padding:24px 0}
+.S{width:1920px;height:1080px;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;transform-origin:top center;flex-shrink:0}
+.S.w{background:var(--white)}.S.w::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--blue),var(--purple))}
+.S.nw{background:var(--nw)}.S.d{background:var(--ink)}
+.P{padding:48px 80px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.sn{position:absolute;bottom:36px;right:96px;font-family:'JetBrains Mono',monospace;font-size:13px;opacity:.35}
+.sn.l{color:#fff}.sn.dk{color:var(--ink3)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:76px;line-height:1.08;color:var(--ink);margin-bottom:20px}
+.sub{font-size:38px;color:var(--ink2);line-height:1.4}
+a.ref{color:var(--blue);text-decoration:underline;cursor:pointer}
+
+/* Paper slide */
+.paper{background:var(--bg);border:1px solid var(--bdr);border-radius:16px;padding:48px 56px;border-left:8px solid var(--teal);flex:1;display:flex;flex-direction:column;justify-content:center}
+.paper h3{font-size:36px;font-weight:700;margin-bottom:10px}
+.paper .j{font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--ink3);margin-bottom:18px}
+.paper .j a{color:var(--blue);text-decoration:underline}
+.paper blockquote{font-size:34px;color:var(--ink2);line-height:1.45;border-left:6px solid var(--bdr);padding-left:32px;margin:18px 0;font-style:italic}
+.paper .imp{font-size:32px;font-weight:700;color:var(--tealD);margin-top:22px}
+
+/* Question */
+.Q{background:var(--amberL);border:1px solid #e8d5a0;border-radius:16px;padding:44px 52px}
+.Q h3{font-size:38px;font-weight:700;color:var(--amber);margin-bottom:14px}
+.Q p{font-size:34px;color:var(--ink2);line-height:1.4}
+
+/* Stat */
+.stat{text-align:center;padding:48px;background:var(--bg);border:1px solid var(--bdr);border-radius:16px;flex:1}
+.stat .n{font-family:'Instrument Serif',serif;font-size:120px;line-height:1}
+.stat .l{font-size:32px;color:var(--ink3);margin-top:16px;line-height:1.3}
+.stat .c{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--ink3);margin-top:16px}
+
+body.pr{background:#fff;overflow:hidden}
+body.pr .W{display:none;padding:0}
+body.pr .W.ac{display:flex;padding:0;height:100vh!important}
+body.pr .S{box-shadow:none}
+.hi{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(26,35,50,.85);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 20px;border-radius:6px;z-index:200;pointer-events:none;opacity:0;transition:opacity .3s}
+body.pr .hi{opacity:1}body.pr .hi.fade{opacity:0}
+.nav{position:fixed;top:12px;right:12px;z-index:100;display:flex;gap:2px;align-items:center;background:var(--white);padding:4px 8px;border-radius:6px;box-shadow:0 2px 12px rgba(0,0,0,.1);font-family:'JetBrains Mono',monospace;font-size:8px;flex-wrap:wrap;max-width:600px}
+.nav a,.nav button{color:var(--ink3);text-decoration:none;padding:2px 4px;border-radius:3px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:inherit}
+.nav a:hover,.nav button:hover{background:var(--bg);color:var(--ink)}
+.nav .sb{background:var(--teal);color:#fff;padding:2px 6px;font-weight:600}
+body.pr .nav{display:none}
+</style>
+</head>
+<body>
+<nav class="nav" id="N"></nav>
+<div class="hi" id="hi">&#8592; &#8594; navigate &middot; Esc exit</div>
+
+<!-- ===== 01 TITLE ===== -->
+<div class="W"><div class="S nw"><div class="P" style="align-items:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:36px">Prep for 3/24 &middot; Koppel &middot; Weinberger &middot; Zanos</div>
+<div style="font-family:'DM Sans',sans-serif;font-size:60px;font-weight:700;color:#fff;text-align:center;line-height:1.15">Non-Contact Infrared Thermography as a<br>Multi-Condition Monitoring Platform in the NICU</div>
+<div style="font-size:32px;color:rgba(255,255,255,.75);text-align:center;margin-top:28px;line-height:1.5;max-width:1100px">One camera. One data stream. Multiple clinical outcomes.<br>Sepsis &middot; NEC &middot; Apnea &middot; Hemodynamic Compromise &middot; Thermoregulation</div>
+<div style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);font-size:20px;color:rgba(255,255,255,.45)">Diego Gonzalez Garcia-Torres &middot; Northwell Health / RISES &middot; March 2026</div>
+</div><div class="sn l">01</div></div></div>
+
+<!-- ===== 02 CORE INSIGHT ===== -->
+<div class="W"><div class="S d"><div class="P" style="align-items:center">
+<div style="font-family:'Instrument Serif',serif;font-size:88px;color:#fff;text-align:center;line-height:1.12;max-width:1500px">A single thermal camera captures data on <span style="color:var(--teal)">every major NICU complication</span> simultaneously</div>
+<div style="font-size:38px;color:rgba(255,255,255,.55);margin-top:40px;text-align:center;max-width:1300px;line-height:1.5">Each pixel is a temperature. The same video stream computes CPTD for sepsis, abdominal patterns for NEC, nasal airflow for respiratory rate, perfusion gradients for shock, and interscapular thermogenesis for metabolic stress.</div>
+</div><div class="sn l">02</div></div></div>
+
+<!-- ===== 03 SEPSIS STATS ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--teal)">Condition 1 &mdash; Late-Onset Sepsis</div>
+<h2>CPTD is the strongest non-lab predictor</h2>
+<div style="display:flex;gap:36px;margin-top:20px">
+<div class="stat"><div class="n" style="color:var(--tealD)">OR 23.6</div><div class="l">adjusted odds ratio<br>for late-onset sepsis</div><div class="c"><a class="ref" href="#P-LC17">Leante-Castellanos 2017 &#8594;</a></div></div>
+<div class="stat"><div class="n" style="color:var(--red)">71%</div><div class="l">of cases, CPTD was the<br><strong>first clinical sign</strong></div><div class="c"><a class="ref" href="#P-LC17">Leante-Castellanos 2017 &#8594;</a></div></div>
+<div class="stat"><div class="n" style="color:var(--blue)">94%</div><div class="l">negative predictive value<br>rules out active sepsis</div><div class="c"><a class="ref" href="#P-LC17">Leante-Castellanos 2017 &#8594;</a></div></div>
+</div>
+</div><div class="sn dk">03</div></div></div>
+
+<!-- ===== 04 AUTOMATED CPTD ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--teal)">Sepsis &mdash; Automated Measurement</div>
+<h2>A camera can do this automatically</h2>
+<div style="display:flex;gap:36px;margin-top:12px">
+<div class="stat"><div class="n" style="color:var(--tealD)">&lt;0.3&deg;C</div><div class="l">mean absolute error<br>automated vs. manual CPTD</div><div class="c"><a class="ref" href="#P-Z25">Zhang 2025 &#8594;</a></div></div>
+<div class="stat"><div class="n" style="color:var(--tealD)">40</div><div class="l">preterm infants<br>prospective clinical trial</div><div class="c"><a class="ref" href="#P-Z25">Zhang 2025 &#8594;</a></div></div>
+<div class="stat"><div class="n" style="color:var(--purple)">0.81</div><div class="l">AUROC for shock prediction<br>at 5-hour horizon via LSTM</div><div class="c"><a class="ref" href="#P-V22">Vats 2022 &#8594;</a></div></div>
+</div>
+</div><div class="sn dk">04</div></div></div>
+
+<!-- ===== 05 HeRO ===== -->
+<div class="W"><div class="S d"><div class="P" style="align-items:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px">The Precedent That Proves the Paradigm</div>
+<div style="font-family:'Instrument Serif',serif;font-size:140px;color:var(--teal)">22%</div>
+<div style="font-size:38px;color:#fff;margin-top:16px;font-weight:600">mortality reduction from continuous HRV display</div>
+<div style="font-size:36px;color:rgba(255,255,255,.55);margin-top:28px;max-width:1200px;text-align:center;line-height:1.5"><strong style="color:#fff">3,003 VLBW infants. 9 NICUs. Randomized controlled trial.</strong><br>HeRO took a known biomarker, automated its measurement, displayed a risk score. Mortality dropped from 10.2% to 8.1%.</div>
+<div style="font-size:34px;color:var(--teal);margin-top:32px;font-weight:600;text-align:center">NeoTherm applies the identical paradigm to CPTD (OR 23.6 vs HRV AUROC ~0.75)</div>
+<div style="margin-top:24px"><a class="ref" href="#P-M11" style="color:rgba(255,255,255,.5);font-size:18px">Moorman 2011 &mdash; full abstract &#8594;</a></div>
+</div><div class="sn l">05</div></div></div>
+
+<!-- ===== 06 NEC ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--red)">Condition 2 &mdash; Necrotizing Enterocolitis</div>
+<h2>Mortality 20&ndash;30%. No early warning system exists.</h2>
+<div class="sub">Bowel ischemia creates focal abdominal cooling + L/R thermal asymmetry. Detectable by camera hours before X-ray diagnosis.</div>
+<div style="display:flex;gap:36px;margin-top:28px">
+<div class="stat" style="border-top:5px solid var(--red)"><div class="n" style="color:var(--red)">1.3&deg;C</div><div class="l">lower abdominal surface temp<br>in NEC vs. controls</div><div class="c"><a class="ref" href="#P-R10">Rice 2010 &#8594;</a></div></div>
+<div class="stat" style="border-top:5px solid var(--red)"><div class="n" style="color:var(--red)">0</div><div class="l">prospective studies testing<br>continuous thermal NEC detection</div><div class="c">Literature gap, March 2026</div></div>
+</div>
+</div><div class="sn dk">06</div></div></div>
+
+<!-- ===== 07 RESPIRATORY ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--blue)">Condition 3 &mdash; Respiratory Rate &amp; Apnea</div>
+<h2>Most technically mature application. 16+ papers.</h2>
+<div class="sub">Detects nasal airflow via 0.3&ndash;0.5&deg;C oscillation at nostrils. <strong>Unlike chest impedance, thermal distinguishes obstructive from central apnea.</strong></div>
+<div style="display:flex;gap:36px;margin-top:28px">
+<div class="stat" style="border-top:5px solid var(--blue)"><div class="n" style="color:var(--blue)">1.5 bpm</div><div class="l">mean absolute error<br>best reported accuracy</div><div class="c"><a class="ref" href="#P-MA23">Maurya 2023 &#8594;</a></div></div>
+<div class="stat" style="border-top:5px solid var(--blue)"><div class="n" style="color:var(--blue)">F1 0.93</div><div class="l">central apnea classification<br>(obstructive: F1 0.86)</div><div class="c"><a class="ref" href="#P-LO21">Lorato 2020/2021 &#8594;</a></div></div>
+</div>
+</div><div class="sn dk">07</div></div></div>
+
+<!-- ===== 08 OTHER CONDITIONS ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--green)">Conditions 4&ndash;7</div>
+<h2>Hemodynamic, Thermoregulation, HIE, Pain</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:16px">
+<div style="background:var(--purpleL);border-radius:14px;padding:36px;border-top:6px solid var(--purple)"><div style="font-size:32px;font-weight:700;color:var(--purple);margin-bottom:10px">Hemodynamic Shock</div><div style="font-size:34px;color:var(--ink2);line-height:1.4">AUROC 0.77&ndash;0.84 at 3&ndash;5h. Same CPD signal, different temporal dynamics. <a class="ref" href="#P-N19">Nagori 2019 &#8594;</a></div></div>
+<div style="background:var(--greenL);border-radius:14px;padding:36px;border-top:6px solid var(--green)"><div style="font-size:32px;font-weight:700;color:var(--green);margin-bottom:10px">BAT / Thermoregulation</div><div style="font-size:34px;color:var(--ink2);line-height:1.4">Interscapular BAT activation. Validated in <strong>Nature Communications</strong>. 10 papers. <a class="ref" href="#P-U21">Urisarri 2021 &#8594;</a></div></div>
+<div style="background:var(--orangeL);border-radius:14px;padding:36px;border-top:6px solid var(--orange)"><div style="font-size:32px;font-weight:700;color:var(--orange);margin-bottom:10px">HIE / Brain Temperature</div><div style="font-size:34px;color:var(--ink2);line-height:1.4">Fontanelle = thermal window to brain. Thermal Index correlates with MRI injury. <a class="ref" href="#P-W21">Walas 2021 &#8594;</a></div></div>
+<div style="background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:36px;border-top:6px solid var(--ink3)"><div style="font-size:32px;font-weight:700;color:var(--ink);margin-bottom:10px">Pain &amp; Stress</div><div style="font-size:34px;color:var(--ink2);line-height:1.4">Nasal tip temp change in hungry vs. fed infants. Essentially unstudied. <a class="ref" href="#P-K23">Kretschmer 2023 &#8594;</a></div></div>
+</div>
+</div><div class="sn dk">08</div></div></div>
+
+<!-- ===== 09 SCALE ===== -->
+<div class="W"><div class="S d"><div class="P" style="align-items:center">
+<div style="font-family:'Instrument Serif',serif;font-size:88px;color:#fff;text-align:center;line-height:1.12">One camera on <span style="color:var(--teal)">2,500 babies</span><br>= <span style="color:var(--teal)">6+ publishable outcomes</span></div>
+<div style="display:flex;gap:56px;justify-content:center;margin-top:52px">
+<div style="text-align:center"><div style="font-family:'Instrument Serif',serif;font-size:80px;color:var(--teal)">~220</div><div style="font-size:28px;color:rgba(255,255,255,.45)">sepsis episodes</div></div>
+<div style="text-align:center"><div style="font-family:'Instrument Serif',serif;font-size:80px;color:var(--teal)">~125</div><div style="font-size:28px;color:rgba(255,255,255,.45)">NEC cases</div></div>
+<div style="text-align:center"><div style="font-family:'Instrument Serif',serif;font-size:80px;color:var(--teal)">~1,750</div><div style="font-size:28px;color:rgba(255,255,255,.45)">apnea episodes</div></div>
+<div style="text-align:center"><div style="font-family:'Instrument Serif',serif;font-size:80px;color:var(--teal)">100%</div><div style="font-size:28px;color:rgba(255,255,255,.45)">thermo data</div></div>
+</div>
+<div style="font-size:32px;color:rgba(255,255,255,.4);margin-top:44px;text-align:center">Single IRB. Single consent. Single infrastructure. Multiple aims, papers, grant renewals.</div>
+</div><div class="sn l">09</div></div></div>
+
+<!-- ===== 10 FIELD OVERVIEW ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">The Opportunity</div>
+<h2>60+ papers. Zero large-scale clinical validation.</h2>
+<div class="sub" style="margin-bottom:28px">Two scoping reviews &mdash; Topalidou 2019 and the 2025 Pediatric Research systematic review &mdash; both reach the same conclusion.</div>
+<div class="paper" style="border-left-color:var(--ink3)">
+<blockquote>&ldquo;21 studies. All observational, most featuring small cohorts (4&ndash;29 participants). Despite generally positive results over nearly 50 years, <strong>large prospective studies remain absent.</strong>&rdquo;</blockquote>
+<div class="imp"><a class="ref" href="#P-T19">Topalidou 2019 &#8594;</a> &nbsp;&middot;&nbsp; <a class="ref" href="#P-PR25">2025 Ped Research Review &#8594;</a></div>
+</div>
+</div><div class="sn dk">10</div></div></div>
+
+<!-- ===== 11 STUDY DESIGN ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">Study Design</div>
+<h2>Multi-aim prospective observational cohort</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:20px;font-size:36px">
+<div><div style="font-weight:700;color:var(--tealD);margin-bottom:8px">Enrollment</div><div style="color:var(--ink2);line-height:1.4">2,500 neonates / ~18 months<br>Cohen Children's admits ~1,700/yr</div></div>
+<div><div style="font-weight:700;color:var(--tealD);margin-bottom:8px">Beds</div><div style="color:var(--ink2);line-height:1.4">57-bed NICU at CCMC<br>Phase in 4&ndash;6 &rarr; 12&ndash;20</div></div>
+<div><div style="font-weight:700;color:var(--tealD);margin-bottom:8px">Camera</div><div style="color:var(--ink2);line-height:1.4">FLIR A700 (640&times;480, 30 Hz)<br>510(k) cleared, Class I</div></div>
+<div><div style="font-weight:700;color:var(--tealD);margin-bottom:8px">Design</div><div style="color:var(--ink2);line-height:1.4">Observe-only. No alerts.<br>Minimal-risk IRB classification.</div></div>
+</div>
+</div><div class="sn dk">11</div></div></div>
+
+<!-- ===== 11b CONSENT RATES ===== -->
+<div class="W"><div class="S d"><div class="P" style="align-items:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:28px">Enrollment Feasibility</div>
+<div style="font-family:'Instrument Serif',serif;font-size:140px;color:var(--teal)">~80%</div>
+<div style="font-size:40px;color:#fff;margin-top:12px;font-weight:600">consent rate for NICU research</div>
+<div style="font-size:34px;color:rgba(255,255,255,.5);margin-top:12px">Pediatric critical care average &middot; Intensive Care Med 2011</div>
+</div><div class="sn l">11b</div></div></div>
+
+<!-- ===== 11c CONSENT MATH ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">Cohen Children's Enrollment Math</div>
+<h2>57 beds. 1,700 admissions/year.</h2>
+<div style="font-size:38px;color:var(--ink2);line-height:1.6;margin-top:24px">
+At <strong style="color:var(--tealD)">80% consent</strong> &rarr; need ~3,125 approaches &rarr; <strong style="color:var(--tealD)">~22 months</strong><br><br>
+At <strong style="color:var(--amber)">70% consent</strong> &rarr; need ~3,570 approaches &rarr; <strong style="color:var(--amber)">~25 months</strong>
+</div>
+<div style="background:var(--tealL);border-radius:14px;padding:40px 48px;margin-top:36px">
+<div style="font-size:34px;color:var(--ink);line-height:1.5">
+A <strong>passive, non-contact, observe-only</strong> camera study with <strong>zero patient burden</strong> will achieve consent at the higher end. The camera emits nothing. No procedures. No device touches the infant.
+</div>
+</div>
+</div><div class="sn dk">11c</div></div></div>
+
+<!-- ===== 12 AIMS ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">Specific Aims</div>
+<h2>Five aims from one data stream</h2>
+<div style="display:flex;flex-direction:column;gap:20px;margin-top:16px">
+<div style="display:flex;align-items:center;gap:24px;background:var(--tealL);border-radius:14px;padding:28px 36px;border-left:7px solid var(--teal)"><div style="font-family:'Instrument Serif',serif;font-size:52px;color:var(--tealD);width:60px;flex-shrink:0">1</div><div style="font-size:34px"><strong style="color:var(--tealD)">Sepsis / CPTD</strong> &mdash; Primary. Validate automated CPTD. Temporal dynamics preceding LOS.</div></div>
+<div style="display:flex;align-items:center;gap:24px;background:var(--redL);border-radius:14px;padding:28px 36px;border-left:7px solid var(--red)"><div style="font-family:'Instrument Serif',serif;font-size:52px;color:var(--red);width:60px;flex-shrink:0">2</div><div style="font-size:34px"><strong style="color:var(--red)">NEC Detection</strong> &mdash; Co-primary. Abdominal thermal asymmetry before X-ray diagnosis.</div></div>
+<div style="display:flex;align-items:center;gap:24px;background:var(--blueL);border-radius:14px;padding:28px 36px;border-left:7px solid var(--blue)"><div style="font-family:'Instrument Serif',serif;font-size:52px;color:var(--blue);width:60px;flex-shrink:0">3</div><div style="font-size:34px"><strong style="color:var(--blue)">Respiratory / Apnea</strong> &mdash; Secondary. Obstructive vs. central classification.</div></div>
+<div style="display:flex;align-items:center;gap:24px;background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:28px 36px;border-left:7px solid var(--purple)"><div style="font-family:'Instrument Serif',serif;font-size:52px;color:var(--purple);width:60px;flex-shrink:0">4</div><div style="font-size:34px"><strong style="color:var(--purple)">Hemodynamic</strong> &mdash; Exploratory. CPD dynamics preceding shock.</div></div>
+<div style="display:flex;align-items:center;gap:24px;background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:28px 36px;border-left:7px solid var(--green)"><div style="font-family:'Instrument Serif',serif;font-size:52px;color:var(--green);width:60px;flex-shrink:0">5</div><div style="font-size:34px"><strong style="color:var(--green)">Thermoregulation</strong> &mdash; Exploratory. BAT activation. Cold stress.</div></div>
+</div>
+</div><div class="sn dk">12</div></div></div>
+
+<!-- ===== 13 FUNDING PLAN ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">Funding Plan</div>
+<h2>Stacked multi-source: ~$1.06M</h2>
+<div class="sub" style="margin-bottom:24px">NIH success ~15%. We don't depend on any single grant. Different funders for different aims.</div>
+<div style="background:var(--greenL);border:2px solid #b8ddb8;border-radius:14px;padding:36px 44px">
+<div style="font-size:34px;color:var(--ink2);line-height:1.45">Northwell seed <strong>$50K</strong> + Thrasher <strong>$420K</strong> + March of Dimes <strong>$200K</strong> + FLIR equipment <strong>$60K</strong> + AAP <strong>$50K</strong> + Northwell Innovation <strong>$100K</strong> + small grants <strong>$30K</strong> + Gerber or NIH if funded <strong>$150K+</strong></div>
+</div>
+</div><div class="sn dk">13</div></div></div>
+
+<!-- ===== 14 DEADLINES ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">Funding &mdash; Calendar</div>
+<h2>Five submissions in 7 months</h2>
+<div style="display:flex;flex-direction:column;gap:22px;margin-top:16px">
+<div style="display:flex;align-items:center;gap:32px;background:var(--greenL);border-radius:14px;padding:30px 40px"><div style="font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--green);font-weight:700;width:200px;flex-shrink:0">NOW</div><div style="font-size:36px;font-weight:700">Northwell RJSP Seed Grant</div><div style="font-size:34px;color:var(--ink2);margin-left:auto">$50,000</div></div>
+<div style="display:flex;align-items:center;gap:32px;background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:30px 40px"><div style="font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--red);font-weight:700;width:200px;flex-shrink:0">MAY 1</div><div style="font-size:36px;font-weight:700">AAP/NRP Research Grant</div><div style="font-size:34px;color:var(--ink2);margin-left:auto">$50K &middot; Apnea aim</div></div>
+<div style="display:flex;align-items:center;gap:32px;background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:30px 40px"><div style="font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--amber);font-weight:700;width:200px;flex-shrink:0">JUL 15</div><div style="font-size:36px;font-weight:700">Thrasher &ldquo;Al&rdquo; Award</div><div style="font-size:34px;color:var(--ink2);margin-left:auto">$200&ndash;600K</div></div>
+<div style="display:flex;align-items:center;gap:32px;background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:30px 40px"><div style="font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--blue);font-weight:700;width:200px;flex-shrink:0">SEP 8</div><div style="font-size:36px;font-weight:700">March of Dimes Discovery</div><div style="font-size:34px;color:var(--ink2);margin-left:auto">$200K</div></div>
+<div style="display:flex;align-items:center;gap:32px;background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:30px 40px"><div style="font-family:'JetBrains Mono',monospace;font-size:30px;color:var(--purple);font-weight:700;width:200px;flex-shrink:0">OCT 16</div><div style="font-size:36px;font-weight:700">NIBIB Trailblazer R21</div><div style="font-size:34px;color:var(--ink2);margin-left:auto">$400K</div></div>
+</div>
+</div><div class="sn dk">14</div></div></div>
+
+<!-- ===== 15 MORE FUNDING ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb">Funding &mdash; Additional Sources</div>
+<h2>Foundation, corporate, government</h2>
+<div style="display:flex;flex-direction:column;gap:18px;margin-top:16px;font-size:34px">
+<div style="padding:20px 0;border-bottom:1px solid var(--bdr);display:flex"><div style="width:320px;font-weight:700;flex-shrink:0">Gerber Foundation</div><div style="color:var(--ink2)">Up to $350K / 3yr. NEC aim. Fall 2026 concept paper.</div></div>
+<div style="padding:20px 0;border-bottom:1px solid var(--bdr);display:flex"><div style="width:320px;font-weight:700;flex-shrink:0">NSF Smart Health</div><div style="color:var(--ink2)">Up to $1.2M / 4yr. Needs university PI lead (Hofstra?).</div></div>
+<div style="padding:20px 0;border-bottom:1px solid var(--bdr);display:flex"><div style="width:320px;font-weight:700;flex-shrink:0">PCORI Broad Pragmatic</div><div style="color:var(--ink2)">Up to $5M. Requires NICU parent advisory board.</div></div>
+<div style="padding:20px 0;border-bottom:1px solid var(--bdr);display:flex"><div style="width:320px;font-weight:700;flex-shrink:0;color:var(--tealD)">Teledyne FLIR</div><div style="color:var(--ink2)">$200&ndash;500K + equipment via SRA. They have <strong>no neonatal product</strong>.</div></div>
+<div style="padding:20px 0;display:flex"><div style="width:320px;font-weight:700;flex-shrink:0">Northwell Innovation</div><div style="color:var(--ink2)">~$200K pool. AI + pediatrics precedent (sleep apnea won 2025).</div></div>
+</div>
+</div><div class="sn dk">15</div></div></div>
+
+<!-- ===== 16 QUESTIONS FOR THEO ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--amber)">Questions for Theo</div>
+<h2>What I need from you to execute this</h2>
+<div style="display:flex;flex-direction:column;gap:24px;margin-top:16px">
+<div class="Q"><h3>Internal Funding</h3><p>Is RJSP open? Does Northwell hold an active CTSA grant? Feinstein F&amp;A rate?</p></div>
+<div class="Q"><h3>Indirect Cost Caps</h3><p>Will GMO accept 7% (Thrasher) and 10% included (March of Dimes, Gerber)?</p></div>
+<div class="Q"><h3>PI &amp; Partnerships</h3><p>Does Theo qualify as NI for Trailblazer? Can we partner with Hofstra for NSF? Can Diego be co-I?</p></div>
+</div>
+</div><div class="sn dk">16</div></div></div>
+
+<!-- ===== 17 TUESDAY QUESTIONS ===== -->
+<div class="W"><div class="S w"><div class="P">
+<div class="lb" style="color:var(--amber)">For Tuesday &mdash; Koppel &amp; Weinberger</div>
+<h2>Questions only the neonatologists can answer</h2>
+<div style="display:flex;flex-direction:column;gap:24px;margin-top:16px">
+<div class="Q"><h3>Condition Priority</h3><p>Sepsis + NEC co-primary? Elevate respiratory? What excites the department?</p></div>
+<div class="Q"><h3>Protocols &amp; Endpoints</h3><p>Written CPTD protocol at CCMC? NEC incidence? LOS = culture-positive or clinical? Bell stage II+?</p></div>
+<div class="Q"><h3>Beds &amp; PI</h3><p>How many open warmers vs. isolettes? Junior neonatologist for K23 / co-PI? Epic Wave 2 timing?</p></div>
+</div>
+</div><div class="sn dk">17</div></div></div>
+
+<!-- ===== 18 NEXT STEPS ===== -->
+<div class="W"><div class="S d"><div class="P" style="align-items:center">
+<div style="font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:36px">Next Steps</div>
+<div style="max-width:1200px;text-align:left">
+<div style="display:flex;align-items:baseline;gap:28px;margin-bottom:40px"><div style="font-family:'Instrument Serif',serif;font-size:60px;color:var(--teal);width:64px;text-align:right;flex-shrink:0">1</div><div style="font-size:34px;color:#fff">Today: align on multi-aim concept + funding plan</div></div>
+<div style="display:flex;align-items:baseline;gap:28px;margin-bottom:40px"><div style="font-family:'Instrument Serif',serif;font-size:60px;color:var(--teal);width:64px;text-align:right;flex-shrink:0">2</div><div style="font-size:34px;color:#fff">Tuesday 3/24: clinical answers from Koppel &amp; Weinberger</div></div>
+<div style="display:flex;align-items:baseline;gap:28px;margin-bottom:40px"><div style="font-family:'Instrument Serif',serif;font-size:60px;color:var(--teal);width:64px;text-align:right;flex-shrink:0">3</div><div style="font-size:34px;color:#fff">April: Northwell seed + protocol + contact FLIR</div></div>
+<div style="display:flex;align-items:baseline;gap:28px;margin-bottom:40px"><div style="font-family:'Instrument Serif',serif;font-size:60px;color:var(--teal);width:64px;text-align:right;flex-shrink:0">4</div><div style="font-size:34px;color:#fff">Summer: first cameras installed + grants submitted</div></div>
+<div style="display:flex;align-items:baseline;gap:28px"><div style="font-family:'Instrument Serif',serif;font-size:60px;color:var(--teal);width:64px;text-align:right;flex-shrink:0">5</div><div style="font-size:34px;color:#fff">2027&ndash;28: 2,500 patients, multiple publications</div></div>
+</div>
+</div><div class="sn l">18</div></div></div>
+
+<!-- ================================================================ -->
+<!-- PAPER SLIDES — One per paper, verbatim abstracts, clickable IDs  -->
+<!-- ================================================================ -->
+
+<!-- P-LC12 -->
+<div class="W" id="P-LC12"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--teal)">Source &mdash; Sepsis</div>
+<div class="paper" style="border-left-color:var(--teal)">
+<h3>Leante-Castellanos et al. 2012</h3>
+<div class="j">J Perinatal Medicine. 2012;40(5):571&ndash;576. <a href="https://pubmed.ncbi.nlm.nih.gov/22945277/" target="_blank">PubMed 22945277</a></div>
+<blockquote>Sensitivity: &ldquo;90.9% [95% CI, 62.3&ndash;98.4].&rdquo;<br>Specificity: &ldquo;90% (95% CI, 69.9&ndash;97.2%).&rdquo;<br><br>&ldquo;In 80% of cases, it [thermal gradient alteration] occurred before abnormal laboratory findings.&rdquo;</blockquote>
+<div class="imp">31 VLBW infants. CPTD &gt;2&deg;C detected sepsis before labs in 4 out of 5 cases.</div>
+</div>
+</div><div class="sn dk">P1</div></div></div>
+
+<!-- P-LC17 -->
+<div class="W" id="P-LC17"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--teal)">Source &mdash; Sepsis</div>
+<div class="paper" style="border-left-color:var(--teal)">
+<h3>Leante-Castellanos et al. 2017</h3>
+<div class="j">Pediatr Infect Dis J. 2017;36(12):e293&ndash;e297. <a href="https://pubmed.ncbi.nlm.nih.gov/28719503/" target="_blank">PubMed 28719503</a></div>
+<blockquote>&ldquo;Adjusted odds ratio for late-onset sepsis of <strong>23.60</strong> (95% CI, 6.80&ndash;81.88).&rdquo;<br><br>Sensitivity: 83%. Negative predictive value: 94%.<br><br>&ldquo;Thermal gradient alteration was the first clinical sign of sepsis&rdquo; in 71% of cases.<br>CRP was &lt;1.5 mg/dL in 64% at time of detection.</blockquote>
+<div class="imp">129 VLBW infants over 52 months. The largest prospective CPTD-for-sepsis study.</div>
+</div>
+</div><div class="sn dk">P2</div></div></div>
+
+<!-- P-U15 -->
+<div class="W" id="P-U15"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--teal)">Source &mdash; Sepsis</div>
+<div class="paper" style="border-left-color:var(--teal)">
+<h3>Ussat et al. 2015</h3>
+<div class="j">Early Hum Dev. 2015;91(12):677&ndash;681. <a href="https://pubmed.ncbi.nlm.nih.gov/26513628/" target="_blank">PubMed 26513628</a></div>
+<blockquote>&ldquo;cpTD was the most striking clinical sign associated with both Clin- (adOR 6.3) and Prov-LOS (adOR 10.5).&rdquo;<br><br>CPTD &gt;2&deg;C: OR 9 for clinical LOS, OR 16 for culture-proven LOS.</blockquote>
+<div class="imp">83 episodes in 67 infants. Independent German replication.</div>
+</div>
+</div><div class="sn dk">P3</div></div></div>
+
+<!-- P-Z25 -->
+<div class="W" id="P-Z25"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--teal)">Source &mdash; Automated CPTD</div>
+<div class="paper" style="border-left-color:var(--teal)">
+<h3>Zhang et al. 2025</h3>
+<div class="j">Biomedical Optics Express. 2025;16(3):965&ndash;981. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11919349/" target="_blank">PMC11919349</a></div>
+<blockquote>&ldquo;Non-contact, fully automatic, and continuous CPTD measurement for neonates.&rdquo;<br><br>40 preterm infants. AggPose Vision Transformer. MAE &lt; 0.3&deg;C.<br><br>&ldquo;Infants with circulatory disorders exhibited elevated CPTD values.&rdquo;<br>Hands showed &ldquo;more pronounced response to changes in core temperature&rdquo; than feet.</blockquote>
+<div class="imp">First automated camera-based CPTD in a real NICU. Proves the measurement layer.</div>
+</div>
+</div><div class="sn dk">P4</div></div></div>
+
+<!-- P-L24 -->
+<div class="W" id="P-L24"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--teal)">Source &mdash; Multimodal Sepsis</div>
+<div class="paper" style="border-left-color:var(--teal)">
+<h3>Lungu et al. 2024</h3>
+<div class="j">Bioengineering. 2024;11(7):681. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11273471/" target="_blank">PMC11273471</a></div>
+<blockquote>121 newborns (39 LOS, 35 EOS, 47 controls). AUC 0.88. Accuracy 87.67%.<br><br>Feature importance: NIRS ~0.90, <strong>skin temperature ~0.85</strong>, SpO2 ~0.75.<br><br>&ldquo;Near-infrared spectroscopy and skin temperature had the greatest impact on model accuracy&rdquo; &mdash; 40% improvement over single modalities.</blockquote>
+<div class="imp">Skin temperature outperforms pulse oximetry for sepsis prediction.</div>
+</div>
+</div><div class="sn dk">P5</div></div></div>
+
+<!-- P-Y24 -->
+<div class="W" id="P-Y24"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--teal)">Source &mdash; Alarm Management</div>
+<div class="paper" style="border-left-color:var(--teal)">
+<h3>Yang et al. 2024</h3>
+<div class="j">Comput Methods Programs Biomed. 2024;255:108335. <a href="https://pubmed.ncbi.nlm.nih.gov/39047574/" target="_blank">PubMed 39047574</a></div>
+<blockquote>119 preterm (&lt;32 wk). Best model AUC <strong>0.875</strong> at 6h before deterioration.<br><br>Detected 96.1% of sepsis cases before clinical crash.<br><br>Multi-threshold alarm: &ldquo;an average of <strong>1.15 alarms per day per patient</strong>,&rdquo; 71.6% sensitivity.</blockquote>
+<div class="imp">Alarm fatigue is solvable: ~1 alarm/patient/day catches 72% of events.</div>
+</div>
+</div><div class="sn dk">P6</div></div></div>
+
+<!-- P-V22 -->
+<div class="W" id="P-V22"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--purple)">Source &mdash; Shock Prediction</div>
+<div class="paper" style="border-left-color:var(--purple)">
+<h3>Vats et al. 2022</h3>
+<div class="j">Front Physiol. 2022;13:862411. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9340772/" target="_blank">PMC9340772</a></div>
+<blockquote>22 PICU patients. 103,936 thermal frames. LSTM on CPD time series.<br><br>&ldquo;Best area under the receiver operating characteristic curve of <strong>0.81 &plusmn; 0.06</strong> and area under the precision-recall curve of <strong>0.78 &plusmn; 0.05 at 5 h</strong>,&rdquo; providing clinicians adequate time for early intervention.<br><br>Domain features (CPD time series) outperformed direct image classification.</blockquote>
+<div class="imp">Only study combining thermal video + DL + CPD for prospective shock prediction.</div>
+</div>
+</div><div class="sn dk">P7</div></div></div>
+
+<!-- P-M11 -->
+<div class="W" id="P-M11"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--amber)">Source &mdash; HeRO Precedent</div>
+<div class="paper" style="border-left-color:var(--amber)">
+<h3>Moorman et al. 2011 (HeRO RCT)</h3>
+<div class="j">J Pediatrics. 2011;159(6):900&ndash;906. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3215822/" target="_blank">PMC3215822</a></div>
+<blockquote>&ldquo;Two-group, parallel, individually randomized controlled clinical trial of <strong>3,003 very low birth weight infants in 9 NICUs.</strong>&rdquo;<br><br>&ldquo;Mortality decreased from 10.2% to 8.1%&rdquo; &mdash; HR 0.78 (95% CI 0.61&ndash;0.99, P = 0.04).<br><br>Number needed to monitor: 48 (all infants); 23 (ELBW).<br><br>&ldquo;Heart rate characteristics monitoring can reduce mortality in very low birth weight infants.&rdquo;</blockquote>
+<div class="imp">Proved: continuous biomarker display &rarr; earlier action &rarr; 22% mortality reduction.</div>
+</div>
+</div><div class="sn dk">P8</div></div></div>
+
+<!-- P-N19 -->
+<div class="W" id="P-N19"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--purple)">Source &mdash; Shock</div>
+<div class="paper" style="border-left-color:var(--purple)">
+<h3>Nagori et al. 2019</h3>
+<div class="j">Scientific Reports. 2019;9:91. <a href="https://pubmed.ncbi.nlm.nih.gov/30643187/" target="_blank">PubMed 30643187</a></div>
+<blockquote>539 thermal images, 253 with concurrent intra-arterial BP.<br><br>Automated ROI segmentation: &ldquo;96% agreement with a human expert.&rdquo;<br><br>AUC: &ldquo;75% at 0 hours (classification), <strong>77% at 3 hours</strong> (prediction) and 69% at 12 hours.&rdquo;</blockquote>
+<div class="imp">First proof: thermal imaging + ML predicts shock hours ahead.</div>
+</div>
+</div><div class="sn dk">P9</div></div></div>
+
+<!-- P-R10 -->
+<div class="W" id="P-R10"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--red)">Source &mdash; NEC</div>
+<div class="paper" style="border-left-color:var(--red)">
+<h3>Rice et al. 2010</h3>
+<div class="j">J Surgical Radiology. 2010. <a href="https://www.researchgate.net/publication/286613614" target="_blank">ResearchGate</a></div>
+<blockquote>FLIR SC640 camera in ELBW infants in heated incubators.<br><br>NEC infants had significantly lower abdominal surface temperatures: <strong>35.3&deg;C vs 36.6&deg;C</strong> in controls.</blockquote>
+<div class="imp">1.3&deg;C difference &mdash; well within sensitivity of modern cameras (NETD &lt;50mK).</div>
+</div>
+</div><div class="sn dk">P10</div></div></div>
+
+<!-- P-NT15 -->
+<div class="W" id="P-NT15"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--red)">Source &mdash; NEC</div>
+<div class="paper" style="border-left-color:var(--red)">
+<h3>Ntonfo et al. 2015</h3>
+<div class="j">IEEE MeMeA 2015. <a href="https://ieeexplore.ieee.org/document/7145168/" target="_blank">IEEE 7145168</a></div>
+<blockquote>NEC infants showed statistically higher thermal asymmetry across the abdomen compared to controls.<br><br>Left/right abdominal temperature analysis differentiates inflamed vs. normal bowel regions.</blockquote>
+<div class="imp">First quantitative evidence: L/R thermal asymmetry distinguishes NEC from controls.</div>
+</div>
+</div><div class="sn dk">P11</div></div></div>
+
+<!-- P-SH20 -->
+<div class="W" id="P-SH20"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--red)">Source &mdash; NEC</div>
+<div class="paper" style="border-left-color:var(--red)">
+<h3>Shi et al. 2020 (CHEO Ottawa)</h3>
+<div class="j">IEEE MeMeA 2020. <a href="https://ieeexplore.ieee.org/document/9137344/" target="_blank">IEEE 9137344</a></div>
+<blockquote>Integrated system combining infrared thermal imaging with RGB-D sensing. Automatic body segmentation and temperature distribution analysis across the abdominal region without manual intervention.<br><br>&ldquo;Encouraging initial results&rdquo; comparing NEC vs. normal thermal distributions.</blockquote>
+<div class="imp">Most technically advanced NEC thermal detection system. Active research program.</div>
+</div>
+</div><div class="sn dk">P12</div></div></div>
+
+<!-- P-MA23 -->
+<div class="W" id="P-MA23"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--blue)">Source &mdash; Respiratory</div>
+<div class="paper" style="border-left-color:var(--blue)">
+<h3>Maurya et al. 2023</h3>
+<div class="j">J Clin Monit Comput. 2022. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10175339/" target="_blank">PMC10175339</a></div>
+<blockquote>Deep-learning tracking-by-detection (YOLO5Face) + RGB-thermal fusion.<br><br>MAE: <strong>~1.5 breaths/min</strong>. &ldquo;About 80% of estimates showing error less than 2 breaths/minute.&rdquo;<br><br>&ldquo;A clinically relevant alternative to the contact-based method.&rdquo;</blockquote>
+<div class="imp">Best-in-class neonatal respiratory rate accuracy.</div>
+</div>
+</div><div class="sn dk">P13</div></div></div>
+
+<!-- P-LO21 -->
+<div class="W" id="P-LO21"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--blue)">Source &mdash; Respiratory &amp; Apnea</div>
+<div class="paper" style="border-left-color:var(--blue)">
+<h3>Lorato et al. 2020 / 2021</h3>
+<div class="j">Biomed Opt Express. 2020;11(9):4848. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7510882/" target="_blank">PMC7510882</a></div>
+<blockquote>&ldquo;Respiration is monitored in neonatal wards using chest impedance (CI), which is obtrusive and can cause skin damage. Therefore, unobtrusive solutions based on infrared thermography are being investigated.&rdquo;<br><br>3 FLIR Lepton cameras. MAE: <strong>2.07 breaths/min</strong>.<br>2021 follow-up: apnea classification &mdash; obstructive vs. central: <strong>F1 0.86&ndash;0.93</strong>.</blockquote>
+<div class="imp">$200 cameras. Clinical-grade accuracy. Chest impedance cannot classify apnea type.</div>
+</div>
+</div><div class="sn dk">P14</div></div></div>
+
+<!-- P-KH21 -->
+<div class="W" id="P-KH21"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--blue)">Source &mdash; Heart Rate + Respiratory</div>
+<div class="paper" style="border-left-color:var(--blue)">
+<h3>Khanam et al. 2021</h3>
+<div class="j">J Imaging. 2021;7(8):122. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8404938/" target="_blank">PMC8404938</a></div>
+<blockquote>7 NICU infants. RGB camera (iPPG, green channel).<br><br>HR: &ldquo;MAE <strong>1.80 beats/min</strong>, RMSE 2.23, Pearson r = 0.9864.&rdquo;<br>RR: &ldquo;MAE <strong>2.13 breaths/min</strong>, RMSE 2.69, r = 0.9453.&rdquo;</blockquote>
+<div class="imp">Simultaneous non-contact HR + RR in actual NICU infants.</div>
+</div>
+</div><div class="sn dk">P15</div></div></div>
+
+<!-- P-U21 -->
+<div class="W" id="P-U21"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--green)">Source &mdash; Thermoregulation</div>
+<div class="paper" style="border-left-color:var(--green)">
+<h3>Urisarri et al. 2021</h3>
+<div class="j">Nature Communications. 2021;12:5274. <a href="https://www.nature.com/articles/s41467-021-25456-z" target="_blank">Nature Comms</a></div>
+<blockquote>IRT confirmed as a valid method for detecting brown adipose tissue activation in neonates via interscapular thermography. Validated against indirect calorimetry.</blockquote>
+<div class="imp">Nature Communications validation. BAT = metabolic stress marker for cold stress, hypoglycemia.</div>
+</div>
+</div><div class="sn dk">P16</div></div></div>
+
+<!-- P-W21 -->
+<div class="W" id="P-W21"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--orange)">Source &mdash; HIE / Brain</div>
+<div class="paper" style="border-left-color:var(--orange)">
+<h3>Walas et al. 2021</h3>
+<div class="j">Scientific Reports. 2021;11:19789.</div>
+<blockquote>Novel &ldquo;Thermal Index&rdquo; derived from fontanelle thermal imaging during therapeutic hypothermia. Validated on 6 neonates with HIE.<br><br>Thermal Index correlated with MRI-confirmed brain injury patterns.</blockquote>
+<div class="imp">Fontanelle = unique thermal window to the brain. Non-invasive brain injury monitoring.</div>
+</div>
+</div><div class="sn dk">P17</div></div></div>
+
+<!-- P-K23 -->
+<div class="W" id="P-K23"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--ink3)">Source &mdash; Pain &amp; Stress</div>
+<div class="paper" style="border-left-color:var(--ink3)">
+<h3>Kretschmer et al. 2023</h3>
+<div class="j">Pediatric Research. 2023. <a href="https://www.nature.com/articles/s41390-023-02614-1" target="_blank">Ped Research</a></div>
+<blockquote>Nasal tip shows the greatest temperature change in hungry vs. not-hungry infants.<br><br>Autonomic stress responses change facial skin blood flow &mdash; detectable thermally.</blockquote>
+<div class="imp">Essentially unstudied area. Same camera could enable objective pain/stress assessment.</div>
+</div>
+</div><div class="sn dk">P18</div></div></div>
+
+<!-- P-T19 -->
+<div class="W" id="P-T19"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--ink3)">Source &mdash; Scoping Review</div>
+<div class="paper" style="border-left-color:var(--ink3)">
+<h3>Topalidou et al. 2019</h3>
+<div class="j">BMC Pregnancy and Childbirth. 2019;19:381. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6814124/" target="_blank">PMC6814124</a></div>
+<blockquote>&ldquo;21 studies meeting inclusion criteria from 442 initial hits. All included studies were observational, with most featuring small cohorts (range 4&ndash;29 participants).&rdquo;<br><br>&ldquo;Thermal imaging represents a reliable and non-invasive method for continuous monitoring.&rdquo;<br><br>Despite &ldquo;generally positive results&rdquo; over nearly 50 years, <strong>&ldquo;large prospective studies remain absent.&rdquo;</strong></blockquote>
+<div class="imp">50 years of promising results. Zero large-scale studies. That is the gap.</div>
+</div>
+</div><div class="sn dk">P19</div></div></div>
+
+<!-- P-PR25 -->
+<div class="W" id="P-PR25"><div class="S w"><div class="P" style="justify-content:flex-start">
+<div class="lb" style="color:var(--ink3)">Source &mdash; 2025 Systematic Review</div>
+<div class="paper" style="border-left-color:var(--ink3)">
+<h3>2025 Systematic Review</h3>
+<div class="j">Pediatric Research. 2025. <a href="https://www.nature.com/articles/s41390-025-04469-0" target="_blank">Ped Research</a></div>
+<blockquote>Systematic review of 60 studies (43 non-contact + 17 wireless), Jan 2014&ndash;Aug 2024.<br><br>&ldquo;No technology has yet achieved full clinical validation.&rdquo;</blockquote>
+<div class="imp">3&times; more studies than 2019. Same conclusion: no clinical validation exists.</div>
+</div>
+</div><div class="sn dk">P20</div></div></div>
+
+<script>
+const sw=document.querySelectorAll('.W');
+const nav=document.getElementById('N');
+sw.forEach((s,i)=>{const a=document.createElement('a');a.textContent=i+1;a.href='#';a.onclick=e=>{e.preventDefault();if(document.body.classList.contains('pr')){cs=i;sw.forEach((x,j)=>x.classList.toggle('ac',j===cs))}else{s.scrollIntoView({behavior:'smooth'})}};nav.appendChild(a)});
+const sep=document.createElement('div');sep.className='sep';nav.appendChild(sep);
+const btn=document.createElement('button');btn.className='sb';btn.textContent='F';btn.onclick=eP;nav.appendChild(btn);
+let cs=0;
+function eP(){document.body.classList.toggle('pr');if(document.body.classList.contains('pr')){sw.forEach((s,i)=>{s.classList.toggle('ac',i===cs)});const h=document.getElementById('hi');h.style.opacity='1';setTimeout(()=>h.classList.add('fade'),3000)}else{sw.forEach(s=>s.classList.remove('ac'))}}
+document.addEventListener('keydown',e=>{if(!document.body.classList.contains('pr'))return;if(e.key==='Escape'){eP();return}if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();cs=Math.min(cs+1,sw.length-1)}else if(e.key==='ArrowLeft'){e.preventDefault();cs=Math.max(cs-1,0)}sw.forEach((s,i)=>s.classList.toggle('ac',i===cs))});
+// Handle anchor clicks in presentation mode
+document.addEventListener('click',e=>{const a=e.target.closest('a.ref');if(a&&document.body.classList.contains('pr')){e.preventDefault();const id=a.getAttribute('href').slice(1);const idx=[...sw].findIndex(s=>s.querySelector('#'+id)||s.id===id||s.querySelector('[id="'+id+'"]'));if(idx===-1){const el=document.getElementById(id);if(el){const p=el.closest('.W');const pi=[...sw].indexOf(p);if(pi>=0){cs=pi;sw.forEach((x,j)=>x.classList.toggle('ac',j===cs))}}}else{cs=idx;sw.forEach((x,j)=>x.classList.toggle('ac',j===cs))}}});
+</script>
+</body>
+</html>

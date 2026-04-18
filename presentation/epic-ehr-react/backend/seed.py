@@ -1,6 +1,9 @@
 """Seed the EHR database with realistic NICU patient data."""
 import sqlite3
 import random
+import csv
+import os
+import statistics
 from datetime import datetime, timedelta
 
 random.seed(42)
@@ -116,6 +119,130 @@ def generate_thermal(conn, patient_id, hours, cptd_trend=None):
             "left_elbow": round(le, 1), "right_elbow": round(re, 1),
             "left_knee": round(lk, 1), "right_knee": round(rk, 1),
             "abdomen_temp": round(abd, 1), "alert_level": alert,
+        })
+
+
+def generate_thermal_from_greek_csv(conn, patient_id, csv_path, hours=48):
+    """Load real thermal data from Greek neonatal sepsis study CSV.
+
+    Reads the smoothed CSV, calculates CPTD, and remaps timestamps
+    so that the data ends at NOW and covers the specified number of hours.
+    Uses a window from the CSV that shows a rising CPTD pattern (sepsis onset).
+    """
+    with open(csv_path) as f:
+        rows = list(csv.DictReader(f))
+
+    # Parse all rows with valid core temp, compute CPTD
+    parsed = []
+    for row in rows:
+        z1 = row.get("Zona1", "").strip()
+        if not z1:
+            continue
+        core = float(z1)
+
+        # Map CSV columns to body zones
+        zones = {
+            "left_elbow": row.get("codo_izq", "").strip(),
+            "right_elbow": row.get("codo_drc", "").strip(),
+            "left_knee": row.get("rodilla_izq", "").strip(),
+            "right_knee": row.get("rodilla_drc", "").strip(),
+            "left_hand": row.get("mano_izq", "").strip(),
+            "right_hand": row.get("mano_drc", "").strip(),
+            "left_foot": row.get("pie_izq", "").strip(),
+            "right_foot": row.get("pie_drc", "").strip(),
+        }
+
+        # Parse zone values (None if missing)
+        zone_vals = {}
+        for k, v in zones.items():
+            zone_vals[k] = float(v) if v else None
+
+        # Calculate CPTD: core minus peripheral average
+        # Priority: hands > feet (per Greek study methodology)
+        hands = [v for k, v in zone_vals.items() if "hand" in k and v is not None]
+        feet = [v for k, v in zone_vals.items() if "foot" in k and v is not None]
+        periph = hands if hands else feet
+        if not periph:
+            # Use elbows or knees as fallback
+            elbows = [v for k, v in zone_vals.items() if "elbow" in k and v is not None]
+            knees = [v for k, v in zone_vals.items() if "knee" in k and v is not None]
+            periph = elbows if elbows else knees
+        if not periph:
+            continue
+
+        cptd = core - statistics.mean(periph)
+        ts = datetime.strptime(row["timestamp"], "%Y-%m-%d %H:%M:%S")
+
+        parsed.append({
+            "timestamp": ts,
+            "core_temp": core,
+            "cptd": cptd,
+            **zone_vals,
+        })
+
+    if not parsed:
+        return
+
+    # Select a window that shows a rising CPTD pattern
+    # Use the best 48h window: scan for window with lowest start avg and highest end avg
+    target_rows = hours * 60  # ~1 reading per minute
+    best_start = 0
+    best_score = -999
+
+    if len(parsed) > target_rows:
+        step = max(1, len(parsed) // 50)  # check ~50 candidate windows
+        for start in range(0, len(parsed) - target_rows, step):
+            window = parsed[start : start + target_rows]
+            first_quarter = window[: len(window) // 4]
+            last_quarter = window[3 * len(window) // 4 :]
+            avg_start = statistics.mean(r["cptd"] for r in first_quarter)
+            avg_end = statistics.mean(r["cptd"] for r in last_quarter)
+            score = avg_end - avg_start  # rising pattern = higher score
+            if score > best_score:
+                best_score = score
+                best_start = start
+        selected = parsed[best_start : best_start + target_rows]
+    else:
+        selected = parsed
+
+    # Remap timestamps so data ends at NOW
+    orig_start = selected[0]["timestamp"]
+    orig_end = selected[-1]["timestamp"]
+    orig_duration = (orig_end - orig_start).total_seconds()
+
+    for i, r in enumerate(selected):
+        # Map original time range to [NOW - hours, NOW]
+        if orig_duration > 0:
+            frac = (r["timestamp"] - orig_start).total_seconds() / orig_duration
+        else:
+            frac = i / max(len(selected) - 1, 1)
+        new_ts = NOW - timedelta(hours=hours) + timedelta(hours=hours * frac)
+
+        cptd_val = max(0, r["cptd"])  # Clamp negative CPTD to 0
+        if cptd_val < 1.0:
+            alert = "normal"
+        elif cptd_val < 2.0:
+            alert = "warning"
+        elif cptd_val < 3.0:
+            alert = "high"
+        else:
+            alert = "critical"
+
+        _insert(conn, "thermal_readings", {
+            "patient_id": patient_id,
+            "timestamp": _ts(new_ts),
+            "cptd": round(cptd_val, 2),
+            "core_temp": round(r["core_temp"], 1),
+            "left_hand": round(r["left_hand"], 1) if r["left_hand"] is not None else None,
+            "right_hand": round(r["right_hand"], 1) if r["right_hand"] is not None else None,
+            "left_foot": round(r["left_foot"], 1) if r["left_foot"] is not None else None,
+            "right_foot": round(r["right_foot"], 1) if r["right_foot"] is not None else None,
+            "left_elbow": round(r["left_elbow"], 1) if r["left_elbow"] is not None else None,
+            "right_elbow": round(r["right_elbow"], 1) if r["right_elbow"] is not None else None,
+            "left_knee": round(r["left_knee"], 1) if r["left_knee"] is not None else None,
+            "right_knee": round(r["right_knee"], 1) if r["right_knee"] is not None else None,
+            "abdomen_temp": round(r["core_temp"] - 0.1, 1),  # approximate abdomen
+            "alert_level": alert,
         })
 
 
@@ -307,12 +434,24 @@ def _seed_garcia(conn):
         "bp_s_start": 55, "bp_s_end": 48,
     })
 
-    # Thermal: rising CPTD
-    generate_thermal(conn, pid, 40)
-    generate_thermal(conn, pid, 8, cptd_trend={
-        "core": 36.8, "cptd_start": 0.8, "cptd_end": 3.2,
-        "hand_factor": 0.7, "foot_factor": 1.0, "abd_factor": 0.1,
-    })
+    # Thermal: real data from Greek neonatal sepsis study (baby_29)
+    greek_csv = os.path.join(
+        os.path.dirname(__file__), "..", "..", "..",
+        "greek github project",
+        "Early-detection-of-neonatal-sepsis-using-thermal-images",
+        "Time-Series And Alarm Raising",
+        "csv_by_baby_smooth",
+        "baby_29.csv",
+    )
+    if os.path.exists(greek_csv):
+        generate_thermal_from_greek_csv(conn, pid, greek_csv, hours=48)
+    else:
+        # Fallback to synthetic if CSV not found
+        generate_thermal(conn, pid, 40)
+        generate_thermal(conn, pid, 8, cptd_trend={
+            "core": 36.8, "cptd_start": 0.8, "cptd_end": 3.2,
+            "hand_factor": 0.7, "foot_factor": 1.0, "abd_factor": 0.1,
+        })
 
     # Labs
     generate_labs(conn, pid, [

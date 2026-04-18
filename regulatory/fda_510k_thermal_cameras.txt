@@ -1,0 +1,345 @@
+FDA 510(k)-CLEARED THERMAL/INFRARED IMAGING SYSTEMS
+Product Code: LHQ - System, Telethermographic (Adjunctive Use)
+21 CFR 884.2980
+Research compiled: 2026-03-14
+================================================================================
+
+OVERVIEW
+--------
+Product code LHQ covers telethermographic systems for adjunctive use. These are
+Class I medical devices (exempt from PMA but requiring 510(k) clearance). The
+standard intended use across virtually all cleared devices is:
+
+  "For use as an adjunct to other clinical diagnostic procedures in the
+   diagnosis, quantifying, and screening of differences in skin surface
+   temperature changes."
+
+Key constraint: NO thermal camera has FDA clearance to be used as a SOLE
+diagnostic or screening device. All are cleared for ADJUNCTIVE use only.
+
+There are approximately 37 total 510(k) entries under product code LHQ in the
+FDA database.
+
+================================================================================
+
+CLEARED DEVICES (with specific 510(k) numbers)
+-----------------------------------------------
+
+1. ThermPix Thermovisual Camera (2nd Gen)
+   - 510(k): K232462
+   - Manufacturer: USA Therm
+   - Cleared: September 2023
+   - Intended Use: Portable, infrared thermovisual, non-contact handheld device
+     used to identify relative heat patterns and irregularities. Intended to
+     view, measure, and record heat patterns and variations. Only for use in
+     addition to other diagnostic medical devices.
+   - Notes: Class I. Point-of-care infrared thermography (POCIT) camera.
+
+2. ThermPix Thermovisual Camera (1st Gen)
+   - 510(k): K213650
+   - Manufacturer: USA Therm
+   - Cleared: May 31, 2022
+   - Intended Use: Same as above.
+
+3. SMILE-100 System
+   - 510(k): K212965
+   - Manufacturer: Niramai Health Analytix Private Limited (Bangalore, India)
+   - Cleared: March 14, 2022
+   - Intended Use: Intended to review, measure and record skin temperature
+     patterns and variations emitted from the human body. For use as adjunctive
+     diagnostic imaging for thermally significant indications in the BREAST
+     REGION. Can be used in hospitals, acute care settings, outpatient surgery,
+     healthcare practitioner facilities.
+   - Notes: Uses AI-based algorithms to check quality of input thermal images.
+     Breast-specific thermography focus.
+
+4. IRIS-XP
+   - 510(k): K212412
+   - Manufacturer: Medicore (Korean company; also associated with Meditherm
+     distribution network)
+   - Intended Use: Adjunctive use for diagnostic imaging of thermally
+     significant indications of all skin regions of the human body.
+   - Notes: Infrared screening device.
+
+5. Thermidas IR System (ThIR-A615)
+   - 510(k): K200999
+   - Manufacturer: Thermidas Americas, Inc. (parent: Thermidas Oy, Finland)
+   - Intended Use: Adjunctive use in addition to other clinical diagnostic
+     procedures for diagnostic imaging for thermally significant indications of
+     all skin regions of the human body. For reviewing and reporting of
+     temperature patterns and changes. Measuring and monitoring changes in skin
+     surface temperature non-invasively.
+   - Notes: NOT intended for absolute temperature measurements. For use by
+     trained technical personnel. Finnish company.
+
+6. InTouch Thermal Camera
+   - 510(k): K181716
+   - Manufacturer: InTouch Technologies, Inc. (d.b.a. InTouch Health)
+     Actual manufacturer: Med-Hot Thermal Imaging, Inc.
+   - Intended Use: Intended to view, measure and record heat patterns and
+     variations. For use as adjunctive diagnostic imaging for thermally
+     significant indications stemming from heat emitted from the human body.
+     Only for use IN ADDITION to other medical devices (Thermometer, Ultrasound,
+     Mammography). Does NOT provide absolute measurement of temperature. Should
+     NOT be used for sole screening or diagnosis for any disease.
+   - Notes: For use by qualified technical personnel trained in its use.
+
+7. Med-Hot Thermal Imaging Systems
+   - 510(k): K171928
+   - Manufacturer: Med-Hot Thermal Imaging, Inc.
+   - Cleared: October 28, 2017 (received November 2, 2017)
+   - Product Code: LHQ
+   - Regulation: 21 CFR 884.2980
+   - Intended Use: Telethermographic system for adjunctive use.
+   - Notes: Subject to general controls. Had a Class 2 Device Recall on the
+     MedHot MTI 2000 Thermal Imaging System (separate event).
+
+8. Sentinel BreastScan II System
+   - 510(k): K162767
+   - Manufacturer: First Sense Medical, LLC
+   - Intended Use: Breast thermography screening (adjunctive).
+   - Notes: Breast-specific application.
+
+9. FirstSense Breast Exam
+   - 510(k): K160573
+   - Manufacturer: First Sense Medical, LLC
+   - Intended Use: Breast cancer screening using thermal imaging (adjunctive).
+   - Notes: Same company as Sentinel BreastScan II.
+
+10. AlfaSight 9000 Thermographic System
+    - 510(k): K150457
+    - Manufacturer: Alfa Thermodiagnostics, Inc.
+    - Intended Use: Skin thermal regulation and skin temperature utilized to
+      identify various organ diseases including: abnormalities in female breast,
+      peripheral vascular disease, musculoskeletal disorders, extracranial
+      cerebral and facial vascular disease, abnormalities of the thyroid gland,
+      and various neoplastic conditions. NOT intended as sole diagnostic
+      procedure -- adjunct only.
+    - Notes: Uses thermal sensors to measure skin surface temperature to indicate
+      deeper level organ diseases. Regulation thermometry approach.
+
+11. ICI P-Series IR Cameras
+    - 510(k): K101641
+    - Manufacturer: Infrared Cameras Inc. (ICI)
+    - Cleared: ~2010
+    - Intended Use: Adjunctive diagnostic imaging. Detecting elevated skin
+      temperature. Can detect elevated skin temperatures in hospitals, public
+      areas.
+    - Notes: FDA 510(k) cleared. Multiple models (ICI 320, ICI 8320 P-Series).
+      Medical use radiometric imager. Predicate device: FLIR K033967.
+
+12. FLIR Telethermographic Camera, Series A, E, S, and P
+    - 510(k): K033967
+    - Manufacturer: FLIR Systems (now Teledyne FLIR)
+    - Cleared: March 9, 2004
+    - Intended Use: "For use as an adjunct to other clinical diagnostic
+      procedures in the diagnosis, quantifying, and screening of differences in
+      skin surface temperature changes." Visualize and document temperature
+      patterns and changes. NOT intended to be used alone to diagnose or screen
+      any disease or condition.
+    - Notes: Class I. Covers Series A, E, S, and P camera families. This is one
+      of the most commonly cited predicate devices for new 510(k) submissions.
+      Used during COVID for elevated body temperature screening (adjunctive).
+
+13. Meditherm Med2000 Telethermographic Camera
+    - 510(k): K003332
+    - Manufacturer: Meditherm, Inc.
+    - Cleared: February 21, 2001
+    - Intended Use: For viewing and digitally storing thermal patterns generated
+      by the human body in the clinical, hospital, acute care settings, surgery,
+      healthcare practitioner facilities or in any environment where healthcare
+      is provided.
+    - Notes: Class I. Meditherm is an FDA-licensed manufacturer. Calibrated to
+      0.01C with 307,000+ individual temperature measurements per image. Current
+      models include IRIS 450, IRIS 520 HD, IRIS 520 UHD, IRIS 640.
+
+14. Spectron IR TyTron C-500 Clinical Infrared Imaging System
+    - 510(k): K032471
+    - Manufacturer: Spectron IR
+    - Intended Use: Adjunctive diagnostic screening for the detection of breast
+      cancer AND other uses: peripheral vascular disease, neuromusculoskeletal
+      disorders, extracranial cerebral and facial vascular disease, thyroid gland
+      abnormalities, and various other neoplastic, metabolic and inflammatory
+      conditions.
+    - Notes: One of the broadest cleared intended use statements among thermal
+      cameras. Not intended as sole diagnostic procedure.
+
+ADDITIONAL NOTED DEVICES (older / less detail available):
+- Various pre-2000 clearances exist under LHQ (approx. 37 total entries)
+- Digatherm: Now rebranded as WellVu Thermal Imaging. Primarily veterinary
+  thermal imaging. Partnership with Multi Radiance. No specific human medical
+  510(k) found in search results.
+
+================================================================================
+
+FDA ENFORCEMENT ACTIONS & WARNINGS
+-----------------------------------
+1. Total Thermal Imaging, Inc. - Warning Letter (02/22/2019)
+   - Illegally marketed the "Thermography Business Package" (included a FLIR
+     camera + proprietary software) as a SOLE screening tool for breast cancer
+     and other diseases.
+   - Claims included: early detection of breast cancer, inflammatory breast
+     cancer, pre-stroke, heart disease, deep vein thrombosis.
+   - FDA ordered immediate cessation of distribution.
+   - Key lesson: You CANNOT market a thermal camera as a standalone diagnostic
+     tool, even if the camera itself has 510(k) clearance. The clearance is for
+     ADJUNCTIVE use only.
+
+2. Meditherm, Inc. - FDA Warning Letter (03/22/2011)
+   - Received a warning letter regarding product claims.
+
+3. FLIR System AB - FDA Warning Letter (01/2011)
+   - Received a warning letter regarding product claims.
+
+4. FDA Safety Communication (2019):
+   - "Thermography is not cleared by the FDA as an alternative to mammography
+     and should not replace mammography for breast cancer screening or diagnosis."
+   - "There is no valid scientific data to show that thermographic devices, when
+     used on their own or with another diagnostic test, are an effective
+     screening tool for any medical condition."
+
+================================================================================
+
+OFF-LABEL USE OF FDA-CLEARED MEDICAL DEVICES
+---------------------------------------------
+
+KEY LEGAL PRINCIPLES:
+
+1. The FDA does NOT regulate the practice of medicine.
+   - Once a device is legally marketed (i.e., has 510(k) clearance), a
+     physician can use it for ANY purpose they believe is clinically warranted.
+   - This is the "practice of medicine" doctrine.
+
+2. Physician off-label use is LEGAL and COMMON.
+   - "Once an approved device or drug is available, doctors can prescribe it for
+     any purpose they believe is warranted -- regardless of what the label says."
+   - "Sometimes it is the medical standard of care to prescribe a medical
+     product for uses other than what is stated on the label."
+   - Requirements: Must be based on "firm scientific rationale and sound medical
+     evidence." Physician should maintain records of the product's use and effects.
+
+3. NICU-specific context:
+   - "Most medical and surgical devices currently used for neonatal patients
+     were NOT approved or cleared by the FDA for use in pediatric or neonatal
+     populations."
+   - Physicians routinely use devices off-label in NICUs when no neonatal-
+     specific device exists.
+   - This is explicitly acknowledged by the FDA in their pediatric/neonatal
+     device guidance.
+
+4. Manufacturer vs. Physician distinction:
+   - MANUFACTURERS cannot promote off-label uses. They can only market the
+     device for its cleared intended use.
+   - PHYSICIANS are free to use cleared devices off-label at their discretion.
+   - A physician CAN use an FDA-cleared thermal camera in a NICU for neonatal
+     temperature monitoring, even though the camera is not specifically cleared
+     for that use.
+
+5. Hospital/IRB considerations:
+   - Hospitals may have their own policies about off-label device use.
+   - If used in research, IRB approval may be needed.
+   - For clinical care (not research), physician discretion applies.
+
+BOTTOM LINE FOR NEOTHERM:
+- A physician CAN legally use any FDA-cleared thermal camera (product code LHQ)
+  in a NICU setting for neonatal temperature monitoring under off-label use.
+- NeoTherm as a SOFTWARE PLATFORM cannot itself market or promote the thermal
+  camera for neonatal use unless NeoTherm obtains its own 510(k) clearance for
+  that specific intended use.
+- Strategy: Use an already-cleared thermal camera as the hardware component.
+  The software platform (NeoTherm) would need its own regulatory pathway if it
+  makes diagnostic claims.
+
+================================================================================
+
+SUITABILITY FOR SOFTWARE PLATFORM INTEGRATION
+----------------------------------------------
+
+CAMERAS MOST SUITABLE FOR INTEGRATION INTO A SOFTWARE PLATFORM:
+
+1. FLIR/Teledyne FLIR (A-Series, E-Series, etc.) -- K033967
+   BEST FOR SOFTWARE INTEGRATION
+   - FLIR Atlas SDK: Supports communication, streaming, and recording via
+     GigE, RTSP, and USB. Full access to radiometric data for individual pixels.
+   - FLIR Science Camera SDK: Camera control, data streaming, acquisition via
+     GigE and Camera Link. Supports C/C++ and C#/.NET.
+   - FLIR BHP SDK: For A6600/A6200sc/A6700sc/A8300sc series. C/C++ functions
+     for camera control and GigE data streaming.
+   - FLIR Mobile SDK: For mobile integration.
+   - REST API available for automation cameras.
+   - MOST MATURE SDK ECOSYSTEM for thermal cameras.
+   - Already FDA-cleared (K033967) covering Series A, E, S, P.
+
+2. ICI P-Series (Infrared Cameras Inc.) -- K101641
+   GOOD FOR INTEGRATION
+   - FDA-cleared medical-specific thermal cameras.
+   - Multiple form factors (handheld, fixed mount, medical cart).
+   - Company focused on medical/industrial applications.
+   - SDK availability less documented publicly than FLIR.
+
+3. Meditherm IRIS Series -- K003332
+   MODERATE FOR INTEGRATION
+   - Uses proprietary WinTES software.
+   - Purpose-built for medical thermography.
+   - Calibrated to 0.01C accuracy.
+   - 307,000+ temperature measurements per image.
+   - Less open SDK/API ecosystem; more closed/proprietary.
+
+4. Thermidas ThIR-A615 -- K200999
+   POTENTIALLY GOOD FOR INTEGRATION
+   - Finnish company, newer entrant.
+   - FDA-cleared 2020.
+   - Two products in FDA device listing.
+   - Integration capabilities not well-documented in public sources.
+
+5. SMILE-100 (Niramai) -- K212965
+   INTERESTING BUT NICHE
+   - Already has AI-based image quality algorithms built in.
+   - Breast-specific focus.
+   - May have proprietary integration approach.
+
+6. ThermPix (USA Therm) -- K232462
+   NEWEST DEVICE
+   - Most recently cleared (2023).
+   - Portable, handheld, point-of-care.
+   - Software/integration capabilities not well-documented publicly.
+
+RECOMMENDATION FOR NEOTHERM:
+The FLIR/Teledyne FLIR platform (cleared under K033967) offers the best
+combination of:
+  (a) FDA clearance (since 2004, well-established)
+  (b) Software SDK ecosystem (Atlas SDK, Science Camera SDK, REST API)
+  (c) Multiple camera form factors suitable for NICU mounting
+  (d) Radiometric data access at the pixel level
+  (e) Industry standard interfaces (GigE, USB, Camera Link)
+  (f) Largest installed base and community support
+
+Second choice: ICI P-Series cameras, which are specifically marketed as medical
+devices with FDA clearance and offer medical cart configurations.
+
+================================================================================
+
+REGULATORY PATHWAY FOR NEOTHERM SOFTWARE
+-----------------------------------------
+If NeoTherm is purely SOFTWARE that processes images from an already-cleared
+camera:
+- The software itself may need 510(k) clearance as a "Software as a Medical
+  Device" (SaMD) if it makes diagnostic or clinical claims.
+- If the software merely displays thermal images without making clinical
+  interpretations, the regulatory burden may be lower.
+- FDA's 2023 guidance uses a risk-based approach: Basic Documentation (minimal
+  risk) vs. Enhanced Documentation (potential serious injury/death).
+- The camera hardware would remain covered under its existing 510(k).
+- The software + camera combination may need a new 510(k) if the combination
+  creates a new intended use.
+
+================================================================================
+
+KEY SOURCES
+-----------
+- FDA 510(k) Database: https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm
+- FDA Product Code LHQ: https://fda.report/Product-Code/LHQ
+- LHQ Device List: http://510k.medevnet.com/product_codes/index.cfm?fuseaction=companies&product_code=LHQ
+- FDA on Pediatric Devices: https://www.fda.gov/medical-devices/products-and-medical-procedures/pediatric-medical-devices
+- FDA on Off-Label Use: https://www.fda.gov/files/about%20fda/published/Frequently-Asked-Questions-About-Medical-Devices---Information-Sheet.pdf
+- Total Thermal Imaging Warning Letter: https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/total-thermal-imaging-inc-567742-02222019

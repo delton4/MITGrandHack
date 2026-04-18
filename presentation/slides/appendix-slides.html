@@ -108,15 +108,15 @@ body.present .screenshot-hint.fade { opacity: 0; }
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--phase1); margin-top: 8px; padding: 2px 6px; background: rgba(37,99,160,0.08); border-radius: 3px; display: inline-block;">PHASE 1</div>
         </div>
         <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
-          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Polyethylene IR Window</div>
-          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">92–94% LWIR transmission</div>
-          <div style="font-size: 12px; color: var(--ink-muted);">Insert in incubator access port</div>
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">3D-Printed Clip Mount</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">Attaches camera to isolette exterior</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">No incubator modification</div>
         </div>
         <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Edge Compute Box</div>
-          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">IEC 60601-1 certified</div>
-          <div style="font-size: 12px; color: var(--ink-muted);">Spinnaker SDK + YOLOv8-Pose</div>
-          <div style="font-size: 12px; color: var(--ink-muted);">CPTD computation, 24h local buffer</div>
+          <div style="font-size: 15px; font-weight: 600; color: var(--ink);">Raspberry Pi 4</div>
+          <div style="font-size: 12px; color: var(--ink-muted); margin-top: 4px;">USB-connected to camera</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">YOLOv8-Pose + CPTD computation</div>
+          <div style="font-size: 12px; color: var(--ink-muted);">24h local buffer</div>
         </div>
         <div style="text-align: center; padding: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal);">HL7v2 ORU &#8594;</div>
       </div>
@@ -379,7 +379,7 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
       </tbody>
     </table>
     <div style="margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 28px; font-size: 15px; color: var(--ink-light); line-height: 1.6;">
-      <strong style="color: var(--ink);">EHR transition is an advantage, not a risk.</strong> Health Connect was built to bridge Northwell's 30+ EHR consolidation. NeoTherm module deploys once in the incubator lid, speaks HL7v2, and Health Connect routes to whatever EHR is current. Zero changes needed during the Epic cutover.
+      <strong style="color: var(--ink);">EHR transition is an advantage, not a risk.</strong> Health Connect was built to bridge Northwell's 30+ EHR consolidation. NeoTherm's edge compute speaks HL7v2, and Health Connect routes to whatever EHR is current. Zero changes needed during the Epic cutover.
     </div>
   </div>
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
@@ -390,25 +390,22 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
 <!-- ════════════════════════ A8: HARDWARE COST ════════════════════════ -->
 <div class="slide-wrapper"><div class="slide" id="a8">
   <div class="slide-pad">
-    <div class="label">Appendix A8 — Hardware: Incubator Module</div>
-    <h2>Custom-built device. &lt;$1,000/bed.</h2>
-    <p class="subtitle">Integrated module mounts in the incubator lid — camera, compute, and IR-transparent window in one unit. No ceiling mount. No separate edge box. No modification to the incubator.</p>
+    <div class="label">Appendix A8 — Hardware: Camera + Edge Compute</div>
+    <h2>Off-the-shelf camera. &lt;$500/bed.</h2>
+    <p class="subtitle">FLIR thermal camera clips to the outside of the isolette — no custom device, no incubator modification, no FDA registration for the hardware. Separate Raspberry Pi handles compute.</p>
     <div style="display: flex; gap: 32px; margin-top: 32px;">
       <!-- BOM table -->
       <div style="flex: 1;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px;">Bill of Materials — Prototype</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px;">Bill of Materials — Per Bed</div>
         <table class="data-table">
           <thead><tr><th>Component</th><th style="width:120px">Prototype</th><th style="width:120px">At Scale</th></tr></thead>
           <tbody>
-            <tr><td>FLIR Lepton 3.5 + breakout</td><td>$250</td><td>$150</td></tr>
+            <tr><td>FLIR Lepton 3.5 camera (off-the-shelf)</td><td>$250</td><td>$150</td></tr>
+            <tr><td>Isolette clip mount (3D-printed)</td><td>$20</td><td>$8</td></tr>
             <tr><td>Raspberry Pi 4 + accessories</td><td>$100</td><td>$85</td></tr>
-            <tr><td>3D-printed housing + mount</td><td>$50</td><td>$18</td></tr>
-            <tr><td>IR-transparent window + frame</td><td>$25</td><td>$12</td></tr>
+            <tr><td>USB cable + power supply</td><td>$15</td><td>$10</td></tr>
             <tr><td>Blackbody reference + thermistor</td><td>$75</td><td>$45</td></tr>
-            <tr><td>Display (optional bedside)</td><td>$40</td><td>$30</td></tr>
-            <tr><td>Incubator brackets</td><td>$30</td><td>$15</td></tr>
-            <tr><td>Assembly + QC</td><td>$50</td><td>$28</td></tr>
-            <tr style="font-weight: 600;"><td>Total BOM</td><td style="color: var(--teal-deep);">$620</td><td style="color: var(--green);">$383</td></tr>
+            <tr style="font-weight: 600;"><td>Total BOM</td><td style="color: var(--teal-deep);">$460</td><td style="color: var(--green);">$298</td></tr>
           </tbody>
         </table>
       </div>
@@ -418,40 +415,37 @@ Authorization: Bearer &lt;SMART-on-FHIR-token&gt;
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
           <div style="display: grid; grid-template-columns: 120px 100px 1fr; font-size: 14px;">
             <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--ink);">1–50 units</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink);">$620</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">3D printing, retail components</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink);">$460</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">3D-printed clip, retail components</div>
             <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">50–500</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$480</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">OEM pricing, bulk components</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$370</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">OEM Lepton pricing, bulk Pi orders</div>
             <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">500–2K</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$383</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">Injection molding, supply agreements</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">2K–5K</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$340</div>
-            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">Dedicated assembly line</div>
-            <div style="padding: 10px 16px; font-weight: 600;">10K+</div>
-            <div style="padding: 10px 16px; color: var(--green); font-weight: 600;">$275</div>
-            <div style="padding: 10px 16px; color: var(--ink-muted);">Custom ASIC, full automation</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light);">$298</div>
+            <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); color: var(--ink-muted);">Injection-molded clip, supply agreements</div>
+            <div style="padding: 10px 16px; font-weight: 600;">2K+</div>
+            <div style="padding: 10px 16px; color: var(--green); font-weight: 600;">$250</div>
+            <div style="padding: 10px 16px; color: var(--ink-muted);">Volume discounts, dedicated assembly</div>
           </div>
         </div>
         <div style="display: flex; gap: 16px;">
           <div style="flex: 1; background: var(--teal-light); border: 1px solid rgba(13,138,138,.12); border-radius: 8px; padding: 20px; text-align: center;">
-            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--teal-deep);">&lt;$1K</div>
-            <div style="font-size: 13px; color: var(--teal-deep); margin-top: 4px;">Target per bed (prototype)</div>
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--teal-deep);">&lt;$500</div>
+            <div style="font-size: 13px; color: var(--teal-deep); margin-top: 4px;">Per bed (prototype)</div>
           </div>
           <div style="flex: 1; background: var(--green-light); border: 1px solid rgba(26,122,76,.12); border-radius: 8px; padding: 20px; text-align: center;">
-            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--green);">$275</div>
-            <div style="font-size: 13px; color: var(--green); margin-top: 4px;">At 10K+ scale</div>
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--green);">$250</div>
+            <div style="font-size: 13px; color: var(--green); margin-top: 4px;">At 2K+ scale</div>
           </div>
           <div style="flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center;">
-            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--ink);">90%+</div>
-            <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">Gross margin at scale</div>
+            <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--ink);">0</div>
+            <div style="font-size: 13px; color: var(--ink-muted); margin-top: 4px;">Custom parts to FDA-register</div>
           </div>
         </div>
       </div>
     </div>
     <div style="margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 24px; font-size: 14px; color: var(--ink-light); line-height: 1.6;">
-      <strong style="color: var(--ink);">Design approach:</strong> Custom module integrates into existing incubator lid port. FLIR Lepton 3.5 thermal sensor + Raspberry Pi compute + IR-transparent window in one housing. CAD model complete. No incubator modification required — mounts in standard access port. All processing on-device, HL7v2 output to hospital network.
+      <strong style="color: var(--ink);">Key insight: no new medical device.</strong> An off-the-shelf 510(k)-cleared FLIR camera clips to the outside of the isolette with a simple 3D-printed bracket. A Raspberry Pi sits beside the isolette, connected via USB. No custom housing, no IR window, no incubator modification. The camera is already cleared — we only build the software layer.
     </div>
   </div>
   <div class="slide-brand">NEOTHERM — APPENDIX</div>
@@ -558,14 +552,22 @@ window.addEventListener('resize', () => { scaleSlides(); if (document.body.class
 
 function scalePresentSlide() {
   const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-  wrappers.forEach(w => { w.querySelector('.slide').style.transform = `scale(${s})`; w.style.height = '100vh'; w.style.alignItems = 'center'; });
+  const offsetX = (window.innerWidth - 1920 * s) / 2;
+  const offsetY = (window.innerHeight - 1080 * s) / 2;
+  wrappers.forEach(w => {
+    const slide = w.querySelector('.slide');
+    slide.style.transformOrigin = 'top left';
+    slide.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${s})`;
+    w.style.height = '100vh';
+    w.style.alignItems = 'flex-start';
+  });
 }
 function showSlide(i) {
   currentSlide = Math.max(0, Math.min(i, wrappers.length - 1));
   wrappers.forEach((w, idx) => w.classList.toggle('active-slide', idx === currentSlide));
 }
 function enterPresent() { document.body.classList.add('present'); showSlide(0); scalePresentSlide(); setTimeout(() => document.getElementById('hint').classList.add('fade'), 3000); }
-function exitPresent() { document.body.classList.remove('present'); wrappers.forEach(w => { w.classList.remove('active-slide'); w.style.alignItems = ''; }); document.getElementById('hint').classList.remove('fade'); scaleSlides(); }
+function exitPresent() { document.body.classList.remove('present'); wrappers.forEach(w => { w.classList.remove('active-slide'); w.style.alignItems = ''; w.querySelector('.slide').style.transformOrigin = 'top center'; }); document.getElementById('hint').classList.remove('fade'); scaleSlides(); }
 
 document.addEventListener('keydown', (e) => {
   if ((e.key === 'f' || e.key === 'F') && !document.body.classList.contains('present') && document.activeElement.contentEditable !== 'true') enterPresent();

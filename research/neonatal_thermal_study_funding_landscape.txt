@@ -1,0 +1,1017 @@
+NEONATAL THERMAL IMAGING STUDY: NON-NIH FUNDING LANDSCAPE
+Northwell Health / Cohen Children's Medical Center
+Study: 2,500-patient prospective observational study, 18 months, ~$800K-$1M
+Conditions: Sepsis, NEC, apnea, and other NICU conditions via infrared cameras
+Last updated: March 2026
+
+===========================================================================
+HOW TO READ THIS DOCUMENT
+===========================================================================
+Each funder is rated for "Northwell Fit" at the end:
+  STRONG  — realistic match for scope, amount, and eligibility
+  MODERATE — possible, but requires adaptation or has significant caveats
+  WEAK    — too small, wrong eligibility, or near-impossible to align
+
+Funders are grouped:
+  TIER 1: Primary targets ($200K+ potential, good fit)
+  TIER 2: Supplementary sources ($50K-$200K, or career-specific)
+  TIER 3: Small grants / pipeline builders (<$50K)
+  TIER 4: Corporate / industry partnerships
+  TIER 5: Regional / New York-specific
+
+===========================================================================
+TIER 1: PRIMARY TARGETS — Pursue Immediately
+===========================================================================
+
+------------------------------------------------------------------------
+1. THRASHER RESEARCH FUND — E.W. "Al" Thrasher Award
+------------------------------------------------------------------------
+Organization: E.W. Al Thrasher Research Fund (nonprofit)
+Program: E.W. "Al" Thrasher Awards (major grants)
+URL: https://www.thrasherresearch.org/al-thrasher-award?lang=eng
+
+AMOUNT: $200,000 – $600,000 total; median award (2020-2025) was $420,000
+DURATION: Up to 3 years
+INDIRECT COSTS: Capped at 7% of direct costs (well below typical NIH rates)
+
+DEADLINES — Two cycles per year:
+  - Fall Cycle: Concept paper due January 13, 2026 (Noon Mountain Time)
+    Full proposal due ~late March 2026
+    Funding decision: ~August 2026
+  - Spring Cycle: Concept paper due July 15, 2026 (Noon Mountain Time)
+    Full proposal due ~late October 2026
+    Funding decision: ~March 2027
+  NOTE: Contact Research Managers before submitting. They strongly encourage
+  pre-submission conversations to confirm fit.
+
+ELIGIBILITY:
+  - Doctoral-level degree (MD, PhD, MD/PhD, or equivalent) required
+  - No US citizenship requirement — open to researchers worldwide
+  - Institutions worldwide eligible; US academic medical centers are common awardees
+  - No career stage restriction (early or established investigators eligible)
+  - Salary support for PI capped at 20% FTE (based on 40-hour week)
+
+APPLICATION PROCESS (Two-step):
+  1. Concept Paper: Short lay-language summary of the project. NO references,
+     NO CVs, NO preliminary data required. Kept intentionally brief.
+  2. If invited (~10% of concept papers): Full proposal submitted within ~10 weeks
+     of invitation. External peer review follows. Committee evaluation final.
+  3. Concepts NOT invited get brief written feedback.
+
+WHAT THEY FUND:
+  - Hypothesis-driven clinical research with direct path to changing pediatric care
+  - Diagnostic innovation, early detection, and outcomes research
+  - Prospective observational studies ARE fundable if hypothesis-driven
+  - They have funded neonatal sepsis-adjacent research (sepsis in Uganda cohort study)
+  - Multi-site international studies welcome with co-investigators from each site
+
+WHAT THEY DO NOT FUND:
+  - Behavioral/mental health counseling programs
+  - Pure mechanism research (animal models, cell lines alone)
+  - Educational programs
+  - Major equipment purchases (>$4,000 per item discouraged)
+  - Fetal tissue research
+
+NORTHWELL FIT: STRONG
+  The multi-condition observational approach, the clinical focus, the sepsis
+  detection gap, and the "changing clinical care" framing align well. The low
+  indirect cost cap (7%) means Northwell/Feinstein needs to negotiate this with
+  their grants office (standard Northwell overhead is much higher — get a waiver
+  in advance). The January 2026 concept paper cycle is the immediate target.
+  Budget at ~$450K–$550K total (inclusive of 7% indirect). Frame primarily as
+  sepsis early detection with NEC and apnea as secondary aims.
+
+------------------------------------------------------------------------
+2. THE GERBER FOUNDATION — Major Research Award
+------------------------------------------------------------------------
+Organization: The Gerber Foundation (private foundation, Fremont, MI)
+Program: Major Research Awards (experienced PIs)
+URL: https://www.gerberfoundation.org/research-grants/
+
+AMOUNT: Up to $350,000 total (inclusive of all costs including indirect costs)
+DURATION: Up to 3 years
+INDIRECT COSTS: Capped at 10% of total award (included in the $350K cap)
+
+DEADLINES (2026 cycle, confirmed):
+  - Concept Paper due: February 2, 2026 at 4:00 PM Eastern Time *** PASSED ***
+    NOTE: The February 2026 deadline has passed. Next cycle would be ~Fall 2026.
+    Check gerberfoundation.org for the Fall 2026 concept paper deadline.
+  - Full Proposals due: July 15, 2026 at 4:00 PM Eastern Time
+    (for those invited from the February concept paper cycle)
+  - Final Selection Notification: Late November 2026
+
+ELIGIBILITY:
+  - US-based organizations with 501(c)(3) status (including public universities)
+  - Must NOT be classified as a private foundation
+  - PI must be "experienced" (this is the Major Award track vs. Novice)
+  - No citizenship requirement mentioned; must be US-based institution
+  - International research occasionally funded if PI is US-based
+
+APPLICATION PROCESS:
+  1. Concept Paper (lay-language, no references, no CVs)
+  2. Only ~10% of concept paper submitters invited to full proposal
+  3. Full proposal with standard scientific sections
+  4. Board approval required after committee recommendation
+  5. 35-50% of full proposals funded; ~10-15 awards per year total
+
+SUCCESS RATE NOTE: Very competitive (concept-to-award ~3-5% overall), but the
+focused pediatric/neonatal focus of this study gives strong alignment.
+
+WHAT THEY FUND:
+  - Applied research reducing neonatal and early childhood illness incidence
+  - Improving cognitive, social, emotional development outcomes
+  - Prior funded work includes: rapid neonatal genetic diagnosis, hypothermia
+    as a biomarker in young infants with sepsis, neonatal-perinatal conditions
+  - Thermal imaging for neonatal sepsis detection would be a strong fit
+
+NORTHWELL FIT: STRONG
+  Total award ($350K) covers ~40% of study cost — appropriate as one of
+  multiple funders. The expired February 2026 deadline means you are targeting
+  the Fall 2026 concept paper cycle. 10% indirect cap needs pre-authorization
+  from Northwell grants office. Frame concept paper in lay language; no
+  preliminary data needed at concept stage.
+
+------------------------------------------------------------------------
+3. MARCH OF DIMES — Discovery Research Grants
+------------------------------------------------------------------------
+Organization: March of Dimes
+Program: Discovery Research Grants (established researchers)
+URL: https://www.marchofdimes.org/our-work/research/grants-awards/discovery-research-grants
+
+AMOUNT: $200,000 total over 2 years (10% indirect costs included in this amount)
+  => ~$182K direct costs + ~$18K indirect costs
+DURATION: 2 years (Award period: February 1, 2027 – January 31, 2029 for 2026 applicants)
+INDIRECT COSTS: 10% of total award (included in $200K cap)
+
+DEADLINES:
+  - Application portal closes: September 8, 2026 at 11:59 PM
+  - Award announcements: ~Late 2026 / Early 2027
+  - Online system: https://modresearchgrants.aibs-scores.org
+
+ELIGIBILITY:
+  - Must hold doctoral degree
+  - Health professionals, researchers, epidemiologists, social scientists
+  - Faculty appointments or equivalent at academic institutions, hospitals,
+    or research organizations
+  - Employees of small businesses, startups, nonprofits, and pharmaceutical
+    companies with maternal/infant health focus also eligible
+  - Global applicants welcome
+  - Cannot simultaneously hold another March of Dimes grant
+  - No citizenship restriction
+
+APPLICATION PROCESS (Single-stage, online):
+  Required materials:
+  - Project title and abstract
+  - Objectives and hypotheses
+  - Preliminary data (expected)
+  - Research approach
+  - Budget justification
+  - Biographical sketch
+  - Available facilities
+  - Current/pending financial support documentation
+  No LOI required — direct full application submission.
+
+WHAT THEY FUND:
+  - Translational discoveries in maternal and infant health
+  - Neonatal conditions through first year of life
+  - Multi-condition monitoring aligns with their mission scope
+
+NORTHWELL FIT: STRONG
+  $200K covers roughly 20-25% of study costs. The 2-year duration fits the
+  18-month study with some buffer. Northwell Health hospitals hold research
+  organization status. Sepsis, NEC, and apnea are all within March of Dimes
+  scope. September 8, 2026 deadline is actionable now. Budget the full $200K
+  and plan to co-fund remaining ~$600-800K through other sources.
+
+------------------------------------------------------------------------
+4. PCORI — Broad Pragmatic Studies (Category 1)
+------------------------------------------------------------------------
+Organization: Patient-Centered Outcomes Research Institute (PCORI)
+Program: Broad Pragmatic Studies PFA — Cycle 1 2026
+URL: https://www.pcori.org/funding-opportunities/announcement/broad-pragmatic-studies-pcori-funding-announcement-cycle-1-2026
+
+AMOUNT: Up to $5,000,000 in direct costs (Category 1)
+  Total available pool: ~$120 million across all categories for this cycle
+DURATION: Up to 4-5 years typical
+INDIRECT COSTS: Not specified in the PFA; PCORI typically uses negotiated rates
+
+DEADLINES:
+  - Letter of Intent: January 6, 2026 *** PASSED ***
+  - Full Application Deadline: May 5, 2026 at 5:00 PM Eastern Time
+    NOTE: The LOI deadline has passed. For the May 5 application, you would
+    need to have submitted an LOI in January. Check Cycle 2 2026 for the next
+    opportunity — typical Cycle 2 deadline is ~October-November 2026.
+
+ELIGIBILITY:
+  - No stated restriction on applicant type — hospitals and health systems
+    can apply and are common PCORI applicants
+  - Northwell Health would be fully eligible as a health system
+  - Patient/stakeholder engagement is MANDATORY throughout the research
+
+KEY REQUIREMENT — Patient Engagement:
+  PCORI requires meaningful patient and partner engagement as a core
+  component. For a NICU study, this means:
+  - Involving NICU family/parent advocates in study design
+  - Parent advisors on the research team
+  - Demonstrated engagement plan in the application
+  - This is non-negotiable and will sink the application if weak
+
+WHAT THEY FUND:
+  - Comparative effectiveness research using real-world evidence
+  - Pragmatic observational studies at scale
+  - Multi-site studies
+  - Your 2,500-patient prospective observational study is structurally a
+    strong fit for PCORI's pragmatic studies mechanism
+  - The study is not a "comparative effectiveness" study in the traditional
+    sense (no intervention arm), but it could be framed as comparing
+    thermal imaging plus standard care vs. standard care alone for early
+    detection outcomes
+
+NORTHWELL FIT: MODERATE-STRONG
+  The LOI deadline passed, so target Cycle 2 2026. The funding ceiling ($5M)
+  far exceeds your budget, which is fine — request only what you need
+  (~$900K-$1M). The patient engagement requirement is substantive: budget
+  for a parent advisory board, and engage NICU family advocates from CCMC
+  early. Bring in a health economist to frame the comparative effectiveness
+  angle. This is the highest-upside single grant on this list.
+
+------------------------------------------------------------------------
+5. NSF Smart and Connected Health (SCH)
+------------------------------------------------------------------------
+Organization: National Science Foundation + NIH (joint program)
+Program: Smart Health and Biomedical Research in the Era of AI (SCH)
+  Solicitation: NSF 25-542
+URL: https://www.nsf.gov/funding/opportunities/sch-smart-health-biomedical-research-era-artificial-intelligence/nsf25-542/solicitation
+
+AMOUNT: Up to $1,200,000 total (up to $300,000/year for 4 years)
+DURATION: Up to 4 years
+INDIRECT COSTS: Standard NSF PAPPG rates (typically negotiated; full F&A allowed)
+
+DEADLINES:
+  - The FY2025 deadline was October 3, 2025 (passed)
+  - A new solicitation for FY2026 is expected to be released ~Summer 2026
+    with a deadline likely in October 2026
+  - Watch NSF.gov for the updated solicitation number
+
+ELIGIBILITY — CRITICAL CAVEAT:
+  - Lead institution MUST be an accredited higher education institution (IHE)
+    or a qualifying non-profit research organization
+  - HOSPITALS AND ACADEMIC MEDICAL CENTERS CANNOT BE LEAD APPLICANTS
+  - Northwell Health / CCMC CANNOT serve as the primary applicant
+  - HOWEVER: Northwell can be a subawardee/collaborator on a grant led
+    by Hofstra University (which is Northwell's academic partner) or
+    another university
+  - This is a PARTNERSHIP OPPORTUNITY with Hofstra or another NY university
+
+PARTNERSHIP STRATEGY FOR NORTHWELL:
+  - Lead PI: Engineering or informatics faculty at Hofstra University
+    (or Stony Brook, Columbia, Cornell-Weill, NYU)
+  - Northwell/CCMC PI: Co-investigator providing clinical site, patients,
+    clinical expertise
+  - Structure: University leads the AI/imaging algorithm development;
+    Northwell leads the clinical validation and prospective data collection
+  - Subaward from university to Northwell is standard and permissible
+
+WHAT THEY FUND (Priority areas relevant to your project):
+  - "Multimodal Sensing Systems for health monitoring" (directly relevant)
+  - "Biomedical Image Interpretation using pattern recognition" (directly relevant)
+  - "Transformative Analytics for biomedical data" (relevant for ML analysis)
+  - AI and sensor fusion in clinical settings
+  - Thermal camera-based monitoring with AI analysis is an excellent fit
+
+NORTHWELL FIT: MODERATE (requires university partner as lead)
+  This is an excellent technical fit for the thermal imaging AI component.
+  Budget ~$1.2M (the maximum) split ~40% engineering/$600K + 60% clinical
+  site/$720K sub to Northwell. Partner with Hofstra or a nearby engineering
+  school. Approach Hofstra's engineering department NOW given the ~6-month
+  timeline to next solicitation.
+
+===========================================================================
+TIER 2: SUPPLEMENTARY / CAREER-LEVEL FUNDING
+===========================================================================
+
+------------------------------------------------------------------------
+6. BURROUGHS WELLCOME FUND — Career Awards for Medical Scientists (CAMS)
+------------------------------------------------------------------------
+Organization: Burroughs Wellcome Fund
+Program: Career Awards for Medical Scientists
+URL: https://www.bwfund.org/grants/biomedical-sciences/career-awards-for-medical-scientists/
+RFP: https://www.bwfund.org/wp-content/uploads/2020/07/BWF_CAMS_RFP_2026_v3.pdf
+
+AMOUNT: $700,000 over 5 years ($140,000/year)
+DURATION: 5 years
+INDIRECT COSTS: Not prominently specified; BWF typically negotiates with institutions
+
+DEADLINES (2026 cycle, confirmed):
+  - Application deadline was: October 7, 2025 *** PASSED for 2026 ***
+  - Status notifications: February 25, 2026
+  - Finalist interviews: March 17-18, 2026
+  - Awards announced: June 2026
+  - Watch for the 2027 cycle RFP release (~Summer 2026)
+
+ELIGIBILITY:
+  - For physician-scientists transitioning to research independence
+  - Must be in last 2 years of fellowship training OR within 3 years of
+    starting a faculty appointment
+  - Strong translational/clinical research focus required
+  - US and Canadian institutions eligible
+  - Pediatric research funded (2025 awardee researching pediatric viral illness)
+  - No citizenship restriction
+
+NORTHWELL FIT: MODERATE
+  The 2026 cycle applications closed. This is a PI career development grant,
+  not a study grant — the neonatal thermal imaging study would be the proposed
+  research project, but the grant supports the PI's salary/career, not the
+  study directly. Best for a CCMC neonatologist who is 0-3 years post-fellowship
+  in their faculty appointment. Target the 2027 cycle.
+
+------------------------------------------------------------------------
+7. DORIS DUKE FOUNDATION — Clinical Scientist Development Award (CSDA)
+------------------------------------------------------------------------
+Organization: Doris Duke Charitable Foundation
+Program: Clinical Scientist Development Awards
+URL: https://www.dorisduke.org/funding-areas/medical-research/clinical-scientist-development-award/
+
+AMOUNT: $450,000 total over 3 years
+  ($150,000/year direct costs + $15,000/year indirect costs at 10%)
+DURATION: 3 years
+INDIRECT COSTS: 10% of direct costs ($15,000/year)
+
+DEADLINES:
+  - Typically opens for applications in fall each year
+  - Historical deadlines: ~October annually
+  - Check dorisduke.org for 2026 cycle announcement
+
+ELIGIBILITY:
+  - Must have completed ALL clinical training (residency + fellowship +
+    any post-fellowship research years)
+  - Must hold Assistant Professor rank at faculty appointment
+  - Early-career physician-scientists transitioning to independence
+  - US-based institutions
+  - Provides protected research time plus salary support
+
+NORTHWELL FIT: MODERATE
+  Like CAMS, this is a PI career development mechanism. The study itself
+  would be the research plan. Best for a CCMC neonatologist at the
+  Assistant Professor level who has just completed fellowship. Research
+  plan aligns well (clinical, translational, patient outcomes). Check
+  whether Northwell has submitted CSDA applications before.
+
+------------------------------------------------------------------------
+8. HARTWELL FOUNDATION — Individual Biomedical Research Awards
+------------------------------------------------------------------------
+Organization: The Hartwell Foundation
+Program: Individual Biomedical Research Awards
+URL: https://thehartwellfoundation.com/Individual_Biomedical_Research_Awards.shtml
+
+AMOUNT: $100,000/year direct costs for 3 years ($300,000 total)
+DURATION: 3 years
+INDIRECT COSTS: Not specified; likely negotiable
+
+DEADLINES:
+  - Internal (limited submission) deadline at Northwell: typically ~May-June
+    (institutions hold internal competitions)
+  - Foundation deadline: typically ~August-September
+  - Watch for 2026 cycle announcement from Feinstein Institutes grants office
+  - 2025 internal deadline was approximately June 8, 2025
+
+ELIGIBILITY — CRITICAL REQUIREMENT:
+  - US CITIZENSHIP REQUIRED for all nominees (hard requirement)
+  - Must be affiliated with an invited institution
+  - Northwell/Feinstein Institutes would need to be a participating institution
+    (check with Feinstein grants office — not all institutions are invited)
+  - Focus: "early-stage, transformative applied biomedical research benefiting
+    children of the United States"
+  - Limited submission: Most institutions may nominate 2 candidates maximum
+    (Top Ten institutions get 3 nominees)
+  - If nominee does not hold MD, must have a physician collaborator
+
+APPLICATION PROCESS:
+  - Internal competition at Northwell first
+  - Selected nominee submits formal proposal to Foundation
+  - Finalists invited to personal interviews in Memphis, TN
+  - At least 10 awards given annually
+
+NORTHWELL FIT: MODERATE
+  The citizenship requirement (US only) is a hard filter. The "early-stage"
+  framing means this likely targets researchers 1-7 years post-training.
+  $300K covers ~30-35% of study costs. First step: confirm Northwell/Feinstein
+  is an invited institution. Contact Feinstein Institutes Grants Management
+  Office: (516) 465-2776.
+
+------------------------------------------------------------------------
+9. AMERICAN HEART ASSOCIATION — Transformational Project Award
+------------------------------------------------------------------------
+Organization: American Heart Association
+Program: Transformational Project Award
+URL: https://professional.heart.org/en/research-programs/aha-funding-opportunities/transformational-project-award
+
+AMOUNT: $300,000 total over 3 years ($100,000/year)
+  Includes 10% indirect costs within the $100K/year budget
+DURATION: 3 years
+INDIRECT COSTS: 10% included in the annual budget
+
+DEADLINES:
+  - Typically opens in July and closes in mid-October each year
+  - 2026 deadline: Watch AHA's professional.heart.org for the July 2026
+    RFP release and ~October 2026 deadline
+
+ELIGIBILITY:
+  - No career stage limit — open to all investigators
+  - Must hold post-baccalaureate doctoral degree or clinical doctoral degree
+  - US institutions standard but check for any restrictions
+  - RELEVANCE CAVEAT: AHA primarily funds cardiovascular and stroke research
+  - Neonatal apnea with its cardiovascular/respiratory components is the
+    strongest angle for AHA
+  - NEC and sepsis are more of a stretch unless framed around cardiovascular
+    compromise (septic shock, hemodynamic instability, cardiorespiratory
+    monitoring)
+
+NORTHWELL FIT: MODERATE
+  $300K is meaningful supplementary funding. The study's neonatal apnea
+  and sepsis-related cardiovascular compromise are your strongest AHA angles.
+  Frame the grant primarily around cardiorespiratory thermal signatures
+  in neonatal sepsis. AHA has funded NICU hemodynamic research before.
+
+------------------------------------------------------------------------
+10. MARCH OF DIMES — Basil O'Connor Starter Scholar Research Award
+------------------------------------------------------------------------
+Organization: March of Dimes
+Program: Basil O'Connor Starter Scholar Research Awards
+URL: https://www.marchofdimes.org/our-work/research/grants-awards/basil-oconnor-starter-scholar-research-awards
+
+AMOUNT: $150,000 over 2 years (~$75,000/year; specific indirect cost info not stated)
+DURATION: 2 years
+INDIRECT COSTS: Standard terms — check full RFP
+
+DEADLINES:
+  - Application deadline: May 29, 2026
+  - Online portal: https://modresearchgrants.aibs-scores.org
+
+ELIGIBILITY:
+  - 4-9 years post-completion of required clinical training (MD/MD-PhD) OR
+    4-9 years post-terminal degree (PhD)
+  - Must hold full-time tenure-track (or equivalent) faculty position at
+    US-based institution (for MD/MD-PhD)
+  - PhD scientists must have primary or secondary appointment in a clinical
+    department related to maternal or child health
+  - Cannot simultaneously hold any other March of Dimes grant
+  - Total existing grant support cannot exceed $200,000/year before award start
+
+NORTHWELL FIT: MODERATE
+  Career-stage restricted (4-9 years post-training). Perfect for a
+  mid-career CCMC neonatologist. $150K toward the total budget. The
+  constraint on total existing support (<$200K/year) may be limiting if
+  the PI is already well-funded. Strong thematic fit.
+
+------------------------------------------------------------------------
+11. NSF CAREER Award (companion to SCH, for the academic partner)
+------------------------------------------------------------------------
+NOTE: Not applicable to Northwell directly, but relevant if partnering with
+a university PI. The NSF CAREER Award provides $400K-$500K over 5 years for
+junior faculty. If partnering with a Hofstra/Stony Brook engineering PI
+who is assistant professor, they could apply for NSF CAREER alongside the
+SCH partnership. This doesn't directly fund Northwell but strengthens the
+partnership and the parallel SCH application.
+
+===========================================================================
+TIER 3: SMALL GRANTS — Pipeline Building / Preliminary Data Generation
+===========================================================================
+
+------------------------------------------------------------------------
+12. AAP / NRP — NRP Research Grant Program
+------------------------------------------------------------------------
+Organization: American Academy of Pediatrics / Neonatal Resuscitation Program
+Program: NRP Research Grant Program
+URL: https://www.aap.org/en/pedialink/neonatal-resuscitation-program/nrp-research-grant-and-young-investigator-award-program/
+
+AMOUNT: Up to $50,000 (NRP Research Grant); up to $15,000 (Young Investigator Award)
+DURATION: 1-2 years typical
+INDIRECT COSTS: NOT permitted. Faculty salary and indirect costs explicitly excluded.
+
+DEADLINE: May 1, 2026
+
+ELIGIBILITY:
+  - Any healthcare professional with interest in neonatal resuscitation research
+  - Young Investigator: Physician-in-training or within 4 years of medical training
+  - US and Canadian institutions
+  - Research must address: transitional physiology, evidence-based resuscitation,
+    teaching/evaluating skills, or skill retention
+
+RELEVANCE NOTE: The NEC, sepsis, and apnea components of your study may not
+directly fit the "neonatal resuscitation" frame. However, apnea of prematurity
+and its detection could be framed as a resuscitation-relevant outcome.
+
+NORTHWELL FIT: WEAK-MODERATE
+  Small award ($50K max), no indirects, narrow focus on resuscitation. Best
+  used as a seed grant to generate preliminary data for a specific sub-aim
+  (e.g., apnea detection via thermal imaging). Use this to build the
+  preliminary data package for Thrasher or Gerber applications.
+
+------------------------------------------------------------------------
+13. LITTLE GIRAFFE FOUNDATION — Neonatal Research Initiative
+------------------------------------------------------------------------
+Organization: Little Giraffe Foundation (nonprofit, Mount Prospect, IL)
+Program: Neonatal Research Initiative
+URL: https://www.littlegiraffefoundation.org/neonatal-research-initiative-request-for-proposals
+
+AMOUNT: $5,000 – $10,000
+DURATION: 1 year
+INDIRECT COSTS: NOT permitted. "Indirect costs including PI salary, rent, utility
+  costs, etc. are not funded."
+
+DEADLINE:
+  - Letter of Intent due: June 26, 2026
+  - Awards announced: October 2026
+
+ELIGIBILITY:
+  - Qualified scientists, doctors, or nurses at US institutions
+  - Grants awarded to institutions (not individuals)
+  - IRB approval required before funds released
+  - No citizenship requirement stated
+
+APPLICATION PROCESS:
+  - Letter of Intent (max 4 pages) + Application Form
+  - Submit to: funding@littlegiraffefoundation.org
+  - Subject line: "LGF Research Funding Request"
+  - Required: study overview, specific aims, mission relevance, budget with
+    percent effort, hypothesis, preliminary data, methods, evaluation plan,
+    current financial support, references
+
+NORTHWELL FIT: WEAK
+  Way too small ($5-10K) for a $800K-$1M study. However, this is a free
+  application requiring minimal effort. Use it to fund a specific sub-component
+  (e.g., purchasing thermal imaging equipment for a pilot phase, or a specific
+  study aim). The preliminary data from a $10K pilot would strengthen major
+  grant applications.
+
+------------------------------------------------------------------------
+14. NANN — Small Grants (Nurse-Led Research)
+------------------------------------------------------------------------
+Organization: National Association of Neonatal Nurses
+Program: Small Grants Mentee/Mentor Program
+URL: https://nann.org/education/research/small-grants
+
+AMOUNT: Up to $5,000
+DURATION: 1 year (funding cycle: November 1 – October 31)
+INDIRECT COSTS: Not specified
+
+ELIGIBILITY:
+  - Mentee must be a current NANN member
+  - Previous external funding of >$25,000 direct costs makes applicant ineligible
+  - Specifically supports nurses developing research skills
+  - Requires a mentor
+
+NORTHWELL FIT: WEAK
+  Appropriate only if a NICU nurse at CCMC is the named PI/mentee and wants
+  to develop nursing research skills around thermal monitoring. Not suitable
+  as a primary grant for this study. Could fund a nursing sub-study (e.g.,
+  nursing staff adoption of thermal camera workflow).
+
+------------------------------------------------------------------------
+15. NEC SOCIETY — Early Career Research Award
+------------------------------------------------------------------------
+Organization: NEC Society (necrotizing enterocolitis advocacy and research)
+Program: Early Career Research Award (with APSA)
+URL: https://necsociety.org/early-career-research-award/
+
+AMOUNT: $5,000
+DURATION: 1 year
+INDIRECT COSTS: Not specified
+
+DEADLINE: Check necsociety.org for current cycle
+
+ELIGIBILITY:
+  - Early career faculty physician-scientists
+  - Primary research must align with NEC Research Priorities
+  - Offered with American Pediatric Surgical Association (APSA) fellows
+
+NORTHWELL FIT: WEAK
+  Tiny award ($5K), very early-career focused. The NEC aim of your study
+  is a strong thematic fit, but this won't meaningfully fund the study.
+  Useful for a specific NEC-focused sub-study by a surgical fellow.
+
+------------------------------------------------------------------------
+16. BRAVE BEGINNINGS (Will Rogers Institute)
+------------------------------------------------------------------------
+Organization: Will Rogers Motion Picture Pioneers Foundation / Brave Beginnings
+Program: NICU Equipment Grants
+URL: https://bravebeginnings.org/for-hospitals/
+
+AMOUNT: Average $50,000; ~$1 million distributed annually across ~200 hospitals
+DURATION: One-time
+INDIRECT COSTS: Not applicable (equipment grant)
+
+FOCUS: Purchasing NICU equipment (ventilators, incubators, resuscitators, etc.)
+  NOT research grants. Funds life-saving NICU equipment purchases.
+
+ELIGIBILITY:
+  - US hospitals with a NICU
+  - Must demonstrate need for the equipment
+
+NORTHWELL FIT: WEAK (wrong grant type)
+  This funds equipment purchases, not research studies. However, if the
+  study requires dedicated thermal imaging hardware, Brave Beginnings could
+  potentially fund camera purchases (~$20-50K for a set of thermal cameras)
+  if framed as life-saving monitoring equipment for the NICU. Submit a
+  targeted application for 2-3 FLIR cameras. This would reduce your study
+  budget by funding the equipment line.
+
+===========================================================================
+TIER 4: CORPORATE / INDUSTRY PARTNERSHIPS
+===========================================================================
+
+------------------------------------------------------------------------
+17. TELEDYNE FLIR — Research Partnership / Equipment Donation
+------------------------------------------------------------------------
+Organization: Teledyne FLIR (acquired FLIR Systems in 2021)
+Corporate HQ: Wilsonville, OR
+Contact: https://www.flir.com/about/about-flir/
+Medical Division: FLIR commercial division handles healthcare/medical inquiries
+
+GRANT STRUCTURE: No formal open grant program. FLIR/Teledyne does not have
+a published research grants program. Partnerships are negotiated directly.
+
+POTENTIAL SUPPORT STRUCTURES:
+  a) Equipment loan/donation: FLIR cameras ($15,000-$30,000 each retail) loaned
+     to the study at no cost in exchange for co-authorship and use of data
+  b) Sponsored Research Agreement: Teledyne FLIR funds the study (~$200-500K)
+     in exchange for access to clinical validation data (important for their
+     medical market expansion)
+  c) In-kind support: Technical staff time, algorithm development support,
+     calibration services
+
+STRATEGIC VALUE TO FLIR:
+  - FLIR has no FDA-cleared clinical neonatal monitoring product
+  - A 2,500-patient prospective validation study is exactly what they need
+    to support FDA clearance of a NICU-specific product
+  - Your study data is commercially valuable to them
+  - This is a strong negotiating position for the Northwell team
+
+HOW TO APPROACH:
+  1. Contact Teledyne FLIR's Medical/Healthcare Business Development team
+     through flir.com or LinkedIn (search "Teledyne FLIR medical applications")
+  2. Send a one-page study overview emphasizing the FDA pathway value
+  3. Propose a Sponsored Research Agreement through Northwell's tech transfer
+     office (Feinstein Institutes Technology Transfer)
+  4. Request both equipment donation AND modest research funding
+
+NORTHWELL FIT: STRONG (if negotiated proactively)
+  This is the highest-leverage industry partnership. Do NOT accept equipment
+  loans without a formal agreement protecting Northwell's publication rights,
+  IP, and data ownership. Work through Feinstein's tech transfer office.
+  News flash (Feb 2026): Teledyne FLIR OEM division is actively advancing
+  infrared imaging state-of-the-art — timing is good for this outreach.
+
+------------------------------------------------------------------------
+18. PHILIPS HEALTHCARE — Investigator-Initiated Studies (IIS)
+------------------------------------------------------------------------
+Organization: Philips Healthcare (Royal Philips N.V.)
+Program: Investigator-Initiated Studies — IGT-Devices and Systems
+URL: https://www.usa.philips.com/healthcare/support/investigator-initiated-research
+
+GRANT AMOUNT: Not published — "funding is highly competitive" and reviewed from
+  "both scientific and financial lens." Historical IIS awards range from
+  $50,000 to $500,000+ depending on study size.
+DURATION: Study-specific
+INDIRECT COSTS: "Non-study overhead or non-study related costs" explicitly excluded.
+  Procedural costs, capital equipment, and institution equipment also excluded.
+
+FOCUS AREAS (per their published criteria):
+  - IGT-Devices: Peripheral vasculature, interventional cardiology, cardiac solutions
+  - IGT-Systems: Coronary, vascular, electrophysiology, structural/congenital heart disease
+  - Interventional oncology and pulmonology
+  NOTE: These are NOT neonatal-specific programs. The IIS program is
+  primarily for image-guided therapy (catheterization lab / interventional)
+
+RELEVANCE: Philips makes NICU monitoring equipment (IntelliVue patient monitors
+  are standard in NICUs). The clinical monitoring / patient monitoring division
+  is separate from the IGT-focused IIS program. Contact Philips' Clinical
+  Sciences / Health Tech Innovation team directly.
+
+ALTERNATIVE APPROACH FOR PHILIPS:
+  - Contact Philips NICU product team directly (not the IIS program)
+  - Philips has an active interest in AI-enhanced NICU monitoring
+  - Propose a co-development partnership or sponsored research agreement
+  - The Philips Foundation (separate from Philips Healthcare) focuses
+    on global health access — less relevant for a US academic study
+
+NORTHWELL FIT: MODERATE (but through direct business development, not IIS)
+  The published IIS program doesn't fit. Approach Philips' NICU monitoring
+  business unit directly with a partnership proposal. Philips' IntelliVue
+  monitors are already in most NICUs — integration with thermal data feeds
+  is a compelling pitch.
+
+------------------------------------------------------------------------
+19. GE HEALTHCARE — Research Collaboration
+------------------------------------------------------------------------
+Organization: GE HealthCare Technologies Inc.
+Program: No formal open grant program; partnerships negotiated via business development
+URL: https://research.gehealthcare.com/
+
+PARTNERSHIP MODEL:
+  GE HealthCare has recently formed multi-year "Care Innovation Hub"
+  partnerships with major academic medical centers (UCSF, University of
+  Rochester Medical Center). These are typically 5-7 year agreements with
+  shared IP development and co-publication rights.
+
+  GE's current focus areas:
+  - AI-driven imaging and diagnostics
+  - Hospital operations optimization
+  - Brain health (neurodegeneration)
+  - Precision oncology
+
+NICU RELEVANCE:
+  GE Healthcare makes NICU incubators, warmers, and patient monitoring equipment.
+  Their neonatal product line (Giraffe OmniBed, etc.) is in NICUs worldwide.
+  A thermal imaging integration with GE's neonatal equipment is a compelling
+  product development story.
+
+HOW TO APPROACH:
+  - Contact GE HealthCare's Global Research team or their Neonatal Product
+    Management team
+  - Frame as a clinical validation study for next-generation GE NICU monitoring
+  - Propose through Northwell's tech transfer / industry relations office
+
+NORTHWELL FIT: MODERATE (long timeline, but worth pursuing)
+  GE partnerships tend to be large and complex. This is a 2-3 year business
+  development process, not something that closes before your study starts.
+  Useful as a long-term strategic partnership, not for immediate study funding.
+
+------------------------------------------------------------------------
+20. DRAEGER — NICU Equipment Partnership
+------------------------------------------------------------------------
+Organization: Draeger Medical (Drägerwerk AG & Co. KGaA)
+US operations: Telford, PA
+Neonatal products: Babyleo TN500 (incubator/warmer), neonatal ventilators
+URL: https://www.draeger.com/en-us_us/Hospital/Neonatal-Care
+
+PARTNERSHIP MODEL:
+  No published grant program. Draeger has partnered with hospitals for
+  equipment demonstrations and clinical studies. Recently partnered with
+  AdventHealth for Babyleo TN500 rollout.
+
+RELEVANCE: Draeger makes NICU incubators and warmers that could integrate
+  with overhead thermal cameras. If your study involves mounting thermal
+  cameras over Draeger incubators, this creates a commercial development
+  opportunity for Draeger.
+
+HOW TO APPROACH:
+  - Contact Draeger Medical's Clinical & Scientific Affairs or Business
+    Development for North America
+  - Propose equipment loan (incubators + thermal camera integration)
+    in exchange for study collaboration
+  - Data from the study supports Draeger's regulatory pathway for
+    integrated thermal monitoring
+
+NORTHWELL FIT: MODERATE (equipment partnership potential)
+  Lower cash value than FLIR, but Draeger's incubator integration is
+  clinically important. An equipment loan agreement reduces budget
+  by avoiding camera/mounting costs. Not a primary funder.
+
+===========================================================================
+TIER 5: REGIONAL / NEW YORK-SPECIFIC FUNDING
+===========================================================================
+
+------------------------------------------------------------------------
+21. NEW YORK HEALTH FOUNDATION — Special Projects Fund
+------------------------------------------------------------------------
+Organization: New York Health Foundation (independent foundation)
+Program: Special Projects Fund 2026
+URL: https://nyhealthfoundation.org/rfp/2026-special-projects-fund/
+
+AMOUNT: $50,000 – $200,000 (maximum $200,000)
+DURATION: 1-2 years (one-time, nonrenewable)
+INDIRECT COSTS: Not specified
+
+DEADLINES:
+  - Letter of Inquiry due: November 20, 2025 at 1:00 PM *** PASSED ***
+  - Contact specialprojectsfund@nyhealthfoundation.org for next cycle timing
+  - Check nyhealthfoundation.org for 2027 cycle opening
+
+ELIGIBILITY:
+  - 501(c)(3) nonprofits OR for-profit organizations with significant NY
+    impact potential
+  - Must be New York State focused
+  - Three strategic priority areas (Primary Care, Healthy Food/Healthy Lives,
+    Veterans' Health) are NOT eligible for this fund — this is for "emerging
+    health care and public health issues that fall outside" their main areas
+  - Northwell Health Foundation has 501(c)(3) status
+
+NORTHWELL FIT: MODERATE (but deadline passed for 2026)
+  $200K maximum is meaningful supplementary funding. The LOI deadline passed
+  in November 2025. Plan for the 2027 cycle. Frame the application around
+  health equity (NICU outcomes in diverse Long Island communities), health
+  technology adoption, or newborn safety as an "emerging" public health
+  issue in New York State.
+
+------------------------------------------------------------------------
+22. NORTHWELL INTERNAL — Department of Medicine Research Jump-Start
+       Pilot (RJSP) Program
+------------------------------------------------------------------------
+Organization: Northwell Health / Feinstein Institutes for Medical Research
+Program: Research Jump-Start Pilot (RJSP) Program
+URL: https://physicians.northwell.edu/academic-departments/medicine/clinical-research-healthcare-innovational-lab
+
+AMOUNT: $50,000 per award (one-year)
+DURATION: 1 year
+INDIRECT COSTS: Internal; no external overhead issue
+
+ELIGIBILITY:
+  - Northwell Department of Medicine faculty
+  - Designed to generate preliminary data for external grant applications
+  - Competitive internal process
+
+NOTE: CCMC is under the Department of Pediatrics, not Medicine. Check
+  whether the Department of Pediatrics has an equivalent pilot grant program.
+  Also check the Feinstein Institutes Innovation Grant program.
+
+NORTHWELL FIT: STRONG (for internal pilot funding)
+  This is ideal for generating the preliminary data needed for Thrasher,
+  Gerber, and PCORI applications. A $50K internal pilot (even from the
+  Pediatrics version of this program) would fund a 6-month feasibility study
+  demonstrating thermal camera capture feasibility and initial signal validity
+  in 20-30 NICU patients. This preliminary data dramatically improves
+  competitiveness for all external grants listed above. Apply immediately.
+
+------------------------------------------------------------------------
+23. LONG ISLAND COMMUNITY FOUNDATION — Health Grants
+------------------------------------------------------------------------
+Organization: Long Island Community Foundation
+Program: Health Grants (Cycle 3 — August deadline)
+URL: https://licf.org/information-for/for-nonprofits/what-the-licf-funds/
+
+AMOUNT: $15,000 – $25,000 (average; occasionally larger)
+DURATION: 1-2 years
+INDIRECT COSTS: Not specified
+
+DEADLINES: Cycle 3 applications accepted with August deadline. Check licf.org.
+
+ELIGIBILITY:
+  - Nassau County: Hospitals and FQHCs eligible
+  - Suffolk County: Hospitals, healthcare facilities, and nonprofits
+  - Focus: Health disparities, access to quality care, maternal and child health
+
+NORTHWELL FIT: WEAK
+  Too small ($15-25K) for your study scope. Could fund a very specific
+  community-facing component (e.g., parent education about NICU monitoring
+  or a health equity sub-analysis of outcomes by race/ethnicity). Use as
+  supplementary/community engagement funding, not as a primary research grant.
+
+===========================================================================
+ADDITIONAL FUNDERS — REVIEWED AND NOTED
+===========================================================================
+
+CHARLES HOOD FOUNDATION (Research Grants)
+  Amount: $165,000 per award over 2 years; typically 5 grants per cycle
+  Deadline: September 2026 cycle open now
+  CRITICAL RESTRICTION: New England only (MA, CT, RI, NH, VT, ME)
+  Northwell (NY) is NOT eligible.
+  URL: https://charleshoodfoundation.org/research-grants/
+
+BURROUGHS WELLCOME FUND — Career Awards at the Scientific Interface (CASI)
+  Amount: $500,000 over 5 years
+  Focus: Postdoctoral researchers bridging physical/biological sciences
+  RFP: https://www.bwfund.org/wp-content/uploads/2020/10/BWF-CASI-RFP-2026_Final.pdf
+  Most recent deadline: ~October 2025. Check for 2026-2027 cycle.
+  Eligibility: Postdoctoral fellows; not for established faculty
+
+AMERICAN LUNG ASSOCIATION — Catalyst Award
+  Amount: $50,000/year for 2 years ($100,000 total)
+  Focus: Early-career scientists in respiratory/pulmonary research
+  Deadline: Check lung.org/awards; 2026-2027 cycle applications opening ~Spring 2026
+  Relevance: Apnea of prematurity has respiratory components — moderate fit
+  URL: https://www.lung.org/research/awards-and-grants-opportunities
+
+PIDS FOUNDATION — Fellowship and Research Awards
+  Amount: $50,000/year for 2 years (Plotkin/Sanofi Fellowship Award)
+  Focus: Pediatric infectious diseases fellows and early faculty
+  Relevance: Neonatal sepsis detection is a direct fit for infectious disease focus
+  URL: https://pidsfoundation.org/awards/fellowship-and-research-awards/
+  Contact pidsfoundation.org for 2026 cycle deadlines
+
+NYFIRST (New York Fund for Innovation in Research and Scientific Talent)
+  Administering agency: Empire State Development
+  Amount: Up to $1,000,000 (requires 2:1 match from institution)
+  Focus: Recruiting or retaining exceptional life science researchers to NY
+  Eligible institutions: Medical schools in New York State
+  Note: Northwell has a medical school affiliation (Zucker School of Medicine
+  at Hofstra/Northwell). This could fund recruitment of a senior thermal
+  imaging/neonatology investigator to lead the study.
+  Deadline: Rolling through May 15, 2026
+  URL: https://esd.ny.gov/ny-first-program
+
+GATES FOUNDATION — Grand Challenges
+  Focus: Global health in low/middle income countries primarily
+  Note: A US NICU study at Northwell is explicitly NOT their target market.
+  The sepsis detection AI could eventually be positioned for global health,
+  but the study itself does not qualify for Gates Grand Challenges funding.
+
+CZI (Chan Zuckerberg Initiative)
+  Focus: Tools and technologies for basic science (genomics, cell biology)
+  Their pediatric health work is focused on cell atlas/genomics, not monitoring
+  No open funding opportunity relevant to thermal NICU monitoring found.
+
+PCORI — Retrospective Observational Studies
+  A separate PCORI track: "Improving Health Decision Making With Comparative
+  Clinical Effectiveness Research: Retrospective Observational Studies"
+  Amount: Up to $2M in direct costs, 3 years
+  Deadline: Check pcori.org for Cycle 2 2026 (likely October 2026)
+  Note: This is for studies using existing data — not prospective. Less
+  applicable to your study unless you first build the dataset and apply later.
+
+===========================================================================
+FUNDING STRATEGY: RECOMMENDED SEQUENCING
+===========================================================================
+
+PHASE 0 — NOW (March-April 2026)
+  Priority 1: Apply for Northwell internal RJSP / Pediatrics pilot grant.
+    Goal: $50K to fund a 6-month feasibility phase (50-100 patients).
+    This generates preliminary data needed for all external applications.
+  Priority 2: Contact Teledyne FLIR medical business development.
+    Goal: Equipment loan agreement + potential Sponsored Research Agreement.
+    Draft a 1-page study summary with FDA pathway language.
+  Priority 3: Register on PCORI's website; review Cycle 2 2026 schedule.
+
+PHASE 1 — MAY-JUNE 2026
+  Priority 1: Submit Thrasher Research Fund concept paper (January 2026
+    deadline already passed; next opportunity is July 15, 2026 concept paper).
+    Contact Thrasher Research Managers now to discuss fit.
+  Priority 2: Submit March of Dimes Discovery Grant application (due Sept 8, 2026).
+  Priority 3: Identify university engineering partner (Hofstra, Stony Brook)
+    for NSF SCH joint proposal. Begin drafting.
+  Priority 4: Submit Little Giraffe Foundation Letter of Intent (due June 26, 2026).
+
+PHASE 2 — JULY-OCTOBER 2026
+  Priority 1: Submit Thrasher concept paper (due July 15, 2026) if Jan cycle passed.
+  Priority 2: Submit Gerber Foundation concept paper (Fall 2026 cycle).
+  Priority 3: Submit NSF SCH proposal with university partner (expect ~Oct 2026 deadline).
+  Priority 4: Submit AAP/NRP Research Grant (due May 1, 2026).
+
+PHASE 3 — ONGOING
+  - Apply to AHA Transformational Project Award (~October 2026 deadline)
+  - Apply to NY Health Foundation Special Projects Fund (2027 cycle)
+  - Develop Doris Duke CSDA or BWF CAMS application for lead neonatologist
+
+REALISTIC STACKED FUNDING SCENARIO (Total: ~$850K-$1.05M):
+  Thrasher E.W. Al Award:         $450,000
+  March of Dimes Discovery:       $200,000
+  Northwell Internal Pilot:       $50,000
+  FLIR Equipment Loan (in-kind):  ~$60,000
+  NRP Research Grant:             $50,000
+  AHA Transformational:           $100,000
+  NY Health Foundation:           $150,000 (2027 cycle)
+  ----------------------------------------
+  TOTAL (cash + in-kind):        ~$1,060,000
+
+This requires winning from multiple sources simultaneously, which is the
+standard strategy for prospective observational studies at academic centers.
+
+===========================================================================
+INDIRECT COST STRATEGY FOR NORTHWELL
+===========================================================================
+Most of these foundations impose indirect cost caps well below Northwell's
+negotiated F&A (Facilities & Administration) rate with NIH (typically 50-60%
+of modified total direct costs at academic medical centers):
+
+  Thrasher:      7% of direct costs
+  Gerber:        10% of total award (included)
+  March of Dimes: 10% of total award (included)
+  PCORI:         Negotiated rate (standard)
+  NSF:           Standard negotiated rate (full F&A typical for SCH)
+  Hartwell:      Not published
+  AHA:           10% included in budget
+
+ACTION REQUIRED: Before submitting ANY of these applications, obtain written
+  authorization from the Feinstein Institutes Grants Management Office
+  (GMO) to accept reduced indirect cost rates. This is standard at most
+  academic medical centers — foundations that cap overhead are routinely
+  accepted by most institutions. Get this approval IN WRITING.
+  GMO Contact: (516) 465-2776 | feinstein.northwell.edu/for-professionals/grants-management-office
+
+===========================================================================
+SOURCES CONSULTED (Web search and direct page fetches, March 2026)
+===========================================================================
+- thrasherresearch.org (E.W. Al Thrasher Awards page + FAQ)
+- gerberfoundation.org (Research Grants page)
+- marchofdimes.org (Discovery Research Grants; Basil O'Connor Awards)
+- bwfund.org (CAMS and CASI 2026 RFPs)
+- pcori.org (Broad Pragmatic Studies Cycle 1 2026)
+- nsf.gov (SCH solicitation NSF 25-542)
+- littlegiraffefoundation.org (Neonatal Research Initiative RFP)
+- aap.org (NRP Research Grants)
+- nann.org (Small Grants)
+- necsociety.org (Early Career Research Award)
+- bravebeginnings.org (Hospital equipment grants)
+- thehartwellfoundation.com (Individual Biomedical Research Awards)
+- charleshoodfoundation.org (Research Grants)
+- professional.heart.org (AHA Transformational Project Award)
+- dorisduke.org (CSDA Medical Research)
+- usa.philips.com (Investigator-Initiated Studies program)
+- nyhealthfoundation.org (Special Projects Fund 2026)
+- licf.org (Long Island Community Foundation health grants)
+- esd.ny.gov (NYFIRST program)
+- feinstein.northwell.edu (Grants Management Office)
+- physicians.northwell.edu (RJSP program)
+- pidsfoundation.org (Fellowship and Research Awards)
+- lung.org (ALA Catalyst and other awards)

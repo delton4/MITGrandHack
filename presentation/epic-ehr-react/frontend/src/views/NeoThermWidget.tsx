@@ -6,7 +6,8 @@ interface Props {
   patientId: number;
 }
 
-function tempToColor(temp: number): string {
+function tempToColor(temp: number | null): string {
+  if (temp == null) return '#999';
   if (temp <= 32) return '#3B82F6';
   if (temp <= 33) {
     const t = (temp - 32) / 1;
@@ -349,22 +350,22 @@ export default function NeoThermWidget({ patientId }: Props) {
 
                 {/* Temperature labels */}
                 <text x="100" y="95" textAnchor="middle" fontSize="9" fill="#fff" fontWeight="bold">
-                  {latest.core_temp.toFixed(1)}°
+                  {latest.core_temp != null ? `${latest.core_temp.toFixed(1)}°` : '—'}
                 </text>
                 <text x="100" y="138" textAnchor="middle" fontSize="8" fill="#fff" fontWeight="bold">
-                  {latest.abdomen_temp.toFixed(1)}°
+                  {latest.abdomen_temp != null ? `${latest.abdomen_temp.toFixed(1)}°` : '—'}
                 </text>
                 <text x="44" cy="160" textAnchor="middle" fontSize="7" fill="#fff" fontWeight="bold" y="163">
-                  {latest.left_hand.toFixed(1)}°
+                  {latest.left_hand != null ? `${latest.left_hand.toFixed(1)}°` : '—'}
                 </text>
                 <text x="156" textAnchor="middle" fontSize="7" fill="#fff" fontWeight="bold" y="163">
-                  {latest.right_hand.toFixed(1)}°
+                  {latest.right_hand != null ? `${latest.right_hand.toFixed(1)}°` : '—'}
                 </text>
                 <text x="84" textAnchor="middle" fontSize="7" fill="#fff" fontWeight="bold" y="283">
-                  {latest.left_foot.toFixed(1)}°
+                  {latest.left_foot != null ? `${latest.left_foot.toFixed(1)}°` : '—'}
                 </text>
                 <text x="116" textAnchor="middle" fontSize="7" fill="#fff" fontWeight="bold" y="283">
-                  {latest.right_foot.toFixed(1)}°
+                  {latest.right_foot != null ? `${latest.right_foot.toFixed(1)}°` : '—'}
                 </text>
               </svg>
             )}

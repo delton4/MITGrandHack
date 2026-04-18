@@ -731,21 +731,21 @@ noscript + .content .animate-in,
         <div class="arch-node" data-component="flir-camera" onclick="showEvidence('flir-camera')">
           <div class="node-icon camera">&#9678;</div>
           <div class="node-title">FLIR A400/A700</div>
-          <div class="node-subtitle">Radiometric thermal camera. 640×480, 9Hz. Ceiling-mounted above isolette. Raw temperature matrix per pixel.</div>
+          <div class="node-subtitle">Radiometric thermal camera. 640×480, 9Hz. Clipped to outside of isolette. Raw temperature matrix per pixel.</div>
           <span class="node-badge badge-phase1">Phase 1</span>
         </div>
 
         <div class="arch-node" data-component="ir-window" onclick="showEvidence('ir-window')">
           <div class="node-icon camera">◇</div>
-          <div class="node-title">IR-Transparent Window</div>
-          <div class="node-subtitle">Polyethylene foil insert in incubator lid. 92–94% LWIR transmission. Solves Plexiglas opacity to infrared.</div>
+          <div class="node-title">External Mounting</div>
+          <div class="node-subtitle">Camera images through isolette wall or open porthole. No IR window needed — camera positioned outside, not inside the incubator.</div>
           <span class="node-badge badge-phase1">Phase 1</span>
         </div>
 
         <div class="arch-node" data-component="edge-compute" onclick="showEvidence('edge-compute')">
           <div class="node-icon edge">▣</div>
-          <div class="node-title">Medical-Grade Edge Box</div>
-          <div class="node-subtitle">IEC 60601-1 certified (Advantech / Kontron). Runs NeoTherm agent: Spinnaker SDK → YOLOv8-Pose → CPTD (core-peripheral temperature difference). Local 24h buffer.</div>
+          <div class="node-title">Raspberry Pi Edge Compute</div>
+          <div class="node-subtitle">Raspberry Pi 4 beside isolette, USB-connected to camera. Runs NeoTherm agent: YOLOv8-Pose → CPTD (core-peripheral temperature difference). Local 24h buffer.</div>
           <span class="node-badge badge-phase1">Phase 1</span>
         </div>
 
@@ -1333,11 +1333,11 @@ const evidenceData = {
     ]
   },
   'ir-window': {
-    name: 'Polyethylene IR-Transparent Window',
+    name: 'External Camera Mounting',
     rationale: [
-      { title: 'The problem', detail: 'Incubator Plexiglas (PMMA) is opaque to long-wave infrared (8–14μm). Thermal cameras cannot see through standard incubator walls. This is the primary engineering barrier cited in every NICU thermal imaging study.' },
-      { title: 'Polyethylene solution', detail: 'Low-density polyethylene (LDPE) film transmits 92–94% of LWIR radiation. Used by Lorato et al. for multi-camera respiratory monitoring and by the Aachen NIRT group. ~$5 in materials, can be applied as an insert in incubator access ports.' },
-      { title: 'Production pathway', detail: 'For pilot: polyethylene foil insert. For production: partner with Dräger or GE to co-develop CaF₂ (calcium fluoride) IR-transparent window as incubator accessory — more durable, provides competitive moat through OEM partnership.' }
+      { title: 'Why external?', detail: 'Mounting the camera outside the isolette eliminates the IR window problem entirely. The camera images through an open porthole or from above the open-top warmer. No modification to the incubator required.' },
+      { title: 'Porthole approach', detail: 'Standard isolettes have 4–8 hand-access portholes. Camera clips to the exterior rim and images through an open port. Alternatively, images the neonate from above during kangaroo care or open-warmer periods.' },
+      { title: 'Simplicity advantage', detail: 'No custom housing, no IR-transparent window, no incubator modification. A 3D-printed clip is the only custom hardware. This eliminates the need to register a new medical device — the camera is already 510(k) cleared.' }
     ],
     sources: [
       { text: 'Lorato et al. — Polyethylene LWIR windows for NICU cameras', url: 'https://www.medit.hia.rwth-aachen.de/en/research/research/single/project/neonatal-infrared-thermography-imaging-114' },

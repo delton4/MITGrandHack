@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early Sepsis Detection — NICU Cost Savings Model</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e0e0e8;
+    --text-dim: #8888a0;
+    --accent: #6c8cff;
+    --accent2: #ff6c8c;
+    --green: #4cda8a;
+    --orange: #f0a050;
+    --purple: #a06cff;
+    --red: #ff5c5c;
+    --cyan: #50d0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .header {
+    padding: 32px 40px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #10101a 0%, var(--bg) 100%);
+  }
+
+  .header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .scenario-tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .scenario-tab {
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .scenario-tab:hover { border-color: var(--accent); color: var(--text); }
+  .scenario-tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    min-height: calc(100vh - 120px);
+  }
+
+  /* --- LEFT PANEL: INPUTS --- */
+  .inputs-panel {
+    border-right: 1px solid var(--border);
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    gap: 8px;
+  }
+
+  .input-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    flex: 1;
+    cursor: help;
+  }
+
+  .input-label:hover { color: var(--text); }
+
+  .input-field {
+    width: 90px;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface2);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+    text-align: right;
+    transition: border-color 0.15s;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .input-unit {
+    font-size: 10px;
+    color: var(--text-dim);
+    width: 30px;
+    text-align: left;
+  }
+
+  .source-tag {
+    font-size: 9px;
+    color: var(--accent);
+    background: rgba(108,140,255,0.1);
+    padding: 1px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .source-tag:hover {
+    background: rgba(108,140,255,0.2);
+  }
+
+  /* --- RIGHT PANEL: RESULTS --- */
+  .results-panel {
+    padding: 20px 28px;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+  }
+
+  .headline-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .color-green { color: var(--green); }
+  .color-accent { color: var(--accent); }
+  .color-orange { color: var(--orange); }
+  .color-purple { color: var(--purple); }
+  .color-red { color: var(--accent2); }
+  .color-cyan { color: var(--cyan); }
+
+  /* Charts */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .chart-card.full { grid-column: 1 / -1; }
+
+  .chart-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .chart-container {
+    position: relative;
+    height: 220px;
+  }
+
+  .chart-container.tall { height: 300px; }
+
+  /* Audit trail */
+  .audit-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .audit-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .audit-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .calc-step {
+    font-size: 11px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .calc-step:last-child { border-bottom: none; }
+
+  .calc-formula {
+    color: var(--text-dim);
+  }
+
+  .calc-result {
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .calc-highlight {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  /* Sensitivity table */
+  .sens-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  .sens-table th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sens-table td {
+    padding: 6px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .sens-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* Sources panel */
+  .sources-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 16px;
+  }
+
+  .source-item {
+    font-size: 11px;
+    padding: 4px 0;
+    color: var(--text-dim);
+  }
+
+  .source-item strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* Tooltip */
+  .tooltip-container {
+    position: relative;
+  }
+
+  .tooltip-text {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: #222;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    width: 260px;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    line-height: 1.5;
+  }
+
+  .tooltip-container:hover .tooltip-text { display: block; }
+
+  @media (max-width: 1100px) {
+    .layout { grid-template-columns: 1fr; }
+    .inputs-panel {
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .results-panel { max-height: none; }
+    .headline-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Early Sepsis Detection — NICU Cost Savings Model</h1>
+  <div class="subtitle">All inputs sourced from published peer-reviewed literature · MIT Grand Hack 2026</div>
+  <div class="scenario-tabs">
+    <button class="scenario-tab" data-scenario="conservative" onclick="setScenario('conservative')">Conservative (6h lead)</button>
+    <button class="scenario-tab active" data-scenario="moderate" onclick="setScenario('moderate')">Moderate (12h lead)</button>
+    <button class="scenario-tab" data-scenario="aggressive" onclick="setScenario('aggressive')">Aggressive (48h lead)</button>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- LEFT: INPUTS -->
+  <div class="inputs-panel">
+
+    <div class="input-group">
+      <div class="input-group-title">Population</div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          NICU admits/yr (US)
+          <span class="tooltip-text">Total US NICU admissions per year. CDC/March of Dimes estimate ~370K for 2023.</span>
+        </span>
+        <input class="input-field" type="number" id="nicu_admissions" value="370000" onchange="recalc()">
+        <span class="source-tag" title="CDC/March of Dimes 2023">CDC</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          % very preterm (<30w)
+          <span class="tooltip-text">Fraction of NICU admissions that are very preterm (&lt;30 weeks GA). ~10% of all NICU admits.</span>
+        </span>
+        <input class="input-field" type="number" id="pct_very_preterm" value="10" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          LOS incidence in VLBW
+          <span class="tooltip-text">21% of VLBW infants surviving >3 days develop late-onset sepsis. Stoll et al. 2002 (NICHD NRN, n=6,215).</span>
+        </span>
+        <input class="input-field" type="number" id="los_incidence" value="21" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+        <span class="source-tag" title="Stoll et al. 2002, Pediatrics">Stoll '02</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-title">Baseline Outcomes</div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          LOS mortality rate
+          <span class="tooltip-text">Mortality among VLBW infants with LOS: 10-18% across studies. Midpoint 15%.</span>
+        </span>
+        <input class="input-field" type="number" id="los_mortality" value="15" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+        <span class="source-tag" title="Stoll 2002, Flannery 2022">Multi</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          LOS → shock rate
+          <span class="tooltip-text">9% of LOS cases progress to septic shock (requiring vasopressors). Gorantiwar et al. 2021, n=279.</span>
+        </span>
+        <input class="input-field" type="number" id="los_to_shock" value="9" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+        <span class="source-tag" title="Gorantiwar et al. 2021, J Paediatr Child Health">Gor '21</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Shock mortality
+          <span class="tooltip-text">40% mortality among neonates progressing to septic shock. Gorantiwar et al. 2021.</span>
+        </span>
+        <input class="input-field" type="number" id="shock_mortality" value="40" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+        <span class="source-tag" title="Gorantiwar et al. 2021">Gor '21</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          LOS → meningitis rate
+          <span class="tooltip-text">~5% of sepsis-evaluated neonates develop meningitis. Stoll 2004, Flannery 2023.</span>
+        </span>
+        <input class="input-field" type="number" id="los_to_meningitis" value="5" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+        <span class="source-tag" title="Stoll 2004, Flannery 2023 JAMA">Stoll '04</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-title">Costs (CAD → USD)</div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Daily NICU cost
+          <span class="tooltip-text">Mean daily NICU cost CAD $2,149 from Rolnitsky 2023 Table 1. Converted to USD.</span>
+        </span>
+        <input class="input-field" type="number" id="daily_cost_cad" value="2149" step="10" onchange="recalc()">
+        <span class="input-unit">CAD</span>
+        <span class="source-tag" title="Rolnitsky et al. 2023, Table 1">Rol '23</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Extra LOS days (sepsis)
+          <span class="tooltip-text">Median additional length of stay for infants with LOS: 16 days. Rolnitsky 2023, Table 3.</span>
+        </span>
+        <input class="input-field" type="number" id="extra_los_days" value="16" step="1" onchange="recalc()">
+        <span class="input-unit">days</span>
+        <span class="source-tag" title="Rolnitsky et al. 2023, Table 3">Rol '23</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Meningitis cost incr.
+          <span class="tooltip-text">Incremental cost for meningitis diagnosis: CAD $38,872. Rolnitsky 2023 Table 2.</span>
+        </span>
+        <input class="input-field" type="number" id="meningitis_cost" value="38872" step="100" onchange="recalc()">
+        <span class="input-unit">CAD</span>
+        <span class="source-tag" title="Rolnitsky et al. 2023, Table 2">Rol '23</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Shock extra days
+          <span class="tooltip-text">Estimated additional days for shock management (vasopressors, ICU escalation). Derived from Gorantiwar 2021 timeline data.</span>
+        </span>
+        <input class="input-field" type="number" id="shock_extra_days" value="14" step="1" onchange="recalc()">
+        <span class="input-unit">days</span>
+        <span class="source-tag" title="Estimated from Gorantiwar 2021">Est.</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          CAD → USD rate
+          <span class="tooltip-text">Approximate 2023 exchange rate.</span>
+        </span>
+        <input class="input-field" type="number" id="cad_to_usd" value="0.74" step="0.01" onchange="recalc()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-title">Early Detection Effect</div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Shock prevention rate
+          <span class="tooltip-text">% of shock cases prevented by earlier treatment. Conservative 30%, moderate 50%, aggressive 70%. Scenario-dependent.</span>
+        </span>
+        <input class="input-field" type="number" id="shock_prevention" value="50" step="5" onchange="recalc()">
+        <span class="input-unit">%</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Mortality reduction
+          <span class="tooltip-text">HeRO RCT showed 22% mortality reduction in VLBW. We scale by scenario. Moorman et al. 2011, BMJ.</span>
+        </span>
+        <input class="input-field" type="number" id="mortality_reduction" value="15" step="1" onchange="recalc()">
+        <span class="input-unit">%</span>
+        <span class="source-tag" title="Moorman et al. 2011 (HeRO RCT), scaled">HeRO</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Days saved per case
+          <span class="tooltip-text">Reduction in the 16-day excess LOS from earlier treatment. Conservative 3, moderate 5, aggressive 8.</span>
+        </span>
+        <input class="input-field" type="number" id="days_saved" value="5" step="1" onchange="recalc()">
+        <span class="input-unit">days</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Meningitis prevention
+          <span class="tooltip-text">% of secondary meningitis cases prevented by earlier sepsis treatment. Conservative estimate.</span>
+        </span>
+        <input class="input-field" type="number" id="meningitis_prevention" value="20" step="5" onchange="recalc()">
+        <span class="input-unit">%</span>
+      </div>
+      <div class="input-row">
+        <span class="input-label tooltip-container">
+          Detection sensitivity
+          <span class="tooltip-text">What % of sepsis cases does the tool actually detect earlier? 100% = all cases benefit. 50% = only half.</span>
+        </span>
+        <input class="input-field" type="number" id="detection_sensitivity" value="100" step="5" onchange="recalc()">
+        <span class="input-unit">%</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-title">Infrastructure</div>
+      <div class="input-row">
+        <span class="input-label">Level III/IV NICUs (US)</span>
+        <input class="input-field" type="number" id="num_nicus" value="600" step="10" onchange="recalc()">
+        <span class="source-tag" title="AHA Hospital Survey">AHA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: RESULTS -->
+  <div class="results-panel">
+
+    <!-- Headline stats -->
+    <div class="headline-stats">
+      <div class="stat-card">
+        <div class="stat-label">Annual Savings (US)</div>
+        <div class="stat-value color-green" id="stat-total-savings">—</div>
+        <div class="stat-sub" id="stat-per-nicu">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Bed-Days Freed</div>
+        <div class="stat-value color-accent" id="stat-bed-days">—</div>
+        <div class="stat-sub" id="stat-bed-days-sub">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Lives Saved</div>
+        <div class="stat-value color-orange" id="stat-lives">—</div>
+        <div class="stat-sub" id="stat-lives-sub">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Shock Cases Prevented</div>
+        <div class="stat-value color-purple" id="stat-shock">—</div>
+        <div class="stat-sub" id="stat-shock-sub">—</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Savings by Pathway (USD)</div>
+        <div class="chart-container"><canvas id="chart-pathways"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Scenario Comparison</div>
+        <div class="chart-container"><canvas id="chart-scenarios"></canvas></div>
+      </div>
+      <div class="chart-card full">
+        <div class="chart-title">Sensitivity: Total Savings vs Detection Sensitivity</div>
+        <div class="chart-container"><canvas id="chart-sensitivity"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Audit Trail -->
+    <div class="audit-section">
+      <div class="audit-title"><span class="dot" style="background:var(--accent)"></span> Population Funnel</div>
+      <div id="audit-population"></div>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-title"><span class="dot" style="background:var(--green)"></span> Pathway A: Length of Stay Reduction</div>
+      <div id="audit-pathway-a"></div>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-title"><span class="dot" style="background:var(--purple)"></span> Pathway B: Shock Prevention</div>
+      <div id="audit-pathway-b"></div>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-title"><span class="dot" style="background:var(--orange)"></span> Pathway C: Mortality Reduction</div>
+      <div id="audit-pathway-c"></div>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-title"><span class="dot" style="background:var(--cyan)"></span> Pathway D: Complication Prevention</div>
+      <div id="audit-pathway-d"></div>
+    </div>
+
+    <!-- Sensitivity Table -->
+    <div class="audit-section">
+      <div class="audit-title"><span class="dot" style="background:var(--accent2)"></span> Sensitivity Analysis</div>
+      <table class="sens-table">
+        <thead>
+          <tr>
+            <th>Detection Sensitivity</th>
+            <th>Annual Savings</th>
+            <th>Per NICU</th>
+            <th>Lives Saved</th>
+            <th>Bed-Days</th>
+          </tr>
+        </thead>
+        <tbody id="sensitivity-table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Sources -->
+    <div class="sources-section">
+      <div class="audit-title"><span class="dot" style="background:var(--text-dim)"></span> Sources</div>
+      <div class="source-item"><strong>[Rolnitsky 2023]</strong> Rolnitsky A et al. "The price of neonatal intensive care outcomes." <em>Front. Pediatr.</em> 11:1068367. doi:10.3389/fped.2023.1068367</div>
+      <div class="source-item"><strong>[Gorantiwar 2021]</strong> Gorantiwar S et al. "Late-onset sepsis progressing to septic shock in preterm infants." <em>J Paediatr Child Health</em> 2021. PMID:34085340</div>
+      <div class="source-item"><strong>[Stoll 2002]</strong> Stoll BJ et al. "Late-onset sepsis in very low birth weight neonates." <em>Pediatrics</em> 110(2):285-91. PMID:12165580</div>
+      <div class="source-item"><strong>[Stoll 2004]</strong> Stoll BJ et al. "To tap or not to tap: high likelihood of meningitis without sepsis among VLBW infants." <em>Pediatrics</em> 2004. PMID:15121927</div>
+      <div class="source-item"><strong>[Flannery 2022]</strong> Flannery DD et al. "Late-onset sepsis among very preterm infants." <em>Pediatrics</em> 150(6):e2022058813</div>
+      <div class="source-item"><strong>[Flannery 2023]</strong> Flannery DD et al. "Late-onset meningitis among extremely preterm infants." <em>JAMA Netw Open</em> 2023</div>
+      <div class="source-item"><strong>[Moorman 2011]</strong> Moorman JR et al. "Mortality reduction by heart rate characteristic monitoring: HeRO RCT." <em>BMJ</em> 2011. (22% mortality reduction, n=3,003)</div>
+      <div class="source-item"><strong>[Masino 2019]</strong> Masino AJ et al. "Machine learning models for early sepsis recognition in the NICU." <em>PLOS ONE</em> 14(2):e0212665. (≥4h lead time, AUC 0.80-0.87)</div>
+      <div class="source-item"><strong>[Sullivan 2021]</strong> Sullivan BA et al. "Vital sign physiomarkers of neonatal sepsis." <em>Pediatr Res</em> 2021. (5-24h vital sign changes before diagnosis)</div>
+      <div class="source-item"><strong>[PMC 5649973]</strong> "The timing of early antibiotics and hospital mortality in sepsis." (9% mortality increase per hour delay)</div>
+      <div class="source-item"><strong>[CDC/March of Dimes]</strong> PeriStats data on NICU admissions. ~370K/year US, 2023 estimates.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- CHART INSTANCES ---
+let chartPathways = null;
+let chartScenarios = null;
+let chartSensitivity = null;
+
+const SCENARIOS = {
+  conservative: { lead: 6,  shockPrev: 30, mortRed: 10, daysSaved: 3 },
+  moderate:     { lead: 12, shockPrev: 50, mortRed: 15, daysSaved: 5 },
+  aggressive:   { lead: 48, shockPrev: 70, mortRed: 22, daysSaved: 8 },
+};
+
+let currentScenario = 'moderate';
+
+function setScenario(name) {
+  currentScenario = name;
+  document.querySelectorAll('.scenario-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.scenario === name);
+  });
+  const s = SCENARIOS[name];
+  document.getElementById('shock_prevention').value = s.shockPrev;
+  document.getElementById('mortality_reduction').value = s.mortRed;
+  document.getElementById('days_saved').value = s.daysSaved;
+  recalc();
+}
+
+function getInputs() {
+  return {
+    nicuAdmissions: +document.getElementById('nicu_admissions').value,
+    pctVeryPreterm: +document.getElementById('pct_very_preterm').value / 100,
+    losIncidence:   +document.getElementById('los_incidence').value / 100,
+    losMortality:   +document.getElementById('los_mortality').value / 100,
+    losToShock:     +document.getElementById('los_to_shock').value / 100,
+    shockMortality: +document.getElementById('shock_mortality').value / 100,
+    losToMeningitis:+document.getElementById('los_to_meningitis').value / 100,
+    dailyCostCAD:   +document.getElementById('daily_cost_cad').value,
+    extraLosDays:   +document.getElementById('extra_los_days').value,
+    meningitisCost: +document.getElementById('meningitis_cost').value,
+    shockExtraDays: +document.getElementById('shock_extra_days').value,
+    cadToUsd:       +document.getElementById('cad_to_usd').value,
+    shockPrevention:+document.getElementById('shock_prevention').value / 100,
+    mortReduction:  +document.getElementById('mortality_reduction').value / 100,
+    daysSaved:      +document.getElementById('days_saved').value,
+    meningitisPrev: +document.getElementById('meningitis_prevention').value / 100,
+    detectionSens:  +document.getElementById('detection_sensitivity').value / 100,
+    numNICUs:       +document.getElementById('num_nicus').value,
+  };
+}
+
+function runModel(inp) {
+  const dailyUSD = inp.dailyCostCAD * inp.cadToUsd;
+  const veryPreterm = inp.nicuAdmissions * inp.pctVeryPreterm;
+  const sepsisCases = veryPreterm * inp.losIncidence;
+  const effectiveCases = sepsisCases * inp.detectionSens;
+
+  // Baseline
+  const baselineDeaths = sepsisCases * inp.losMortality;
+  const baselineShock = sepsisCases * inp.losToShock;
+  const baselineShockDeaths = baselineShock * inp.shockMortality;
+  const baselineMeningitis = sepsisCases * inp.losToMeningitis;
+
+  // Pathway A: LOS reduction
+  const savingsA = effectiveCases * inp.daysSaved * dailyUSD;
+
+  // Pathway B: Shock prevention
+  const shockPrevented = baselineShock * inp.shockPrevention * inp.detectionSens;
+  const shockDeathsPrevented = shockPrevented * inp.shockMortality;
+  const savingsB = shockPrevented * inp.shockExtraDays * dailyUSD;
+
+  // Pathway C: Mortality
+  const deathsPrevented = baselineDeaths * inp.mortReduction * inp.detectionSens;
+
+  // Pathway D: Meningitis prevention
+  const meningitisPrevented = baselineMeningitis * inp.meningitisPrev * inp.detectionSens;
+  const savingsD = meningitisPrevented * inp.meningitisCost * inp.cadToUsd;
+
+  const totalSavings = savingsA + savingsB + savingsD;
+  const bedDays = effectiveCases * inp.daysSaved;
+  const perNICU = totalSavings / inp.numNICUs;
+  const perCase = sepsisCases > 0 ? totalSavings / sepsisCases : 0;
+
+  return {
+    veryPreterm, sepsisCases, effectiveCases, dailyUSD,
+    baselineDeaths, baselineShock, baselineShockDeaths, baselineMeningitis,
+    savingsA, savingsB, savingsD, totalSavings,
+    shockPrevented, shockDeathsPrevented, deathsPrevented, meningitisPrevented,
+    bedDays, perNICU, perCase,
+    inp,
+  };
+}
+
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + (n / 1e3).toFixed(0) + 'K';
+  return '$' + n.toFixed(0);
+}
+
+function fmtN(n) { return Math.round(n).toLocaleString(); }
+
+function calcStep(formula, result, highlight) {
+  return `<div class="calc-step">
+    <span class="calc-formula">${formula}</span>
+    <span class="calc-result ${highlight ? 'calc-highlight' : ''}">${result}</span>
+  </div>`;
+}
+
+function recalc() {
+  const inp = getInputs();
+  const r = runModel(inp);
+
+  // Headlines
+  document.getElementById('stat-total-savings').textContent = fmt(r.totalSavings);
+  document.getElementById('stat-per-nicu').textContent = fmt(r.perNICU) + ' per NICU/year';
+  document.getElementById('stat-bed-days').textContent = fmtN(r.bedDays);
+  document.getElementById('stat-bed-days-sub').textContent = fmtN(r.bedDays / inp.numNICUs) + ' per NICU';
+  document.getElementById('stat-lives').textContent = '~' + Math.round(r.deathsPrevented);
+  document.getElementById('stat-lives-sub').textContent = (r.deathsPrevented / inp.numNICUs).toFixed(1) + ' per NICU';
+  document.getElementById('stat-shock').textContent = Math.round(r.shockPrevented);
+  document.getElementById('stat-shock-sub').textContent = 'of ' + Math.round(r.baselineShock) + ' baseline cases';
+
+  // Audit: Population
+  document.getElementById('audit-population').innerHTML =
+    calcStep(`US NICU admissions/year`, fmtN(inp.nicuAdmissions)) +
+    calcStep(`× ${(inp.pctVeryPreterm*100).toFixed(0)}% very preterm (<30 wks)`, fmtN(r.veryPreterm)) +
+    calcStep(`× ${(inp.losIncidence*100).toFixed(0)}% LOS incidence → sepsis cases`, fmtN(r.sepsisCases), true) +
+    calcStep(`× ${(inp.detectionSens*100).toFixed(0)}% detection sensitivity → cases benefiting`, fmtN(r.effectiveCases));
+
+  // Audit: Pathway A
+  document.getElementById('audit-pathway-a').innerHTML =
+    calcStep(`${fmtN(r.effectiveCases)} cases × ${inp.daysSaved} days saved`, fmtN(r.bedDays) + ' bed-days') +
+    calcStep(`× $${r.dailyUSD.toFixed(0)}/day (CAD $${inp.dailyCostCAD} × ${inp.cadToUsd})`, fmt(r.savingsA), true);
+
+  // Audit: Pathway B
+  document.getElementById('audit-pathway-b').innerHTML =
+    calcStep(`${fmtN(r.sepsisCases)} cases × ${(inp.losToShock*100).toFixed(0)}% → shock`, Math.round(r.baselineShock) + ' shock cases') +
+    calcStep(`× ${(inp.shockPrevention*100).toFixed(0)}% prevented × ${(inp.detectionSens*100).toFixed(0)}% sensitivity`, Math.round(r.shockPrevented) + ' prevented') +
+    calcStep(`${Math.round(r.shockPrevented)} × ${inp.shockExtraDays} days × $${r.dailyUSD.toFixed(0)}/day`, fmt(r.savingsB), true) +
+    calcStep(`Deaths prevented: ${Math.round(r.shockPrevented)} × ${(inp.shockMortality*100).toFixed(0)}%`, Math.round(r.shockDeathsPrevented) + ' lives');
+
+  // Audit: Pathway C
+  document.getElementById('audit-pathway-c').innerHTML =
+    calcStep(`${fmtN(r.sepsisCases)} cases × ${(inp.losMortality*100).toFixed(0)}% mortality`, Math.round(r.baselineDeaths) + ' baseline deaths') +
+    calcStep(`× ${(inp.mortReduction*100).toFixed(0)}% reduction × ${(inp.detectionSens*100).toFixed(0)}% sensitivity`, Math.round(r.deathsPrevented) + ' lives saved', true) +
+    calcStep(`Upper bound from HeRO RCT: 22% reduction (Moorman 2011)`, '');
+
+  // Audit: Pathway D
+  document.getElementById('audit-pathway-d').innerHTML =
+    calcStep(`${fmtN(r.sepsisCases)} × ${(inp.losToMeningitis*100).toFixed(0)}% → meningitis`, Math.round(r.baselineMeningitis) + ' cases') +
+    calcStep(`× ${(inp.meningitisPrev*100).toFixed(0)}% prevented × ${(inp.detectionSens*100).toFixed(0)}% sensitivity`, (r.meningitisPrevented).toFixed(1) + ' prevented') +
+    calcStep(`× CAD $${fmtN(inp.meningitisCost)} × ${inp.cadToUsd} USD`, fmt(r.savingsD), true);
+
+  // Sensitivity table
+  const sensBody = document.getElementById('sensitivity-table-body');
+  sensBody.innerHTML = '';
+  for (const pct of [25, 50, 69, 80, 100]) {
+    const sensInp = { ...inp, detectionSens: pct / 100 };
+    const sr = runModel(sensInp);
+    const label = pct === 69 ? '69% (ML typical)' : pct + '%';
+    sensBody.innerHTML += `<tr>
+      <td>${label}</td>
+      <td style="color:var(--green)">${fmt(sr.totalSavings)}</td>
+      <td>${fmt(sr.perNICU)}</td>
+      <td>${Math.round(sr.deathsPrevented)}</td>
+      <td>${fmtN(sr.bedDays)}</td>
+    </tr>`;
+  }
+
+  updateCharts(r, inp);
+}
+
+function updateCharts(r, inp) {
+  const pathwayData = [r.savingsA, r.savingsB, r.savingsD];
+  const pathwayLabels = [
+    'A: LOS Reduction',
+    'B: Shock Prevention',
+    'D: Meningitis Prevention'
+  ];
+  const pathwayColors = ['#4cda8a', '#a06cff', '#50d0e0'];
+
+  if (chartPathways) chartPathways.destroy();
+  chartPathways = new Chart(document.getElementById('chart-pathways'), {
+    type: 'bar',
+    data: {
+      labels: pathwayLabels,
+      datasets: [{
+        data: pathwayData,
+        backgroundColor: pathwayColors,
+        borderRadius: 4,
+        barThickness: 40,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: { label: ctx => fmt(ctx.raw) }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#8888a0', font: { size: 10, family: "'SF Mono', monospace" } }, grid: { display: false } },
+        y: {
+          ticks: { color: '#8888a0', font: { size: 10 }, callback: v => fmt(v) },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        }
+      }
+    }
+  });
+
+  //   Scenario comparison
+  const scenarioResults = {};
+  for (const [name, s] of Object.entries(SCENARIOS)) {
+    const sInp = { ...inp, shockPrevention: s.shockPrev/100, mortReduction: s.mortRed/100, daysSaved: s.daysSaved, detectionSens: 1 };
+    scenarioResults[name] = runModel(sInp);
+  }
+
+  if (chartScenarios) chartScenarios.destroy();
+  chartScenarios = new Chart(document.getElementById('chart-scenarios'), {
+    type: 'bar',
+    data: {
+      labels: ['Conservative (6h)', 'Moderate (12h)', 'Aggressive (48h)'],
+      datasets: [
+        { label: 'LOS Reduction', data: Object.values(scenarioResults).map(r => r.savingsA), backgroundColor: '#4cda8a', borderRadius: 3 },
+        { label: 'Shock Prevention', data: Object.values(scenarioResults).map(r => r.savingsB), backgroundColor: '#a06cff', borderRadius: 3 },
+        { label: 'Meningitis Prev.', data: Object.values(scenarioResults).map(r => r.savingsD), backgroundColor: '#50d0e0', borderRadius: 3 },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#8888a0', font: { size: 10 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + fmt(ctx.raw) } }
+      },
+      scales: {
+        x: { stacked: true, ticks: { color: '#8888a0', font: { size: 10, family: "'SF Mono', monospace" } }, grid: { display: false } },
+        y: { stacked: true, ticks: { color: '#8888a0', font: { size: 10 }, callback: v => fmt(v) }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+
+  // Sensitivity chart
+  const sensPoints = [];
+  for (let pct = 10; pct <= 100; pct += 5) {
+    const sInp = { ...inp, detectionSens: pct / 100 };
+    const sr = runModel(sInp);
+    sensPoints.push({ x: pct, y: sr.totalSavings });
+  }
+
+  if (chartSensitivity) chartSensitivity.destroy();
+  chartSensitivity = new Chart(document.getElementById('chart-sensitivity'), {
+    type: 'line',
+    data: {
+      labels: sensPoints.map(p => p.x + '%'),
+      datasets: [{
+        data: sensPoints.map(p => p.y),
+        borderColor: '#6c8cff',
+        backgroundColor: 'rgba(108,140,255,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => fmt(ctx.raw) } }
+      },
+      scales: {
+        x: { ticks: { color: '#8888a0', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#8888a0', font: { size: 10 }, callback: v => fmt(v) }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+// Init
+recalc();
+</script>
+</body>
+</html>

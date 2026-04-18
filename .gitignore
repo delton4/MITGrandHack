@@ -4,3 +4,20 @@ __pycache__/
 .venv/
 .superpowers/
 *.pt
+
+# Claude local config
+.claude/
+
+# Node
+node_modules/
+
+# SQLite runtime files (regenerated from seed)
+*.db
+*.db-shm
+*.db-wal
+
+# Nested git repo (external clone, not part of this project)
+greek github project/
+
+# Archive — per CLAUDE.md
+Archive /
